@@ -4,16 +4,19 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
+
+
+# USER MODELS HERE
 class User(AbstractBaseUser):
     
-    class Types(models.TextChoices):
+    class Roles(models.TextChoices):
         ADMIN = "ADMIN", "Admin"
         STUDENT = "STUDENT", "Student"
         FACULTY = "FACULTY", "Faculty"
         CASHIER = "CASHIER", "Cashier"
         REGISTRAR = "REGISTRAR", "Registrar"
 
-    type = models.CharField(_('Type'), max_length=255, choices=Types.choices, default=Types.ADMIN)
+    role = models.CharField(_('Role'), max_length=255, choices=Roles.choices, default=Roles.ADMIN)
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
     username = models.CharField(max_length=255,unique=True)
     password = models.CharField(max_length=255, blank=False)
