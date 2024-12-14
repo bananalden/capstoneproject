@@ -3,4 +3,13 @@ from django.shortcuts import render
 # Create your views here.
 
 def index(request):
-    return render(request, 'home/index.html')
+    return render(request, 'login/login.html')
+
+def studentview(request):
+    return render(request, 'studentside/index.html')
+
+def registrarview(request):
+    return render(request, 'registrar/index.html')
+
+def cashierrview(request):
+    return render(request, 'cashier/index.html')
