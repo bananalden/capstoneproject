@@ -78,11 +78,10 @@ WSGI_APPLICATION = 'studentportal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'studentportal',
-        'USER': 'studentportaladmin',
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_EHdMVOhXbdD72HDRUA1',
+        'HOST': 'django-smis-database-django-smis.i.aivencloud.com',
+        'PORT': '11913'
     }
 }
 
