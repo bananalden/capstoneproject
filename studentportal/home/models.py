@@ -5,6 +5,7 @@ from django.dispatch import receiver
 
 # Create your models here.
 class User(AbstractUser):
+    
     class Role(models.TextChoices):
         ADMIN = "ADMIN", 'Admin'
         STUDENT = "STUDENT", 'Student'
