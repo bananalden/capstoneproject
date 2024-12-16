@@ -1,41 +1,86 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
-from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+
 
 # Create your models here.
-class User(AbstractBaseUser):
+class User(AbstractUser):
+    class Role(models.TextChoices):
+        ADMIN = "ADMIN", 'Admin'
+        STUDENT = "STUDENT", 'Student'
+        REGISTRAR = "REGISTRAR", 'Registrar'
+        CASHIER = "CASHIER", 'Cashier'
+        FACULTY = "FACULTY", 'Faculty'
+
+    base_role = Role.ADMIN
+
+    role = models.CharField(max_length=50 ,choices=Role.choices)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.role = self.base_role
+            return super().save(*args, **kwargs)
+        
+
+class StudentManager(BaseUserManager):
+    def get_queryset(self, *args, **kwargs):
+        results = super().get_queryset(*args, **kwargs)
+        return results.filter(role=User.Role.STUDENT) 
+
+class Student(User):
+    base_role = User.Role.STUDENT
+
+    student = StudentManager()
+
+    class Meta:
+        proxy = True
+
+    def welcome(self):
+        return "Only for Students"
     
-    class Types(models.TextChoices):
-        ADMIN = "ADMIN", "Admin"
-        STUDENT = "STUDENT", "Student"
-        FACULTY = "FACULTY", "Faculty"
-        CASHIER = "CASHIER", "Cashier"
-        REGISTRAR = "REGISTRAR", "Registrar"
+class FacultyManager(BaseUserManager):
+    def get_queryset(self, *args, **kwargs):
+        results = super().get_queryset(*args, **kwargs)
+        return results.filter(role=User.Role.FACULTY) 
 
-    type = models.CharField(_('Type'), max_length=255, choices=Types.choices, default=Types.ADMIN)
-    name = models.CharField(_("Name of User"), blank=True, max_length=255)
-    username = models.CharField(max_length=255,unique=True)
-    password = models.CharField(max_length=255, blank=False)
+class Faculty(User):
+    base_role = User.Role.FACULTY
 
-    USERNAME_FIELD = 'username'
+    faculty = FacultyManager()
 
-    def get_absolute_url(self):
-        return reverse("users:detail",kwargs={"username": self.username})
+    class Meta:
+        proxy = True
+
+    def welcome(self):
+        return "Only for Faculty"
     
-class StudentTable(User):
+class CashierManager(BaseUserManager):
+    def get_queryset(self, *args, **kwargs):
+        results = super().get_queryset(*args, **kwargs)
+        return results.filter(role=User.Role.CASHIER) 
+
+class Cashier(User):
+    base_role = User.Role.CASHIER
+
+    cashier = CashierManager()
+
     class Meta:
         proxy = True
 
-class CashierTable(User):
+    def welcome(self):
+        return "Only for Cashier"
+
+class RegistrarManager(BaseUserManager):
+    def get_queryset(self, *args, **kwargs):
+        results = super().get_queryset(*args, **kwargs)
+        return results.filter(role=User.Role.REGISTRAR) 
+
+class Registrar(User):
+    base_role = User.Role.REGISTRAR
+
+    cashier = RegistrarManager()
+
     class Meta:
         proxy = True
 
-class FacultyTable(User):
-    class Meta:
-        proxy = True
-
-class RegistrarTable(User):
-    class Meta:
-        proxy = True
-
+    def welcome(self):
+        return "Only for Registrar"
