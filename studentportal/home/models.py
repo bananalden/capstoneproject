@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class User(AbstractUser):
@@ -19,7 +20,7 @@ class User(AbstractUser):
         if not self.pk:
             self.role = self.base_role
             return super().save(*args, **kwargs)
-        
+
 
 class StudentManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
@@ -36,7 +37,17 @@ class Student(User):
 
     def welcome(self):
         return "Only for Students"
-    
+
+@receiver(post_save, sender = Student)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created and instance.role =="STUDENT":
+        StudentProfile.objects.create(home=instance)
+
+
+
+class StudentProfile(models.Model):
+    studentUSN = models.OneToOneField(User, on_delete=models.CASCADE)
+
 class FacultyManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         results = super().get_queryset(*args, **kwargs)
@@ -84,3 +95,4 @@ class Registrar(User):
 
     def welcome(self):
         return "Only for Registrar"
+    
