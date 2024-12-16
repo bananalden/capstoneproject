@@ -1,0 +1,32 @@
+<h3> User Creation Test </h3>
+<hr>
+<form method="post" action="">
+    {% csrf_token %}
+<div class="firstname">
+    <label for="first_name">First Name</label>
+    {{form.first_name}}
+</div>
+<div class="lastname">
+    <label for="last_name">Last Name</label>
+    {{form.last_name}}
+</div>
+<div class="username">
+    <label for="username">Username:</label>
+    {{form.username}}
+</div>
+<div class="password1">
+    <label for="password1">Password:</label>
+    {{form.password1}}
+</div>
+<div class="password2">
+    <label for="password2">Confirm Password:</label>
+    {{form.password2}}
+</div>
+<div class="role">
+    <label for="role">Role:</label>
+    {{form.role}}
+</div>
+<hr>
+
+<input type="submit">
+</form>
