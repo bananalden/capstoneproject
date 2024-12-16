@@ -11,7 +11,7 @@ class User(AbstractUser):
         REGISTRAR = "REGISTRAR", 'Registrar'
         CASHIER = "CASHIER", 'Cashier'
         FACULTY = "FACULTY", 'Faculty'
-
+    
     base_role = Role.ADMIN
 
     role = models.CharField(max_length=50 ,choices=Role.choices)
@@ -41,12 +41,13 @@ class Student(User):
 @receiver(post_save, sender = Student)
 def create_user_profile(sender, instance, created, **kwargs):
     if created and instance.role =="STUDENT":
-        StudentProfile.objects.create(home=instance)
-
+        StudentProfile.objects.create(studentID=instance)
 
 
 class StudentProfile(models.Model):
-    studentUSN = models.OneToOneField(User, on_delete=models.CASCADE)
+    studentID = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
 
 class FacultyManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
