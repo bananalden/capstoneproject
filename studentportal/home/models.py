@@ -4,7 +4,10 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 # Create your models here.
-class User(AbstractUser):
+
+class CustomUserManager(BaseUserManager):
+    pass
+class CustomUser(AbstractUser):
     
     class Role(models.TextChoices):
         ADMIN = "ADMIN", 'Admin'
@@ -26,10 +29,10 @@ class User(AbstractUser):
 class StudentManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         results = super().get_queryset(*args, **kwargs)
-        return results.filter(role=User.Role.STUDENT) 
+        return results.filter(role=CustomUser.Role.STUDENT) 
 
-class Student(User):
-    base_role = User.Role.STUDENT
+class Student(CustomUser):
+    base_role = CustomUser.Role.STUDENT
 
     student = StudentManager()
 
@@ -46,17 +49,17 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 
 class StudentProfile(models.Model):
-    studentID = models.OneToOneField(User, on_delete=models.CASCADE)
+    studentID = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
 
 
 class FacultyManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         results = super().get_queryset(*args, **kwargs)
-        return results.filter(role=User.Role.FACULTY) 
+        return results.filter(role=CustomUser.Role.FACULTY) 
 
-class Faculty(User):
-    base_role = User.Role.FACULTY
+class Faculty(CustomUser):
+    base_role = CustomUser.Role.FACULTY
 
     faculty = FacultyManager()
 
@@ -69,10 +72,10 @@ class Faculty(User):
 class CashierManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         results = super().get_queryset(*args, **kwargs)
-        return results.filter(role=User.Role.CASHIER) 
+        return results.filter(role=CustomUser.Role.CASHIER) 
 
-class Cashier(User):
-    base_role = User.Role.CASHIER
+class Cashier(CustomUser):
+    base_role = CustomUser.Role.CASHIER
 
     cashier = CashierManager()
 
@@ -85,10 +88,10 @@ class Cashier(User):
 class RegistrarManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         results = super().get_queryset(*args, **kwargs)
-        return results.filter(role=User.Role.REGISTRAR) 
+        return results.filter(role=CustomUser.Role.REGISTRAR) 
 
-class Registrar(User):
-    base_role = User.Role.REGISTRAR
+class Registrar(CustomUser):
+    base_role = CustomUser.Role.REGISTRAR
 
     cashier = RegistrarManager()
 
