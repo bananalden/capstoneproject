@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from .forms import GeneralUserCreationForm
+from .forms import GeneralUserCreationForm, StudentCreationForm
 
 # Create your views here.
 
 def index(request):
-    form = GeneralUserCreationForm()
+    form = StudentCreationForm()
     if request.method == 'POST':
-        form = GeneralUserCreationForm(request.POST)
+        form = StudentCreationForm(request.POST)
         if form.is_valid():
             form.save()
         else:

@@ -31,12 +31,16 @@ class CustomUser(AbstractUser):
         CASHIER = "CASHIER", 'Cashier'
         FACULTY = "FACULTY", 'Faculty'
 
+    base_role = Role.ADMIN
 
     role = models.CharField(max_length=50 ,choices=Role.choices)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.role = self.base_role
+            return super().save(*args, **kwargs)
 
 
 class StudentManager(BaseUserManager):
