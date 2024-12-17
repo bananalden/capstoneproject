@@ -1,11 +1,12 @@
 from django.shortcuts import render
-
+from .forms import GeneralUserCreationForm
 
 # Create your views here.
 
 def index(request):
-
-    return render(request, 'test/usercreation.html')
+    form = GeneralUserCreationForm
+    context = GeneralUserCreationForm()
+    return render(request, 'test/usercreation.html', {'form': form})
 
 def studentview(request):
     return render(request, 'studentside/index.html')

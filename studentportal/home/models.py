@@ -6,7 +6,22 @@ from django.dispatch import receiver
 # Create your models here.
 
 class CustomUserManager(BaseUserManager):
-    pass
+    def create_user(self, email, password=None):
+        if not email:
+            raise ValueError("Users must have email address")
+        
+        user = self.model(
+            email=self.normalize_email(email)
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+    
+    def create_user(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+    
 class CustomUser(AbstractUser):
     
     class Role(models.TextChoices):
@@ -19,6 +34,8 @@ class CustomUser(AbstractUser):
     base_role = Role.ADMIN
 
     role = models.CharField(max_length=50 ,choices=Role.choices)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.pk:
