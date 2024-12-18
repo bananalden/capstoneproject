@@ -3,6 +3,9 @@ from .models import CustomUser
 from .models import Student
 from django.contrib.auth.forms import UserCreationForm
 
+
+
+
 class GeneralUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser

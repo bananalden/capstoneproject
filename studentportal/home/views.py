@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import GeneralUserCreationForm, StudentCreationForm
 
 # Create your views here.
@@ -9,6 +9,7 @@ def index(request):
         form = StudentCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('studentview')
         else:
             print(form.errors.as_data())
 
