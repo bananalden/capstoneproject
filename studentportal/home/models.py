@@ -26,10 +26,10 @@ class CustomUser(AbstractUser):
     
     class Role(models.TextChoices):
         ADMIN = "ADMIN", 'Admin'
-        STUDENT = "STUDENT", 'Student'
         REGISTRAR = "REGISTRAR", 'Registrar'
         CASHIER = "CASHIER", 'Cashier'
         FACULTY = "FACULTY", 'Faculty'
+        STUDENT = "STUDENT", 'Student'
 
     base_role = Role.ADMIN
 

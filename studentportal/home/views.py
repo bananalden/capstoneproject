@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from .forms import GeneralUserCreationForm, StudentCreationForm
 
 # Create your views here.
@@ -6,7 +7,18 @@ from .forms import GeneralUserCreationForm, StudentCreationForm
 
 
 def index(request):
-    return render(request, 'login/login.html')
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            if user.role == 'STUDENT':
+                return redirect('studentview')
+            if user.role =='ADMIN':
+                return redirect('facultyview')
+    else:
+        return render(request, 'login/login.html')
 
 def createuser(request):
     form = StudentCreationForm()
@@ -33,3 +45,7 @@ def cashierrview(request):
 
 def facultyview(request):
     return render(request, 'faculty/index.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')
