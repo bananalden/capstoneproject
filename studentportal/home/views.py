@@ -3,13 +3,17 @@ from .forms import GeneralUserCreationForm, StudentCreationForm
 
 # Create your views here.
 
+
+
 def index(request):
+    return render(request, 'login/login.html')
+
+def createuser(request):
     form = StudentCreationForm()
     if request.method == 'POST':
         form = StudentCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('studentview')
         else:
             print(form.errors.as_data())
 
@@ -26,3 +30,6 @@ def registrarview(request):
 
 def cashierrview(request):
     return render(request, 'cashier/index.html')
+
+def facultyview(request):
+    return render(request, 'faculty/index.html')
