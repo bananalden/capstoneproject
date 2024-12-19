@@ -10,22 +10,30 @@ from .forms import GeneralUserCreationForm, StudentCreationForm
 #c:
 
 def index(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            if user.role == 'STUDENT':
-                return redirect('studentview')
-            if user.role =='ADMIN':
-                return redirect('facultyview')
-        else:
-            messages.error(request, 'Invalid credentials, please enter your USN and password correctly.')
-            return redirect('login')
+    if request.user.is_authenticated:
+        currentUserRole = request.user.role
+        if currentUserRole == 'STUDENT':
+            return redirect('studentview')
+        if currentUserRole =='ADMIN':
+            return redirect('facultyview')
+        
+    else:  
+        if request.method == "POST":
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                if user.role == 'STUDENT':
+                    return redirect('studentview')
+                if user.role =='ADMIN':
+                    return redirect('facultyview')
+            else:
+                messages.error(request, 'Invalid credentials, please enter your USN and password correctly.')
+                return redirect('login')
 
-    else:
-        return render(request, 'login/login.html')
+        else:
+            return render(request, 'login/login.html')
 
 def createuser(request):
     form = StudentCreationForm()
