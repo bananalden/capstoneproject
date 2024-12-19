@@ -6,7 +6,8 @@ from .forms import GeneralUserCreationForm, StudentCreationForm
 
 # Create your views here.
 
-
+# Note to backend developer: add the check to see if the user is logged in
+#c:
 
 def index(request):
     if request.method == "POST":
