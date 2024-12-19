@@ -8,6 +8,7 @@ urlpatterns = [
     path('cashierview', views.cashierrview, name='cashierview'),
     path('facultyview', views.facultyview, name='facultyview'),
     path('createuser', views.createuser, name='createuser'),
+    path('accessdenied',views.accessdenied, name='accessdenied'),
     path('logout', views.logout_user, name='logout')
 
 ]

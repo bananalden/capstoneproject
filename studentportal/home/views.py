@@ -42,11 +42,10 @@ def createuser(request):
 
 @login_required(login_url='login')
 def studentview(request):
-    #user = request.user
-   # if user is not user.role == 'STUDENT':
-        #return redirect('')
-
-        return render(request, 'studentside/index.html')
+    user = request.user
+    if user.role != 'STUDENT':
+        return redirect('accessdenied')
+    return render(request, 'studentside/index.html')
 
 def registrarview(request):
     return render(request, 'registrar/index.html')
@@ -57,6 +56,13 @@ def cashierrview(request):
 @login_required(login_url='login')
 def facultyview(request):
     return render(request, 'faculty/index.html')
+
+@login_required(login_url='login')
+def accessdenied(request):
+    return render(request, 'error/401.html')
+
+
+
 
 def logout_user(request):
     logout(request)
