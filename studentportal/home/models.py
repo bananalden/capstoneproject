@@ -5,6 +5,9 @@ from django.dispatch import receiver
 
 # Create your models here.
 
+# @ALDEN ADD A MODEL FOR PROGRAMS/COURSES AND THEIR SUBJECTS TOO 
+
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None):
         if not email:

@@ -6,17 +6,15 @@ from .forms import GeneralUserCreationForm, StudentCreationForm
 
 # Create your views here.
 
-# Note to backend developer: add the check to see if the user is logged in
-#c:
-
 def index(request):
+    #FUNCTION TO CHECK IF THE USER IS LOGGED IN
     if request.user.is_authenticated:
         currentUserRole = request.user.role
         if currentUserRole == 'STUDENT':
             return redirect('studentview')
         if currentUserRole =='ADMIN':
             return redirect('facultyview')
-        
+    #REDIRECTS THEM DIRECTLY TO THE PROPER VIEW RATHER THAN A 401 
     else:  
         if request.method == "POST":
             username = request.POST['username']
