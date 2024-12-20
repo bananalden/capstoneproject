@@ -65,12 +65,26 @@ class Student(CustomUser):
 @receiver(post_save, sender = Student)
 def create_user_profile(sender, instance, created, **kwargs):
     if created and instance.role =="STUDENT":
-        StudentProfile.objects.create(studentID=instance)
+        StudentProfile.objects.create(
+            studentID=instance,
+            studentUSN=instance.username
+            )
 
 
 class StudentProfile(models.Model):
     studentID = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     studentUSN = models.CharField(max_length=50, null=True)
+
+class Course(models.Model):
+    course_code = models.CharField(max_length=50, unique=True)
+    course_name = models.CharField(max_length = 100)
+
+class Subject(models.Model):
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    subject_code = models.CharField(max_length=50, unique=True)
+
+class Grade(models.Model):
+    pass
 
 
 class FacultyManager(BaseUserManager):
