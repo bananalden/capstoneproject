@@ -73,7 +73,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 class StudentProfile(models.Model):
     studentID = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    studentUSN = models.CharField(max_length=50, null=True)
+    studentUSN = models.CharField(max_length=50, primary_key=True)
 
 class Course(models.Model):
     course_code = models.CharField(max_length=50, unique=True)
