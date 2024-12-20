@@ -76,15 +76,20 @@ class StudentProfile(models.Model):
     studentUSN = models.CharField(max_length=50, primary_key=True)
 
 class Course(models.Model):
-    course_code = models.CharField(max_length=50, unique=True)
+    course_code = models.CharField(max_length=50, unique=True, primary_key=True)
     course_name = models.CharField(max_length = 100)
 
 class Subject(models.Model):
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
-    subject_code = models.CharField(max_length=50, unique=True)
+    subject_code = models.CharField(max_length=50, unique=True, primary_key=True)
+    subject_name = models.CharField(max_length=50)
 
 class Grade(models.Model):
-    pass
+    studentUSN = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
+    subjectCode = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    grade = models.FloatField(max_length=50, null=False, default=00.00)
+    remarks = models.CharField(max_length=50, null=False, default="IC")
+
 
 
 class FacultyManager(BaseUserManager):
