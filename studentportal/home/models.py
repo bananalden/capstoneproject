@@ -67,7 +67,7 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created and instance.role =="STUDENT":
         StudentProfile.objects.create(
             studentID=instance,
-            studentUSN=instance.username
+            studentUSN=instance.username,
             )
         
 class Course(models.Model):
@@ -88,7 +88,7 @@ class Subject(models.Model):
 class StudentProfile(models.Model):
     studentID = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     studentUSN = models.CharField(max_length=50, primary_key=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
 
 
 class Grade(models.Model):

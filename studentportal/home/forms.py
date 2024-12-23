@@ -19,37 +19,9 @@ class GeneralUserCreationForm(UserCreationForm):
             'role'
         )
 
-class StudentCreationForm(forms.ModelForm):
-    # Add fields from StudentProfile
-    course = forms.ModelChoiceField(queryset=Course.objects.all(), required=True)
-    enrolled_subjects = forms.ModelMultipleChoiceField(
-        queryset=Subject.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=True
-    )
-
+class StudentCreationForm(UserCreationForm):
+    password1 = forms.CharField(widget=forms.PasswordInput())
+    password2 = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = Student
-        fields = ['first_name','last_name','username', 'email', 'password']
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['password'].widget = forms.PasswordInput()
-
-    @transaction.atomic
-    def save(self, commit=True):
-        # Save the Student instance
-        student = super().save(commit=False)
-        student.role = Student.base_role  # Ensure the role is set to STUDENT
-        if commit:
-            student.save()
-        
-        # Create and populate the StudentProfile
-        course = self.cleaned_data['course']
-        enrolled_subjects = self.cleaned_data['enrolled_subjects']
-        StudentProfile.objects.create(
-            studentID=student,
-            Course=Course
-        ).enrolled_subjects.set(enrolled_subjects)
-
-        return student
+        fields = ['first_name','last_name','username','email']
