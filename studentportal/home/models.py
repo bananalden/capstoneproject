@@ -69,27 +69,33 @@ def create_user_profile(sender, instance, created, **kwargs):
             studentID=instance,
             studentUSN=instance.username
             )
-
-
-class StudentProfile(models.Model):
-    studentID = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    studentUSN = models.CharField(max_length=50, primary_key=True)
-
+        
 class Course(models.Model):
     course_code = models.CharField(max_length=50, unique=True, primary_key=True)
     course_name = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.course_name
 
 class Subject(models.Model):
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     subject_code = models.CharField(max_length=50, unique=True, primary_key=True)
     subject_name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.subject_name
+
+
+class StudentProfile(models.Model):
+    studentID = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    studentUSN = models.CharField(max_length=50, primary_key=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
 
 class Grade(models.Model):
     studentUSN = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
     subjectCode = models.ForeignKey(Subject, on_delete=models.CASCADE)
     grade = models.FloatField(max_length=50, null=False, default=00.00)
     remarks = models.CharField(max_length=50, null=False, default="IC")
-
 
 
 class FacultyManager(BaseUserManager):
