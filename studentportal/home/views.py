@@ -62,6 +62,9 @@ def cashierrview(request):
 
 @login_required(login_url='login')
 def facultyview(request):
+    user = request.user
+    if user.role != 'FACULTY':
+        return redirect('accessdenied')
     return render(request, 'faculty/index.html')
 
 @login_required(login_url='login')
