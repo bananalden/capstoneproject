@@ -13,7 +13,7 @@ def index(request):
         if currentUserRole == 'STUDENT':
             return redirect('studentdashboard')
         if currentUserRole =='ADMIN':
-            return redirect('facultydashboard')
+            return redirect('moderatordashboard')
     #REDIRECTS THEM DIRECTLY TO THE PROPER VIEW RATHER THAN A 401 
     else:  
         if request.method == "POST":
@@ -50,15 +50,24 @@ def createuser(request):
 @login_required(login_url='login')
 def studentview(request):
     user = request.user
-    name = user.first_name
-
-    context = {'name' : name}
+    firstname = user.first_name
+    lastname = user.last_name
+    context = {'firstname' : firstname,
+               'lastname':  lastname}
     if user.role != 'STUDENT':
         return redirect('accessdenied')
     return render(request, 'studentside/dashboard.html', context)
 
+@login_required(login_url='login')
 def moderatorview(request):
-    return render(request, 'moderatorside/dashboard.html')
+    user = request.user
+    firstname = user.first_name
+    lastname = user.last_name
+    context = {'firstname' : firstname,
+               'lastname':  lastname}
+    if user.role != 'ADMIN':
+        return redirect('accessdenied')
+    return render(request, 'moderatorside/dashboard.html', context)
 
 
 def registrarview(request):

@@ -15,9 +15,13 @@ urlpatterns = [
     path('cashierview', views.cashierrview, name='cashierdashboard'),
     #CASHIER URLS END
 
+    #FACULTY URLS START
+    path('facultydashboard', views.facultyview, name='facultydashboard'),
+    #FACULTY URLS END
 
-    path('facultyview', views.facultyview, name='facultydashboard'),
-    path('moderator', views.moderatorview, name='moderatordashboard'),
+    #MODERATOR URLS START
+    path('moderatordashboard', views.moderatorview, name='moderatordashboard'),
+    # MODERATOR URLS END
     path('createuser', views.createuser, name='createuser'),
     path('accessdenied',views.accessdenied, name='accessdenied'),
 
