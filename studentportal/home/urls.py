@@ -9,6 +9,7 @@ urlpatterns = [
     path('facultyview', views.facultyview, name='facultyview'),
     path('createuser', views.createuser, name='createuser'),
     path('accessdenied',views.accessdenied, name='accessdenied'),
-    path('logout', views.logout_user, name='logout')
+    path('logout', views.logout_user, name='logout'),
+    path('sidebar', views.sidebarview, name='sidebarview')
 
 ]

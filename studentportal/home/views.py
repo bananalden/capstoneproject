@@ -71,7 +71,8 @@ def facultyview(request):
 def accessdenied(request):
     return render(request, 'error/401.html')
 
-
+def sidebarview(request):
+    return render(request, 'login/homepage.html')
 
 
 def logout_user(request):
