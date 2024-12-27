@@ -11,9 +11,9 @@ def index(request):
     if request.user.is_authenticated:
         currentUserRole = request.user.role
         if currentUserRole == 'STUDENT':
-            return redirect('studentview')
+            return redirect('studentdashboard')
         if currentUserRole =='ADMIN':
-            return redirect('facultyview')
+            return redirect('facultydashboard')
     #REDIRECTS THEM DIRECTLY TO THE PROPER VIEW RATHER THAN A 401 
     else:  
         if request.method == "POST":
@@ -23,9 +23,9 @@ def index(request):
             if user is not None:
                 login(request, user)
                 if user.role == 'STUDENT':
-                    return redirect('studentview')
+                    return redirect('studentdashboard')
                 if user.role =='ADMIN':
-                    return redirect('facultyview')
+                    return redirect('facultydashboard')
             else:
                 messages.error(request, 'Invalid credentials, please enter your USN and password correctly.')
                 return redirect('login')
@@ -56,6 +56,10 @@ def studentview(request):
     if user.role != 'STUDENT':
         return redirect('accessdenied')
     return render(request, 'studentside/dashboard.html', context)
+
+def moderatorview(request):
+    return render(request, 'moderatorside/dashboard.html')
+
 
 def registrarview(request):
     return render(request, 'registrar/index.html')
