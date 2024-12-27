@@ -1,17 +1,16 @@
-{% load static %}
-
+{%load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <title> ACLC Apalit </title>
+    <title> Homepage </title>
     <link rel="stylesheet" href="{% static 'styles/homepage.css' %}">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
-<body>
-  <div class="sidebar close">
+   <body>
+   <div class="sidebar close">
     <div class="logo-details">
       <img src="{% static 'images/aclclogo.png' %}" alt="ACLC Logo" style="width: 40px; height: 40px; margin-right: 10px;">
       <span class="logo_name">ACLC Apalit</span>
@@ -23,7 +22,7 @@
           <span class="link_name">Dashboard</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Dashboard</a></li>
+          <li><a class="link_name" href="#">Category</a></li>
         </ul>
       </li>
       <li>
@@ -100,18 +99,21 @@
         <div class="profile_name">Mj Mendiola</div>
         <div class="job">Web Designer</div>
       </div>
-      <i class='bx bx-log-out' ></i>
+        <a href="{% url 'logout'%}"><i class='bx bx-log-out' ></i></a>
     </div>
   </li>
 </ul>
   </div>
   <section class="home-section">
     <div class="home-content">
-      <i class='bx bx-menu' ></i>
+   <i class='bx bx-menu' ></i>
       <span class="text"></span>
     </div>
   </section>
+<div class="wrapper">
+{%block content%}
+{%endblock%}
+</div>
   <script src="{% static 'javascript/homepage.js' %}"></script>
-</body>
-</html>
-
+   </body>
+   </html>
