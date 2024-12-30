@@ -24,7 +24,7 @@ def index(request):
                 login(request, user)
                 if user.role == 'STUDENT':
                     return redirect('studentdashboard')
-                if user.role =='ADMIN':
+                if user.role =='FACULTY':
                     return redirect('facultydashboard')
             else:
                 messages.error(request, 'Invalid credentials, please enter your USN and password correctly.')

@@ -1,3 +1,35 @@
 
 {%extends 'studentside/base.html'%}
 
+{%block content%}
+
+    <!-- Student Information Management Section (Moved to the top) -->
+    <div class="form-container">
+        <h1>Foo bar</h1>
+        <p>Content</p>
+    </div>
+  
+    <!-- Student Table (Below the form) -->
+    <div class="student-list">
+      <h2>Student Information</h2>
+      <table class="student-table" id="studentTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic Student Entries will be added here -->
+        </tbody>
+      </table>
+      <div id="pagination" class="pagination-controls">
+        <!-- Pagination buttons will be dynamically added here -->
+      </div>
+    </div>
+  </section>
+
+{%endblock%}

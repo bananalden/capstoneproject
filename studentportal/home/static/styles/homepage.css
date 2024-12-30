@@ -307,3 +307,215 @@
     left: 0;
   }
 }
+
+
+/* Faculty Section */
+
+.student-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  padding: 10px 20px;
+}
+
+.student-table th, .student-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.student-table th {
+  background-color: #11101d;
+  color: white;
+}
+
+.student-table td {
+  background-color: #f4f4f4;
+}
+
+.form-container {
+  margin-top: 10px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.form-container input, .form-container select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-container button {
+  padding: 10px 20px;
+  background-color: #11101d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #333;
+}
+
+/* Add responsive design for mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .home-section {
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+
+  .sidebar.close ~ .home-section {
+    width: 100%;
+    left: 0;
+  }
+}
+
+
+/* Student Information Form */
+.form-container {
+  margin-top: 20px;
+  background-color: #ffffff; /* Light background for contrast */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 600px; /* Limit the width for better design */
+  margin-left: auto;
+  margin-right: auto; /* Center the form */
+}
+
+.form-container h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #f9f9f9; /* Light grey background for input fields */
+}
+
+.form-container button {
+  padding: 12px 24px;
+  background-color: #BF1E2E; /* Initial red color for the button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transition for smooth hover effect */
+}
+
+.form-container button:hover {
+  background-color: #9e1626; /* Darker red shade on hover */
+  transform: scale(1.05); /* Slightly increase the size on hover */
+}
+
+
+.form-container button:active {
+  background-color: #388e3c; /* Even darker green when pressed */
+}
+
+.form-container select {
+  background-color: #f4f4f4; /* Light grey background for the select dropdown */
+}
+
+/* Student Information Table */
+.student-list {
+  margin-top: 40px;
+  padding: 0 20px; /* Add padding to the left and right for spacing */
+  width: 100%;
+  max-width: 1200px; /* Optionally limit the max width for a more consistent look */
+  margin-left: auto;
+  margin-right: auto; /* Center the student list table */
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 10px 20px;
+}
+
+.student-table th, .student-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.student-table th {
+  background-color: #11101d;
+  color: white;
+}
+
+.student-table td {
+  background-color: #f4f4f4;
+}
+
+/* Style the Edit and Delete buttons */
+.edit-btn, .delete-btn {
+  padding: 6px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+}
+
+/* PAGINATION */
+.pagination-controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination-controls button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.pagination-controls button:hover {
+  background-color: #f1f1f1;
+}
+
+.pagination-controls button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
