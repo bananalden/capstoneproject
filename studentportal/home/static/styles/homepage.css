@@ -519,3 +519,15 @@
   background-color: #ddd;
   cursor: not-allowed;
 }
+
+.dashboard-container{
+  background-color:#f4f4f4;
+  border-radius: 25px;
+
+}
+
+.dashboard-card1{
+  border: solid black;
+  border-radius: 25px;
+ 
+}
