@@ -6,6 +6,7 @@ urlpatterns = [
     #STUDENT URLS START
     path('studentdashboard', views.studentview, name='studentdashboard'),
     path('studentdocrequest', views.studentformrequest, name='studentdocrequest'),
+    path('studenttransactionhistory', views.studenttransactionhistory, name='studenttransactionhistory'),
     #STUDENT URLS END
 
     #REGISTRAR URLS START
@@ -22,6 +23,7 @@ urlpatterns = [
 
     #MODERATOR URLS START
     path('moderatorview', views.moderatorview, name='moderatorview'),
+    path('studentmanagement',views.moderatorstudentuser, name='studentmanagement'),
     # MODERATOR URLS END
 
     path('createuser', views.createuser, name='createuser'),

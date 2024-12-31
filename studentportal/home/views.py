@@ -78,6 +78,18 @@ def studentformrequest(request):
         return redirect('accessdenied')
     return render(request, 'studentside/formrequest.html', context)
 
+@login_required(login_url='login')
+def studenttransactionhistory(request):
+    user = request.user
+    firstname = user.first_name
+    lastname = user.last_name
+    context = {'firstname' : firstname,
+               'lastname':  lastname}
+    if user.role != 'STUDENT':
+        return redirect('accessdenied')
+    return render(request, 'studentside/transactionhistory.html', context)
+
+
 
 #STUDENT VIEWS END
 
@@ -92,6 +104,18 @@ def moderatorview(request):
     if user.role != 'ADMIN':
         return redirect('accessdenied')
     return render(request, 'moderatorside/dashboard.html', context)
+
+@login_required(login_url='login')
+def moderatorstudentuser(request):
+    user = request.user
+    firstname = user.first_name
+    lastname = user.last_name
+    context = {'firstname' : firstname,
+               'lastname':  lastname}
+    if user.role != 'ADMIN':
+        return redirect('accessdenied')
+    return render(request, 'moderatorside/studentuser.html', context)
+
 
 #MODERATOR/ADMIN VIEWS END
 
