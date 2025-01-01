@@ -10,7 +10,8 @@ urlpatterns = [
     #STUDENT URLS END
 
     #REGISTRAR URLS START
-    path('registrarview', views.registrarview, name='registrardashboard'),
+    path('registrardashboard', views.registrardashboard, name='registrardashboard'),
+    path('registrarformrequest', views.registrarformrequest, name='registrarformrequest'),
     #REGISTRAR URLS END
 
     #CASHIER URLS START

@@ -152,9 +152,16 @@ def facultyview(request):
 #FACULTY VIEWS END
 
 
+#REGISTRAR VIEWS START
+def registrardashboard(request):
+    return render(request, 'registrarside/dashboard.html')
 
-def registrarview(request):
-    return render(request, 'registrar/index.html')
+def registrarformrequest(request):
+    return render(request, 'registrarside/formrequestlist.html')
+
+
+#REGISTRAR VIEWS END
+
 
 def cashierrview(request):
     return render(request, 'cashier/index.html')

@@ -469,7 +469,7 @@
 }
 
 /* Style the Edit and Delete buttons */
-.edit-btn, .delete-btn {
+.edit-btn, .delete-btn, .search-btn {
   padding: 6px 12px;
   margin: 0 5px;
   border: none;
@@ -494,6 +494,18 @@
 
 .delete-btn:hover {
   background-color: #e53935;
+}
+
+.search-btn {
+  background-color: white;
+  border: solid 1px #11101d;
+  color: #11101d;
+}
+
+.search-btn:hover {
+  background-color: #7385a0;
+  color: #f4f4f4;
+  transition: 0.5s;
 }
 
 /* PAGINATION */
