@@ -55,7 +55,6 @@ def createuser(request):
 
 #STUDENT VIEWS START
 
-
 @login_required(login_url='login')
 def studentview(request):
     user = request.user
