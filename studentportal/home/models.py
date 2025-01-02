@@ -146,3 +146,5 @@ class Registrar(CustomUser):
     def welcome(self):
         return "Only for Registrar"
     
+class Transaction(models.Model):
+    pass
