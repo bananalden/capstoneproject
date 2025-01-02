@@ -19,9 +19,10 @@
     <div class="right-section">
         <div class="login-frame">
             <img src="{% static 'images/ama2.png' %}" alt="AMA Logo"> <!-- Replace with your logo -->
-            <form id="loginForm" onsubmit="handleLogin(event)">
-                <input type="text" class="form-control" id="username" placeholder="Usn" required>
-                <input type="password" class="form-control" id="password" placeholder="Password" required>
+            <form method="post" id="loginForm" >
+            {% csrf_token %} 
+                <input type="text" class="form-control" id="username" placeholder="USN" name="username" required>
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
                 <button type="submit" class="btn btn-block btn-login">Log In</button>
             </form>
             <a href="#" class="forgot-password">Forgot password?</a>
@@ -29,4 +30,3 @@
     </div>
 </div>
 
-<script src="form.js"></script>

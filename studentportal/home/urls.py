@@ -2,5 +2,37 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index)
+    path('', views.index, name='login'),
+    #STUDENT URLS START
+    path('studentdashboard', views.studentview, name='studentdashboard'),
+    path('studentdocrequest', views.studentformrequest, name='studentdocrequest'),
+    path('studenttransactionhistory', views.studenttransactionhistory, name='studenttransactionhistory'),
+    #STUDENT URLS END
+
+    #REGISTRAR URLS START
+    path('registrardashboard', views.registrardashboard, name='registrardashboard'),
+    path('registrarformrequest', views.registrarformrequest, name='registrarformrequest'),
+    #REGISTRAR URLS END
+
+    #CASHIER URLS START
+    path('cashierview', views.cashierrview, name='cashierdashboard'),
+    #CASHIER URLS END
+
+    #FACULTY URLS START
+    path('facultydashboard', views.facultyview, name='facultydashboard'),
+    #FACULTY URLS END
+
+    #MODERATOR URLS START
+    path('moderatorview', views.moderatorview, name='moderatorview'),
+    path('studentmanagement',views.moderatorstudentuser, name='studentmanagement'),
+    path('facultymanagement',views.moderatorfacultyuser, name='facultymanagement'),
+    path('cashiermanagement', views.moderatorcashieruser, name='cashiermanagement'),
+    # MODERATOR URLS END
+
+    path('createuser', views.createuser, name='createuser'),
+    path('accessdenied',views.accessdenied, name='accessdenied'),
+
+    #MISC START
+    path('logout', views.logout_user, name='logout'),
+    #MISC END
 ]
