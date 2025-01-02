@@ -147,4 +147,12 @@ class Registrar(CustomUser):
         return "Only for Registrar"
     
 class Transaction(models.Model):
-    pass
+     class Status(models.TextChoices):
+        PENDING = "PENDING", 'Pending'
+        PROGRESS = "PROGRESS", 'Progress'
+        AVAILABLE = "AVAILABLE", 'Available'
+
+studentID = models.ForeignKey(Student, on_delete=models.CASCADE)
+transaction_reference_number = models.CharField()
+transaction_approve = models.BooleanField(default= False)
+transaction_status = models.CharField()

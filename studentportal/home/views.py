@@ -48,8 +48,6 @@ def createuser(request):
         else:
             print(form.errors.as_data())
 
-
-
     context = {'form': form}
     return render(request, 'test_template/index.html', context)
 
