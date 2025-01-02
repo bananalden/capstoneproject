@@ -55,38 +55,38 @@ def createuser(request):
 
 #STUDENT VIEWS START
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def studentview(request):
-    user = request.user
-    firstname = user.first_name
-    lastname = user.last_name
-    context = {'firstname' : firstname,
-               'lastname':  lastname}
-    if user.role != 'STUDENT':
-        return redirect('accessdenied')
-    return render(request, 'studentside/dashboard.html', context)
+    #user = request.user
+    #firstname = user.first_name
+    #lastname = user.last_name
+    #context = {'firstname' : firstname,
+    #           'lastname':  lastname}
+    #if user.role != 'STUDENT':
+    #    return redirect('accessdenied')
+    return render(request, 'studentside/dashboard.html')
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def studentformrequest(request):
-    user = request.user
-    firstname = user.first_name
-    lastname = user.last_name
-    context = {'firstname' : firstname,
-               'lastname':  lastname}
-    if user.role != 'STUDENT':
-        return redirect('accessdenied')
-    return render(request, 'studentside/formrequest.html', context)
+    #user = request.user
+    #firstname = user.first_name
+    #lastname = user.last_name
+    #context = {'firstname' : firstname,
+     #          'lastname':  lastname}
+    #if user.role != 'STUDENT':
+      #  return redirect('accessdenied')
+    return render(request, 'studentside/formrequest.html')
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def studenttransactionhistory(request):
-    user = request.user
-    firstname = user.first_name
-    lastname = user.last_name
-    context = {'firstname' : firstname,
-               'lastname':  lastname}
-    if user.role != 'STUDENT':
-        return redirect('accessdenied')
-    return render(request, 'studentside/transactionhistory.html', context)
+ #   user = request.user
+ #   firstname = user.first_name
+  #  lastname = user.last_name
+   # context = {'firstname' : firstname,
+  #             'lastname':  lastname}
+  #  if user.role != 'STUDENT':
+    #    return redirect('accessdenied')
+    return render(request, 'studentside/transactionhistory.html')
 
 
 
