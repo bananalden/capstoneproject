@@ -148,4 +148,3 @@ function updatePagination() {
 
 // Initial render of the table
 renderTable();
-

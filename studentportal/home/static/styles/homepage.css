@@ -543,3 +543,25 @@
   border-radius: 25px;
  
 }
+
+/* Transaction Statuses */
+
+.pending{
+  background-color: #e90000;
+  border-radius: 5px;
+  text-align: center;
+  color:white;
+}
+
+.in-progress{
+  background-color: #ffd900;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.available{
+  background-color: #00d636;
+  border-radius: 5px;
+  text-align: center;
+  color:white;
+}
