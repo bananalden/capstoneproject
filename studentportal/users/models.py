@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from course.models import Course
 
 # Create your models here.
 
@@ -90,3 +91,18 @@ class Cashier(CustomUser):
 
     def welcome(self):
         return "Only for Cashier"
+    
+class StudentProfile(models.Model):
+    student_id = models.OneToOneField(Student, on_delete=models.CASCADE, related_name='+')
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.student_id.first_name} Profile'
+
+class TeacherProfile(models.Model):
+    teacher_id = models.OneToOneField(Teacher, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.teacher_id.first_name} Profile'
