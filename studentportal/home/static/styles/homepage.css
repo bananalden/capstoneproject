@@ -550,6 +550,7 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   padding: 40px;
   margin-top: 50px;
+  font-family: 'Arial', sans-serif;
 }
 
 .header-dashboard {
@@ -571,7 +572,7 @@
 
 .row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 20px;
 }
 
@@ -648,7 +649,6 @@
   margin-bottom: 15px;
 }
 
-/* Additional spacing adjustments */
 .row > .col-sm-12 {
   margin-bottom: 20px;
 }
@@ -658,7 +658,6 @@
   padding-left: 50px;
 }
 
-/* Adjust column spacing for smaller screens */
 @media (max-width: 767px) {
   .row {
     flex-direction: column;
