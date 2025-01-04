@@ -17,8 +17,10 @@ Including another URLconf
 
 from django.urls import path, include
 from admin import views as admin_views
+from authentication import views 
 
 urlpatterns = [
-    path('admin/', admin_views.home, name='admin-view'),
+    path('', include('authentication.urls')),
+    path('admin/', include('admin.urls')),
 
 ]
