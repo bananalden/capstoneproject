@@ -264,16 +264,19 @@ body {
   z-index: 1;
 }
 
-/* Dashboard Container */
+/* Center the Dashboard Container */
 .dashboard-container {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Adjust position to perfectly center it */
   z-index: 2;
-  margin: 20px auto;
+  width: 100%;
   max-width: 1200px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  overflow: hidden;
 }
 
 /* Header */
@@ -282,8 +285,8 @@ body {
   padding: 20px;
   background: #0056b3;
   color: #fff;
-  border-radius: 10px 10px 0 0;
 }
+
 
 .logo {
   max-height: 80px;
