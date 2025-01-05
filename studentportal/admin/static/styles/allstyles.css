@@ -258,84 +258,180 @@ body {
   align-items: center;
   position: relative;
 }
+
+
+/* Overlay to enhance readability */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
   z-index: 1;
 }
 
+/* Dashboard Container */
 .dashboard-container {
   position: relative;
-  top: 100px;
-}
-
-.dashboard-container-body h2 {
-  text-align: left; /* Align text to the left */
-  margin: 10px 10px;
-  padding: 10px 0;
-}
-
-.dashboard-container {
-  border: #333 solid 1px;
-  border-radius: 5px;
-}
-
-.dashboard-container-header {
-  background-color: #0056b3;
-  border-radius: 5px;
-  padding: 10px;
-  text-align: center;
-}
-
-.image-container {
-  max-width: 100%; 
-  height: auto;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  display: block;
-  text-align: center; 
 }
 
-.image-container img {
-  width: auto; 
-  height: auto; 
-  max-width: 100%;
-  max-height: 100px; 
-  object-fit: contain;
-}
-
-.dashboard-card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: flex-start; /* Align cards to the left */
-  padding: 20px;
-}
-
-.card-component {
-  border: #333 solid 1px;
-  border-radius: 5px;
-  padding: 15px;
-  width: 250px;
-  box-sizing: border-box;
+/* Header */
+.dashboard-header {
   text-align: center;
+  padding: 20px;
+  background: #0056b3;
+  color: #fff;
 }
 
-.card-component-icon {
-  font-size: 30px; /* Larger icon */
+.logo {
+  max-height: 80px;
   margin-bottom: 10px;
 }
 
-.card-component-header h3 {
-  margin: 10px 0;
+/* Main Content */
+.dashboard-main {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
 }
 
-.card-component-body p {
-  margin: 0;
+/* Action Cards */
+.admin-actions {
+  flex: 1 1 60%;
 }
+
+.admin-actions h2 {
+  margin-bottom: 10px;
+}
+
+.action-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card i {
+  font-size: 2.5em;
+  color: #007BFF;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.card .btn {
+  background: #a30f15;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+  transition: background 0.3s ease;
+}
+
+.card .btn:hover {
+  background: #bc2525;
+}
+
+/* Form Section */
+.user-form {
+  flex: 1 1 35%;
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-form h2 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #007BFF;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #a30f15;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #bc2525;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-main {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .card i {
+    font-size: 2em;
+  }
+}
+
 
 
 
