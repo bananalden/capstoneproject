@@ -244,3 +244,34 @@ body {
     padding: 15px;
   }
 }
+
+/* DASHBOARD COMPONENT */
+
+.dashboard-container{
+  background-color: #f5f5f5;
+  border:#333 solid 1px;
+  border-radius: 5px;
+  
+}
+
+.dashboard-container-header{
+  background-color: #ccc;
+  border-radius: 5px;
+
+}
+
+.dashboard-card-container{
+  display: flex;
+  gap: 5px;
+}
+
+/* DASHBOARD COMPONENT END */
+
+/* CARD COMPONENT */
+.card-component{
+  border:#333 solid 1px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/*CARD COMPONENT END */
