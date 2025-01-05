@@ -416,8 +416,23 @@ select:focus {
 }
 
 
-
-
-
-
 /*CARD COMPONENT END */
+
+/* CRUD OPERATION DASHBOARD START */
+.crud-dashboard{
+  background-color: red;
+
+}
+
+.crud-dashboard-header{
+  display:flex;
+  align-items:center;
+  gap:55%;
+}
+
+.classA, .classB{
+  border: solid black 2px;
+}
+
+
+/* CRUD OPERATION DASHBOARD END */
