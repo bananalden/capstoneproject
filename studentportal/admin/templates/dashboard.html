@@ -1,79 +1,11 @@
 {% extends "_base/base.html" %}
 {%load static%}
+
+
 {% block content %}
-<section>
-    <div class="overlay"></div> <!-- Overlay for text readability -->
-  <div class="dashboard-container">
-    <!-- Header Section -->
-    <header class="dashboard-header">
-      <div class="logo-container">
-        <img src="{% static 'images/ama2.png'%}" alt="ACLC Apalit Logo" class="logo">
-      </div>
-      <h1>Admin Dashboard</h1>
-    </header>
-
-    <!-- Main Content -->
-    <div class="dashboard-main">
-      <!-- Admin Actions Section -->
-      <section class="admin-actions">
-        <h2>Quick Actions</h2>
-        <div class="action-cards">
-          <div class="card">
-            <i class="fa fa-user-plus"></i>
-            <h3>Create User</h3>
-            <p>Manage user accounts for students, faculty, and staff.</p>
-            <a href="#" class="btn">Go</a>
-          </div>
-          <div class="card">
-            <i class="fa fa-edit"></i>
-            <h3>Update Student Info</h3>
-            <p>Edit details of registered students.</p>
-            <a href="#" class="btn">Go</a>
-          </div>
-          <div class="card">
-            <i class="fa fa-book"></i>
-            <h3>View Records</h3>
-            <p>Access student records and reports.</p>
-            <a href="#" class="btn">Go</a>
-          </div>
-          <div class="card">
-            <i class="fa fa-bell"></i>
-            <h3>Post Notifications</h3>
-            <p>Create announcements for students and staff.</p>
-            <a href="#" class="btn">Go</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- User Creation Form -->
-      <section class="user-form">
-        <h2>Create a New User</h2>
-        <form action="#" method="POST" class="form">
-          <div class="form-group">
-            <label for="userType">User Type</label>
-            <select id="userType" name="userType" required>
-              <option value="student">Student</option>
-              <option value="faculty">Faculty</option>
-              <option value="registrar">Registrar</option>
-              <option value="cashier">Cashier</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="userName">User Name</label>
-            <input type="text" id="userName" name="userName" required placeholder="Enter user name">
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="Enter email">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required placeholder="Enter password">
-          </div>
-          <button type="submit" class="submit-btn">Create User</button>
-        </form>
-      </section>
+  <section class="container">
+    <div>
+      
     </div>
-  </div>
-</section>
+  </section>
 {% endblock content %}
