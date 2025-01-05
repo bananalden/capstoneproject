@@ -270,6 +270,15 @@ body {
   text-align: center; /* Center the header content */
 }
 
+.image-container{
+  height: 50%;
+}
+
+.image-container, img{
+  max-height: 100px;
+}
+
+
 .dashboard-card-container {
   display: flex;
   flex-wrap: wrap; 
