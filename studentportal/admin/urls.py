@@ -3,5 +3,5 @@ from admin import views
 
 urlpatterns = [
     path('',views.home, name='admin-dashboard'),
-    path('course-list', views.create_course, name='create-course')
+    path('user-management', views.user_management, name='user-management')
 ]
