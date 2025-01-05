@@ -1,366 +1,277 @@
+/* Resetting default styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: margin-left 0.3s ease;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  transition: margin-left 0.3s ease;
+  overflow-x: hidden;
 }
 
-  /* Sidebar styles */
+/* Sidebar styles */
 .sidebar {
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    background-color: #001845;
-    transition: left 0.3s ease;
-    padding-top: 30px;
-    color: white;
-    z-index: 1000;
-    box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
-    overflow-y: auto;
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  background-color: #023047;
+  transition: left 0.3s ease;
+  color: white;
+  z-index: 1000;
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
 }
 
 .sidebar-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
 }
 
 .aclc-logo {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    background-color: white;
-    padding: 5px;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  background-color: white;
+  padding: 5px;
 }
 
 .aclc-apalit {
-    font-size: 22px;
-    font-weight: bold;
-    color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
 }
 
 .sidebar-menu {
-    list-style-type: none;
-    padding-left: 0;
+  list-style-type: none;
+  padding: 10px 0;
 }
 
 .sidebar-menu li {
-    padding: 15px;
-    transition: background-color 0.3s;
-    text-align: left;
-    margin: 10px 0;
+  padding: 10px 15px;
+  transition: background-color 0.3s;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
 }
 
 .sidebar-menu li:hover {
-    background-color: #333;
-    border-radius: 5px;
+  background-color: #0b71a5;
+  border-radius: 5px;
 }
 
 .sidebar-menu li a {
-    color: #bbb;
-    text-decoration: none;
-    display: block;
-    font-size: 18px;
-    padding-left: 20px;
+  color: #bbb;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sidebar-menu li a i {
+  margin-right: 10px;
 }
 
 .sidebar-menu li a:hover {
-    color: #fff;
+  color: #fff;
 }
 
+/* User Management dropdown */
+.sidebar-menu .dropdown {
+  position: relative;
+}
+
+.sidebar-menu .dropdown .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: #bbb;
+  font-size: 16px;
+  text-decoration: none;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar-menu .dropdown .dropdown-toggle i {
+  margin-right: 10px;
+}
+
+.sidebar-menu .dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #0b3f59; /* Simplified background */
+  padding: 10px 0;
+  list-style-type: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.sidebar-menu .dropdown .dropdown-menu li {
+  padding: 8px 15px;
+}
+
+.sidebar-menu .dropdown .dropdown-menu li a {
+  font-size: 14px;
+  color: #ccc;
+  text-decoration: none;
+  padding: 8px 0;
+}
+
+.sidebar-menu .dropdown .dropdown-menu li a {
+  color: #fff;
+  background-color: transparent; /* Remove any background color change on hover */
+}
+
+/* User Profile styles */
 .user-profile {
-    margin-top: 20px;
-    text-align: left;
-    padding-left: 20px;
+  margin-top: 20px;
+  padding: 10px 15px;
 }
 
 .user-profile a {
-    display: block;
-    padding: 12px;
-    color: #bbb;
-    text-decoration: none;
-    font-size: 18px;
-    transition: background-color 0.3s;
+  display: block;
+  color: #bbb;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 15px; /* Adjust padding to match the layout */
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px; /* Optional: adds rounded corners */
 }
 
 .user-profile a:hover {
-    background-color: #333;
-    color: #fff;
+  background-color: #0b71a5;
+  color: #fff;
 }
 
+/* Logout button styles */
 .logout {
-    font-weight: bold;
+  font-weight: bold;
+  display: block;
+  color: #bbb;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 15px; /* Consistent padding */
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px; /* Optional: adds rounded corners */
+}
+
+.logout:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+
+/* Main content */
+.content {
+  padding: 20px;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.centered-content {
+  text-align: center;
+}
+
+/* Toggle button */
+.toggle-btn, .close-btn {
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  color: #111;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  cursor: pointer;
+  z-index: 1100;
 }
 
 .close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 35px;
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
+  display: none;
+  color: #fff;
 }
 
-  /* Content styles */
-.content {
-    padding: 20px;
-    margin-left: 0;
-    transition: margin-left 0.3s ease;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-  .centered-content {
-    background: url('/static/images/aclc.jpg') no-repeat center center fixed;
-    height: 100vh;
-    margin: 0;
-    overflow-y: auto;
-    background-size: cover;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-  /* Toggle button styles */
-.toggle-btn {
-    font-size: 30px;
-    background-color: transparent;
-    border: none;
-    color: #111;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    cursor: pointer;
-}
-
-  /* Sidebar open styles */
+/* Sidebar open styles */
 .open {
-    left: 0 !important;
+  left: 0;
 }
 
 .open + .content {
-    margin-left: 250px;
+  margin-left: 250px;
 }
 
-  /* Media query for smaller screens */
-@media (max-width: 768px) {
-    .sidebar {
-      width: 100%;
-    }
-
-    .open + .content {
-      margin-left: 0;
-    }
-
-    .aclc-logo {
-      width: 50px;
-      height: 50px;
-    }
-}
-
-/* SIDE-BAR END STYLES */
-
-
-/* DASHBOARD STYLES */
-
-/* Reset Styling */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Responsive adjustments */
+@media (max-width: 652px) {
+  .sidebar {
+    width: 100%;
+    left: -100%;
   }
-  
-  /* Body Styling */
-  
-  /* Overlay to enhance readability */
-  .overlay {
-    position: absolute;
-    top: 0;
+
+  .open {
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-    z-index: 1;
-  }
-  
-  /* Dashboard Container */
-  .dashboard-container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1200px;
-    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-  }
-  
-  /* Header */
-  .dashboard-header {
-    text-align: center;
-    padding: 20px;
-    background: #0056b3;
-    color: #fff;
-  }
-  
-  .logo {
-    max-height: 80px;
-    margin-bottom: 10px;
-  }
-  
-  /* Main Content */
-  .dashboard-main {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-    gap: 20px;
-  }
-  
-  /* Action Cards */
-  .admin-actions {
-    flex: 1 1 60%;
-  }
-  
-  .admin-actions h2 {
-    margin-bottom: 10px;
-  }
-  
-  .action-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .card {
-    background: #f4f4f4;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card i {
-    font-size: 2.5em;
-    color: #007BFF;
-    margin-bottom: 10px;
-  }
-  
-  .card h3 {
-    margin-bottom: 10px;
-  }
-  
-  .card p {
-    color: #666;
-    margin-bottom: 15px;
-  }
-  
-  .card .btn {
-    background: #a30f15;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1em;
-    transition: background 0.3s ease;
-  }
-  
-  .card .btn:hover {
-    background: #bc2525;
-  }
-  
-  /* Form Section */
-  .user-form {
-    flex: 1 1 35%;
-    background: #f9f9f9;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .user-form h2 {
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-    transition: border-color 0.3s ease;
-  }
-  
-  input:focus,
-  select:focus {
-    outline: none;
-    border-color: #007BFF;
-  }
-  
-  .submit-btn {
-    width: 100%;
-    padding: 12px;
-    background: #a30f15;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .submit-btn:hover {
-    background: #bc2525;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .dashboard-main {
-      flex-direction: column;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .card i {
-      font-size: 2em;
-    }
   }
 
-/* User Management Container */
+  .open + .content {
+    margin-left: 0;
+  }
+
+  .sidebar-menu li a {
+    font-size: 14px;
+  }
+
+  .aclc-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .sidebar-header .aclc-apalit {
+    font-size: 18px;
+  }
+
+  .content {
+    padding: 15px;
+  }
+}
+
+/* DASHBOARD COMPONENT */
+
+.dashboard-container{
+  background-color: #f5f5f5;
+  border:#333 solid 1px;
+  border-radius: 5px;
+  
+}
+
+.dashboard-container-header{
+  background-color: #ccc;
+  border-radius: 5px;
+
+}
+
+.dashboard-card-container{
+  display: flex;
+  gap: 5px;
+}
+
+/* DASHBOARD COMPONENT END */
+
+/* CARD COMPONENT */
+.card-component{
+  border:#333 solid 1px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/*CARD COMPONENT END */
