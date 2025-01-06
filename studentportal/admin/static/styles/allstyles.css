@@ -505,7 +505,7 @@ h1 {
   background-color: #f1f1f1;
 }
 
-#add-course-btn {
+.add-btn {
   padding: 12px 20px;
   background-color: #023047; 
   color: white;
@@ -518,13 +518,13 @@ h1 {
 }
 
 /* Add Course Button Hover Effect */
-#add-course-btn:hover {
+.add-btn:hover {
   background-color: #04548c;
   transform: translateY(-2px);
 }
 
 /* Add Course Button Active Effect */
-#add-course-btn:active {
+.add-btn:active {
   transform: translateY(2px);
 }
 
@@ -589,189 +589,11 @@ table tr:hover {
   z-index: 1000;
 }
 
-/* Modal Content */
-#add-course-modal .modal-content {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 12px;
-  text-align: center;
-  width: 450px;
-  max-width: 90%;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Input Field Styling */
-#new-course-name {
-  padding: 12px 20px;
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-  margin-bottom: 20px;
-  background-color: #f7f7f7;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-#new-course-name:focus {
-  outline: none;
-  border-color: #023047;  /* Green border when focused */
-}
-
-/* Modal Buttons */
-#add-course-modal button {
-  padding: 12px 24px;
-  margin: 12px 0;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  width: 50%;
-  box-sizing: border-box;
-}
-
-/* Close Button Styling */
-#close-edit-modal {
-  background-color: #a30f15;  /* Red close button */
-}
-
-/* Close Button Styling for Add Course Modal */
-#close-add-course-modal {
-  background-color: #a30f15 !important;  /* Red close button */
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* Close Button Hover Effect */
-#close-add-course-modal:hover {
-  background-color: #bc2525 !important;  /* Darker red when hovered */
-}
 
 
 
-/* Modal Styles */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);  /* Slightly darker overlay */
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease;
-}
 
-/* Modal Content */
-.modal-content {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 12px;
-  text-align: center;
-  width: 450px;
-  max-width: 90%;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  transition: transform 0.3s ease, box-shadow 0.2s ease;
-}
 
-/* Modal Header */
-.modal-content h2 {
-  color: #333;
-  font-size: 22px;
-  margin-bottom: 20px;
-  font-family: 'Segoe UI', sans-serif;
-  font-weight: bold;
-}
-
-/* Modal Input */
-.modal-content input {
-  padding: 14px;
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-  margin-bottom: 20px;
-  background-color: #f7f7f7;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-.modal-content input:focus {
-  outline: none;
-  border-color: #023047;  /* Green border when focused */
-}
-
-/* Modal Buttons */
-.modal-content button {
-  padding: 12px 24px;
-  margin: 12px 0;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 50%;
-  box-sizing: border-box;
-}
-
-/* Hover and Active Effect for Buttons */
-.modal-content button:hover {
-  background-color: #45a049; 
-  transform: scale(1.05);  /* Button grows on hover */
-  cursor: pointer;
-}
-
-.modal-content button:active {
-  transform: scale(1);  /* Revert back to original size when clicked */
-}
-
-/* Close Modal Button */
-button#close-edit-modal,
-button#close-delete-modal {
-  background-color: #a30f15;  /* Red for cancel button */
-  color: white;
-  margin-top: 15px;
-  transition: background-color 0.3s ease;
-}
-
-button#close-edit-modal:hover,
-button#close-delete-modal:hover {
-  background-color: #bc2525;  /* Darker red for close button */
-}
-
-/* Close Button Animation */
-button#close-edit-modal:active,
-button#close-delete-modal:active {
-  transform: scale(0.98);  /* Slight shrink effect on click */
-}
-
-/* Modal Animation */
-@keyframes fadeIn {
-  0% {
-      opacity: 0;
-      transform: scale(0.9);
-  }
-  100% {
-      opacity: 1;
-      transform: scale(1);
-  }
-}
 
 /* Action Button Styles (Edit, Delete, etc.) */
 .action-btn {
