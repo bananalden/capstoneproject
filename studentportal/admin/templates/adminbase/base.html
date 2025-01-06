@@ -22,15 +22,15 @@
     </div>
     <ul class="sidebar-menu">
     
-      <li><a href="{%url 'admin-dashboard'%}" class="menu-item" data-link="dashboard"><i class="fas fa-house-user"></i> Dashboard</a></li>
+      <li><a href="{%url 'admin:dashboard'%}" class="menu-item" data-link="dashboard"><i class="fas fa-house-user"></i> Dashboard</a></li>
 
       <li class="dropdown">
         <a href="#" class="menu-item dropdown-toggle" data-toggle="dropdown"><i class="fas fa-school"></i>
           School Management<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="{%url 'create-course'%}">Course</a></li>
-          <li><a href="{%url 'create-semester'%}">Semester</a></li>
-          <li><a href="{%url 'create-subject'%}">Subject</a></li>
+          <li><a href="{%url 'schoolmanagement:course-list'%}">Course</a></li>
+          <li><a href="{%url 'schoolmanagement:semester-list'%}">Semester</a></li>
+          <li><a href="{%url 'schoolmanagement:subject-list'%}">Subject</a></li>
         </ul>
     </li>
 
@@ -39,11 +39,11 @@
        <li class="dropdown">
         <a href="#" class="menu-item dropdown-toggle" data-toggle="dropdown"><i class="fas fa-users"></i> User Management <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="{%url 'create-admin'%}">Admin</a></li>
-          <li><a href="{%url 'create-teacher'%}">Teacher</a></li>
-          <li><a href="{%url 'create-registrar'%}">Registrar</a></li>
-          <li><a href="{%url 'create-cashier'%}">Cashier</a></li>
-          <li><a href="{%url 'create-student'%}">Student</a></li>
+          <li><a href="#">Admin</a></li>
+          <li><a href="#">Teacher</a></li>
+          <li><a href="#">Registrar</a></li>
+          <li><a href="#">Cashier</a></li>
+          <li><a href="#">Student</a></li>
         </ul>
       </li>
 

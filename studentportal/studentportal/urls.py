@@ -16,11 +16,15 @@ Including another URLconf
 """
 
 from django.urls import path, include
-from admin import views as admin_views
-from authentication import views 
+from django.conf import settings
+from django.urls import re_path
+from django.views.static import serve
+
 
 urlpatterns = [
     path('', include('authentication.urls')),
-    path('admin/', include('admin.urls')),
+    path('admin/', include('admin.urls', namespace='admin')),
+    path('schoolmanagement/', include('course.urls', namespace='schoolmanagement'))
+
 
 ]
