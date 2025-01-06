@@ -13,3 +13,9 @@ def create_semester(request):
 
 def create_subject(request):
     return render(request, 'createsubject.html')
+
+def create_admin(request):
+    return render(request, 'createadmin.html')
+
+def create_teacher(request):
+    return render(request, 'createteacher.html')
