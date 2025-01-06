@@ -5,5 +5,17 @@ from django.shortcuts import render
 def home(request):
     return render(request, 'dashboard.html')
 
-def user_management(request):
-    return render(request, 'usermanagement.html')
+def create_course(request):
+    return render(request, 'createcourse.html')
+
+def create_semester(request):
+    return render(request, 'createsemester.html')
+
+def create_subject(request):
+    return render(request, 'createsubject.html')
+
+def create_admin(request):
+    return render(request, 'createadmin.html')
+
+def create_teacher(request):
+    return render(request, 'createteacher.html')
