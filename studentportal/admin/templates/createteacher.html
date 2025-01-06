@@ -1,4 +1,7 @@
 {% extends "_base/base.html" %}
+{% block title %}
+Teacher List
+{% endblock title %}
 {%load static%}
 {% block content %}
     <div class="crud-dashboard">
@@ -55,7 +58,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">Add Admin</h3>
+        <h3 class="modal-title">Add Teacher</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -103,7 +106,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title">Edit Admin</h3>
+          <h3 class="modal-title">Edit Teacher</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

@@ -19,3 +19,12 @@ def create_admin(request):
 
 def create_teacher(request):
     return render(request, 'createteacher.html')
+
+def create_student(request):
+    return render(request, 'createstudent.html')
+
+def create_cashier(request):
+    return render(request, 'createcashier.html')
+
+def create_registrar(request):
+    return render(request, 'createregistrar.html')
