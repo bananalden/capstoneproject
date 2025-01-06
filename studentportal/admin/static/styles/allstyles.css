@@ -439,7 +439,6 @@ select:focus {
 
 /****** Course List  ******/
 
-/* Container */
 .crud-dashboard {
   width: 70%;
   margin: 100px auto;
@@ -457,9 +456,6 @@ h1 {
   text-align: center;
   margin-bottom: 20px;
 }
-
-
-
 
 /* Search Container Styling */
 .search-container {
@@ -639,3 +635,5 @@ table tr:hover {
 .action-btn.icon-btn i {
   font-size: 16px; /* Icon size */
 }
+
+/****** Course List End ******/
