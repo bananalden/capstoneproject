@@ -58,11 +58,12 @@ Course List
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      {% csrf_token %}
+    
       <form method="post">
+        {% csrf_token %}
         <div class="form-group">
             <label for="course">Course Name:</label>
-            <input type="text" name="" id="">
+            {{form}}
         </div>
       </div>
       <div class="modal-footer">
