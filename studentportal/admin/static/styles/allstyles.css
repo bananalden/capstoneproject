@@ -591,49 +591,49 @@ table tr:hover {
 }
 
 /* Action Button Styles */
+/* Action Button Styles (Edit, Delete, etc.) */
 .action-btn {
-  padding: 12px 24px;
+  padding: 10px 20px;
   background-color: #a30f15;
   color: white;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 14px;
   cursor: pointer;
-  border: none;
+  font-weight: bold;
   transition: all 0.3s ease;
-  display: inline-flex;
-  justify-content: center;
+  display: inline-block;
+  border: none; /* Remove border */
+}
+
+/* Edit Button Specific Styling */
+.edit-btn {
+  background-color: #4CAF50;  /* Green for edit */
+}
+
+/* Delete Button Specific Styling */
+.delete-btn {
+  background-color: #a30f15;  /* Red for delete */
+}
+
+/* Action Button Hover Effect */
+.action-btn:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Action Button Active Effect (click effect) */
+.action-btn:active {
+  transform: translateY(2px);
+}
+
+/* Unique Action Button with Icon */
+.action-btn.icon-btn {
+  display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* Edit Button Styling */
-.edit-btn {
-  background-color: #4caf50;
-  color: #fff;
-}
-
-/* Delete Button Styling */
-.delete-btn {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-/* Hover Effect */
-.action-btn:hover {
-  transform: translateY(-3px);
-  filter: brightness(1.1);
-}
-
-/* Active (Click) Effect */
-.action-btn:active {
-  transform: translateY(1px);
-}
-
-/* Icon Button Styling */
 .action-btn.icon-btn i {
-  font-size: 18px;
+  font-size: 16px; /* Icon size */
 }
 
 /* Input Field Styling */
