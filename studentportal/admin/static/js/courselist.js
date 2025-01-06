@@ -5,16 +5,6 @@ const coursesPerPage = 8;  // Display 8 courses per page
 // Dummy data for courses
 let courses = [
     { id: 1, name: "Web Development" },
-    { id: 2, name: "Graphic Design" },
-    { id: 3, name: "Data Science" },
-    { id: 4, name: "Mobile App Development" },
-    { id: 5, name: "Cyber Security" },
-    { id: 6, name: "Digital Marketing" },
-    { id: 7, name: "UI/UX Design" },
-    { id: 8, name: "Cloud Computing" },
-    { id: 9, name: "Blockchain" },
-    { id: 10, name: "Artificial Intelligence" },
-    { id: 11, name: "Machine Learning" }
 ];
 
 // Function to render the courses table
