@@ -25,10 +25,10 @@ Course List
                 </tr>
             </thead>
             <tbody id="course-list">
-                <!-- Dynamic Content -->
-                <tr>
-                    <td>1</td>
-                    <td>BSIT</td>
+        {%for courses in course%}
+	              <tr>
+                    <td>{{courses.id}}</td>
+                    <td>{{courses.name}}</td>
                     <td>
                         <button class="action-btn edit-btn" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit
@@ -38,6 +38,8 @@ Course List
                     </button>
                 </td>
                 </tr>
+        {%endfor%}
+               
             </tbody>
         </table>
 
@@ -59,7 +61,7 @@ Course List
       </div>
       <div class="modal-body">
     
-      <form method="post">
+      <form method="POST">
         {% csrf_token %}
         <div class="form-group">
             <label for="course">Course Name:</label>
