@@ -5,7 +5,7 @@ from course.models import Course
 # Create your views here.
 def create_course(request):
 
-    form = add_course()
+    form = add_course(auto_id="edit")
     course = Course.objects.all()
     if request.method == 'POST':
         f = add_course(request.POST)

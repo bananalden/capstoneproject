@@ -7,7 +7,7 @@ $(document).ready(function (){
         })
             console.log(data)
             $('#editcourseid').val(data[0]);
-            $('#editcoursename').val(data[1]);
+            $('#name').val(data[1]);
     })
 
 
