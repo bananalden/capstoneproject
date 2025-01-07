@@ -24,14 +24,13 @@ def create_course(request):
 def update_course(request):
     if request.method =="POST":
         valuesOfstuff = request.POST
-        print(valuesOfstuff.cleaned_data)
-        return HttpResponse('test')
+        return HttpResponse(valuesOfstuff)
     
 def delete_course(request):
     if request.method =="POST":
         valuesOfstuff = request.POST
-        print(valuesOfstuff.cleaned_data)
-        return HttpResponse('test')
+        
+        return HttpResponse(valuesOfstuff)
 
 def get_coursedata(request, pk):
     obj = Course.objects.get(pk=pk)
