@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
 from course.forms import add_course
 from course.models import Course
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -23,8 +24,13 @@ def create_course(request):
 
 def update_course(request):
     if request.method =="POST":
-        valuesOfstuff = request.POST
-        return HttpResponse(valuesOfstuff)
+        course_id = request.POST.get("id")      
+        obj = get_object_or_404(Course, id=course_id)
+        f = add_course(request.POST, instance=obj)
+        if f.is_valid():
+            f.save()
+            return redirect('course:course-list')
+
     
 def delete_course(request):
     if request.method =="POST":
