@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from course.forms import add_course
 from course.models import Course
 
@@ -19,7 +19,10 @@ def create_course(request):
         return render(request, 'createcourse.html', context)
 
 def update_course(request):
-    pass
+    if request.method =="POST":
+        valuesOfstuff = request.POST
+        print(valuesOfstuff.cleaned_data)
+        return HttpResponse('test')
 
 def create_semester(request):
     return render(request, 'createsemester.html')

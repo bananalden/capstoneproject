@@ -4,7 +4,10 @@ from course.models import Course
 class add_course(ModelForm):
     class Meta:
         model = Course
-        fields = ['name']
+        fields = ['id','name']
         labels ={
             "name":""
         }
+
+class edit_course(ModelForm):
+    pass
