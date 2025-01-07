@@ -34,9 +34,11 @@ def update_course(request):
     
 def delete_course(request):
     if request.method =="POST":
-        valuesOfstuff = request.POST
+        course_id = request.POST['delete_id']
+        obj = get_object_or_404(Course, id=course_id)
+        obj.delete()
+        return redirect('course:course-list')
         
-        return HttpResponse(valuesOfstuff)
 
 def get_coursedata(request, pk):
     obj = Course.objects.get(pk=pk)
