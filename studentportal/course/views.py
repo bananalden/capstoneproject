@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
-from course.forms import add_course
+from course.forms import add_course, add_semester
 from course.models import Course
 from django.shortcuts import get_object_or_404
 
@@ -53,8 +53,23 @@ def get_coursedata(request, pk):
 
 #COURSE CRUD ACTION END
 
-def create_semester(request):
-    return render(request, 'createsemester.html')
 
+#SEMESTER CRUD ACTION START
+
+def create_semester(request):
+    form = add_semester()
+    if request.method == "POST":
+        form = add_semester(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('course:semester-list')
+        
+    else:
+         context = {'form': form}
+         return render(request, 'createsemester.html', context)
+
+
+#SEMESTER CRUD ACTION END
 def create_subject(request):
+   
     return render(request, 'createsubject.html')

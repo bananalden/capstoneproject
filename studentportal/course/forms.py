@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from course.models import Course
+from course.models import Course, Semester
 
 class add_course(ModelForm):
     class Meta:
@@ -9,5 +9,10 @@ class add_course(ModelForm):
             "name":""
         }
 
-class edit_course(ModelForm):
-    pass
+class add_semester(ModelForm):
+    class Meta:
+        model = Semester
+        fields = '__all__'
+
+        def __init__(self, *args, **kwargs):
+            self.field.widget.attrs['class'] = 'form-group'

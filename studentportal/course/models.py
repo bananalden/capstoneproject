@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 class Course(models.Model):
     name = models.CharField(max_length=255)
+    def __str__(self):
+        return self.name
 
 class Semester(models.Model):
     class SemNumber(models.TextChoices):
@@ -11,11 +13,15 @@ class Semester(models.Model):
     semester = models.CharField(choices=SemNumber.choices)
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     year = models.CharField(max_length=25, null=False,blank=False)
+    def __str__(self):
+        return self.semester
 
 class Subject(models.Model):
     name = models.CharField(max_length=255)
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     semester_id = models.ForeignKey(Semester, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
 
 class Grades(models.Model):
     subject_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
