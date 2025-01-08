@@ -10,11 +10,12 @@ class Semester(models.Model):
     class SemNumber(models.TextChoices):
         SEM_1 = "SEM1",'1st Semester'
         SEM_2 = "SEM2", '2nd Semester'
+    semester_code = models.CharField(max_length=100, null=True)
     semester = models.CharField(choices=SemNumber.choices)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     year = models.CharField(max_length=25, null=False,blank=False)
     def __str__(self):
-        return self.semester_display()
+        return self.semester_code
 
 class Subject(models.Model):
     name = models.CharField(max_length=255)

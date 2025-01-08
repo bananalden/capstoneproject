@@ -27,12 +27,12 @@ Subject List
                 </tr>
             </thead>
             <tbody id="course-list">
-                <!-- Dynamic Content -->
+                {%for subject in subjects%}
                 <tr>
-                    <td>1</td>
-                    <td>Web Application Developmentt</td>
-                    <td>BSIT</td>
-                    <td>1st Semester 2024</td>
+                    <td>{{subject.id}}</td>
+                    <td>{{subject.name}}</td>
+                    <td>{{subject.course}}</td>
+                    <td>{{subject.semester.get_semester_display}} {{subject.semester.year}}</td>
                     <td>
                         <button class="action-btn edit-btn" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit
@@ -42,6 +42,7 @@ Subject List
                     </button>
                 </td>
                 </tr>
+                {%endfor%}
             </tbody>
         </table>
 

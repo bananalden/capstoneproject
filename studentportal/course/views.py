@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
-from course.forms import add_course, add_semester
-from course.models import Course, Semester
+from course.forms import add_course, add_semester, add_subject
+from course.models import Course, Semester, Subject
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
@@ -106,6 +106,20 @@ def get_semesterdata(request, pk):
     return JsonResponse({'error':'Object not found'}, status=404)
 
 #SEMESTER CRUD ACTION END
+
+#SUBJECT CRUD ACTION START
 def create_subject(request):
-   
-    return render(request, 'createsubject.html')
+    form = add_subject()
+    subjects = Subject.objects.all()
+    if request.method == 'POST':
+        f = add_subject(request.POST)
+        if f.is_valid():
+            f.save()
+            return redirect('course:subject-list')
+        
+    else:
+        context = {'form':form,
+                   'subjects': subjects
+                   }                  
+        return render(request, 'createsubject.html', context)
+#SUBJECT CRUD ACTION END
