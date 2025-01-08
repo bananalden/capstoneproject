@@ -98,6 +98,7 @@ def get_semesterdata(request, pk):
     if obj:
         data ={
         'id': obj.id,
+        'semester_code':obj.semester_code,
         'semester':obj.semester,
         'year':obj.year,
         'course_id':obj.course_id
@@ -122,4 +123,32 @@ def create_subject(request):
                    'subjects': subjects
                    }                  
         return render(request, 'createsubject.html', context)
+    
+def get_subjectdata(request, pk):
+    obj = Subject.objects.get(pk=pk)
+    if obj:
+        data ={
+        'id': obj.id,
+        'name':obj.name,
+        'course_id':obj.course_id,
+        'semester_id':obj.semester_id
+    }
+        return JsonResponse(data)
+    return JsonResponse({'error':'Object not found'}, status=404)
+
+def update_subject(request):
+    if request.method =="POST":
+        subject_id = request.POST.get("edit_id")      
+        obj = get_object_or_404(Subject, id=subject_id)
+        f = add_subject(request.POST, instance=obj)
+        if f.is_valid():
+            f.save()
+            return redirect('course:subject-list')
+        
+def delete_subject(request):
+    if request.method =="POST":
+        semester_id = request.POST['delete_id']
+        obj = get_object_or_404(Subject, id=semester_id)
+        obj.delete()
+        return redirect('course:subject-list')
 #SUBJECT CRUD ACTION END

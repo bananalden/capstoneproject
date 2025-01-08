@@ -17,6 +17,9 @@ urlpatterns = [
     path('semester-list/delete', views.delete_semester, name='semester-delete'),
     #SEMESTER LIST CONTROLLERS END
     path('subject-list', views.create_subject, name='subject-list'),
+    path('get-subject-data/<int:pk>', views.get_subjectdata, name='get_subject_data'),
+    path('subject-list/edit', views.update_subject, name='subject-edit'),
+        path('subject-list/delete', views.delete_subject, name='subject-delete'),
     #APIS START
     path('api/courses', views.get_course_list, name='get-course-list')
     #APIS END

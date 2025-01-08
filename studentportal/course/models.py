@@ -10,7 +10,7 @@ class Semester(models.Model):
     class SemNumber(models.TextChoices):
         SEM_1 = "SEM1",'1st Semester'
         SEM_2 = "SEM2", '2nd Semester'
-    semester_code = models.CharField(max_length=100, null=True)
+    semester_code = models.CharField(max_length=100)
     semester = models.CharField(choices=SemNumber.choices)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     year = models.CharField(max_length=25, null=False,blank=False)
