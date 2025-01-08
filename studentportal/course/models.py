@@ -14,7 +14,7 @@ class Semester(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     year = models.CharField(max_length=25, null=False,blank=False)
     def __str__(self):
-        return self.semester
+        return self.semester_display()
 
 class Subject(models.Model):
     name = models.CharField(max_length=255)

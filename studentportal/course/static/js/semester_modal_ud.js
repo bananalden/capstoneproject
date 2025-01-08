@@ -1,4 +1,3 @@
-//EDIT MODAL POPULATION
 $(document).ready(function (){
     $('.edit-btn').on('click', function(){
         var itemID = $(this).data('id');
@@ -6,14 +5,14 @@ $(document).ready(function (){
         console.log(itemID)
 
         $.ajax({
-            url: '/schoolmanagement/get-course-data/' + itemID,
+            url: '/schoolmanagement/get-semester-data/' + itemID,
             type: 'GET',
             dataType: 'json',
             success: function(data){
                
-              
-                $('#course_id').val(itemID),
-                $('#course_name').val(data.name)
+                console.log(data.year)
+                $('#semester_id').val(itemID),
+                $('#year').val(data.year)
             },
             error: function(){
                 console.log('Got the wrong URL?')
@@ -23,7 +22,6 @@ $(document).ready(function (){
     })
 
 })
-
 $(document).ready(function (){
     $('.delete-btn').on('click', function(){
         var itemID = $(this).data('id');
