@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from course import models
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 app_name = "api"
@@ -59,3 +60,21 @@ def get_subjectdata(request, pk):
     return JsonResponse({'error':'Object not found'}, status=404)
 
 #SUBJECT END
+
+#ADMIN USER START
+
+def get_admindata(request,pk):
+    obj = get_user_model()
+    admin = obj.objects.get(pk=pk)
+    if admin:
+        data={
+                'id':admin.id,
+                'first_name':admin.first_name,
+                'last_name':admin.last_name,
+                'email':admin.email,
+                'username':admin.username,
+        }
+        return JsonResponse(data)
+    return JsonResponse({'error':'Object not found'}, status=404)
+
+#ADMIN USER END

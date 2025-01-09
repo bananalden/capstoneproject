@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from users import forms
-from users.models import CustomUserManager
+from users.models import CustomUserManager, CustomUser
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 
@@ -20,10 +20,12 @@ def create_admin(request):
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
-            email = form.cleaned_email['email']
+            email = form.cleaned_data['email']
             username = form.cleaned_data['username']
             password = make_password(form.cleaned_data['password'])
-           
+
+            admin = CustomUser(first_name=first_name,last_name=last_name,email=email,username=username,password=password)
+            admin.save()
             return redirect('admin:users:admin-list')
         else:
             print(form.errors.as_data())
