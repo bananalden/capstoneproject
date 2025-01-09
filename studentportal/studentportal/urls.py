@@ -24,7 +24,9 @@ from django.views.static import serve
 urlpatterns = [
     path('', include('authentication.urls')),
     path('admin/', include('admin.urls', namespace='admin')),
-    path('schoolmanagement/', include('course.urls', namespace='schoolmanagement'))
+    path('schoolmanagement/', include('course.urls', namespace='schoolmanagement')),
+    path('usermanagement/', include('users.urls', namespace='usermanagement'))
+
 
 
 ]
