@@ -13,20 +13,20 @@ def create_admin(request):
 
 #CASHIER ACTION START
 def create_cashier(request):
-    pass
+    return render(request, 'createcashier.html')
 #CASHIER ACTION END
 
 #REGISTRAR ACTION START
 def create_registrar(request):
-    pass
+    return render(request, 'createregistrar.html')
 #REGISTRAR ACTION END
 
 #TEACHER ACTION START
 def create_teacher(request):
-    pass
+    return render(request, 'createteacher.html')
 #TEACHER ACTION END
 
 #STUDENT ACTION START
 def create_student(request):
-    pass
+    return render(request, 'createstudent.html')
 #STUDENT ACTION END

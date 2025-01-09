@@ -88,7 +88,7 @@ Semester List
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{% url 'course:semester-edit'%}" method="post">
+          <form action="{% url 'admin:course:semester-edit'%}" method="post">
             {%csrf_token%}
             <input type="hidden" name="id" id="semester_id">
             <div class="form-group">
@@ -132,7 +132,7 @@ Semester List
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{%url 'course:semester-delete'%}" method="post">
+          <form action="{%url 'admin:course:semester-delete'%}" method="post">
             {%csrf_token%}
           <h3>Are you sure you want to delete this semester?</h3>
           <input type="hidden" name="delete_id" id="delete_id">

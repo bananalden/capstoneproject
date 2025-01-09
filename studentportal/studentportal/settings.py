@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'course.apps.CourseConfig',
     'admin.apps.AdminConfig',
     'authentication.apps.AuthenticationConfig',
-    'transactions.apps.TransactionsConfig'
+    'transactions.apps.TransactionsConfig',
+    'api.apps.ApiConfig'
 ]
 
 

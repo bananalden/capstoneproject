@@ -4,7 +4,7 @@ $(document).ready(function (){
 
 
         $.ajax({
-            url: '/schoolmanagement/get-semester-data/' + itemID,
+            url: '/api/get-semester-object/' + itemID,
             type: 'GET',
             dataType: 'json',
             success: function(data){
@@ -25,7 +25,7 @@ $(document).ready(function (){
 
 function populate_courses_(courseSelected){
     $.ajax({
-        url: '/schoolmanagement/api/courses',
+        url: '/api/get-course-list',
         type: 'GET',
         dataType: 'json',
         success: function(data){

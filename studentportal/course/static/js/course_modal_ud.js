@@ -6,7 +6,7 @@ $(document).ready(function (){
         console.log(itemID)
 
         $.ajax({
-            url: '/schoolmanagement/get-course-data/' + itemID,
+            url: '/api/get-course-object/' + itemID,
             type: 'GET',
             dataType: 'json',
             success: function(data){

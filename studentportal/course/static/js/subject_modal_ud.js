@@ -6,7 +6,7 @@ $(document).ready(function (){
         console.log(itemID)
 
         $.ajax({
-            url: '/schoolmanagement/get-subject-data/' + itemID,
+            url: '/api/get-subject-object/' + itemID,
             type: 'GET',
             dataType: 'json',
             success: function(data){
@@ -36,7 +36,7 @@ $(document).ready(function (){
 
 function populate_courses_(courseSelected){
     $.ajax({
-        url: '/schoolmanagement/api/courses',
+        url: '/api/get-course-list',
         type: 'GET',
         dataType: 'json',
         success: function(data){
@@ -58,7 +58,7 @@ function populate_courses_(courseSelected){
 
 function populate_semester_(semesterSelected){
     $.ajax({
-        url: '/schoolmanagement/api/semesters',
+        url: '/api/get-semester-list',
         type: 'GET',
         dataType: 'json',
         success: function(data){
