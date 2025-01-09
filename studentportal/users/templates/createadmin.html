@@ -23,6 +23,7 @@ Admin List
                     <th>ID</th>
                     <th>Name</th>
                     <th>Username</th>
+                    <th>Email</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -32,6 +33,7 @@ Admin List
                     <td>{{admin.id}}</td>
                     <td>{{admin.first_name}} {{admin.last_name}}</td>
                     <td>{{admin.username}}</td>
+                    <td>{{admin.email}}</td>
                     <td>
                         <button class="action-btn edit-btn" data-id="{{admin.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit
@@ -117,22 +119,22 @@ Admin List
         <div class="modal-body">
             <div class="form-group">
                 <label for="first_name">First Name:</label>
-                <input type="text">
+                <input type="text" name="first_name" id="first_name" required>
             </div>
     
             <div class="form-group">
                 <label for="last_name">Last Name:</label>
-                <input type="text">
+                <input type="text" name="last_name" id="last_name" required>
             </div>
     
              <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text">
+                <input type="email" name="email" id="email" required>
             </div>
     
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password">
+                {{form.password}}
             </div>
     
         </div>

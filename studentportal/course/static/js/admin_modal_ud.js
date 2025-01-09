@@ -10,8 +10,10 @@ $(document).ready(function (){
             type: 'GET',
             dataType: 'json',
             success: function(data){
-               console.log(data.id)
-               console.log(data.first_name)
+                
+               $('#first_name').val(data.first_name)
+               $('#last_name').val(data.last_name)
+               $('#email').val(data.email)
             },
             error: function(){
                 console.log('Got the wrong URL?')
