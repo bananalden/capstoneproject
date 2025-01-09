@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from users import forms
 from users.models import CustomUserManager
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 
@@ -17,7 +18,12 @@ def create_admin(request):
     if request.method == 'POST':
         form = forms.add_admin(request.POST)
         if form.is_valid():
-            form.save()
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_email['email']
+            username = form.cleaned_data['username']
+            password = make_password(form.cleaned_data['password'])
+           
             return redirect('admin:users:admin-list')
         else:
             print(form.errors.as_data())
