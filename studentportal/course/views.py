@@ -106,6 +106,11 @@ def get_semesterdata(request, pk):
         return JsonResponse(data)
     return JsonResponse({'error':'Object not found'}, status=404)
 
+def get_semester_list(request):
+    semester = Semester.objects.all().values('id','semester_code','semester','year','course_id')
+    return JsonResponse(list(semester), safe=False)
+
+
 #SEMESTER CRUD ACTION END
 
 #SUBJECT CRUD ACTION START

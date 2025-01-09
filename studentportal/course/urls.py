@@ -26,6 +26,7 @@ urlpatterns = [
     #SUBJECT LIST ROUTES END
 
     #APIS START
-    path('api/courses', views.get_course_list, name='get-course-list')
+    path('api/courses', views.get_course_list, name='get-course-list'),
+    path('api/semester', views.get_semester_list, name='get-semester-list')
     #APIS END
 ]
