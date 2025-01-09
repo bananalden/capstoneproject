@@ -33,7 +33,7 @@ Admin List
                     <td>{{admin.first_name}} {{admin.last_name}}</td>
                     <td>{{admin.username}}</td>
                     <td>
-                        <button class="action-btn edit-btn" data-bs-toggle="modal" data-bs-target="#editCourse">
+                        <button class="action-btn edit-btn" data-id="{{admin.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit
                     </button>
                     <button type="button" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
@@ -164,6 +164,6 @@ Admin List
       </div>
     </div>
   </div>
-    
+<script src="{%static 'js/admin_modal_ud.js'%}"></script>
 <!--DELETE COURSE END-->
 {% endblock content %}
