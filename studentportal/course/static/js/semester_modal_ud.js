@@ -31,7 +31,7 @@ function populate_courses_(courseSelected){
         success: function(data){
             var selectCourse = $('#course')
             selectCourse.empty()
-            selectCourse.append('<option>  value="">-----</option>');
+            selectCourse.append('<option disabled value="">-----</option>');
 
             $.each(data, function(index, course){
                 var isSelected = course.id == courseSelected ? 'selected' : ''
