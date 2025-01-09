@@ -15,7 +15,7 @@ def create_course(request):
         f = add_course(request.POST)
         if f.is_valid():
             f.save()
-            return redirect('course:course-list')
+            return redirect('admin:course:course-list')
     else:
         context = {'form' : form,
                    'course': course
@@ -37,7 +37,7 @@ def delete_course(request):
         course_id = request.POST['delete_id']
         obj = get_object_or_404(Course, id=course_id)
         obj.delete()
-        return redirect('course:course-list')
+        return redirect('admin:course:course-list')
         
 
 
@@ -53,7 +53,7 @@ def create_semester(request):
         form = add_semester(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('course:semester-list')
+            return redirect('admin:course:semester-list')
         
     else:
          context = {'form': form,
@@ -89,13 +89,13 @@ def create_subject(request):
         f = add_subject(request.POST)
         if f.is_valid():
             f.save()
-            return redirect('course:subject-list')
+            return redirect('admin:course:subject-list')
         
     else:
         context = {'form':form,
                    'subjects': subjects
                    }                  
-        return render(request, 'createsubject.html', context)
+        return render(request, 'admin:createsubject.html', context)
     
 def update_subject(request):
     if request.method =="POST":
@@ -104,12 +104,12 @@ def update_subject(request):
         f = add_subject(request.POST, instance=obj)
         if f.is_valid():
             f.save()
-            return redirect('course:subject-list')
+            return redirect('admin:course:subject-list')
         
 def delete_subject(request):
     if request.method =="POST":
         semester_id = request.POST['delete_id']
         obj = get_object_or_404(Subject, id=semester_id)
         obj.delete()
-        return redirect('course:subject-list')
+        return redirect('admin:course:subject-list')
 #SUBJECT CRUD ACTION END

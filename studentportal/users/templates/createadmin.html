@@ -27,11 +27,11 @@ Admin List
                 </tr>
             </thead>
             <tbody id="course-list">
-                <!-- Dynamic Content -->
+                {%for admin in admins%}
                 <tr>
-                    <td>1</td>
-                    <td>Alden Admin</td>
-                    <td>21001396500</td>
+                    <td>{{admin.id}}</td>
+                    <td>{{admin.first_name}} {{admin.last_name}}</td>
+                    <td>{{admin.username}}</td>
                     <td>
                         <button class="action-btn edit-btn" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit
@@ -41,6 +41,7 @@ Admin List
                     </button>
                 </td>
                 </tr>
+                {%endfor%}
             </tbody>
         </table>
 
@@ -61,30 +62,44 @@ Admin List
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <form  method="post">
+        {% csrf_token %}
         <div class="form-group">
-            <label for="first_name">First Name:</label>
-            <input type="text">
-        </div>
+          <label for="first_name">First Name:</label>
+          {{form.first_name}}
+          </div>
 
-        <div class="form-group">
+          <div class="form-group">
             <label for="last_name">Last Name:</label>
-            <input type="text">
-        </div>
+            {{form.last_name}}
+          </div>
 
-         <div class="form-group">
+          <div class="form-group">
             <label for="email">Email:</label>
-            <input type="text">
-        </div>
+            {{form.email}}
+          </div>
 
-        <div class="form-group">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            {{form.username}}
+          </div>
+
+          <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password">
-        </div>
+            {{form.password}}
+          </div>
 
+          
+          
+          
+          
+          
+        
     </div>
       <div class="modal-footer">
         <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="action-btn edit-btn">Add Admin</button>
+        <button type="submit" class="action-btn edit-btn">Add Admin</button>
+      </form>
       </div>
     </div>
   </div>

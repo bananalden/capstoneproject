@@ -3,6 +3,10 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from course.models import Course
 
 # Create your models here.
+class CustomUserManager(BaseUserManager):
+    def get_queryset(self, *args, **kwargs):
+        results = super().get_queryset(*args, **kwargs)
+        return results.filter(role=CustomUser.Role.ADMIN) 
 
 class CustomUser(AbstractUser):
     

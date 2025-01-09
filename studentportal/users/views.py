@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from users import forms
+from users.models import CustomUserManager
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 
@@ -7,7 +10,23 @@ from django.shortcuts import render
 
 #ADMIN CRUD ACTION START
 def create_admin(request):
-    return render(request, 'createadmin.html')
+    form = forms.add_admin()
+    admin = get_user_model()
+    admins = admin.objects.all()
+    
+    if request.method == 'POST':
+        form = forms.add_admin(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('admin:users:admin-list')
+        else:
+            print(form.errors.as_data())
+    else:
+        
+        context = {'form':form,
+                   'admins':admins
+                   }
+        return render(request, 'createadmin.html',context)
 
 #ADMIN CRUD ACTION END
 
