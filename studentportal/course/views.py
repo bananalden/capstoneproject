@@ -75,7 +75,7 @@ def delete_semester(request):
         semester_id = request.POST['delete_id']
         obj = get_object_or_404(Semester, id=semester_id)
         obj.delete()
-        return redirect('course:semester-list')
+        return redirect('admin:course:semester-list')
         
 
 
@@ -95,7 +95,7 @@ def create_subject(request):
         context = {'form':form,
                    'subjects': subjects
                    }                  
-        return render(request, 'admin:createsubject.html', context)
+        return render(request, 'createsubject.html', context)
     
 def update_subject(request):
     if request.method =="POST":
