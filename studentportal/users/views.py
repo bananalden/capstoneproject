@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from users import forms
+from django.shortcuts import get_object_or_404
 from users.models import CustomUserManager, CustomUser
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
@@ -13,7 +14,7 @@ from django.contrib.auth.hashers import make_password
 def create_admin(request):
     form = forms.add_admin()
     admin = get_user_model()
-    admins = admin.objects.all()
+    admins = admin.objects.filter(role='ADMIN')
     
     if request.method == 'POST':
         form = forms.add_admin(request.POST)
@@ -35,6 +36,35 @@ def create_admin(request):
                    'admins':admins
                    }
         return render(request, 'createadmin.html',context)
+    
+
+def update_admin(request):
+    if request.method =='POST':
+        edit_id = request.POST['id']
+        obj = get_object_or_404(CustomUser, id=edit_id)
+        form = forms.add_admin(request.POST, instance=obj)
+
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            username = form.cleaned_data['username']
+            password = make_password(form.cleaned_data['password'])
+            
+            admin = CustomUser.objects.get(id=edit_id)
+            admin.first_name = first_name
+            admin.last_name = last_name
+            admin.email = email
+            admin.username = username
+            admin.password = password
+            admin.save()
+
+            return redirect('admin:users:admin-list')
+        else:
+            print(form.errors.as_data())
+
+def delete_admin(request):
+    pass
 
 #ADMIN CRUD ACTION END
 

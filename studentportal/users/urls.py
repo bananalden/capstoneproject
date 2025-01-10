@@ -6,6 +6,7 @@ app_name = 'users'
 urlpatterns =[
     #ADMIN ROUTES START
     path('admin-list',views.create_admin, name='admin-list'),
+    path('admin-list/edit',views.update_admin,name='admin-edit'),
     #ADMIN ROUTES END
 
     #CASHIER ROUTES START

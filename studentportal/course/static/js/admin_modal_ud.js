@@ -11,9 +11,11 @@ $(document).ready(function (){
             dataType: 'json',
             success: function(data){
                 
+               $('#id').val(itemID)
                $('#first_name').val(data.first_name)
                $('#last_name').val(data.last_name)
                $('#email').val(data.email)
+               $('#username').val(data.username)
             },
             error: function(){
                 console.log('Got the wrong URL?')
