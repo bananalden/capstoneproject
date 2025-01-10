@@ -1,5 +1,6 @@
 from django import forms
 from users import models
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.hashers import make_password
 
 class add_admin(forms.ModelForm):
@@ -17,3 +18,4 @@ class add_admin(forms.ModelForm):
             if commit:
                 admin.save()
             return admin
+        
