@@ -10,7 +10,6 @@ $(document).ready(function (){
             type: 'GET',
             dataType: 'json',
             success: function(data){
-                
                $('#first_name').val(data.first_name)
                $('#last_name').val(data.last_name)
                $('#email').val(data.email)

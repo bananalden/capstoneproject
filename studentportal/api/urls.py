@@ -11,6 +11,9 @@ urlpatterns = [
     path('get-semester-object/<int:pk>',views.get_semesterdata,name='get-semester-object'),
     path('get-subject-object/<int:pk>',views.get_subjectdata,name='get-subject-object'),
 
+    path('get-admin-object/<int:pk>',views.get_admindata,name='get-admin-object')
+
+
 
 
 ]
