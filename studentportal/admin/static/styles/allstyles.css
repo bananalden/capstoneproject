@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f5f5f5;
   transition: margin-left 0.3s ease;
   overflow-x: hidden;
@@ -173,7 +173,6 @@ body {
   color: #fff;
 }
 
-
 /* Main content */
 .content {
   padding: 20px;
@@ -186,7 +185,8 @@ body {
 }
 
 /* Toggle button */
-.toggle-btn, .close-btn {
+.toggle-btn,
+.close-btn {
   font-size: 30px;
   background-color: transparent;
   border: none;
@@ -275,10 +275,13 @@ body {
 .dashboard-header {
   text-align: center;
   padding: 20px;
-  background: #0056b3;
+  background: #5585b5;
   color: #fff;
 }
 
+.dashboard-header h1 {
+  color: white;
+}
 
 .logo {
   max-height: 80px;
@@ -320,7 +323,7 @@ body {
 
 .card i {
   font-size: 2.5em;
-  color: #007BFF;
+  color: #007bff;
   margin-bottom: 10px;
 }
 
@@ -374,7 +377,6 @@ label {
   font-weight: bold;
 }
 
-
 input,
 select {
   width: 100%;
@@ -388,7 +390,7 @@ select {
 input:focus,
 select:focus {
   outline: none;
-  border-color: #007BFF;
+  border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
@@ -415,28 +417,6 @@ select:focus {
   }
 }
 
-
-/*CARD COMPONENT END */
-
-/* CRUD OPERATION DASHBOARD START */
-.crud-dashboard{
-  background-color: red;
-
-}
-
-.crud-dashboard-header{
-  display:flex;
-  align-items:center;
-  gap:55%;
-}
-
-.classA, .classB{
-  border: solid black 2px;
-}
-
-
-/* CRUD OPERATION DASHBOARD END */
-
 /****** Course List  ******/
 .crud-dashboard {
   width: 70%;
@@ -450,7 +430,7 @@ select:focus {
 
 /* Heading */
 h1 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 2.5rem;
   color: #333;
   text-align: center;
@@ -519,7 +499,7 @@ h1 {
 
 /* Table Styles */
 table {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -605,12 +585,12 @@ table tr:hover {
 
 /* Edit Button Specific Styling */
 .edit-btn {
-  background-color: #4CAF50;  /* Green for edit */
+  background-color: #4caf50; /* Green for edit */
 }
 
 /* Delete Button Specific Styling */
 .delete-btn {
-  background-color: #a30f15;  /* Red for delete */
+  background-color: #a30f15; /* Red for delete */
 }
 
 /* Action Button Hover Effect */
@@ -721,7 +701,8 @@ label {
     width: 200px; /* Adjust search bar width for smaller screens */
   }
 
-  table th, table td {
+  table th,
+  table td {
     padding: 8px;
   }
 
@@ -761,7 +742,6 @@ label {
 }
 /****** Course List End ******/
 
-
 /****** Semester List End ******/
 .semester-list {
   width: 70%;
@@ -775,7 +755,7 @@ label {
 
 /* Heading */
 h1 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 2.5rem;
   color: #333;
   text-align: center;
@@ -843,7 +823,7 @@ h1 {
 
 /* Table Styles */
 table {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -929,12 +909,12 @@ table tr:hover {
 
 /* Edit Button Specific Styling */
 .edit-btn {
-  background-color: #4CAF50;  /* Green for edit */
+  background-color: #4caf50; /* Green for edit */
 }
 
 /* Delete Button Specific Styling */
 .delete-btn {
-  background-color: #a30f15;  /* Red for delete */
+  background-color: #a30f15; /* Red for delete */
 }
 
 /* Action Button Hover Effect */
@@ -1067,7 +1047,8 @@ label {
     width: 200px; /* Adjust search bar width for smaller screens */
   }
 
-  table th, table td {
+  table th,
+  table td {
     padding: 8px;
   }
 
@@ -1105,5 +1086,3 @@ label {
     font-size: 12px; /* Smaller text for mobile */
   }
 }
-
-
