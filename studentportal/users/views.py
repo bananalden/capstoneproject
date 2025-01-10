@@ -33,6 +33,9 @@ def create_admin(request):
                    'admins':admins
                    }
         return render(request, 'createadmin.html',context)
+    
+def update_admin(request):
+    pass
 
 #ADMIN CRUD ACTION END
 

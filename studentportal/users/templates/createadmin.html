@@ -117,6 +117,9 @@ Admin List
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+        <form action="{%url 'admin:users:admin-update'%}" method="post">
+          {%csrf_token%}
+          <input type="hidden" name="id" id="edit_id">
             <div class="form-group">
                 <label for="first_name">First Name:</label>
                 <input type="text" name="first_name" id="first_name" required>
@@ -131,6 +134,12 @@ Admin List
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email" required>
             </div>
+
+
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" name="username" id="username" required>
+          </div>
     
             <div class="form-group">
                 <label for="password">Password:</label>
@@ -140,7 +149,8 @@ Admin List
         </div>
         <div class="modal-footer">
           <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="action-btn edit-btn">Save Edit</button>
+          <button type="submit" class="action-btn edit-btn">Save Edit</button>
+        </form>
         </div>
       </div>
     </div>
