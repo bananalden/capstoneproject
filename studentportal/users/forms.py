@@ -1,18 +1,19 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from users import models
+from django.contrib.auth.hashers import make_password
 
-class add_admin(UserCreationForm):
+class add_admin(forms.ModelForm):
 
     class Meta:
         model = models.CustomUser
-        fields = ['first_name','last_name','email','username','password1']
+        fields = ['first_name','last_name','email','username','password']
         widgets = {
             'password':forms.PasswordInput
         }
 
-    def __init__(self, *args, **kwargs):
-        super(add_admin, self).__init__(*args, **kwargs)
-        del self.fields['password2']
-        self.fields['password1'].help_text = None
-        self.fields['username'].help_text = None
+        def save(self, commit=True):
+            admin = super(add_admin, self).save(commit=False)
+            admin.set_password(self.cleaned_data["password"])
+            if commit:
+                admin.save()
+            return admin

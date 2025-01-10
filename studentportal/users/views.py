@@ -18,11 +18,11 @@ def create_admin(request):
     if request.method == 'POST':
         form = forms.add_admin(request.POST)
         if form.is_valid():
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            email = form.cleaned_email['email']
-            username = form.cleaned_data['username']
-            password = make_password(form.cleaned_data['password'])
+            admin_user = form.save(commit=False)
+            admin_user.set_password(
+                form.cleaned_data["password"]
+            )
+            admin_user.save()
            
             return redirect('admin:users:admin-list')
         else:

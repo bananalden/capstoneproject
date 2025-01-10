@@ -29,7 +29,7 @@ def update_course(request):
         f = add_course(request.POST, instance=obj)
         if f.is_valid():
             f.save()
-            return redirect('course:course-list')
+            return redirect('admin:course:course-list')
 
     
 def delete_course(request):
