@@ -12,10 +12,11 @@ class add_admin(forms.ModelForm):
             'password':forms.PasswordInput
         }
 
-        def save(self, commit=True):
-            admin = super(add_admin, self).save(commit=False)
-            admin.set_password(self.cleaned_data["password"])
-            if commit:
-                admin.save()
-            return admin
-        
+
+class add_cashier(forms.ModelForm):
+    class Meta:
+        model = models.Cashier
+        fields = ['first_name','last_name','email','username','password']
+        widgets = {
+            'password':forms.PasswordInput
+        }

@@ -13,7 +13,7 @@ from django.contrib.auth.hashers import make_password
 def create_admin(request):
     form = forms.add_admin()
     admin = get_user_model()
-    admins = admin.objects.all()
+    admins = admin.objects.filter(role='ADMIN')
     
     if request.method == 'POST':
         form = forms.add_admin(request.POST)
@@ -35,22 +35,51 @@ def create_admin(request):
         return render(request, 'createadmin.html',context)
     
 def update_admin(request):
-   
-    if request.method =='POST':
-         admin_id = request.POST["edit_id"]
-         admin_user = get_object_or_404(CustomUser,id=admin_id)
-         form = forms.add_admin(request.POST, instance=admin_user)
-         if form.is_valid():
+       admin_id = request.POST.get("edit_id")
+       user = get_user_model()
+       admin_user = user.objects.get(id=admin_id)
+       if request.method =='POST':
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
+        username = request.POST.get("username")
+        password = make_password(request.POST.get("password"))
+        form = forms.add_admin(request.POST, instance=admin_user)
+        print(form)
+        print(form.is_valid)
+        if form.is_valid():
            form.save()
            return redirect ('admin:users:admin-list')
-         else:
-           print(form.errors.as_data())
+        else:
+            print(form.errors.as_data())
         
 #ADMIN CRUD ACTION END
 
 #CASHIER ACTION START
 def create_cashier(request):
-    return render(request, 'createcashier.html')
+    form = forms.add_cashier()
+    cashier = get_user_model()
+    cashiers = cashier.objects.filter(role='CASHIER')
+    
+    if request.method == 'POST':
+        form = forms.add_cashier(request.POST)
+        if form.is_valid():
+            cashier_user = form.save(commit=False)
+            cashier_user.set_password(
+                form.cleaned_data["password"]
+            )
+            cashier_user.save()
+           
+            return redirect('admin:users:cashier-list')
+        else:
+            print(form.errors.as_data())
+    else:
+        
+        context = {'form':form,
+                   'admins':cashiers
+                   }
+        return render(request, 'createcashier.html',context)
+
 #CASHIER ACTION END
 
 #REGISTRAR ACTION START
