@@ -36,8 +36,7 @@ def create_admin(request):
     
 def update_admin(request):
        admin_id = request.POST.get("edit_id")
-       user = get_user_model()
-       admin_user = user.objects.get(id=admin_id)
+       admin_user = get_object_or_404(CustomUser, pk=admin_id)
        if request.method =='POST':
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
@@ -45,7 +44,6 @@ def update_admin(request):
         username = request.POST.get("username")
         password = make_password(request.POST.get("password"))
         form = forms.add_admin(request.POST, instance=admin_user)
-        print(form)
         print(form.is_valid)
         if form.is_valid():
            form.save()
