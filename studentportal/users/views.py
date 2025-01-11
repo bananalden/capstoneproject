@@ -76,7 +76,7 @@ def create_cashier(request):
     else:
         
         context = {'form':form,
-                   'admins':cashiers
+                   'cashiers':cashiers
                    }
         return render(request, 'createcashier.html',context)
 

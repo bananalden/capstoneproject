@@ -26,11 +26,11 @@ Cashier List
                 </tr>
             </thead>
             <tbody id="course-list">
-                <!-- Dynamic Content -->
+                {%for cashier in cashiers%}
                 <tr>
-                    <td>1</td>
-                    <td>Alden Cashier</td>
-                    <td>21001396500</td>
+                    <td>{{cashier.id}}</td>
+                    <td>{{cashier.first_name}} {{cashier.last_name}}</td>
+                    <td>{{cashier.username}}</td>
                     <td>
                         <button class="action-btn edit-btn" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit
@@ -40,6 +40,7 @@ Cashier List
                     </button>
                 </td>
                 </tr>
+                {%endfor%}
             </tbody>
         </table>
 
@@ -61,14 +62,15 @@ Cashier List
       </div>
       <div class="modal-body">
         <div class="form-group">
+        <form  method="post">
+          {%csrf_token%}
             {{form}}
         </div>
-
-
     </div>
       <div class="modal-footer">
         <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="action-btn edit-btn">Add Cashier</button>
+        <button type="submit" class="action-btn edit-btn">Add Cashier</button>
+      </form>
       </div>
     </div>
   </div>
