@@ -6,7 +6,7 @@ from django.dispatch import receiver
 @receiver(post_save, sender=Student)
 def create_student_profile (sender, instance, created, **kwargs):
     if created and instance.role =="STUDENT":
-        StudentProfile.objects.create(user= instance)
+        StudentProfile.objects.create(student=instance)
 
 @receiver(post_save, sender=Student)
 def save_student_profile (sender, instance, created, **kwargs):
@@ -15,4 +15,4 @@ def save_student_profile (sender, instance, created, **kwargs):
 @receiver(post_save, sender=Teacher)
 def create_teacher_profile (sender, instance, created, **kwargs):
     if created and instance.role =="TEACHER":
-        TeacherProfile.objects.create(user=instance)
+        TeacherProfile.objects.create(teacher=instance)

@@ -1,0 +1,140 @@
+{% extends "userbase/base.html" %}
+{% block title %}
+Cashier List
+{% endblock title %}
+{%load static%}
+{% block content %}
+    <div class="crud-dashboard">
+        <h1>Cashier List</h1>
+        
+        <!-- Search and Add Course Section -->
+        <div class="search-container">
+            <button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addCourse">
+                Add Cashier
+              </button>
+            <input type="text" id="search-course" placeholder="Search Course">
+        </div>
+
+        <!-- Course Table -->
+        <table id="course-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="course-list">
+                {%for cashier in cashiers%}
+                <tr>
+                    <td>{{cashier.id}}</td>
+                    <td>{{cashier.first_name}} {{cashier.last_name}}</td>
+                    <td>{{cashier.username}}</td>
+                    <td>
+                        <button class="action-btn edit-btn" data-bs-toggle="modal" data-bs-target="#editCourse">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button type="button" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div id="pagination">
+            <button id="prev-btn" class="pagination-btn" aria-label="Previous page">Previous</button>
+            <button id="next-btn" class="pagination-btn" aria-label="Next page">Next</button>
+        </div>
+    </div>
+
+
+<!-- ADD SUBJECT BUTTON START-->
+<div class="modal fade" id="addCourse" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Cashier</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        <form  method="post">
+          {%csrf_token%}
+            {{form}}
+        </div>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="action-btn edit-btn">Add Cashier</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ADD SUBJECT BUTTON END-->
+
+<!--EDIT SUBJECT START-->
+<div class="modal fade" id="editCourse" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Edit Cashier</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text">
+            </div>
+    
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text">
+            </div>
+    
+             <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text">
+            </div>
+    
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password">
+            </div>
+    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="action-btn edit-btn">Save Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--EDIT SUBJECT END-->
+
+
+<!--DELETE SUBJECT START-->
+<div class="modal fade" id="deleteCourse" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Confirm Delete</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3>Are you sure you want to delete this Cashier?</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="action-btn edit-btn">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+<!--DELETE COURSE END-->
+{% endblock content %}

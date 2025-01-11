@@ -1,20 +1,20 @@
-{% extends "_base/base.html" %} {% block title %} Admin List {% endblock title
-%} {%load static%} {% block content %}
-<div class="crud-dashboard">
-  <h1>Admin List</h1>
+{% extends "admin/base.html" %}
+{% block title %}
+Admin List
+{% endblock title %}
 
-  <!-- Search and Add Course Section -->
-  <div class="search-container">
-    <button
-      type="button"
-      class="add-btn"
-      data-bs-toggle="modal"
-      data-bs-target="#addCourse"
-    >
-      Add Admin
-    </button>
-    <input type="text" id="search-course" placeholder="Search Course" />
-  </div>
+{%load static%}
+{% block content %}
+    <div class="crud-dashboard">
+        <h1>Admin List</h1>
+        
+        <!-- Search and Add Course Section -->
+        <div class="search-container">
+            <button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addCourse">
+                Add Admin
+              </button>
+            <input type="text" id="search-course" placeholder="Search Course">
+        </div>
 
   <!-- Course Table -->
   <table id="course-table">
