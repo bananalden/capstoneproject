@@ -61,29 +61,18 @@ Registrar List
       </div>
       <div class="modal-body">
         <div class="form-group">
-            <label for="first_name">First Name:</label>
-            <input type="text">
+        <form method='POST'>
+        {% csrf_token %}
+            {{form}}
         </div>
 
-        <div class="form-group">
-            <label for="last_name">Last Name:</label>
-            <input type="text">
-        </div>
-
-         <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="text">
-        </div>
-
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password">
-        </div>
+        
 
     </div>
       <div class="modal-footer">
         <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="action-btn edit-btn">Add Registrar</button>
+        <button type="submit" class="action-btn edit-btn">Add Registrar</button>
+      </form>
       </div>
     </div>
   </div>

@@ -86,12 +86,15 @@ def create_registrar(request):
     registrar = get_user_model()
     registrars = registrar.objects.filter(role='REGISTRAR')
     if request.method == 'POST':
-        cashier_user = form.save(commit=False)
-        cashier_user.set_password(
-                form.cleaned_data["password"]
-            )
-        cashier_user.save()
-        return redirect('admin:users:cashier-list')
+        form = forms.add_registrar(request.POST)
+        if form.is_valid():
+            registrar_user = form.save(commit=False)
+            registrar_user.set_password(
+                    form.cleaned_data["password"]
+                )
+            
+            registrar_user.save()
+            return redirect('admin:users:registrar-list')
     else:
         context = {
             'form':form,
