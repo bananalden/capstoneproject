@@ -35,19 +35,20 @@ def create_admin(request):
         return render(request, 'createadmin.html',context)
     
 def update_admin(request):
-       admin_id = request.POST.get("edit_id")
-       admin_user = get_object_or_404(CustomUser, pk=admin_id)
        if request.method =='POST':
-        first_name = request.POST.get("first_name")
-        last_name = request.POST.get("last_name")
-        email = request.POST.get("email")
-        username = request.POST.get("username")
-        password = make_password(request.POST.get("password"))
+        admin_id = request.POST.get("id", None)
+        if not admin_id:
+            print("Coudn't find this admin")
+            return redirect('admin:users:admin-list')
+        admin_user = CustomUser.objects.get(id=admin_id)
         form = forms.add_admin(request.POST, instance=admin_user)
-        print(form.is_valid)
         if form.is_valid():
-           form.save()
-           return redirect ('admin:users:admin-list')
+            admin_change = form.save(commit=False)
+            admin_change.set_password(
+                form.cleaned_data["password"]
+                )
+            admin_change.save()
+            return redirect ('admin:users:admin-list')
         else:
             print(form.errors.as_data())
         

@@ -28,6 +28,8 @@ class CustomUser(AbstractUser):
         if not self.pk:
             self.role = self.base_role
             return super().save(*args, **kwargs)
+        else:
+            return super().save(*args, **kwargs)
 
 
 class RegistrarManager(BaseUserManager):

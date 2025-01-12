@@ -10,6 +10,7 @@ $(document).ready(function (){
             type: 'GET',
             dataType: 'json',
             success: function(data){
+                console.log("Populated data")
                $('#edit_id').val(itemID)
                $('#first_name').val(data.first_name)
                $('#last_name').val(data.last_name)
