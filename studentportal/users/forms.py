@@ -20,3 +20,11 @@ class add_cashier(forms.ModelForm):
         widgets = {
             'password':forms.PasswordInput
         }
+
+class add_registrar(forms.ModelForm):
+    class Meta:
+        model = models.Registrar
+        fields = ['first_name','last_name','email','username','password']
+        widgets = {
+            'password':forms.PasswordInput
+        }

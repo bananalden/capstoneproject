@@ -82,7 +82,22 @@ def create_cashier(request):
 
 #REGISTRAR ACTION START
 def create_registrar(request):
-    return render(request, 'createregistrar.html')
+    form = forms.add_registrar()
+    registrar = get_user_model()
+    registrars = registrar.objects.filter(role='REGISTRAR')
+    if request.method == 'POST':
+        cashier_user = form.save(commit=False)
+        cashier_user.set_password(
+                form.cleaned_data["password"]
+            )
+        cashier_user.save()
+        return redirect('admin:users:cashier-list')
+    else:
+        context = {
+            'form':form,
+            'registrars':registrars
+        }
+        return render(request, 'createregistrar.html',context)
 #REGISTRAR ACTION END
 
 #TEACHER ACTION START
