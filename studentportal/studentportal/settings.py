@@ -89,7 +89,7 @@ DATABASES = {
         'USER': 'avnadmin',
         'PASSWORD': 'AVNS_EHdMVOhXbdD72HDRUA1',
         'HOST': 'django-smis-database-django-smis.i.aivencloud.com',
-        'PORT': '5432'
+        'PORT': '11913'
     }
 }
 
