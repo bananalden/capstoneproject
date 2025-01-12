@@ -1,2 +1,8 @@
 from django.urls import path
-from . import views
+from home import views
+
+app_name = 'home'
+
+urlpatterns = [
+    path('cashier/', views.cashier_home, name='cashier-home')
+]
