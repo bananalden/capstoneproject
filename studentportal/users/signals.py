@@ -8,9 +8,6 @@ def create_student_profile (sender, instance, created, **kwargs):
     if created and instance.role =="STUDENT":
         StudentProfile.objects.create(student=instance)
 
-@receiver(post_save, sender=Student)
-def save_student_profile (sender, instance, created, **kwargs):
-    instance.profile.save()
 
 @receiver(post_save, sender=Teacher)
 def create_teacher_profile (sender, instance, created, **kwargs):
