@@ -94,7 +94,7 @@ def update_cashier(request):
             print("Coudn't find this admin")
             return redirect('admin:users:admin-list')
         cashier_user = CustomUser.objects.get(id=cashier_id)
-        form = forms.add_admin(request.POST, instance=cashier_user)
+        form = forms.add_cashier(request.POST, instance=cashier_user)
         if form.is_valid():
             cashier_change = form.save(commit=False)
             cashier_change.set_password(
@@ -104,6 +104,13 @@ def update_cashier(request):
             return redirect ('admin:users:cashier-list')
         else:
             print(form.errors.as_data())
+
+def delete_cashier(request):
+    if request.method == "POST":
+        cashier_id = request.POST['delete_id']
+        cashier_user = CustomUser.objects.get(id=cashier_id)
+        cashier_user.delete() 
+        return redirect("admin:users:cashier-list") 
 
 #CASHIER ACTION END
 
@@ -128,6 +135,26 @@ def create_registrar(request):
             'registrars':registrars
         }
         return render(request, 'createregistrar.html',context)
+    
+
+def update_registrar(request):
+    if request.method == 'POST':
+        registrar_id = request.POST.get("id", None)
+        if not registrar_id:
+            print("Coudn't find this admin")
+            return redirect('admin:users:admin-list')
+        registrar_user = CustomUser.objects.get(id=registrar_id)
+        form = forms.add_registrar(request.POST, instance=registrar_user)
+        if form.is_valid():
+            registrar_change = form.save(commit=False)
+            registrar_change.set_password(
+                form.cleaned_data["password"]
+                )
+            registrar_change.save()
+            return redirect ('admin:users:cashier-list')
+        else:
+            print(form.errors.as_data())
+
 #REGISTRAR ACTION END
 
 #TEACHER ACTION START

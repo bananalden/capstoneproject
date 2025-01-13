@@ -13,6 +13,7 @@ urlpatterns =[
     #CASHIER ROUTES START
     path('cashier-list',views.create_cashier,name='cashier-list'),
     path('cashier-list/edit',views.update_cashier,name='cashier-update'),
+    path('cashier-list/delete',views.delete_cashier, name='cashier-delete'),
     #CASHIER ROUTES END
 
     #REGISTRAR ROUTES START
