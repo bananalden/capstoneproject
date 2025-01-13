@@ -22,24 +22,27 @@ Registrar List
                     <th>ID</th>
                     <th>Name</th>
                     <th>Username</th>
+                    <th>Email</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="course-list">
-                <!-- Dynamic Content -->
+              {%for registrar in registrars%}
                 <tr>
-                    <td>1</td>
-                    <td>Alden Registrar</td>
-                    <td>21001396500</td>
+                    <td>{{registrar.id}}</td>
+                    <td>{{registrar.first_name}} {{registrar.last_name}}</td>
+                    <td>{{registrar.username}}</td>
+                    <td>{{registrar.email}}</td>
                     <td>
-                        <button class="action-btn edit-btn" data-bs-toggle="modal" data-bs-target="#editCourse">
+                        <button class="action-btn edit-btn" data-id="{{registrar.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit
                     </button>
-                    <button type="button" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
+                    <button type="button" class="action-btn delete-btn" data-id="{{registrar.id}}" data-bs-toggle="modal" data-bs-target="#deleteCourse">
                         <i class="fas fa-trash-alt"></i> Delete
                     </button>
                 </td>
                 </tr>
+                {%endfor%}
             </tbody>
         </table>
 
@@ -61,29 +64,18 @@ Registrar List
       </div>
       <div class="modal-body">
         <div class="form-group">
-            <label for="first_name">First Name:</label>
-            <input type="text">
+        <form method='POST'>
+        {% csrf_token %}
+            {{form}}
         </div>
 
-        <div class="form-group">
-            <label for="last_name">Last Name:</label>
-            <input type="text">
-        </div>
-
-         <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="text">
-        </div>
-
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password">
-        </div>
+        
 
     </div>
       <div class="modal-footer">
         <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="action-btn edit-btn">Add Registrar</button>
+        <button type="submit" class="action-btn edit-btn">Add Registrar</button>
+      </form>
       </div>
     </div>
   </div>
@@ -99,30 +91,39 @@ Registrar List
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+        <form action="{%url 'admin:users:registrar-update'%}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="id" id="edit_id">
             <div class="form-group">
                 <label for="first_name">First Name:</label>
-                <input type="text">
+                <input type="text" name="first_name" id="first_name" required>
             </div>
     
             <div class="form-group">
                 <label for="last_name">Last Name:</label>
-                <input type="text">
+                <input type="text" name="last_name" id="last_name" required>
             </div>
     
              <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text">
+                <input type="email" name="email" id="email" required>
             </div>
+
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" name="username" id="username" required>
+          </div>
     
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password">
+              <label for="password">Password:</label>
+                {{form.password}}
             </div>
     
         </div>
         <div class="modal-footer">
           <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="action-btn edit-btn">Save Edit</button>
+          <button type="submit" class="action-btn edit-btn">Save Edit</button>
+        </form>
         </div>
       </div>
     </div>
@@ -139,15 +140,20 @@ Registrar List
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <form action="{%url 'admin:users:registrar-delete'%}" method="post">
+        <input type="hidden" name="delete_id" id="delete_id">
+        {% csrf_token %}
           <h3>Are you sure you want to delete this Registrar?</h3>
         </div>
         <div class="modal-footer">
           <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="action-btn edit-btn">Confirm</button>
+          <button type="submit" class="action-btn edit-btn">Confirm</button>
+        </form>
         </div>
       </div>
     </div>
   </div>
-    
+
+<script src="{%static 'js/admin_modal_ud.js'%}"></script>
 <!--DELETE COURSE END-->
 {% endblock content %}

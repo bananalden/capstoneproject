@@ -68,7 +68,7 @@ def update_semester(request):
         f = add_semester(request.POST, instance=obj)
         if f.is_valid():
             f.save()
-            return redirect('course:semester-list')
+            return redirect('admin:course:semester-list')
         
 def delete_semester(request):
     if request.method =="POST":

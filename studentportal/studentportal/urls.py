@@ -24,6 +24,7 @@ from django.views.static import serve
 urlpatterns = [
     path('', include('authentication.urls')),
     path('admin/', include('admin.urls',namespace='admin')),
+    path('home/',include('home.urls', namespace='home')),
     path('api/',include('api.urls', namespace='api'))
     
 

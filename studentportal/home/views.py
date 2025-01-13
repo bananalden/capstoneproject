@@ -6,3 +6,5 @@ from django.contrib import messages
 
 # Create your views here.
 
+def cashier_home(request):
+    return render(request, 'cashierhome.html')
