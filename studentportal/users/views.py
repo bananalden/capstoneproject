@@ -51,7 +51,15 @@ def update_admin(request):
             return redirect ('admin:users:admin-list')
         else:
             print(form.errors.as_data())
-        
+
+def delete_admin(request):
+    if request.method == "POST":
+        admin_id = request.POST['delete_id']
+        admin_user = CustomUser.objects.get(id=admin_id)
+        admin_user.delete() 
+        return redirect("admin:users:admin-list") 
+    
+
 #ADMIN CRUD ACTION END
 
 #CASHIER ACTION START
