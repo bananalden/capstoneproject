@@ -32,10 +32,10 @@ Cashier List
                     <td>{{cashier.first_name}} {{cashier.last_name}}</td>
                     <td>{{cashier.username}}</td>
                     <td>
-                        <button class="action-btn edit-btn" data-bs-toggle="modal" data-bs-target="#editCourse">
+                        <button class="action-btn edit-btn" data-id="{{cashier.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit
                     </button>
-                    <button type="button" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
+                    <button type="button" class="action-btn delete-btn" data-id="{{cashier.id}}" data-bs-toggle="modal"  data-bs-target="#deleteCourse">
                         <i class="fas fa-trash-alt"></i> Delete
                     </button>
                 </td>
@@ -86,30 +86,39 @@ Cashier List
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <form action="{%url 'admin:users:cashier-update'%}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" id="edit_id">
             <div class="form-group">
                 <label for="first_name">First Name:</label>
-                <input type="text">
+                <input type="text" name="first_name" id="first_name" required>
             </div>
     
             <div class="form-group">
                 <label for="last_name">Last Name:</label>
-                <input type="text">
+                <input type="text" name="last_name" id="last_name" required> 
             </div>
     
              <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text">
+                <input type="email" name="email" id="email" required>
             </div>
+
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" name="username" id="username" required>
+          </div>
     
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password">
+                {{form.password}}
             </div>
     
         </div>
         <div class="modal-footer">
           <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="action-btn edit-btn">Save Edit</button>
+          <button type="submit" class="action-btn edit-btn">Save Edit</button>
+        </form>
         </div>
       </div>
     </div>
@@ -135,6 +144,6 @@ Cashier List
       </div>
     </div>
   </div>
-    
+<script src="{%static 'js/admin_modal_ud.js'%}"></script>
 <!--DELETE COURSE END-->
 {% endblock content %}

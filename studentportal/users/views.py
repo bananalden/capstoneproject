@@ -86,6 +86,24 @@ def create_cashier(request):
                    'cashiers':cashiers
                    }
         return render(request, 'createcashier.html',context)
+    
+def update_cashier(request):
+    if request.method == 'POST':
+        cashier_id = request.POST.get("id", None)
+        if not cashier_id:
+            print("Coudn't find this admin")
+            return redirect('admin:users:admin-list')
+        cashier_user = CustomUser.objects.get(id=cashier_id)
+        form = forms.add_admin(request.POST, instance=cashier_user)
+        if form.is_valid():
+            cashier_change = form.save(commit=False)
+            cashier_change.set_password(
+                form.cleaned_data["password"]
+                )
+            cashier_change.save()
+            return redirect ('admin:users:cashier-list')
+        else:
+            print(form.errors.as_data())
 
 #CASHIER ACTION END
 
