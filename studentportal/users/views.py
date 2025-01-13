@@ -151,9 +151,16 @@ def update_registrar(request):
                 form.cleaned_data["password"]
                 )
             registrar_change.save()
-            return redirect ('admin:users:cashier-list')
+            return redirect ('admin:users:registrar-list')
         else:
             print(form.errors.as_data())
+
+def delete_registrar(request):
+    if request.method == "POST":
+        registrar_id = request.POST['delete_id']
+        registrar_user = CustomUser.objects.get(id=registrar_id)
+        registrar_user.delete() 
+        return redirect("admin:users:registrar-list")
 
 #REGISTRAR ACTION END
 

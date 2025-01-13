@@ -18,6 +18,8 @@ urlpatterns =[
 
     #REGISTRAR ROUTES START
     path('registrar-list',views.create_registrar, name='registrar-list'),
+    path('registrar-list/edit',views.update_registrar, name='registrar-update'),
+    path('registrar-list/delete',views.delete_registrar,name='registrar-delete'),
     #REGISTRAR ROUTES END
 
     #TEACHER ROUTES START
