@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from users import forms
-from users.models import CustomUserManager, CustomUser
+from users.models import CustomUserManager, CustomUser, TeacherProfile
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 
@@ -9,7 +9,7 @@ from django.contrib.auth.hashers import make_password
 #PLACE CRUD OPERATIONS HERE
 
 
-#ADMIN CRUD ACTION START
+#ADMIN CRUD ACTION START=========================================
 def create_admin(request):
     form = forms.add_admin()
     admin = get_user_model()
@@ -60,9 +60,9 @@ def delete_admin(request):
         return redirect("admin:users:admin-list") 
     
 
-#ADMIN CRUD ACTION END
+#ADMIN CRUD ACTION END=================================================
 
-#CASHIER ACTION START
+#CASHIER ACTION START===================================================
 def create_cashier(request):
     form = forms.add_cashier()
     cashier = get_user_model()
@@ -112,9 +112,10 @@ def delete_cashier(request):
         cashier_user.delete() 
         return redirect("admin:users:cashier-list") 
 
-#CASHIER ACTION END
+#CASHIER ACTION END============================================
 
-#REGISTRAR ACTION START
+#REGISTRAR ACTION START========================================
+    
 def create_registrar(request):
     form = forms.add_registrar()
     registrar = get_user_model()
@@ -162,12 +163,30 @@ def delete_registrar(request):
         registrar_user.delete() 
         return redirect("admin:users:registrar-list")
 
-#REGISTRAR ACTION END
+#REGISTRAR ACTION END==============================================
 
-#TEACHER ACTION START
+#TEACHER ACTION START==============================================
+    
 def create_teacher(request):
-    return render(request, 'createteacher.html')
-#TEACHER ACTION END
+    user_form = forms.add_teacher()
+    user_profile_form = forms.add_teacher_profile()
+    if request.method == 'POST':
+        teacher_create = forms.add_teacher(request.POST)
+        if teacher_create.is_valid():
+            teacher_user = teacher_create.save(commit=False)
+            teacher_user.set_password(
+                teacher_create.cleaned_data["password"]
+            )
+            teacher_user.save()
+            return redirect('admin:users:teacher-list')
+            
+    else:
+        context = {'user_form':user_form,
+                'user_profile_form':user_profile_form
+                }
+        return render(request, 'createteacher.html',context)
+
+#TEACHER ACTION END=================================================
 
 #STUDENT ACTION START
 def create_student(request):

@@ -99,7 +99,7 @@ class Cashier(CustomUser):
         return "Only for Cashier"
     
 class StudentProfile(models.Model):
-    student = models.OneToOneField(Student, on_delete=models.CASCADE, related_name='+')
+    student = models.OneToOneField(Student, on_delete=models.CASCADE, related_name='student_id')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=True, blank=True)
 
@@ -107,7 +107,7 @@ class StudentProfile(models.Model):
         return f'{self.student_id.first_name} Profile'
 
 class TeacherProfile(models.Model):
-    teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE)
+    teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE, related_name='teacher_id')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):

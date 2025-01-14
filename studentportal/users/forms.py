@@ -1,5 +1,6 @@
 from django import forms
 from users import models
+from course import models as course_models
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.hashers import make_password
 
@@ -28,3 +29,16 @@ class add_registrar(forms.ModelForm):
         widgets = {
             'password':forms.PasswordInput
         }
+
+class add_teacher(forms.ModelForm):
+    class Meta:
+        model = models.Teacher
+        fields = ['first_name','last_name','email','username','password']
+        widgets = {
+            'password':forms.PasswordInput
+        }
+
+class add_teacher_profile(forms.ModelForm):
+    class Meta:
+        model = models.TeacherProfile
+        fields = ['course']
