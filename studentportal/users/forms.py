@@ -31,14 +31,25 @@ class add_registrar(forms.ModelForm):
         }
 
 class add_teacher(forms.ModelForm):
+    course = forms.ModelChoiceField(queryset=course_models.Course.objects.all())
     class Meta:
         model = models.Teacher
         fields = ['first_name','last_name','email','username','password']
         widgets = {
             'password':forms.PasswordInput
         }
+    
+    def save(self, commit=True):
+        teacher = super().save(commit=False)
+        teacher.set_password(self.cleaned_data['password'])
 
-class add_teacher_profile(forms.ModelForm):
-    class Meta:
-        model = models.TeacherProfile
-        fields = ['course']
+        teacher.profile_data ={
+            'course': self.cleaned_data.get('course')
+        }
+
+        if commit:
+            teacher.save()
+
+        return teacher
+
+

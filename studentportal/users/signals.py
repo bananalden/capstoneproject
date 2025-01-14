@@ -11,4 +11,6 @@ def create_student_profile (sender, instance, created, **kwargs):
 @receiver(post_save, sender=Teacher)
 def create_teacher_profile (sender, instance, created, **kwargs):
     if created and instance.role =="TEACHER":
-        TeacherProfile.objects.get_or_create(teacher=instance)
+        profile_data = getattr(instance, 'profile_data', {})
+        TeacherProfile.objects.get_or_create(teacher=instance,
+                                            course=profile_data.get('course'))

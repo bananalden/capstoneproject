@@ -14,6 +14,7 @@ urlpatterns = [
 
 #================== SCHOOL MANAGEMENT END ============================#
     path('get-user-object/<int:pk>',views.get_userdata,name='get-admin-object'),
+    path('get-teacher-profile/<int:pk>',views.get_teacher_profile,name='get-teacher-profile')
 
 
 

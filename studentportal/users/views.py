@@ -169,20 +169,16 @@ def delete_registrar(request):
     
 def create_teacher(request):
     user_form = forms.add_teacher()
-    user_profile_form = forms.add_teacher_profile()
     if request.method == 'POST':
-        teacher_create = forms.add_teacher(request.POST)
-        if teacher_create.is_valid():
-            teacher_user = teacher_create.save(commit=False)
-            teacher_user.set_password(
-                teacher_create.cleaned_data["password"]
-            )
-            teacher_user.save()
+        user_form = forms.add_teacher(request.POST)
+        if user_form.is_valid():
+            user_form.save()
             return redirect('admin:users:teacher-list')
+        else:
+            print(user_form.errors.as_data())
             
     else:
-        context = {'user_form':user_form,
-                'user_profile_form':user_profile_form
+        context = {'user_form':user_form
                 }
         return render(request, 'createteacher.html',context)
 

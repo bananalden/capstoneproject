@@ -62,6 +62,8 @@ def get_subjectdata(request, pk):
 
 #SUBJECT END
 
+#USER GRABBING START
+
 def get_userdata(request,pk):
     obj = get_user_model()
     admin = obj.objects.get(pk=pk)
@@ -76,3 +78,15 @@ def get_userdata(request,pk):
         return JsonResponse(data)
     return JsonResponse({'error':'Object not found'}, status=404)
 
+def get_teacher_profile(request,pk):
+    obj = user_data.TeacherProfile.objects.get(teacher_id=pk)
+    if obj:
+        data={
+            'id':obj.id,
+            'course_id':obj.course_id,
+            'teacher_id':obj.teacher_id
+        }
+        return JsonResponse(data)
+    return JsonResponse({'error':'Object not found'}, status=404)
+
+#USER GRABBING END
