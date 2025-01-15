@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f5f5f5;
   transition: margin-left 0.3s ease;
   overflow-x: hidden;
@@ -19,7 +19,7 @@ body {
   position: fixed;
   top: 0;
   left: -250px;
-  background-color: #023047;
+  background: linear-gradient(135deg, #023047, #219ebc);
   transition: left 0.3s ease;
   color: white;
   z-index: 1000;
@@ -173,7 +173,6 @@ body {
   color: #fff;
 }
 
-
 /* Main content */
 .content {
   padding: 20px;
@@ -186,7 +185,8 @@ body {
 }
 
 /* Toggle button */
-.toggle-btn, .close-btn {
+.toggle-btn,
+.close-btn {
   font-size: 30px;
   background-color: transparent;
   border: none;
@@ -246,196 +246,210 @@ body {
 }
 
 /****** DASHBOARD COMPONENT ******/
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+#container {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 15px; /* Reduced padding */
+  line-height: 1.6;
+  margin-top: 50px;
 }
 
-/* Center the Dashboard Container */
-.dashboard-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Adjust position to perfectly center it */
-  z-index: 2;
+.dashboard-content {
   width: 100%;
-  max-width: 1200px;
-  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  background-color: #ffffff;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
   overflow: hidden;
 }
 
-/* Header */
 .dashboard-header {
-  text-align: center;
-  padding: 20px;
-  background: #0056b3;
-  color: #fff;
-}
-
-
-.logo {
-  max-height: 80px;
-  margin-bottom: 10px;
-}
-
-/* Main Content */
-.dashboard-main {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #0073e6, #005bb5);
+  padding: 10px 20px; /* Reduced padding */
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* border-bottom: 2px solid #005bb5; */
 }
 
-/* Admin Actions */
+.dashboard-header .logo-container img {
+  width: 45px; /* Reduced logo size */
+  height: 45px;
+  object-fit: contain;
+}
+
+.dashboard-header h1 {
+  font-size: 22px; /* Reduced font size */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-main {
+  padding: 15px 20px; /* Reduced padding */
+}
+
 .admin-actions {
-  flex: 1 1 60%;
+  margin-bottom: 25px; /* Reduced margin */
+}
+
+.admin-actions h2 {
+  font-size: 20px; /* Reduced font size */
+  margin-bottom: 10px; /* Reduced margin */
+  color: #0073e6;
+  font-weight: 700;
+  text-align: center;
 }
 
 .action-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(240px, 1fr)
+  ); /* Reduced card size */
+  gap: 15px; /* Reduced gap */
+  margin-top: 10px;
 }
 
 .card {
-  background: linear-gradient(135deg, #f4f4f4, #ffffff);
-  border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 18px; /* Reduced padding */
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px); /* Reduced hover effect */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 .card i {
-  font-size: 2.5em;
-  color: #007BFF;
-  margin-bottom: 10px;
+  font-size: 40px; /* Reduced icon size */
+  color: #c1121f;
+  margin-bottom: 12px; /* Reduced margin */
 }
 
 .card h3 {
-  margin-bottom: 10px;
-  font-size: 1.2em;
+  font-size: 18px; /* Reduced font size */
+  font-weight: 600;
+  margin-bottom: 6px; /* Reduced margin */
 }
 
 .card p {
-  color: #666;
-  margin-bottom: 15px;
-  font-size: 0.9em;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 12px; /* Reduced margin */
 }
 
 .card .btn {
-  background: #a30f15;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
+  display: inline-block;
+  padding: 10px 20px; /* Reduced padding */
+  background-color: #c1121f;
+  color: white;
   text-decoration: none;
-  font-size: 1em;
-  transition: background 0.3s ease;
+  border-radius: 30px;
+  font-size: 14px; /* Reduced font size */
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .card .btn:hover {
-  background: #bc2525;
+  background-color: #ef233c;
+  transform: scale(1.05);
 }
 
-/* User Form */
 .user-form {
-  flex: 1 1 35%;
-  background: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 20px; /* Reduced padding */
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .user-form h2 {
-  margin-bottom: 20px;
+  font-size: 22px; /* Reduced font size */
+  margin-bottom: 18px; /* Reduced margin */
+  color: #0073e6;
+  font-weight: 700;
+  text-align: center;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 15px; /* Reduced margin */
 }
 
-label {
+.form-group label {
+  font-size: 14px; /* Reduced font size */
+  margin-bottom: 6px; /* Reduced margin */
   display: block;
-  margin-bottom: 5px;
-  color: #555;
-  text-align: left;
-  font-weight: bold;
+  color: #333;
 }
 
-
-input,
-select {
+.form-group input,
+.form-group select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1em;
+  padding: 12px; /* Reduced padding */
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px; /* Reduced font size */
+  color: #333;
+  background-color: #fafafa;
   transition: border-color 0.3s ease;
 }
 
-input:focus,
-select:focus {
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #ef233c;
   outline: none;
-  border-color: #007BFF;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .submit-btn {
-  width: 100%;
-  padding: 12px;
-  background: #a30f15;
-  color: #fff;
+  background-color: #c1121f;
+  color: white;
+  padding: 14px 30px; /* Increased padding for a larger button */
+  font-size: 16px; /* Slightly larger font size */
   border: none;
-  border-radius: 5px;
-  font-size: 1em;
+  border-radius: 8px;
+  width: 90%; /* Adjusts the width based on content */
+  min-width: 200px; /* Increased the minimum width for a more prominent button */
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  display: block; /* Ensures it takes up full width in its container */
+  margin: 0 auto; /* Centers the button horizontally */
 }
 
 .submit-btn:hover {
-  background: #bc2525;
+  background-color: #ef233c;
+  transform: scale(1.02);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
-  .dashboard-main {
-    flex-direction: column;
+  .dashboard-header h1 {
+    font-size: 20px; /* Reduced font size */
+  }
+
+  .action-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 16px; /* Reduced padding */
+  }
+
+  .user-form {
+    padding: 18px; /* Reduced padding */
+  }
+
+  .submit-btn {
+    padding: 10px; /* Reduced padding */
   }
 }
-
-
-/*CARD COMPONENT END */
-
-/* CRUD OPERATION DASHBOARD START */
-.crud-dashboard{
-  background-color: red;
-
-}
-
-.crud-dashboard-header{
-  display:flex;
-  align-items:center;
-  gap:55%;
-}
-
-.classA, .classB{
-  border: solid black 2px;
-}
-
-
-/* CRUD OPERATION DASHBOARD END */
 
 /****** Course List  ******/
 .crud-dashboard {
@@ -450,7 +464,7 @@ select:focus {
 
 /* Heading */
 h1 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 2.5rem;
   color: #333;
   text-align: center;
@@ -519,7 +533,7 @@ h1 {
 
 /* Table Styles */
 table {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -605,12 +619,12 @@ table tr:hover {
 
 /* Edit Button Specific Styling */
 .edit-btn {
-  background-color: #4CAF50;  /* Green for edit */
+  background-color: #4caf50; /* Green for edit */
 }
 
 /* Delete Button Specific Styling */
 .delete-btn {
-  background-color: #a30f15;  /* Red for delete */
+  background-color: #a30f15; /* Red for delete */
 }
 
 /* Action Button Hover Effect */
@@ -721,7 +735,8 @@ label {
     width: 200px; /* Adjust search bar width for smaller screens */
   }
 
-  table th, table td {
+  table th,
+  table td {
     padding: 8px;
   }
 
@@ -761,7 +776,6 @@ label {
 }
 /****** Course List End ******/
 
-
 /****** Semester List End ******/
 .semester-list {
   width: 70%;
@@ -775,7 +789,7 @@ label {
 
 /* Heading */
 h1 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 2.5rem;
   color: #333;
   text-align: center;
@@ -843,7 +857,7 @@ h1 {
 
 /* Table Styles */
 table {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -929,12 +943,12 @@ table tr:hover {
 
 /* Edit Button Specific Styling */
 .edit-btn {
-  background-color: #4CAF50;  /* Green for edit */
+  background-color: #4caf50; /* Green for edit */
 }
 
 /* Delete Button Specific Styling */
 .delete-btn {
-  background-color: #a30f15;  /* Red for delete */
+  background-color: #a30f15; /* Red for delete */
 }
 
 /* Action Button Hover Effect */
@@ -1067,7 +1081,8 @@ label {
     width: 200px; /* Adjust search bar width for smaller screens */
   }
 
-  table th, table td {
+  table th,
+  table td {
     padding: 8px;
   }
 
@@ -1105,5 +1120,3 @@ label {
     font-size: 12px; /* Smaller text for mobile */
   }
 }
-
-
