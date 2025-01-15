@@ -65,28 +65,31 @@ def get_subjectdata(request, pk):
 #USER GRABBING START
 
 def get_userdata(request,pk):
-    obj = get_user_model()
-    admin = obj.objects.get(pk=pk)
-    if admin:
-        data={
-                'id':admin.id,
-                'first_name':admin.first_name,
-                'last_name':admin.last_name,
-                'email':admin.email,
-                'username':admin.username,
-        }
-        return JsonResponse(data)
-    return JsonResponse({'error':'Object not found'}, status=404)
+    try:
+        user = get_user_model().objects.get(pk=pk)
 
-def get_teacher_profile(request,pk):
-    obj = user_data.TeacherProfile.objects.get(teacher_id=pk)
-    if obj:
-        data={
-            'id':obj.id,
-            'course_id':obj.course_id,
-            'teacher_id':obj.teacher_id
-        }
+        try:
+            teacher_course = user_data.TeacherProfile.objects.get(teacher_id=pk)
+            data = {
+                'id':user.id,
+                'first_name':user.first_name,
+                'last_name':user.last_name,
+                'email':user.email,
+                'username':user.username,
+                'course_id':teacher_course.course_id
+            }
+        except user_data.TeacherProfile.DoesNotExist:
+            data = {
+                'id':user.id,
+                'first_name':user.first_name,
+                'last_name':user.last_name,
+                'email':user.email,
+                'username':user.username,
+            }
         return JsonResponse(data)
-    return JsonResponse({'error':'Object not found'}, status=404)
+
+
+    except:
+        return(JsonResponse({'error':'User not found'}, status=404))
 
 #USER GRABBING END
