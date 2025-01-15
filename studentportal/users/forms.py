@@ -81,6 +81,7 @@ class add_student(forms.ModelForm):
 
             profile, created = models.StudentProfile.objects.get_or_create(student=student)
             profile.course = self.cleaned_data.get('course')
+            profile.teacher = self.cleaned_data.get('teacher')
             profile.save()
 
         return student
