@@ -50,6 +50,37 @@ class add_teacher(forms.ModelForm):
         if commit:
             teacher.save()
 
+            profile, created = models.TeacherProfile.objects.get_or_create(teacher=teacher)
+            profile.course = self.cleaned_data.get('course')
+            profile.save()
+
         return teacher
 
 
+class add_student(forms.ModelForm):
+    teacher = forms.ModelChoiceField(queryset=models.Teacher.objects.all())
+    course = forms.ModelChoiceField(queryset=course_models.Course.objects.all())
+    class Meta:
+        model = models.Student
+        fields = ['first_name','last_name','email','username','password']
+        widgets = {
+            'password':forms.PasswordInput
+        }
+    
+    def save(self, commit=True):
+        student = super().save(commit=False)
+        student.set_password(self.cleaned_data['password'])
+
+        student.profile_data ={
+            'course': self.cleaned_data.get('course'),
+            'teacher':self.cleaned_data.get('teacher')
+        }
+
+        if commit:
+            student.save()
+
+            profile, created = models.StudentProfile.objects.get_or_create(student=student)
+            profile.course = self.cleaned_data.get('course')
+            profile.save()
+
+        return student

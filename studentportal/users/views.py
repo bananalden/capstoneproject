@@ -184,6 +184,17 @@ def create_teacher(request):
                    'teachers':teachers
                 }
         return render(request, 'createteacher.html',context)
+    
+def update_teacher(request):
+    if request.method == 'POST':
+        teacher_id = request.POST.get("edit_id")
+        teacher_user = CustomUser.objects.get(id=teacher_id)
+        teacher_update =forms.add_teacher(request.POST, instance=teacher_user)
+        if teacher_update.is_valid():
+            teacher_update.save()
+            return redirect('admin:users:teacher-list')
+        else:
+            print(teacher_update.errors.as_data())
 
 #TEACHER ACTION END=================================================
 
