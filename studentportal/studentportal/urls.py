@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.urls import re_path
 from django.views.static import serve
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
@@ -27,7 +28,6 @@ urlpatterns = [
     path('home/',include('home.urls', namespace='home')),
     path('api/',include('api.urls', namespace='api'))
     
-
-
-
 ]
+
+urlpatterns+= staticfiles_urlpatterns()
