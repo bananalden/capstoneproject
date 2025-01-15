@@ -16,7 +16,7 @@ $(document).ready(function (){
                $('#last_name').val(data.last_name)
                $('#email').val(data.email)
                $('#username').val(data.username)
-
+                populate_courses_(data.course_id)
             },
             error: function(){
                 console.log('Got the wrong URL?')
