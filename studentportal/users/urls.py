@@ -25,9 +25,11 @@ urlpatterns =[
     #TEACHER ROUTES START
     path('teacher-list',views.create_teacher, name='teacher-list'),
     path('teacher-list/edit',views.update_teacher, name='teacher-update'),
+    path('teacher-list/delete',views.delete_teacher,name='teacher-delete'),
     #TEACHER ROUTES END
 
     #STUDENT ACTION START
-    path('student-list', views.create_student, name='student-list')
+    path('student-list', views.create_student, name='student-list'),
+    path('student-list/edit',views.update_student,name='student-update')
     #STUDENT ACTION END
 ]

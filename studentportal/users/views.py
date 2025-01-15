@@ -196,9 +196,42 @@ def update_teacher(request):
         else:
             print(teacher_update.errors.as_data())
 
+def delete_teacher(request):
+    pass
+
 #TEACHER ACTION END=================================================
 
-#STUDENT ACTION START
+#STUDENT ACTION START===============================================
 def create_student(request):
-    return render(request, 'createstudent.html')
-#STUDENT ACTION END
+    user_form = forms.add_student()
+    student = get_user_model()
+    students = student.objects.filter(role='STUDENT')
+    if request.method == 'POST':
+        user_form = forms.add_student(request.POST)
+        if user_form.is_valid():
+            user_form.save()
+            return redirect('admin:users:student-list')
+        else:
+            print(user_form.errors.as_data())
+            
+    else:
+        context = {'user_form':user_form,
+                   'students':students
+                }
+        return render(request, 'createstudent.html',context)
+    
+def update_student(request):
+    if request.method == 'POST':
+        student_id = request.POST.get("edit_id")
+        student_user = CustomUser.objects.get(id=student_id)
+        student_update =forms.add_student(request.POST, instance=student_user)
+        if student_update.is_valid():
+            student_update.save()
+            return redirect('admin:users:teacher-list')
+        else:
+            print(student_update.errors.as_data())
+
+def delete_student(request):
+    pass
+
+#STUDENT ACTION END=============================================

@@ -79,13 +79,27 @@ def get_userdata(request,pk):
                 'course_id':teacher_course.course_id
             }
         except user_data.TeacherProfile.DoesNotExist:
-            data = {
-                'id':user.id,
-                'first_name':user.first_name,
-                'last_name':user.last_name,
-                'email':user.email,
-                'username':user.username,
-            }
+           try:
+               student_profile = user_data.StudentProfile.objects.get(student_id=pk)
+
+               data= {
+                   'id':user.id,
+                   'first_name':user.first_name,
+                   'last_name':user.last_name,
+                   'email':user.email,
+                   'username':user.username,
+                   'course_id':student_profile.course_id,
+                   'teacher_id':student_profile.teacher_id
+               }
+               
+           except user_data.StudentProfile.DoesNotExist:
+               data = {
+                   'id':user.id,
+                   'first_name':user.first_name,
+                   'last_name':user.last_name,
+                   'email':user.email,
+                   'username':user.username
+               }
         return JsonResponse(data)
 
 
@@ -93,3 +107,8 @@ def get_userdata(request,pk):
         return(JsonResponse({'error':'User not found'}, status=404))
 
 #USER GRABBING END
+
+def get_teacher_list(request):
+    teachers = get_user_model()
+    teacher = teachers.objects.all().values('id','first_name','last_name')
+    return JsonResponse(list(teacher), safe=False)
