@@ -22,26 +22,27 @@ Teacher List
                     <th>ID</th>
                     <th>Name</th>
                     <th>Username</th>
-                    <th>Course</th>
+                    <th>Email</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="course-list">
-                <!-- Dynamic Content -->
+                {%for teacher in teachers%}
                 <tr>
-                    <td>1</td>
-                    <td>Joe the Teacher</td>
-                    <td>21001396500</td>
-                    <td>BSIT</td>
+                    <td>{{teacher.id}}</td>
+                    <td>{{teacher.name}}</td>
+                    <td>{{teacher.username}}</td>
+                    <td>{{teacher.email}}</td>
                     <td>
-                        <button class="action-btn edit-btn" data-bs-toggle="modal" data-bs-target="#editCourse">
+                        <button class="action-btn edit-btn" data-id="{{teacher.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit
                     </button>
-                    <button type="button" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
+                    <button type="button" class="action-btn delete-btn" data-id="{{teacher.id}}" data-bs-toggle="modal" data-bs-target="#deleteCourse">
                         <i class="fas fa-trash-alt"></i> Delete
                     </button>
                 </td>
                 </tr>
+                {%endfor%}
             </tbody>
         </table>
 
@@ -151,5 +152,6 @@ Teacher List
     </div>
   </div>
     
+<script src="{%static 'js/teacher_modal_ud.js'%}"></script>
 <!--DELETE COURSE END-->
 {% endblock content %}

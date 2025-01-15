@@ -169,6 +169,8 @@ def delete_registrar(request):
     
 def create_teacher(request):
     user_form = forms.add_teacher()
+    teacher = get_user_model()
+    teachers = teacher.objects.filter(role='TEACHER')
     if request.method == 'POST':
         user_form = forms.add_teacher(request.POST)
         if user_form.is_valid():
@@ -178,7 +180,8 @@ def create_teacher(request):
             print(user_form.errors.as_data())
             
     else:
-        context = {'user_form':user_form
+        context = {'user_form':user_form,
+                   'teachers':teachers
                 }
         return render(request, 'createteacher.html',context)
 
