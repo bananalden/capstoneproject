@@ -66,7 +66,11 @@ class add_student(forms.ModelForm):
         widgets = {
             'password':forms.PasswordInput
         }
-    
+
+    def __init__(self, *args, **kwargs):
+        super(add_student, self).__init__(*args, **kwargs)
+        self.fields['teacher'].label_from_instance = lambda obj: "%s" % (obj.get_full_name())
+
     def save(self, commit=True):
         student = super().save(commit=False)
         student.set_password(self.cleaned_data['password'])

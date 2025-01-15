@@ -197,7 +197,11 @@ def update_teacher(request):
             print(teacher_update.errors.as_data())
 
 def delete_teacher(request):
-    pass
+    if request.method == 'POST':
+        teacher_id = request.POST.get("delete_id")
+        teacher_user = CustomUser.objects.get(id=teacher_id)
+        teacher_user.delete()
+        return redirect('admin:users:teacher-list')
 
 #TEACHER ACTION END=================================================
 
@@ -227,11 +231,15 @@ def update_student(request):
         student_update =forms.add_student(request.POST, instance=student_user)
         if student_update.is_valid():
             student_update.save()
-            return redirect('admin:users:teacher-list')
+            return redirect('admin:users:student-list')
         else:
             print(student_update.errors.as_data())
 
 def delete_student(request):
-    pass
+     if request.method == 'POST':
+        student_id = request.POST.get("delete_id")
+        student_user = CustomUser.objects.get(id=student_id)
+        student_user.delete()
+        return redirect('admin:users:student-list')
 
 #STUDENT ACTION END=============================================
