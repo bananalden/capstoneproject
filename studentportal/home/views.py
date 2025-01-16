@@ -8,3 +8,5 @@ from django.contrib import messages
 
 def cashier_home(request):
     return render(request, 'cashier/cashier_dashboard.html')
+def registrar_home(request):
+    return render(request, 'registrar/registrar.html')

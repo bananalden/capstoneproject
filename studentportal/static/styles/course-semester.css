@@ -1,674 +1,669 @@
-  /****** Course List  ******/
+/****** Course List  ******/
+.crud-dashboard {
+  width: 70%;
+  margin: 100px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Heading */
+h1 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Search Container Styling */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  justify-content: flex-start; /* Align to the left */
+}
+
+/* Search Bar Styling */
+#search-course {
+  padding: 10px 15px;
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  font-size: 16px;
+  background-color: #fafafa;
+  color: #333;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* Search Bar Focus Effect */
+#search-course:focus {
+  outline: none;
+  border-color: #023047;
+  box-shadow: 0 3px 8px rgba(0, 48, 71, 0.3);
+}
+
+/* Search Bar Hover Effect */
+#search-course:hover {
+  border-color: #023047;
+  background-color: #f1f1f1;
+}
+
+/* Add Course Button Styling */
+.add-btn {
+  padding: 12px 20px;
+  background-color: #023047;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-left: 15px; /* Space between the search bar and the button */
+}
+
+/* Add Course Button Hover Effect */
+.add-btn:hover {
+  background-color: #04548c;
+  transform: translateY(-2px);
+}
+
+/* Add Course Button Active Effect */
+.add-btn:active {
+  transform: translateY(2px);
+}
+
+/* Table Styles */
+table {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Table Header Styling */
+table th {
+  padding: 12px;
+  background-color: #023047;
+  color: white;
+  text-align: left;
+}
+
+/* Table Cell Styling */
+table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+}
+
+/* Table Row Hover Effect */
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Pagination */
+#pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  background-color: #023047;
+  color: white;
+  border-radius: 5px;
+}
+
+#pagination button:hover {
+  background-color: #044768;
+  cursor: pointer;
+}
+
+/* Modal Overlay */
+#add-course-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Action Button Styles (Edit, Delete, etc.) */
+.action-btn {
+  padding: 10px 20px;
+  background-color: #a30f15;
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border: none; /* Remove border */
+}
+
+/* Edit Button Specific Styling */
+.edit-btn {
+  background-color: #4caf50; /* Green for edit */
+}
+
+/* Delete Button Specific Styling */
+.delete-btn {
+  background-color: #a30f15; /* Red for delete */
+}
+
+/* Action Button Hover Effect */
+.action-btn:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Action Button Active Effect (click effect) */
+.action-btn:active {
+  transform: translateY(2px);
+}
+
+/* Unique Action Button with Icon */
+.action-btn.icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn.icon-btn i {
+  font-size: 16px; /* Icon size */
+}
+
+/* Input Field Styling */
+input[type="text"] {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Label Styling */
+label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Modal Header Styling */
+.modal-dialog {
+  position: relative;
+  top: 20%;
+}
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: none;
+  padding: 15px;
+  border-radius: 5px 5px 0 0;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Modal Footer */
+.modal-footer {
+  border-top: none;
+  padding: 15px;
+  justify-content: space-between;
+}
+
+/* Body Text */
+.modal-body {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Close Button Styling */
+.btn-close {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.btn-close:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
   .crud-dashboard {
-    width: 70%;
-    margin: 100px auto;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Prevent overflow */
+    width: 90%; /* Make the dashboard responsive */
+    margin: 20px auto;
+    padding: 15px;
   }
-  
-  /* Heading */
+
   h1 {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 2.5rem;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 2rem;
   }
-  
-  /* Search Container Styling */
-  .search-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    justify-content: flex-start; /* Align to the left */
-  }
-  
-  /* Search Bar Styling */
+
   #search-course {
-    padding: 10px 15px;
-    width: 250px;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    font-size: 16px;
-    background-color: #fafafa;
-    color: #333;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
+    width: 200px; /* Adjust search bar width for smaller screens */
   }
-  
-  /* Search Bar Focus Effect */
-  #search-course:focus {
-    outline: none;
-    border-color: #023047;
-    box-shadow: 0 3px 8px rgba(0, 48, 71, 0.3);
-  }
-  
-  /* Search Bar Hover Effect */
-  #search-course:hover {
-    border-color: #023047;
-    background-color: #f1f1f1;
-  }
-  
-  /* Add Course Button Styling */
-  .add-btn {
-    padding: 12px 20px;
-    background-color: #023047;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-left: 15px; /* Space between the search bar and the button */
-  }
-  
-  /* Add Course Button Hover Effect */
-  .add-btn:hover {
-    background-color: #04548c;
-    transform: translateY(-2px);
-  }
-  
-  /* Add Course Button Active Effect */
-  .add-btn:active {
-    transform: translateY(2px);
-  }
-  
-  /* Table Styles */
-  table {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  /* Table Header Styling */
-  table th {
-    padding: 12px;
-    background-color: #023047;
-    color: white;
-    text-align: left;
-  }
-  
-  /* Table Cell Styling */
+
+  table th,
   table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #fafafa;
+    padding: 8px;
   }
-  
-  /* Table Row Hover Effect */
-  table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Pagination */
-  #pagination {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  #pagination button {
-    padding: 8px 16px;
-    margin: 0 5px;
-    background-color: #023047;
-    color: white;
-    border-radius: 5px;
-  }
-  
-  #pagination button:hover {
-    background-color: #044768;
-    cursor: pointer;
-  }
-  
-  /* Modal Overlay */
-  #add-course-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  /* Modal Animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  /* Action Button Styles (Edit, Delete, etc.) */
-  .action-btn {
-    padding: 10px 20px;
-    background-color: #a30f15;
-    color: white;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    display: inline-block;
-    border: none; /* Remove border */
-  }
-  
-  /* Edit Button Specific Styling */
-  .edit-btn {
-    background-color: #4caf50; /* Green for edit */
-  }
-  
-  /* Delete Button Specific Styling */
-  .delete-btn {
-    background-color: #a30f15; /* Red for delete */
-  }
-  
-  /* Action Button Hover Effect */
-  .action-btn:hover {
-    transform: translateY(-2px); /* Slight lift on hover */
-  }
-  
-  /* Action Button Active Effect (click effect) */
-  .action-btn:active {
-    transform: translateY(2px);
-  }
-  
-  /* Unique Action Button with Icon */
-  .action-btn.icon-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .action-btn.icon-btn i {
-    font-size: 16px; /* Icon size */
-  }
-  
-  /* Input Field Styling */
-  input[type="text"] {
-    width: 100%;
+
+  .add-btn {
     padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  input[type="text"]:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  /* Label Styling */
-  label {
     font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
   }
-  
-  /* Modal Header Styling */
-  .modal-dialog {
-    position: relative;
-    top: 20%;
-  }
-  .modal-header {
-    background-color: #f8f9fa;
-    border-bottom: none;
-    padding: 15px;
-    border-radius: 5px 5px 0 0;
-  }
-  
-  .modal-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  /* Modal Footer */
-  .modal-footer {
-    border-top: none;
-    padding: 15px;
-    justify-content: space-between;
-  }
-  
-  /* Body Text */
-  .modal-body {
-    padding: 20px;
+
+  .action-btn {
+    padding: 10px 18px;
     font-size: 14px;
-    line-height: 1.6;
   }
-  
-  /* Close Button Styling */
-  .btn-close {
-    border: none;
-    outline: none;
-    box-shadow: none;
-    cursor: pointer;
-  }
-  
-  .btn-close:focus {
-    border: none;
-    outline: none;
-    box-shadow: none;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .crud-dashboard {
-      width: 90%; /* Make the dashboard responsive */
-      margin: 20px auto;
-      padding: 15px;
-    }
-  
-    h1 {
-      font-size: 2rem;
-    }
-  
-    #search-course {
-      width: 200px; /* Adjust search bar width for smaller screens */
-    }
-  
-    table th,
-    table td {
-      padding: 8px;
-    }
-  
-    .add-btn {
-      padding: 10px 15px;
-      font-size: 14px;
-    }
-  
-    .action-btn {
-      padding: 10px 18px;
-      font-size: 14px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 1.5rem; /* Smaller font size for mobile */
-    }
-  
-    .search-container {
-      flex-direction: column; /* Stack search elements */
-      align-items: flex-start;
-    }
-  
-    #search-course {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  
-    .add-btn {
-      width: 100%; /* Make the button full-width */
-    }
-  
-    table {
-      font-size: 12px; /* Smaller text for mobile */
-    }
-  }
-  /****** Course List End ******/
+}
 
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem; /* Smaller font size for mobile */
+  }
 
+  .search-container {
+    flex-direction: column; /* Stack search elements */
+    align-items: flex-start;
+  }
 
+  #search-course {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
+  .add-btn {
+    width: 100%; /* Make the button full-width */
+  }
+
+  table {
+    font-size: 12px; /* Smaller text for mobile */
+  }
+}
+/****** Course List End ******/
 
 /****** Semester List End ******/
 .semester-list {
-    width: 70%;
-    margin: 100px auto;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Prevent overflow */
+  width: 70%;
+  margin: 100px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Heading */
+h1 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Search Container Styling */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  justify-content: space-between; /* Distribute space evenly */
+}
+
+/* Search Bar Styling */
+#search-course {
+  padding: 10px 15px;
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  font-size: 16px;
+  background-color: #fafafa;
+  color: #333;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* Search Bar Focus Effect */
+#search-course:focus {
+  outline: none;
+  border-color: #023047;
+  box-shadow: 0 3px 8px rgba(0, 48, 71, 0.3);
+}
+
+/* Search Bar Hover Effect */
+#search-course:hover {
+  border-color: #023047;
+  background-color: #f1f1f1;
+}
+
+/* Add Course Button Styling */
+.add-btn {
+  padding: 12px 20px;
+  background-color: #023047;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Add Course Button Hover Effect */
+.add-btn:hover {
+  background-color: #04548c;
+  transform: translateY(-2px);
+}
+
+/* Add Course Button Active Effect */
+.add-btn:active {
+  transform: translateY(2px);
+}
+
+/* Table Styles */
+table {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Table Header Styling */
+table th {
+  padding: 12px;
+  background-color: #023047;
+  color: white;
+  text-align: left;
+}
+
+/* Table Cell Styling */
+table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+}
+
+/* Table Row Hover Effect */
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Pagination */
+#pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  background-color: #023047;
+  color: white;
+  border-radius: 5px;
+}
+
+#pagination button:hover {
+  background-color: #044768;
+  cursor: pointer;
+}
+
+/* Modal Overlay */
+#add-course-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  /* Heading */
-  h1 {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 2.5rem;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
+  to {
+    opacity: 1;
   }
-  
-  /* Search Container Styling */
-  .search-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    justify-content: space-between; /* Distribute space evenly */
-  }
-  
-  /* Search Bar Styling */
-  #search-course {
-    padding: 10px 15px;
-    width: 250px;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    font-size: 16px;
-    background-color: #fafafa;
-    color: #333;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-  }
-  
-  /* Search Bar Focus Effect */
-  #search-course:focus {
-    outline: none;
-    border-color: #023047;
-    box-shadow: 0 3px 8px rgba(0, 48, 71, 0.3);
-  }
-  
-  /* Search Bar Hover Effect */
-  #search-course:hover {
-    border-color: #023047;
-    background-color: #f1f1f1;
-  }
-  
-  /* Add Course Button Styling */
-  .add-btn {
-    padding: 12px 20px;
-    background-color: #023047;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  /* Add Course Button Hover Effect */
-  .add-btn:hover {
-    background-color: #04548c;
-    transform: translateY(-2px);
-  }
-  
-  /* Add Course Button Active Effect */
-  .add-btn:active {
-    transform: translateY(2px);
-  }
-  
-  /* Table Styles */
-  table {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  /* Table Header Styling */
-  table th {
-    padding: 12px;
-    background-color: #023047;
-    color: white;
-    text-align: left;
-  }
-  
-  /* Table Cell Styling */
-  table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #fafafa;
-  }
-  
-  /* Table Row Hover Effect */
-  table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Pagination */
-  #pagination {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  #pagination button {
-    padding: 8px 16px;
-    margin: 0 5px;
-    background-color: #023047;
-    color: white;
-    border-radius: 5px;
-  }
-  
-  #pagination button:hover {
-    background-color: #044768;
-    cursor: pointer;
-  }
-  
-  /* Modal Overlay */
-  #add-course-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  /* Modal Animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  /* Action Button Styles (Edit, Delete, etc.) */
-  .action-btn {
-    padding: 10px 20px;
-    background-color: #a30f15;
-    color: white;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    display: inline-block;
-    border: none; /* Remove border */
-  }
-  
-  /* Edit Button Specific Styling */
-  .edit-btn {
-    background-color: #4caf50; /* Green for edit */
-  }
-  
-  /* Delete Button Specific Styling */
-  .delete-btn {
-    background-color: #a30f15; /* Red for delete */
-  }
-  
-  /* Action Button Hover Effect */
-  .action-btn:hover {
-    transform: translateY(-2px); /* Slight lift on hover */
-  }
-  
-  /* Action Button Active Effect (click effect) */
-  .action-btn:active {
-    transform: translateY(2px);
-  }
-  
-  /* Unique Action Button with Icon */
-  .action-btn.icon-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .action-btn.icon-btn i {
-    font-size: 16px; /* Icon size */
-  }
-  
-  /* Input Field Styling */
-  input[type="text"] {
-    width: 100%;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  input[type="text"]:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  /* Select Dropdown Styling */
-  select {
-    width: 100%;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    background-color: #fafafa;
-    transition: all 0.3s ease;
-  }
-  
-  select:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  select:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Label Styling */
-  label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
-  }
-  
-  /* Modal Header Styling */
-  .modal-dialog {
-    position: relative;
-    top: 10%;
-  }
-  .modal-header {
-    background-color: #f8f9fa;
-    border-bottom: none;
+}
+
+/* Action Button Styles (Edit, Delete, etc.) */
+.action-btn {
+  padding: 10px 20px;
+  background-color: #a30f15;
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border: none; /* Remove border */
+}
+
+/* Edit Button Specific Styling */
+.edit-btn {
+  background-color: #4caf50; /* Green for edit */
+}
+
+/* Delete Button Specific Styling */
+.delete-btn {
+  background-color: #a30f15; /* Red for delete */
+}
+
+/* Action Button Hover Effect */
+.action-btn:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Action Button Active Effect (click effect) */
+.action-btn:active {
+  transform: translateY(2px);
+}
+
+/* Unique Action Button with Icon */
+.action-btn.icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn.icon-btn i {
+  font-size: 16px; /* Icon size */
+}
+
+/* Input Field Styling */
+input[type="text"] {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Select Dropdown Styling */
+select {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+select:hover {
+  background-color: #f1f1f1;
+}
+
+/* Label Styling */
+label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Modal Header Styling */
+.modal-dialog {
+  position: relative;
+  top: 10%;
+}
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: none;
+  padding: 15px;
+  border-radius: 5px 5px 0 0;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Modal Footer */
+.modal-footer {
+  border-top: none;
+  padding: 15px;
+  justify-content: space-between;
+}
+
+/* Body Text */
+.modal-body {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Close Button Styling */
+.btn-close {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.btn-close:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .semester-list {
+    width: 90%; /* Make the dashboard responsive */
+    margin: 20px auto;
     padding: 15px;
-    border-radius: 5px 5px 0 0;
-  }
-  
-  .modal-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  /* Modal Footer */
-  .modal-footer {
-    border-top: none;
-    padding: 15px;
-    justify-content: space-between;
-  }
-  
-  /* Body Text */
-  .modal-body {
-    padding: 20px;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  
-  /* Close Button Styling */
-  .btn-close {
-    border: none;
-    outline: none;
-    box-shadow: none;
-    cursor: pointer;
-  }
-  
-  .btn-close:focus {
-    border: none;
-    outline: none;
-    box-shadow: none;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .semester-list {
-      width: 90%; /* Make the dashboard responsive */
-      margin: 20px auto;
-      padding: 15px;
-    }
-  
-    h1 {
-      font-size: 2rem;
-    }
-  
-    #search-course {
-      width: 200px; /* Adjust search bar width for smaller screens */
-    }
-  
-    table th,
-    table td {
-      padding: 8px;
-    }
-  
-    .add-btn {
-      padding: 10px 15px;
-      font-size: 14px;
-    }
-  
-    .action-btn {
-      padding: 10px 18px;
-      font-size: 14px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 1.5rem; /* Smaller font size for mobile */
-    }
-  
-    .search-container {
-      flex-direction: column; /* Stack search elements */
-      align-items: flex-start;
-    }
-  
-    #search-course {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  
-    .add-btn {
-      width: 100%; /* Make the button full-width */
-    }
-  
-    table {
-      font-size: 12px; /* Smaller text for mobile */
-    }
   }
 
+  h1 {
+    font-size: 2rem;
+  }
+
+  #search-course {
+    width: 200px; /* Adjust search bar width for smaller screens */
+  }
+
+  table th,
+  table td {
+    padding: 8px;
+  }
+
+  .add-btn {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .action-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem; /* Smaller font size for mobile */
+  }
+
+  .search-container {
+    flex-direction: column; /* Stack search elements */
+    align-items: flex-start;
+  }
+
+  #search-course {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .add-btn {
+    width: 100%; /* Make the button full-width */
+  }
+
+  table {
+    font-size: 12px; /* Smaller text for mobile */
+  }
+}
