@@ -5,8 +5,23 @@ Course List
 {%load static%}
 {% block content %}
     <div class="crud-dashboard">
+      <div class="container">
+    {%for msg in messages%}
+          {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {{msg}}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+          {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{msg}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {%endif%}
+      {%endfor%}
+    </div>
         <h1>Course List</h1>
-        
+       
         <!-- Search and Add Course Section -->
         <div class="search-container">
             <button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addCourse">

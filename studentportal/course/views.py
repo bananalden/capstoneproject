@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from course.forms import add_course, add_semester, add_subject
 from course.models import Course, Semester, Subject
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 # Create your views here.
 
@@ -15,6 +16,10 @@ def create_course(request):
         f = add_course(request.POST)
         if f.is_valid():
             f.save()
+            messages.success(request,'Course added succesfully')
+            return redirect('admin:course:course-list')
+        else:
+            messages.warning(request, form.errors)
             return redirect('admin:course:course-list')
     else:
         context = {'form' : form,
@@ -29,6 +34,10 @@ def update_course(request):
         f = add_course(request.POST, instance=obj)
         if f.is_valid():
             f.save()
+            messages.success(request,'Course edited successfully!')
+            return redirect('admin:course:course-list')
+        else:
+            messages.warning(request, f.errors)
             return redirect('admin:course:course-list')
 
     
@@ -37,6 +46,7 @@ def delete_course(request):
         course_id = request.POST['delete_id']
         obj = get_object_or_404(Course, id=course_id)
         obj.delete()
+        messages.warning(request,'Course deleted successfully')
         return redirect('admin:course:course-list')
         
 
@@ -53,6 +63,10 @@ def create_semester(request):
         form = add_semester(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request,"Semester added succesfully!")
+            return redirect('admin:course:semester-list')
+        else:
+            messages.warning(request,form.errors)
             return redirect('admin:course:semester-list')
         
     else:
@@ -68,6 +82,10 @@ def update_semester(request):
         f = add_semester(request.POST, instance=obj)
         if f.is_valid():
             f.save()
+            messages.success(request,'Semester edited succesfully!')
+            return redirect('admin:course:semester-list')
+        else:
+            messages.warning(request,f.errors)
             return redirect('admin:course:semester-list')
         
 def delete_semester(request):
@@ -75,6 +93,7 @@ def delete_semester(request):
         semester_id = request.POST['delete_id']
         obj = get_object_or_404(Semester, id=semester_id)
         obj.delete()
+        messages.warning(request,"Semester deleted successfully")
         return redirect('admin:course:semester-list')
         
 
@@ -89,6 +108,10 @@ def create_subject(request):
         f = add_subject(request.POST)
         if f.is_valid():
             f.save()
+            messages.success(request,'Subject added successfully!')
+            return redirect('admin:course:subject-list')
+        else:
+            messages.warning(request,f.errors)
             return redirect('admin:course:subject-list')
         
     else:
@@ -104,6 +127,10 @@ def update_subject(request):
         f = add_subject(request.POST, instance=obj)
         if f.is_valid():
             f.save()
+            messages.success(request,'Subject updated succcessfully!')
+            return redirect('admin:course:subject-list')
+        else:
+            messages.warning(request,f.errors)
             return redirect('admin:course:subject-list')
         
 def delete_subject(request):
@@ -111,5 +138,6 @@ def delete_subject(request):
         semester_id = request.POST['delete_id']
         obj = get_object_or_404(Subject, id=semester_id)
         obj.delete()
+        messages.warning(request,'Subject deleted successfully')
         return redirect('admin:course:subject-list')
 #SUBJECT CRUD ACTION END

@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django.core.exceptions import ValidationError
 from course.models import Course, Semester, Subject
 
 class add_course(ModelForm):
@@ -8,6 +9,14 @@ class add_course(ModelForm):
         labels ={
             "name":""
         }
+
+        def clean(self):
+            cleaned_data = super().clean()
+            name = cleaned_data.get('name')
+
+            if self.instance.pk and Course.objects.filter(name=name).exclude(pk=self.instance.pk).exists():
+                msg = "Course name already exists!"
+                self.add_error("name", msg)
 
 class add_semester(ModelForm):
     class Meta:

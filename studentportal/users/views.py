@@ -27,7 +27,8 @@ def create_admin(request):
             messages.success(request,"Admin added successfully!")
             return redirect('admin:users:admin-list')
         else:
-            print(form.errors.as_data())
+            messages.warning(request, form.errors)
+            return redirect('admin:users:admin-list')
     else:
         
         context = {'form':form,
@@ -49,15 +50,18 @@ def update_admin(request):
                 form.cleaned_data["password"]
                 )
             admin_change.save()
+            messages.success(request,"Admin edited added successfully!")
             return redirect ('admin:users:admin-list')
         else:
-            print(form.errors.as_data())
+            messages.warning(request, form.errors)
+            return redirect('admin:users:admin-list')
 
 def delete_admin(request):
     if request.method == "POST":
         admin_id = request.POST['delete_id']
         admin_user = CustomUser.objects.get(id=admin_id)
         admin_user.delete() 
+        messages.warning(request, 'Admin user has successfully been deleted')
         return redirect("admin:users:admin-list") 
     
 
@@ -77,10 +81,11 @@ def create_cashier(request):
                 form.cleaned_data["password"]
             )
             cashier_user.save()
-           
+            messages.success(request,'Cashier successfully saved!')
             return redirect('admin:users:cashier-list')
         else:
-            print(form.errors.as_data())
+            messages.warning(request,form.errors)
+            return redirect('admin:users:cashier-list')
     else:
         
         context = {'form':form,
@@ -102,15 +107,17 @@ def update_cashier(request):
                 form.cleaned_data["password"]
                 )
             cashier_change.save()
+            messages.success(request,"Cashier successfully edited!")
             return redirect ('admin:users:cashier-list')
         else:
-            print(form.errors.as_data())
-
+            messages.warning(request,form.errors)
+            return redirect ('admin:users:cashier-list')
 def delete_cashier(request):
     if request.method == "POST":
         cashier_id = request.POST['delete_id']
         cashier_user = CustomUser.objects.get(id=cashier_id)
         cashier_user.delete() 
+        messages.warning(request,"Cashier successfully deleted")
         return redirect("admin:users:cashier-list") 
 
 #CASHIER ACTION END============================================
@@ -130,6 +137,10 @@ def create_registrar(request):
                 )
             
             registrar_user.save()
+            messages.success(request,'Registrar successfully added!')
+            return redirect('admin:users:registrar-list')
+        else:
+            messages.warning(request,form.errors)
             return redirect('admin:users:registrar-list')
     else:
         context = {
@@ -142,9 +153,6 @@ def create_registrar(request):
 def update_registrar(request):
     if request.method == 'POST':
         registrar_id = request.POST.get("id", None)
-        if not registrar_id:
-            print("Coudn't find this admin")
-            return redirect('admin:users:admin-list')
         registrar_user = CustomUser.objects.get(id=registrar_id)
         form = forms.add_registrar(request.POST, instance=registrar_user)
         if form.is_valid():
@@ -153,15 +161,18 @@ def update_registrar(request):
                 form.cleaned_data["password"]
                 )
             registrar_change.save()
+            messages.success(request,"Registrar has been successfully edited!")
             return redirect ('admin:users:registrar-list')
         else:
-            print(form.errors.as_data())
+            messages.warning(request, form.errors)
+            return redirect ('admin:users:registrar-list')
 
 def delete_registrar(request):
     if request.method == "POST":
         registrar_id = request.POST['delete_id']
         registrar_user = CustomUser.objects.get(id=registrar_id)
-        registrar_user.delete() 
+        registrar_user.delete()
+        messages.warning(request,"Registrar successfully deleted") 
         return redirect("admin:users:registrar-list")
 
 #REGISTRAR ACTION END==============================================
@@ -176,9 +187,11 @@ def create_teacher(request):
         user_form = forms.add_teacher(request.POST)
         if user_form.is_valid():
             user_form.save()
+            messages.success(request,"Teacher added successfully!")
             return redirect('admin:users:teacher-list')
         else:
-            print(user_form.errors.as_data())
+            messages.warning(request,user_form.errors)
+            return redirect('admin:users:teacher-list')
             
     else:
         context = {'user_form':user_form,
@@ -193,15 +206,19 @@ def update_teacher(request):
         teacher_update =forms.add_teacher(request.POST, instance=teacher_user)
         if teacher_update.is_valid():
             teacher_update.save()
+            messages.success(request,'Teacher updated successfully!')
             return redirect('admin:users:teacher-list')
         else:
-            print(teacher_update.errors.as_data())
+            messages.warning(request,teacher_update.errors)
+            return redirect('admin:users:teacher-list')
+
 
 def delete_teacher(request):
     if request.method == 'POST':
         teacher_id = request.POST.get("delete_id")
         teacher_user = CustomUser.objects.get(id=teacher_id)
         teacher_user.delete()
+        messages.warning(request,'Teacher deleted successfully')
         return redirect('admin:users:teacher-list')
 
 #TEACHER ACTION END=================================================
@@ -215,9 +232,11 @@ def create_student(request):
         user_form = forms.add_student(request.POST)
         if user_form.is_valid():
             user_form.save()
+            messages.success(request,'Student added successfully!')
             return redirect('admin:users:student-list')
         else:
-            print(user_form.errors.as_data())
+            messages.warning(request,user_form.errors)
+            return redirect('admin:users:student-list')
             
     else:
         context = {'user_form':user_form,
@@ -232,15 +251,18 @@ def update_student(request):
         student_update =forms.add_student(request.POST, instance=student_user)
         if student_update.is_valid():
             student_update.save()
+            messages.success(request,"Student edited successfully!")
             return redirect('admin:users:student-list')
         else:
-            print(student_update.errors.as_data())
+            messages.warning(request,student_update.errors)
+            return redirect('admin:users:student-list')
 
 def delete_student(request):
      if request.method == 'POST':
         student_id = request.POST.get("delete_id")
         student_user = CustomUser.objects.get(id=student_id)
         student_user.delete()
+        messages.warning(request,"Student deleted successfully")
         return redirect('admin:users:student-list')
 
 #STUDENT ACTION END=============================================
