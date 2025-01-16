@@ -1,12 +1,15 @@
-{% extends "adminbase/base.html" %} {% block title %} Admin Dashboard {%
-endblock title %} {%load static%} {% block content %}
+{% extends "adminbase/base.html" %}
+{%load static%}
+{%block title%}Admin Dashboard{%endblock%}
+
+{%block content%}
 <div id="container">
   <div class="dashboard-content">
     <div class="dashboard-container">
       <!-- Header Section -->
       <header class="dashboard-header">
         <div class="logo-container">
-          <img src="../img/aclclogo.png" alt="ACLC Apalit Logo" class="logo" />
+          <img src="{% static 'images/aclclogo.png' %}" alt="ACLC Apalit Logo" class="logo" >
         </div>
         <h1>Admin Dashboard</h1>
       </header>
@@ -97,5 +100,4 @@ endblock title %} {%load static%} {% block content %}
     </div>
   </div>
 </div>
-
-{% endblock content %}
+{%endblock%}

@@ -1,0 +1,204 @@
+#container {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 15px; /* Reduced padding */
+    line-height: 1.6;
+    margin-top: 50px;
+  }
+  
+  .dashboard-content {
+    width: 100%;
+    max-width: 1000px;
+    background-color: #ffffff;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, #0073e6, #005bb5);
+    padding: 10px 20px; /* Reduced padding */
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* border-bottom: 2px solid #005bb5; */
+  }
+  
+  .dashboard-header .logo-container img {
+    width: 45px; /* Reduced logo size */
+    height: 45px;
+    object-fit: contain;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 22px; /* Reduced font size */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  .dashboard-main {
+    padding: 15px 20px; /* Reduced padding */
+  }
+  
+  .admin-actions {
+    margin-bottom: 25px; /* Reduced margin */
+  }
+  
+  .admin-actions h2 {
+    font-size: 20px; /* Reduced font size */
+    margin-bottom: 10px; /* Reduced margin */
+    color: #0073e6;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .action-cards {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(240px, 1fr)
+    ); /* Reduced card size */
+    gap: 15px; /* Reduced gap */
+    margin-top: 10px;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 18px; /* Reduced padding */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .card:hover {
+    transform: translateY(-8px); /* Reduced hover effect */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card i {
+    font-size: 40px; /* Reduced icon size */
+    color: #c1121f;
+    margin-bottom: 12px; /* Reduced margin */
+  }
+  
+  .card h3 {
+    font-size: 18px; /* Reduced font size */
+    font-weight: 600;
+    margin-bottom: 6px; /* Reduced margin */
+  }
+  
+  .card p {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 12px; /* Reduced margin */
+  }
+  
+  .card .btn {
+    display: inline-block;
+    padding: 10px 20px; /* Reduced padding */
+    background-color: #c1121f;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px; /* Reduced font size */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .card .btn:hover {
+    background-color: #ef233c;
+    transform: scale(1.05);
+  }
+  
+  .user-form {
+    background-color: #ffffff;
+    padding: 20px; /* Reduced padding */
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-form h2 {
+    font-size: 22px; /* Reduced font size */
+    margin-bottom: 18px; /* Reduced margin */
+    color: #0073e6;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px; /* Reduced margin */
+  }
+  
+  .form-group label {
+    font-size: 14px; /* Reduced font size */
+    margin-bottom: 6px; /* Reduced margin */
+    display: block;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px; /* Reduced padding */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px; /* Reduced font size */
+    color: #333;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #ef233c;
+    outline: none;
+  }
+  
+  .submit-btn {
+    background-color: #c1121f;
+    color: white;
+    padding: 14px 30px; /* Increased padding for a larger button */
+    font-size: 16px; /* Slightly larger font size */
+    border: none;
+    border-radius: 8px;
+    width: 90%; /* Adjusts the width based on content */
+    min-width: 200px; /* Increased the minimum width for a more prominent button */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+    display: block; /* Ensures it takes up full width in its container */
+    margin: 0 auto; /* Centers the button horizontally */
+  }
+  
+  .submit-btn:hover {
+    background-color: #ef233c;
+    transform: scale(1.02);
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-header h1 {
+      font-size: 20px; /* Reduced font size */
+    }
+  
+    .action-cards {
+      grid-template-columns: 1fr;
+    }
+  
+    .card {
+      padding: 16px; /* Reduced padding */
+    }
+  
+    .user-form {
+      padding: 18px; /* Reduced padding */
+    }
+  
+    .submit-btn {
+      padding: 10px; /* Reduced padding */
+    }
+  }
