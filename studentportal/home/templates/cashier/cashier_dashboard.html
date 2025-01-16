@@ -1,100 +1,69 @@
-{%load static%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cashier Dashboard</title>
-    <link rel="stylesheet" href="{% static 'styles/cashier_dashboard.css'%}" />
-    <!-- Link to FontAwesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+    <title>Transaction Management</title>
+    <link rel="stylesheet" href="" />
   </head>
   <body>
-    <div class="dashboard">
-      <header>
-        <!-- Header Title -->
-        <h1>Cashier Dashboard</h1>
-        <!-- Search Bar -->
-        <div class="search-bar">
-          <input type="text" id="search" placeholder="Search transactions..." />
-          <button class="search-btn">
-            <i class="fas fa-search"></i> Search
-          </button>
-        </div>
-      </header>
-      <main>
-        <section class="transaction-history card">
-          <h2>Transaction History</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Transaction Number</th>
-                <!-- Added column -->
-                <th>Date</th>
-                <th>Customer</th>
-                <th>Amount</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#001</td>
-                <!-- Added data for the new column -->
-                <td>2025-01-10</td>
-                <td>Joseph</td>
-                <td>150.00</td>
-                <td>Paid</td>
-              </tr>
-              <tr>
-                <td>#002</td>
-                <!-- Added data for the new column -->
-                <td>2025-01-11</td>
-                <td>Ashley</td>
-                <td>200.00</td>
-                <td>Paid</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-        <section class="approval-list card">
-          <h2>Approval List</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Request ID</th>
-                <th>Customer</th>
-                <th>Amount</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#12345</td>
-                <td>Clark</td>
-                <td>300.00</td>
-                <td>
-                  <button class="approve-btn">
-                    <i class="fas fa-check-circle"></i> Approve
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>#12346</td>
-                <td>Angel</td>
-                <td>120.00</td>
-                <td>
-                  <button class="approve-btn">
-                    <i class="fas fa-check-circle"></i> Approve
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      </main>
+    <div class="container">
+      <h1>Registrar Transaction Management</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Transaction ID</th>
+            <th>Customer Name</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TXN001</td>
+            <td>Alden Flores</td>
+            <td>₱ 100</td>
+            <td><span class="status pending">Pending</span></td>
+            <td>
+              <div class="action-buttons">
+                <button class="btn pending">Set Pending</button>
+                <button class="btn in-progress">Set In Progress</button>
+                <button class="btn approved">Set Approved</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>TXN002</td>
+            <td>Mj Mendiola</td>
+            <td>₱ 200</td>
+            <td><span class="status in-progress">In Progress</span></td>
+            <td>
+              <div class="action-buttons">
+                <button class="btn pending">Set Pending</button>
+                <button class="btn in-progress">Set In Progress</button>
+                <button class="btn approved">Set Approved</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>TXN003</td>
+            <td>Kenneth Caballa</td>
+            <td>₱ 150</td>
+            <td><span class="status approved">Approved</span></td>
+            <td>
+              <div class="action-buttons">
+                <button class="btn pending">Set Pending</button>
+                <button class="btn in-progress">Set In Progress</button>
+                <button class="btn approved">Set Approved</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <footer>
+      &copy; 2025 Transaction Management System. All rights reserved.
+    </footer>
   </body>
 </html>
