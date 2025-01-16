@@ -1,0 +1,139 @@
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  margin-top: 100px;
+  background: linear-gradient(135deg, #ffffff, #f9f9ff);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  font-size: 28px;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+table thead {
+  background: #023047;
+  color: #ffffff;
+}
+
+table th,
+table td {
+  padding: 14px 18px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table thead th {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+  background-color: #f1f1f1;
+  transform: scale(1.01);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.status {
+  padding: 8px 14px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.status.pending {
+  background-color: #ffc107;
+}
+
+.status.in-progress {
+  background-color: #17a2b8;
+}
+
+.status.approved {
+  background-color: #28a745;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn.pending {
+  background-color: #ffc107;
+}
+
+.btn.in-progress {
+  background-color: #17a2b8;
+}
+
+.btn.approved {
+  background-color: #28a745;
+}
+
+.btn:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+}
