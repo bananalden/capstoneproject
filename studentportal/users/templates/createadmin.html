@@ -6,6 +6,15 @@ Admin List
 {%load static%}
 {% block content %}
     <div class="crud-dashboard">
+    <div class="container">
+      {%for msg in messages%}
+       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{msg}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {%endfor%}
+
+    </div>
         <h1>Admin List</h1>
         
         <!-- Search and Add Course Section -->

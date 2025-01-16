@@ -3,6 +3,7 @@ from users import forms
 from users.models import CustomUserManager, CustomUser, TeacherProfile
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.contrib import messages
 
 # Create your views here.
 
@@ -23,7 +24,7 @@ def create_admin(request):
                 form.cleaned_data["password"]
             )
             admin_user.save()
-           
+            messages.success(request,"Admin added successfully!")
             return redirect('admin:users:admin-list')
         else:
             print(form.errors.as_data())
