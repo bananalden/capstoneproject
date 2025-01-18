@@ -1,0 +1,88 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Left Section */
+.left-section {
+    flex: 1;
+    background-image: url('/static/images/ama.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Right Section for Login Form */
+.right-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.login-frame {
+    width: 90%;
+    max-width: 400px;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-frame img {
+    width: 120px;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.login-frame h2 {
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.form-control {
+    height: 45px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.btn-login {
+    background-color: #a30f15;
+    color: #fff;
+    font-size: 18px;
+    height: 50px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.forgot-password {
+    color: #dc3545;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .left-section {
+        display: none;
+    }
+
+    .right-section {
+        flex: 1;
+        width: 100%;
+    }
+}
