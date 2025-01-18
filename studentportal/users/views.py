@@ -180,7 +180,7 @@ def delete_registrar(request):
 def create_teacher(request):
     user_form = forms.add_teacher()
     teacher = get_user_model()
-    teachers = teacher.objects.filter(role='TEACHER').prefetch_related("teacher_id")
+    teachers = teacher.objects.filter(role='TEACHER').select_related("teacher_id")
     if request.method == 'POST':
         user_form = forms.add_teacher(request.POST)
         if user_form.is_valid():
@@ -225,7 +225,7 @@ def delete_teacher(request):
 def create_student(request):
     user_form = forms.add_student()
     student = get_user_model()
-    students = student.objects.filter(role='STUDENT').prefetch_related("student_id")
+    students = student.objects.filter(role='STUDENT').select_related("student_id")
     if request.method == 'POST':
         user_form = forms.add_student(request.POST)
         if user_form.is_valid():
