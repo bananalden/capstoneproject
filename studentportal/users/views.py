@@ -75,11 +75,7 @@ def create_cashier(request):
     if request.method == 'POST':
         form = forms.add_cashier(request.POST)
         if form.is_valid():
-            cashier_user = form.save(commit=False)
-            cashier_user.set_password(
-                form.cleaned_data["password"]
-            )
-            cashier_user.save()
+            form.save()
             messages.success(request,'Cashier successfully saved!')
             return redirect('admin:users:cashier-list')
         else:
@@ -101,11 +97,7 @@ def update_cashier(request):
         cashier_user = models.CustomUser.objects.get(id=cashier_id)
         form = forms.add_cashier(request.POST, instance=cashier_user)
         if form.is_valid():
-            cashier_change = form.save(commit=False)
-            cashier_change.set_password(
-                form.cleaned_data["password"]
-                )
-            cashier_change.save()
+            form.save()
             messages.success(request,"Cashier successfully edited!")
             return redirect ('admin:users:cashier-list')
         else:
@@ -129,12 +121,7 @@ def create_registrar(request):
     if request.method == 'POST':
         form = forms.add_registrar(request.POST)
         if form.is_valid():
-            registrar_user = form.save(commit=False)
-            registrar_user.set_password(
-                    form.cleaned_data["password"]
-                )
-            
-            registrar_user.save()
+            form.save()
             messages.success(request,'Registrar successfully added!')
             return redirect('admin:users:registrar-list')
         else:
@@ -154,11 +141,7 @@ def update_registrar(request):
         registrar_user = models.CustomUser.objects.get(id=registrar_id)
         form = forms.add_registrar(request.POST, instance=registrar_user)
         if form.is_valid():
-            registrar_change = form.save(commit=False)
-            registrar_change.set_password(
-                form.cleaned_data["password"]
-                )
-            registrar_change.save()
+            form.save()
             messages.success(request,"Registrar has been successfully edited!")
             return redirect ('admin:users:registrar-list')
         else:

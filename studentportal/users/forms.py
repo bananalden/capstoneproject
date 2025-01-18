@@ -21,6 +21,12 @@ class add_cashier(forms.ModelForm):
         widgets = {
             'password':forms.PasswordInput
         }
+    def save(self, commit=True):
+        cashier = super().save(commit=False)
+        cashier.set_password(self.cleaned_data['password'])
+        if commit:
+            cashier.save()
+
 
 class add_registrar(forms.ModelForm):
     class Meta:
@@ -29,6 +35,11 @@ class add_registrar(forms.ModelForm):
         widgets = {
             'password':forms.PasswordInput
         }
+    def save(self, commit=True):
+        registrar = super().save(commit=False)
+        registrar.set_password(self.cleaned_data['password'])
+        if commit:
+            registrar.save()
 
 class add_teacher(forms.ModelForm):
     course = forms.ModelChoiceField(queryset=course_models.Course.objects.all())
