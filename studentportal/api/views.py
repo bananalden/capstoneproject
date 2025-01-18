@@ -110,5 +110,5 @@ def get_userdata(request,pk):
 
 def get_teacher_list(request):
     teachers = get_user_model()
-    teacher = teachers.objects.all().values('id','first_name','last_name')
+    teacher = teachers.objects.filter(role="TEACHER").values('id','first_name','last_name')
     return JsonResponse(list(teacher), safe=False)

@@ -58,7 +58,7 @@ class add_teacher(forms.ModelForm):
 
 
 class add_student(forms.ModelForm):
-    teacher = forms.ModelChoiceField(queryset=models.Teacher.objects.all())
+    teacher = forms.ModelChoiceField(queryset=models.Teacher.objects.filter(role='TEACHER'))
     course = forms.ModelChoiceField(queryset=course_models.Course.objects.all())
     class Meta:
         model = models.Student

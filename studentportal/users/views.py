@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from users import forms
-from users.models import CustomUserManager, CustomUser, TeacherProfile
+from users import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
@@ -42,7 +42,7 @@ def update_admin(request):
         if not admin_id:
             print("Coudn't find this admin")
             return redirect('admin:users:admin-list')
-        admin_user = CustomUser.objects.get(id=admin_id)
+        admin_user = models.CustomUser.objects.get(id=admin_id)
         form = forms.add_admin(request.POST, instance=admin_user)
         if form.is_valid():
             admin_change = form.save(commit=False)
@@ -59,7 +59,7 @@ def update_admin(request):
 def delete_admin(request):
     if request.method == "POST":
         admin_id = request.POST['delete_id']
-        admin_user = CustomUser.objects.get(id=admin_id)
+        admin_user = models.CustomUser.objects.get(id=admin_id)
         admin_user.delete() 
         messages.warning(request, 'Admin user has successfully been deleted')
         return redirect("admin:users:admin-list") 
@@ -70,8 +70,7 @@ def delete_admin(request):
 #CASHIER ACTION START===================================================
 def create_cashier(request):
     form = forms.add_cashier()
-    cashier = get_user_model()
-    cashiers = cashier.objects.filter(role='CASHIER')
+    cashiers = models.CustomUser.objects.filter(role="CASHIER")
     
     if request.method == 'POST':
         form = forms.add_cashier(request.POST)
@@ -99,7 +98,7 @@ def update_cashier(request):
         if not cashier_id:
             print("Coudn't find this admin")
             return redirect('admin:users:admin-list')
-        cashier_user = CustomUser.objects.get(id=cashier_id)
+        cashier_user = models.CustomUser.objects.get(id=cashier_id)
         form = forms.add_cashier(request.POST, instance=cashier_user)
         if form.is_valid():
             cashier_change = form.save(commit=False)
@@ -115,7 +114,7 @@ def update_cashier(request):
 def delete_cashier(request):
     if request.method == "POST":
         cashier_id = request.POST['delete_id']
-        cashier_user = CustomUser.objects.get(id=cashier_id)
+        cashier_user = models.CustomUser.objects.get(id=cashier_id)
         cashier_user.delete() 
         messages.warning(request,"Cashier successfully deleted")
         return redirect("admin:users:cashier-list") 
@@ -126,8 +125,7 @@ def delete_cashier(request):
     
 def create_registrar(request):
     form = forms.add_registrar()
-    registrar = get_user_model()
-    registrars = registrar.objects.filter(role='REGISTRAR')
+    registrars = models.CustomUser.objects.filter(role="REGISTRAR")
     if request.method == 'POST':
         form = forms.add_registrar(request.POST)
         if form.is_valid():
@@ -153,7 +151,7 @@ def create_registrar(request):
 def update_registrar(request):
     if request.method == 'POST':
         registrar_id = request.POST.get("id", None)
-        registrar_user = CustomUser.objects.get(id=registrar_id)
+        registrar_user = models.CustomUser.objects.get(id=registrar_id)
         form = forms.add_registrar(request.POST, instance=registrar_user)
         if form.is_valid():
             registrar_change = form.save(commit=False)
@@ -170,7 +168,7 @@ def update_registrar(request):
 def delete_registrar(request):
     if request.method == "POST":
         registrar_id = request.POST['delete_id']
-        registrar_user = CustomUser.objects.get(id=registrar_id)
+        registrar_user = models.CustomUser.objects.get(id=registrar_id)
         registrar_user.delete()
         messages.warning(request,"Registrar successfully deleted") 
         return redirect("admin:users:registrar-list")
@@ -182,7 +180,7 @@ def delete_registrar(request):
 def create_teacher(request):
     user_form = forms.add_teacher()
     teacher = get_user_model()
-    teachers = teacher.objects.filter(role='TEACHER')
+    teachers = teacher.objects.filter(role='TEACHER').prefetch_related("teacher_id")
     if request.method == 'POST':
         user_form = forms.add_teacher(request.POST)
         if user_form.is_valid():
@@ -202,7 +200,7 @@ def create_teacher(request):
 def update_teacher(request):
     if request.method == 'POST':
         teacher_id = request.POST.get("edit_id")
-        teacher_user = CustomUser.objects.get(id=teacher_id)
+        teacher_user = models.CustomUser.objects.get(id=teacher_id)
         teacher_update =forms.add_teacher(request.POST, instance=teacher_user)
         if teacher_update.is_valid():
             teacher_update.save()
@@ -216,7 +214,7 @@ def update_teacher(request):
 def delete_teacher(request):
     if request.method == 'POST':
         teacher_id = request.POST.get("delete_id")
-        teacher_user = CustomUser.objects.get(id=teacher_id)
+        teacher_user = models.CustomUser.objects.get(id=teacher_id)
         teacher_user.delete()
         messages.warning(request,'Teacher deleted successfully')
         return redirect('admin:users:teacher-list')
@@ -227,7 +225,7 @@ def delete_teacher(request):
 def create_student(request):
     user_form = forms.add_student()
     student = get_user_model()
-    students = student.objects.filter(role='STUDENT')
+    students = student.objects.filter(role='STUDENT').prefetch_related("student_id")
     if request.method == 'POST':
         user_form = forms.add_student(request.POST)
         if user_form.is_valid():
@@ -247,7 +245,7 @@ def create_student(request):
 def update_student(request):
     if request.method == 'POST':
         student_id = request.POST.get("edit_id")
-        student_user = CustomUser.objects.get(id=student_id)
+        student_user = models.CustomUser.objects.get(id=student_id)
         student_update =forms.add_student(request.POST, instance=student_user)
         if student_update.is_valid():
             student_update.save()
@@ -260,7 +258,7 @@ def update_student(request):
 def delete_student(request):
      if request.method == 'POST':
         student_id = request.POST.get("delete_id")
-        student_user = CustomUser.objects.get(id=student_id)
+        student_user = models.CustomUser.objects.get(id=student_id)
         student_user.delete()
         messages.warning(request,"Student deleted successfully")
         return redirect('admin:users:student-list')

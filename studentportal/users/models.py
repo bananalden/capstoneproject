@@ -58,6 +58,8 @@ class Teacher(CustomUser):
     base_role = CustomUser.Role.TEACHER
     registrar = RegistrarManager()
 
+
+
     class Meta:
         proxy = True
 

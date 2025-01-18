@@ -38,6 +38,8 @@ Student List
                     <th>Name</th>
                     <th>Email</th>
                     <th>Username</th>
+                    <th>Course</th>
+                    <th>Assigned Teacher</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -48,6 +50,8 @@ Student List
                     <td>{{student.first_name}} {{student.last_name}}</td>
                     <td>{{student.email}}</td>
                     <td>{{student.username}}</td>
+                    <td>{{student.student_id.course}}</td>
+                    <td>{{student.student_id.teacher.first_name}} {{student.student_id.teacher.last_name}}</td>
                     <td>
                         <button class="action-btn edit-btn" data-id="{{student.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit

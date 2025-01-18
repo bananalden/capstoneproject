@@ -40,6 +40,7 @@ Teacher List
                     <th>Name</th>
                     <th>Username</th>
                     <th>Email</th>
+                    <th>Course</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -50,6 +51,7 @@ Teacher List
                     <td>{{teacher.first_name}} {{teacher.last_name}}</td>
                     <td>{{teacher.username}}</td>
                     <td>{{teacher.email}}</td>
+                    <td>{{teacher.teacher_id.course}}</td>
                     <td>
                         <button class="action-btn edit-btn" data-id="{{teacher.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
                         <i class="fas fa-edit"></i> Edit
