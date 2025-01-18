@@ -41,7 +41,8 @@ Dashboard{%endblock%} {%block content%}
             {% csrf_token %}
             <select id="userType" name="user_type" required>
               <option value="" disabled selected>Select User type</option>
-              <option value="ADMIN">Admin</option>
+              <option value="STUDENT">Student</option>
+              <option value="TEACHER">Teacher</option>
               <option value="REGISTRAR">Registrar</option>
               <option value="CASHIER">Cashier</option>
             </select>
@@ -76,6 +77,23 @@ Dashboard{%endblock%} {%block content%}
               placeholder="Enter username"
             />
           </div>
+
+          <div class="form-group" id="course">
+            <label for="course">Course</label>
+            {% csrf_token %}
+            <select id="courseDropdown" name="course">
+              <option value="" disabled selected>Select Course</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="teacher">
+            <label for="teacher">Teacher</label>
+            {% csrf_token %}
+            <select id="teacherDropdown" name="teacher">
+              <option value="" disabled selected>Select Teacher</option>
+            </select>
+          </div>
+
           <div class="form-group">
             <label for="email">Email</label>
             <input
@@ -102,4 +120,6 @@ Dashboard{%endblock%} {%block content%}
     </main>
   </div>
 </div>
+
+<script src="{%static 'js/admin_dashboard.js'%}"></script>
 {%endblock%}
