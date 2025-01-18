@@ -34,7 +34,6 @@ Student List
         <table id="course-table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Username</th>
@@ -46,7 +45,6 @@ Student List
             <tbody id="course-list">
                 {%for student in students%}
                 <tr>
-                    <td>{{student.id}}</td>
                     <td>{{student.first_name}} {{student.last_name}}</td>
                     <td>{{student.email}}</td>
                     <td>{{student.username}}</td>

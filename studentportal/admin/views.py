@@ -38,6 +38,15 @@ def home(request):
             form = user_forms.add_cashier(request.POST)
             if form.is_valid():
                 cashier = form.save(commit=False)
+                cashier.set_passsword(
+                    form.cleaned_data['password']
+                )
+                cashier.save()
+                messages.success(request,"Cashier added successfully!")
+                return redirect("admin:users:cashier-list")
+            else:
+                messages.warning(request,form.errors)
+                return redirect("admin:users:cashier-list")
     else:
         return render(request, 'dashboard.html')
 
