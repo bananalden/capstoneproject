@@ -1,9 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
 from users import forms as user_forms
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url='authentication:login')
 def home(request):
     if request.method == 'POST':
 ##################LOGIC FOR STUDENT########################################################

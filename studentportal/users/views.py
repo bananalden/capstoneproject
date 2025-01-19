@@ -4,6 +4,7 @@ from users import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -11,6 +12,7 @@ from django.contrib import messages
 
 
 #ADMIN CRUD ACTION START=========================================
+@login_required(login_url='authentication:login')
 def create_admin(request):
     form = forms.add_admin()
     admin = get_user_model()
@@ -35,7 +37,7 @@ def create_admin(request):
                    'admins':admins
                    }
         return render(request, 'createadmin.html',context)
-    
+@login_required(login_url='authentication:login')
 def update_admin(request):
        if request.method =='POST':
         admin_id = request.POST.get("id", None)
@@ -55,7 +57,7 @@ def update_admin(request):
         else:
             messages.warning(request, form.errors)
             return redirect('admin:users:admin-list')
-
+@login_required(login_url='authentication:login')
 def delete_admin(request):
     if request.method == "POST":
         admin_id = request.POST['delete_id']
@@ -68,6 +70,7 @@ def delete_admin(request):
 #ADMIN CRUD ACTION END=================================================
 
 #CASHIER ACTION START===================================================
+@login_required(login_url='authentication:login')
 def create_cashier(request):
     form = forms.add_cashier()
     cashiers = models.CustomUser.objects.filter(role="CASHIER")
@@ -114,7 +117,7 @@ def delete_cashier(request):
 #CASHIER ACTION END============================================
 
 #REGISTRAR ACTION START========================================
-    
+@login_required(login_url='authentication:login')
 def create_registrar(request):
     form = forms.add_registrar()
     registrars = models.CustomUser.objects.filter(role="REGISTRAR")
@@ -159,7 +162,7 @@ def delete_registrar(request):
 #REGISTRAR ACTION END==============================================
 
 #TEACHER ACTION START==============================================
-    
+@login_required(login_url='authentication:login')
 def create_teacher(request):
     user_form = forms.add_teacher()
     teacher = get_user_model()
@@ -205,6 +208,7 @@ def delete_teacher(request):
 #TEACHER ACTION END=================================================
 
 #STUDENT ACTION START===============================================
+@login_required(login_url='authentication:login')
 def create_student(request):
     user_form = forms.add_student()
     student = get_user_model()

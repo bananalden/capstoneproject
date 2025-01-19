@@ -4,10 +4,12 @@ from course.forms import add_course, add_semester, add_subject
 from course.models import Course, Semester, Subject
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 #COURSE CRUD ACTION START
+@login_required(login_url='authentication:login')
 def create_course(request):
 
     form = add_course()
@@ -55,7 +57,7 @@ def delete_course(request):
 
 
 #SEMESTER CRUD ACTION START
-
+@login_required(login_url='authentication:login')
 def create_semester(request):
     form = add_semester()
     semesters = Semester.objects.all()
@@ -99,7 +101,7 @@ def delete_semester(request):
 
 
 #SEMESTER CRUD ACTION END
-
+@login_required(login_url='authentication:login')
 #SUBJECT CRUD ACTION START
 def create_subject(request):
     form = add_subject()
