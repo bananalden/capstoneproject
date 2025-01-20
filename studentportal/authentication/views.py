@@ -43,4 +43,4 @@ def logout_user(request):
     return redirect('authentication:login')
 
 def unauthorized_view(request):
-    return render(request,'login/login.html')
+    return render(request,'deniedaccess/401.html')

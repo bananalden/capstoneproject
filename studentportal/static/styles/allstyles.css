@@ -2,6 +2,7 @@
 @import url('sidebar.css');
 @import url('dashboard-content.css');
 @import url('course-semester.css');
+@import url('401.css')
 
 * {
   margin: 0;
