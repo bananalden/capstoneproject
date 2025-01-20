@@ -44,3 +44,4 @@ def logout_user(request):
 
 def unauthorized_view(request):
     return render(request,'deniedaccess/401.html')
+
