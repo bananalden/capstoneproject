@@ -5,6 +5,8 @@ app_name = 'users'
 
 urlpatterns =[
 
+    path('dashboard-action',views.admin_dashboard_action,name='dashboard-action'),
+    path('edit-admin',views.edit_admin,name='edit-admin'),
     #CASHIER ROUTES START
     path('cashier-list',views.create_cashier,name='cashier-list'),
     path('cashier-list/edit',views.update_cashier,name='cashier-update'),

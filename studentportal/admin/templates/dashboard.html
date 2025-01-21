@@ -35,7 +35,7 @@ Dashboard{%endblock%} {%block content%}
 
       <section class="form-section">
         <h2>Create a New User</h2>
-        <form method="POST">
+        <form action="{%url 'admin:users:dashboard-action'%}" method="POST">
           <div class="form-group">
             <label for="userType">User Type</label>
             {% csrf_token %}
