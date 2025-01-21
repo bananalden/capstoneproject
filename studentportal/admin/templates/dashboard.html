@@ -14,19 +14,19 @@ Dashboard{%endblock%} {%block content%}
         <div class="action-cards">
           <div class="card">
             <i class="fa fa-user-plus"></i>
-            <h3>View Admin User</h3>
-            <p>Manage accounts for admin users.</p>
-            <a href="{%url 'admin:users:admin-list'%}" class="btn">Go</a>
+            <h3>Edit Admin User</h3>
+            <p>Edit the details of the current admin user</p>
+            <a href="{%url 'admin:edit-admin'%}" class="btn">Go</a>
           </div>
           <div class="card">
             <i class="fa fa-edit"></i>
-            <h3>View Teacher User</h3>
+            <h3>View Teacher Users</h3>
             <p>Manage accounts for teachers.</p>
             <a href="{%url 'admin:users:teacher-list'%}" class="btn">Go</a>
           </div>
           <div class="card">
             <i class="fa fa-book"></i>
-            <h3>View Student User</h3>
+            <h3>View Student Users</h3>
             <p>Manage accounts for students</p>
             <a href="{%url 'admin:users:student-list'%}" class="btn">Go</a>
           </div>

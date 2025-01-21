@@ -4,11 +4,6 @@ from users import views
 app_name = 'users'
 
 urlpatterns =[
-    #ADMIN ROUTES START
-    path('admin-list',views.create_admin, name='admin-list'),
-    path('admin-list/edit',views.update_admin,name='admin-update'),
-    path('admin-list/delete',views.delete_admin,name='admin-delete'),
-    #ADMIN ROUTES END
 
     #CASHIER ROUTES START
     path('cashier-list',views.create_cashier,name='cashier-list'),

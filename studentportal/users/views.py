@@ -11,63 +11,6 @@ from django.contrib.auth.decorators import login_required
 #PLACE CRUD OPERATIONS HERE
 
 
-#ADMIN CRUD ACTION START=========================================
-@login_required(login_url='authentication:login')
-def create_admin(request):
-    form = forms.add_admin()
-    admin = get_user_model()
-    admins = admin.objects.filter(role='ADMIN')
-    
-    if request.method == 'POST':
-        form = forms.add_admin(request.POST)
-        if form.is_valid():
-            admin_user = form.save(commit=False)
-            admin_user.set_password(
-                form.cleaned_data["password"]
-            )
-            admin_user.save()
-            messages.success(request,"Admin added successfully!")
-            return redirect('admin:users:admin-list')
-        else:
-            messages.warning(request, form.errors)
-            return redirect('admin:users:admin-list')
-    else:
-        
-        context = {'form':form,
-                   'admins':admins
-                   }
-        return render(request, 'createadmin.html',context)
-@login_required(login_url='authentication:login')
-def update_admin(request):
-       if request.method =='POST':
-        admin_id = request.POST.get("id", None)
-        if not admin_id:
-            print("Coudn't find this admin")
-            return redirect('admin:users:admin-list')
-        admin_user = models.CustomUser.objects.get(id=admin_id)
-        form = forms.add_admin(request.POST, instance=admin_user)
-        if form.is_valid():
-            admin_change = form.save(commit=False)
-            admin_change.set_password(
-                form.cleaned_data["password"]
-                )
-            admin_change.save()
-            messages.success(request,"Admin edited added successfully!")
-            return redirect ('admin:users:admin-list')
-        else:
-            messages.warning(request, form.errors)
-            return redirect('admin:users:admin-list')
-@login_required(login_url='authentication:login')
-def delete_admin(request):
-    if request.method == "POST":
-        admin_id = request.POST['delete_id']
-        admin_user = models.CustomUser.objects.get(id=admin_id)
-        admin_user.delete() 
-        messages.warning(request, 'Admin user has successfully been deleted')
-        return redirect("admin:users:admin-list") 
-    
-
-#ADMIN CRUD ACTION END=================================================
 
 #CASHIER ACTION START===================================================
 @login_required(login_url='authentication:login')

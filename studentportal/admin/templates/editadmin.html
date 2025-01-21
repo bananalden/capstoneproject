@@ -1,0 +1,57 @@
+{% extends "adminbase/base.html" %}
+{% block title %}
+Edit Admin User
+{% endblock title %}
+
+{%load static%}
+{% block content %}
+<div class="container edit-page">
+  <h1>Edit Admin User</h1>
+
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="first_name">First Name:</label>
+          {{form.first_name}}
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="last_name">Last Name:</label>
+          {{form.last_name}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          {{form.email}}
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          {{form.username}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+
+
+</div>
+</div>
+
+{% endblock content %}

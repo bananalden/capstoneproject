@@ -15,7 +15,7 @@ def home(request):
         elif logged_user_role == 'CASHIER':
             pass
         elif logged_user_role == 'REGISTRAR':
-            pass
+            return redirect('home:registrar-home')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -29,9 +29,9 @@ def home(request):
             elif user.role == 'TEACHER':
                 pass
             elif user.role == 'REGISTRAR':
-                pass
+                return redirect('home:registrar-home')
             elif user.role == 'CASHIER':
-                pass
+                return redirect('home:cashier-home')
         else:
             messages.warning(request,'Invalid User credentials')
             return redirect('authentication:login')
