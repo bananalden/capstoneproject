@@ -10,10 +10,11 @@ Edit Admin User
 
 
   <div class="container">
-
+<form action="{%url 'admin:users:edit-admin'%}" method="POST">
     <div class="row">
       <div class="col">
         <div class="form-group">
+          {% csrf_token %}
           <label for="first_name">First Name:</label>
           {{form.first_name}}
         </div>
@@ -43,6 +44,7 @@ Edit Admin User
       <div class="row">
         <div class="col">
           <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
         </div>
       </div>
       

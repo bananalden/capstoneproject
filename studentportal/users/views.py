@@ -9,10 +9,18 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 #PLACE CRUD OPERATIONS HERE
+
+#EDIT ADMIN OPERATIONS#####################################
 def edit_admin(request):
     if request.method == 'POST':
-        pass
-
+        form = forms.edit_admin(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('admin:edit-admin')
+        else:
+            messages.warning(request,"Invalid inputs!")
+            return redirect('admin:edit-admin')
+#EDIT ADMIN OPERATIONS#####################################
 def admin_dashboard_action(request):
       if request.method == 'POST':
 ##################LOGIC FOR STUDENT########################################################

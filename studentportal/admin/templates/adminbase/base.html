@@ -33,7 +33,7 @@
           <li><a href="{%url 'admin:schoolmanagement:subject-list'%}">Subject</a></li>
         </ul>
     </li>
-
+    
 
 
        <li class="dropdown">
@@ -45,14 +45,15 @@
           <li><a href="{%url 'admin:users:student-list'%}">Student</a></li>
         </ul>
       </li>
-
+      <li><a href="{%url 'admin:edit-admin'%}" class="menu-item" data-link="dashboard"><i class="fas fa-user"></i> Edit Admin</a></li>
+      <li><a href="{%url 'admin:dashboard'%}" class="menu-item" data-link="dashboard"><i class="fas fa-key"></i> Change Password</a></li>
+      
    
 
      
       <li><a href="#" class="menu-item" data-link="settings"><i class="fas fa-cogs"></i> Settings</a></li>
     </ul>
     <div class="user-profile">
-      <a href="#" class="menu-item" data-link="profile"><i class="fas fa-user"></i> User Profile</a>
       <a href="{%url 'authentication:logout'%}" class="menu-item logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
   </div>
