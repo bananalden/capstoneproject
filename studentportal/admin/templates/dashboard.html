@@ -80,7 +80,6 @@ Dashboard{%endblock%} {%block content%}
 
           <div class="form-group" id="course">
             <label for="course">Course</label>
-            {% csrf_token %}
             <select id="courseDropdown" name="course">
               <option value="" disabled selected>Select Course</option>
             </select>
@@ -88,7 +87,6 @@ Dashboard{%endblock%} {%block content%}
 
           <div class="form-group" id="teacher">
             <label for="teacher">Teacher</label>
-            {% csrf_token %}
             <select id="teacherDropdown" name="teacher">
               <option value="" disabled selected>Select Teacher</option>
             </select>
