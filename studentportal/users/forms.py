@@ -1,7 +1,7 @@
 from django import forms
 from users import models
 from course import models as course_models
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm
 from django.contrib.auth.hashers import make_password
 
 class edit_admin(forms.ModelForm):
@@ -9,29 +9,11 @@ class edit_admin(forms.ModelForm):
         model = models.CustomUser
         fields = ['first_name','last_name','email','username']
 
-class change_password(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
+class change_password(PasswordChangeForm):
     
     class Meta:
         model = models.CustomUser
-        fields = ['password']
-
-    def clean(self):
-        cleaned_data = super(change_password, self).clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get("confirm_password")
-
-        if password != confirm_password:
-            raise forms.ValidationError(
-                "Password mismatch! Please confirm properly"
-            )
-        
-    def save(self, commit=True):
-        password = super().save(commit=False)
-        password.set_password(self.cleaned_data['password'])
-        if commit:
-            password.save()
+        fields = ['old_password','new_password1','new_password2']
 
 
 class add_cashier(forms.ModelForm):

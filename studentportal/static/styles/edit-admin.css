@@ -1,0 +1,7 @@
+.admin-info-container{
+    border: solid 1px grey;
+}
+
+.admin-info-container, ul{
+    list-style: none;
+}
