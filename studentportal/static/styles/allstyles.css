@@ -2,8 +2,12 @@
 @import url('sidebar.css');
 @import url('dashboard-content.css');
 @import url('course-semester.css');
+<<<<<<< HEAD
 @import url('401.css');
 @import url('edit-admin.css');
+=======
+@import url('cashier-dashboard.css');
+>>>>>>> front-end
 
 * {
   margin: 0;
