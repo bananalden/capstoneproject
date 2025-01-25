@@ -14,88 +14,68 @@
     <!-- Link to FontAwesome for icons -->
   </head>
   <body>
-    <div class="dashboard">
-      <header>
-        <!-- Header Title -->
-        <h1>Cashier Dashboard</h1>
-        <!-- Search Bar -->
-        <div class="search-bar">
-          <input type="text" id="search" placeholder="Search transactions..." />
-          <button class="search-btn">
-            <i class="fas fa-search"></i> Search
-          </button>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cashier Dashboard</title>
+        <link rel="stylesheet" href="text.css" />
+      </head>
+      <body>
+        <div class="dashboard">
+          <!-- Main Content -->
+          <div class="main-content">
+            <div class="header">
+              <h1>Welcome, Cashier!</h1>
+              <div class="profile">
+                <img
+                  src="https://via.placeholder.com/40"
+                  alt="Profile Picture"
+                />
+                <span>Mary Grace</span>
+              </div>
+            </div>
+
+            <div class="grid">
+              <!-- Daily Summary Widget -->
+              <div class="widget">
+                <h3>Daily Summary</h3>
+                <p>Total Collected Today: PHP 50,000</p>
+                <p>Transactions: 120</p>
+              </div>
+
+              <!-- Pending Approvals -->
+              <div class="widget">
+                <h3>Pending Approvals</h3>
+                <p>5 refund requests awaiting approval.</p>
+                <a href="#" class="btn">View Details</a>
+              </div>
+
+              <!-- Recent Transactions -->
+              <div class="widget">
+                <h3>Recent Transactions</h3>
+                <ul>
+                  <li>John Doe - PHP 5,000 - Tuition</li>
+                  <li>Jane Smith - PHP 2,500 - Miscellaneous</li>
+                  <li>Paul Lee - PHP 3,000 - ID Fee</li>
+                  <li>Anna Taylor - PHP 4,200 - Books</li>
+                  <li>Mark Wilson - PHP 1,800 - Laboratory</li>
+                  <li>Susan Clark - PHP 2,900 - Activity Fee</li>
+                </ul>
+                <a href="#" class="btn">View All</a>
+              </div>
+
+              <!-- Student Notifications Widget -->
+              <div class="widget">
+                <h3>Student Notifications</h3>
+                <p>3 overdue accounts. Send reminders now!</p>
+                <a href="#" class="btn">Send Reminders</a>
+              </div>
+            </div>
+          </div>
         </div>
-      </header>
-      <main>
-        <section class="transaction-history card">
-          <h2>Transaction History</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Transaction Number</th>
-                <!-- Added column -->
-                <th>Date</th>
-                <th>Customer</th>
-                <th>Amount</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#001</td>
-                <!-- Added data for the new column -->
-                <td>2025-01-10</td>
-                <td>Joseph</td>
-                <td>150.00</td>
-                <td>Paid</td>
-              </tr>
-              <tr>
-                <td>#002</td>
-                <!-- Added data for the new column -->
-                <td>2025-01-11</td>
-                <td>Ashley</td>
-                <td>200.00</td>
-                <td>Paid</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-        <section class="approval-list card">
-          <h2>Approval List</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Request ID</th>
-                <th>Customer</th>
-                <th>Amount</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#12345</td>
-                <td>Clark</td>
-                <td>300.00</td>
-                <td>
-                  <button class="approve-btn">
-                    <i class="fas fa-check-circle"></i> Approve
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>#12346</td>
-                <td>Angel</td>
-                <td>120.00</td>
-                <td>
-                  <button class="approve-btn">
-                    <i class="fas fa-check-circle"></i> Approve
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      </main>
-    </div>
+      </body>
+    </html>
   </body>
 </html>
