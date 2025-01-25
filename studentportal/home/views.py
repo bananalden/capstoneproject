@@ -7,6 +7,6 @@ from django.contrib import messages
 # Create your views here.
 
 def cashier_home(request):
-    return render(request, 'cashier/cashier_dashboard.html')
+    return render(request, 'cashier/dashboard.html')
 def registrar_home(request):
     return render(request, 'registrar/registrar.html')
