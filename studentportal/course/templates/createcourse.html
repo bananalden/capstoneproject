@@ -9,12 +9,12 @@ Course List
     {%for msg in messages%}
           {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
               <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  {{msg}}
+                  <p id="error-message-success">{{msg}}</p>
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
           {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              {{msg}}
+                <p id="error-message-danger">{{msg}}</p>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             {%endif%}
