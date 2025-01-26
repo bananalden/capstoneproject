@@ -5,9 +5,16 @@ from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm
 from django.contrib.auth.hashers import make_password
 
 class edit_admin(forms.ModelForm):
+    def __init__(self, *args,**kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["first_name"].widget.attrs.update({"class":"first_name"})
+        self.fields["last_name"].widget.attrs.update({"class":"last_name"})
+        self.fields["email"].widget.attrs.update({"class":"email"})
+        self.fields["username"].widget.attrs.update({"class":"username"})
     class Meta:
         model = models.CustomUser
         fields = ['first_name','last_name','email','username']
+
 
 class change_password(PasswordChangeForm):
     
