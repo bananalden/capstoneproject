@@ -7,10 +7,17 @@ from django.contrib.auth.hashers import make_password
 class edit_admin(forms.ModelForm):
     def __init__(self, *args,**kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["first_name"].widget.attrs.update({"class":"first_name"})
-        self.fields["last_name"].widget.attrs.update({"class":"last_name"})
-        self.fields["email"].widget.attrs.update({"class":"email"})
-        self.fields["username"].widget.attrs.update({"class":"username"})
+        self.fields["first_name"].widget.attrs.update({"class":"first_name",
+                                                       "placeholder":"Enter your first name"
+                                                       })
+        self.fields["last_name"].widget.attrs.update({"class":"last_name",
+                                                      "placeholder":"Enter your last name"
+                                                      })
+        self.fields["email"].widget.attrs.update({"class":"email",
+                                                  "placeholder":"Enter your email"})
+        self.fields["username"].widget.attrs.update({"class":"username",
+                                                     "placeholder":"Enter your username"
+                                                     })
     class Meta:
         model = models.CustomUser
         fields = ['first_name','last_name','email','username']

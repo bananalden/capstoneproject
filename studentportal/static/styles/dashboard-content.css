@@ -168,7 +168,7 @@
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #ef233c !important;
+  border-color: #007bff !important;
   outline: none !important;
 }
 
