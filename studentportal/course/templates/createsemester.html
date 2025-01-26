@@ -5,7 +5,7 @@ Semester List
 {%load static%}
 {% block content %}
     <div class="semester-list">
-      <div class="container">
+  
     {%for msg in messages%}
           {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
               <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -19,7 +19,7 @@ Semester List
             </div>
             {%endif%}
       {%endfor%}
-    </div>
+
         <h1>Semester List</h1>
         
         <!-- Search and Add Course Section -->

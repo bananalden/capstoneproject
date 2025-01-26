@@ -5,7 +5,7 @@ Course List
 {%load static%}
 {% block content %}
     <div class="crud-dashboard">
-      <div class="container">
+
     {%for msg in messages%}
           {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
               <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -19,7 +19,7 @@ Course List
             </div>
             {%endif%}
       {%endfor%}
-    </div>
+
         <h1>Course List</h1>
        
         <!-- Search and Add Course Section -->
