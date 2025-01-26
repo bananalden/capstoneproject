@@ -24,6 +24,21 @@ class edit_admin(forms.ModelForm):
 
 
 class change_password(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["old_password"].widget.attrs.update({
+            "class":"old_password",
+            "placeholder":"Enter your old password"
+        })
+        self.fields["new_password1"].widget.attrs.update({
+            "class":"new_password1",
+            "placeholder":"Enter your new password"
+        })
+        self.fields["new_password2"].widget.attrs.update({
+            "class":"new_password1",
+            "placeholder":"Confirm your new password"
+        })
+        
     
     class Meta:
         model = models.CustomUser
