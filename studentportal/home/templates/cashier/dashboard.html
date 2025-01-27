@@ -4,10 +4,11 @@ Cashier Dashboard
 {% endblock title %}
 
 {% block content %}
-<div class="dashboard">
+
+<div class="cashier-dashboard">
           <!-- Main Content -->
-          <div class="main-content">
-            <div class="header">
+          <div class="cashier-main-content">
+            <div class="cashier-header">
               <h1>Welcome, Cashier!</h1>
               <div class="profile">
                 <img
@@ -18,23 +19,23 @@ Cashier Dashboard
               </div>
             </div>
 
-            <div class="grid">
-              <!-- Daily Summary Widget -->
-              <div class="widget">
+            <div class="cashier-grid">
+              <!-- Daily Summary widget -->
+              <div class="cashier-widget">
                 <h3>Daily Summary</h3>
                 <p>Total Collected Today: PHP 50,000</p>
                 <p>Transactions: 120</p>
               </div>
 
               <!-- Pending Approvals -->
-              <div class="widget">
+              <div class="cashier-widget">
                 <h3>Pending Approvals</h3>
                 <p>5 refund requests awaiting approval.</p>
                 <a href="#" class="btn">View Details</a>
               </div>
 
               <!-- Recent Transactions -->
-              <div class="widget">
+              <div class="cashier-widget">
                 <h3>Recent Transactions</h3>
                 <ul>
                   <li>John Doe - PHP 5,000 - Tuition</li>
@@ -47,8 +48,8 @@ Cashier Dashboard
                 <a href="#" class="btn">View All</a>
               </div>
 
-              <!-- Student Notifications Widget -->
-              <div class="widget">
+              <!-- Student Notifications cashier-widget -->
+              <div class="cashier-widget">
                 <h3>Student Notifications</h3>
                 <p>3 overdue accounts. Send reminders now!</p>
                 <a href="#" class="btn">Send Reminders</a>
@@ -56,4 +57,6 @@ Cashier Dashboard
             </div>
           </div>
         </div>
+
+
 {% endblock content %}

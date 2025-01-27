@@ -4,7 +4,7 @@
 @import url('course-semester.css');
 @import url('401.css');
 @import url('edit-admin.css');
-/* @import url('cashier-dashboard.css'); */
+@import url('cashier-dashboard.css');
 
 * {
   margin: 0;

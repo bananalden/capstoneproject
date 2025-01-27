@@ -7,7 +7,7 @@
   margin-top: 50px;
 }
 
-.dashboard {
+.admin-dashboard {
   width: 100%;
   max-width: 1000px;
   background-color: #ffffff;
@@ -16,7 +16,7 @@
   overflow: hidden;
 }
 
-.dashboard-header {
+.admin-dashboard-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,13 +26,13 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.dashboard-header .logo img {
+.admin-dashboard-header .logo img {
   width: 45px;
   height: 45px;
   object-fit: contain;
 }
 
-.dashboard-header h1 {
+.admin-dashboard-header h1 {
   font-size: 22px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -43,7 +43,7 @@
   color: #fff;
 }
 
-.dashboard-main {
+.admin-dashboard-main {
   padding: 15px 20px;
 }
 
@@ -192,7 +192,7 @@
 }
 
 @media (max-width: 768px) {
-  .dashboard-header h1 {
+  .admin-dashboard-header h1 {
     font-size: 20px;
   }
 
