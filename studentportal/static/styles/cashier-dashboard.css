@@ -11,7 +11,7 @@
   background: linear-gradient(to bottom, #ffffff, #f3f8ff);
 }
 
-.header {
+.cashier-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,23 +23,23 @@
   color: #fafafa;
 }
 
-.header,
+.cashier-header,
 h1 {
   color: #fafafa;
 }
 
-.header .profile {
+.cashier-header .profile {
   display: flex;
   align-items: center;
 }
-.header .profile img {
+.cashier-header .profile img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.widget {
+.cashier-widget {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -48,17 +48,17 @@ h1 {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.widget:hover {
+.cashier-widget:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.widget h3 {
+.cashier-widget h3 {
   margin-top: 0;
   color: #c1121f;
 }
 
-.grid {
+.cashier-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
@@ -74,7 +74,7 @@ h1 {
   border-radius: 10px;
 }
 
-.widget ul {
+.cashier-widget ul {
   max-height: 150px;
   overflow-y: auto;
   list-style: none;
@@ -82,15 +82,15 @@ h1 {
   margin: 0;
 }
 
-.widget ul li {
+.cashier-widget ul li {
   margin-bottom: 10px;
 }
 
-.widget ul::-webkit-scrollbar {
+.cashier-widget ul::-webkit-scrollbar {
   width: 8px;
 }
 
-.widget ul::-webkit-scrollbar-thumb {
+.cashier-widget ul::-webkit-scrollbar-thumb {
   background-color: #2d9cdb;
   border-radius: 4px;
 }
