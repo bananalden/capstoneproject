@@ -1,43 +1,28 @@
-
-
+/* General Container Styling */
 .container {
-  max-width: 800px;
+  max-width: 600px;
   margin: 50px auto;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 20px 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  font-family: "Arial", sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.container h1 {
   text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
+  font-size: 22px;
   font-weight: bold;
-  margin-bottom: 5px;
-  color: #555;
+  margin-bottom: 20px;
+  color: #333333;
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-input:focus {
-  outline: none;
-  border-color: red;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+/* Form Styling */
+.edit-admin-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .row {
@@ -47,29 +32,70 @@ input:focus {
 }
 
 .col {
-  flex: 1 1 48%;
+  flex: 1;
+  min-width: 250px;
 }
 
-.save-btn {
+/* Input Fields */
+.test label {
   display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555555;
+}
+
+.test input {
   width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
+  padding: 10px;
+  border: 1px solid #cccccc;
   border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.test input:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #f9f9f9;
+}
+
+/* Updated Button Styling */
+.save-btn {
+  display: block; /* Ensures the button behaves like a block element */
+  background-color: #007bff;
+  width: 70%; /* Adjusts the width */
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Centers the button horizontally */
 }
 
 .save-btn:hover {
   background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
 }
 
+.save-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.save-btn:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .col {
-    flex: 1 1 100%;
+  .row {
+    flex-direction: column;
   }
 }
