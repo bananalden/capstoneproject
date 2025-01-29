@@ -15,7 +15,7 @@
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #007bff;
+  color: #023047;
 }
 
 /* Form Styling */
@@ -27,7 +27,7 @@
 
 .row {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 15px;
 }
 
@@ -39,9 +39,12 @@
 /* Input Fields */
 .test label {
   display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: #555555;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
+  padding-left: 5px;
 }
 
 .test input {
@@ -61,20 +64,20 @@
 
 /* Updated Button Styling */
 .save-btn {
-  display: block; /* Ensures the button behaves like a block element */
+  display: block;
   background-color: #ef233c;
-  width: 70%; /* Adjusts the width */
+  width: 100%;  /* Full width */
   color: #fff;
   border: none;
-  padding: 10px 16px;
+  padding: 12px 16px;
   border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: bold;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-  margin: 0 auto; /* Centers the button horizontally */
+  margin-top: 15px;
 }
 
 .save-btn:hover {
@@ -97,5 +100,9 @@
 @media (max-width: 768px) {
   .row {
     flex-direction: column;
+  }
+
+  .col {
+    min-width: 100%; /* Ensures columns stack on small screens */
   }
 }

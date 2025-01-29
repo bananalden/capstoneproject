@@ -5,41 +5,49 @@ Edit Admin User
 
 {%load static%}
 {% block content %}
- <div class="container">
-    <h1>Edit Admin User</h1>
-    <div class="edit-admin-form">
-    <form action="{%url 'admin:users:edit-admin'%}" method="POST">
-      <div class="row">
-        <div class="col">
-          <div class="test">
+<div class="container">
+  <h1>Edit Admin User</h1>
+  <div class="edit-admin-form">
+      <form action="{% url 'admin:users:edit-admin' %}" method="POST">
           {% csrf_token %}
-            <label for="first_name">First Name:</label>
-            {{form.first_name}}
+          
+          <!-- First Name & Last Name Row -->
+          <div class="row">
+              <div class="col">
+                  <div class="test">
+                      <label for="first_name">First Name:</label>
+                      {{ form.first_name }}
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="test">
+                      <label for="last_name">Last Name:</label>
+                      {{ form.last_name }}
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="test">
-            <label for="last_name">Last Name:</label>
-            {{form.last_name}}
+
+          <!-- Email & Username Row -->
+          <div class="row">
+              <div class="col">
+                  <div class="test">
+                      <label for="email">Email:</label>
+                      {{ form.email }}
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="test">
+                      <label for="username">Username:</label>
+                      {{ form.username }}
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="test">
-            <label for="email">Email:</label>
-            {{form.email}}
-        </div>
-        <div class="col">
-          <div class="test">
-            <label for="username">Username:</label>
-            {{form.username}}
-          </div>
-        </div>
-      </div>
-      <button class="save-btn" type="submit">Save Changes</button>
-    </form>
+
+          <!-- Save Button (Centered Below) -->
+          <button class="save-btn" type="submit">Save Changes</button>
+      </form>
   </div>
 </div>
+
 
 {% endblock content %}
