@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from users import forms
 from users import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model,update_session_auth_hash
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -71,22 +71,11 @@ def admin_dashboard_action(request):
 def create_cashier(request):
     form = forms.add_cashier()
     cashiers = models.CustomUser.objects.filter(role="CASHIER")
-    
-    if request.method == 'POST':
-        form = forms.add_cashier(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request,'Cashier successfully saved!')
-            return redirect('admin:users:cashier-list')
-        else:
-            messages.warning(request,form.errors)
-            return redirect('admin:users:cashier-list')
-    else:
-        
-        context = {'form':form,
+
+    context = {'form':form,
                    'cashiers':cashiers
                    }
-        return render(request, 'createcashier.html',context)
+    return render(request, 'createcashier.html',context)
     
 def update_cashier(request):
     if request.method == 'POST':
@@ -118,21 +107,12 @@ def delete_cashier(request):
 def create_registrar(request):
     form = forms.add_registrar()
     registrars = models.CustomUser.objects.filter(role="REGISTRAR")
-    if request.method == 'POST':
-        form = forms.add_registrar(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request,'Registrar successfully added!')
-            return redirect('admin:users:registrar-list')
-        else:
-            messages.warning(request,form.errors)
-            return redirect('admin:users:registrar-list')
-    else:
-        context = {
+   
+    context = {
             'form':form,
             'registrars':registrars
         }
-        return render(request, 'createregistrar.html',context)
+    return render(request, 'createregistrar.html',context)
     
 
 def update_registrar(request):
@@ -164,21 +144,10 @@ def create_teacher(request):
     user_form = forms.add_teacher()
     teacher = get_user_model()
     teachers = teacher.objects.filter(role='TEACHER').select_related("teacher_id")
-    if request.method == 'POST':
-        user_form = forms.add_teacher(request.POST)
-        if user_form.is_valid():
-            user_form.save()
-            messages.success(request,"Teacher added successfully!")
-            return redirect('admin:users:teacher-list')
-        else:
-            messages.warning(request,user_form.errors)
-            return redirect('admin:users:teacher-list')
-            
-    else:
-        context = {'user_form':user_form,
+    context = {'user_form':user_form,
                    'teachers':teachers
                 }
-        return render(request, 'createteacher.html',context)
+    return render(request, 'createteacher.html',context)
     
 def update_teacher(request):
     if request.method == 'POST':
@@ -210,21 +179,11 @@ def create_student(request):
     user_form = forms.add_student()
     student = get_user_model()
     students = student.objects.filter(role='STUDENT').select_related("student_id")
-    if request.method == 'POST':
-        user_form = forms.add_student(request.POST)
-        if user_form.is_valid():
-            user_form.save()
-            messages.success(request,'Student added successfully!')
-            return redirect('admin:users:student-list')
-        else:
-            messages.warning(request,user_form.errors)
-            return redirect('admin:users:student-list')
-            
-    else:
-        context = {'user_form':user_form,
+ 
+    context = {'user_form':user_form,
                    'students':students
                 }
-        return render(request, 'createstudent.html',context)
+    return render(request, 'createstudent.html',context)
     
 def update_student(request):
     if request.method == 'POST':
@@ -248,3 +207,18 @@ def delete_student(request):
         return redirect('admin:users:student-list')
 
 #STUDENT ACTION END=============================================
+
+
+#USER PASSWORD EDIT=============================================
+def change_password_user(request):
+    if request.method == 'POST':
+        form = forms.change_password(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, "Password has successfully been updated!")
+            return redirect('admin:edit-admin-password')
+        else:
+            print(form.errors)
+            messages.error(request, form.errors)
+            return redirect('admin:edit-admin-password')

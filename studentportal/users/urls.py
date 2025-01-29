@@ -28,6 +28,11 @@ urlpatterns =[
     #STUDENT ACTION START
     path('student-list', views.create_student, name='student-list'),
     path('student-list/edit',views.update_student,name='student-update'),
-    path('student-list/delete',views.delete_student, name='student-delete')
+    path('student-list/delete',views.delete_student, name='student-delete'),
     #STUDENT ACTION END
+
+    #USER ACTION START
+    path('edit-password',views.change_password_user,name='change-password')
+    #USER ACTION END
+
 ]
