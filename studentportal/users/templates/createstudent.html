@@ -24,9 +24,7 @@ Student List
         
         <!-- Search and Add Course Section -->
         <div class="search-container">
-            <button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addCourse">
-                Add Student
-              </button>
+
             <input type="text" id="search-course" placeholder="Search Course">
         </div>
 
@@ -71,32 +69,7 @@ Student List
     </div>
 
 
-<!-- ADD SUBJECT BUTTON START-->
-<div class="modal fade" id="addCourse" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Add Student</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form method="post">
-      {% csrf_token %}
-        <div class="form-group">
-            {{user_form}}
-        </div>
 
-    
-    </div>
-      <div class="modal-footer">
-        <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="action-btn edit-btn">Add Student</button>
-      </div>
-    </form>
-    </div>
-  </div>
-</div>
-<!-- ADD SUBJECT BUTTON END-->
 
 <!--EDIT SUBJECT START-->
 <div class="modal fade" id="editCourse" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
