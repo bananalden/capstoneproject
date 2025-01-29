@@ -5,6 +5,7 @@
 @import url("401.css");
 @import url("edit-admin.css");
 @import url("cashier-dashboard.css");
+@import url("edit-admin-pass.css");
 
 * {
   margin: 0;

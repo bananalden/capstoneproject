@@ -15,7 +15,7 @@
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #333333;
+  color: #007bff;
 }
 
 /* Form Styling */
@@ -62,7 +62,7 @@
 /* Updated Button Styling */
 .save-btn {
   display: block; /* Ensures the button behaves like a block element */
-  background-color: #007bff;
+  background-color: #ef233c;
   width: 70%; /* Adjusts the width */
   color: #fff;
   border: none;
@@ -78,7 +78,7 @@
 }
 
 .save-btn:hover {
-  background-color: #0056b3;
+  background-color: #c1121f;
   transform: translateY(-2px);
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
 }
