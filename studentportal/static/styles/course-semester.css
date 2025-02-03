@@ -151,6 +151,12 @@ table tr:hover {
 }
 
 /* Action Button Styles (Edit, Delete, etc.) */
+.action-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
 .action-btn {
   padding: 10px 20px;
   background-color: #a30f15;
@@ -160,23 +166,26 @@ table tr:hover {
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s ease;
-  display: inline-block;
-  border: none; /* Remove border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  border: none; 
 }
 
 /* Edit Button Specific Styling */
 .edit-btn {
-  background-color: #4caf50; /* Green for edit */
+  background-color: #4caf50;
 }
 
 /* Delete Button Specific Styling */
 .delete-btn {
-  background-color: #a30f15; /* Red for delete */
+  background-color: #a30f15;
 }
 
 /* Action Button Hover Effect */
 .action-btn:hover {
-  transform: translateY(-2px); /* Slight lift on hover */
+  transform: translateY(-2px);
 }
 
 /* Action Button Active Effect (click effect) */
@@ -192,7 +201,7 @@ table tr:hover {
 }
 
 .action-btn.icon-btn i {
-  font-size: 16px; /* Icon size */
+  font-size: 16px;
 }
 
 /* Input Field Styling */
@@ -269,7 +278,7 @@ label {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .crud-dashboard {
-    width: 90%; /* Make the dashboard responsive */
+    width: 90%;
     margin: 20px auto;
     padding: 15px;
   }
@@ -279,7 +288,7 @@ label {
   }
 
   #search-course {
-    width: 200px; /* Adjust search bar width for smaller screens */
+    width: 200px;
   }
 
   table th,
@@ -300,11 +309,11 @@ label {
 
 @media (max-width: 480px) {
   h1 {
-    font-size: 1.5rem; /* Smaller font size for mobile */
+    font-size: 1.5rem;
   }
 
   .search-container {
-    flex-direction: column; /* Stack search elements */
+    flex-direction: column;
     align-items: flex-start;
   }
 
@@ -314,11 +323,11 @@ label {
   }
 
   .add-btn {
-    width: 100%; /* Make the button full-width */
+    width: 100%;
   }
 
   table {
-    font-size: 12px; /* Smaller text for mobile */
+    font-size: 12px;
   }
 }
 /****** Course List End ******/
@@ -349,7 +358,7 @@ h1 {
   align-items: center;
   gap: 15px;
   margin-bottom: 20px;
-  justify-content: space-between; /* Distribute space evenly */
+  justify-content: space-between;
 }
 
 /* Search Bar Styling */
@@ -490,17 +499,17 @@ table tr:hover {
 
 /* Edit Button Specific Styling */
 .edit-btn {
-  background-color: #4caf50; /* Green for edit */
+  background-color: #4caf50;
 }
 
 /* Delete Button Specific Styling */
 .delete-btn {
-  background-color: #a30f15; /* Red for delete */
+  background-color: #a30f15;
 }
 
 /* Action Button Hover Effect */
 .action-btn:hover {
-  transform: translateY(-2px); /* Slight lift on hover */
+  transform: translateY(-2px); 
 }
 
 /* Action Button Active Effect (click effect) */
@@ -516,7 +525,7 @@ table tr:hover {
 }
 
 .action-btn.icon-btn i {
-  font-size: 16px; /* Icon size */
+  font-size: 16px;
 }
 
 /* Input Field Styling */
@@ -615,7 +624,7 @@ label {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .semester-list {
-    width: 90%; /* Make the dashboard responsive */
+    width: 90%; 
     margin: 20px auto;
     padding: 15px;
   }
@@ -625,7 +634,7 @@ label {
   }
 
   #search-course {
-    width: 200px; /* Adjust search bar width for smaller screens */
+    width: 200px; 
   }
 
   table th,
@@ -646,11 +655,11 @@ label {
 
 @media (max-width: 480px) {
   h1 {
-    font-size: 1.5rem; /* Smaller font size for mobile */
+    font-size: 1.5rem;
   }
 
   .search-container {
-    flex-direction: column; /* Stack search elements */
+    flex-direction: column;
     align-items: flex-start;
   }
 
@@ -660,10 +669,10 @@ label {
   }
 
   .add-btn {
-    width: 100%; /* Make the button full-width */
+    width: 100%; 
   }
 
   table {
-    font-size: 12px; /* Smaller text for mobile */
+    font-size: 12px;
   }
 }
