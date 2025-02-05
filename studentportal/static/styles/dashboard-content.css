@@ -1,4 +1,32 @@
 .alert-warning {
+  background: #dc2f2f;
+  border: 2px solid #5c1111
+  ;
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+  padding: 12px 20px;
+  border-radius: 15px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 480px;
+  z-index: 9999; /*Fixed on the top*/
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  font-size: 18px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.alert-warning span {
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+}
+
+
+.alert-success {
   background: #6cbb3c;
   border: 2px solid #4a913c;
   color: #ffffff;
@@ -18,7 +46,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.alert-warning span {
+.alert-success span {
   font-weight: bold;
   font-size: 16px;
   color: #fff;
