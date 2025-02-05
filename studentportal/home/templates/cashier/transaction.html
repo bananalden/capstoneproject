@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/transaction.css'%}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Transaction History</h1>
+      <div class="filters">
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by Name or Transaction ID..."
+          />
+        </div>
+        <div class="filter-options">
+          <select id="filterPurpose">
+            <option value="">Filter by Purpose</option>
+            <option value="Tuition Fee">Tuition Fee</option>
+            <option value="Library Fee">Library Fee</option>
+            <option value="Sports Fee">Sports Fee</option>
+            <option value="Graduation Fee">Graduation Fee</option>
+          </select>
+          <select id="filterDate">
+            <option value="">Filter by Date</option>
+            <option value="2025-01-01">2025-01-01</option>
+            <option value="2025-01-05">2025-01-05</option>
+            <option value="2025-01-10">2025-01-10</option>
+            <option value="2025-01-15">2025-01-15</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table id="transactionTable">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>TXN12345</td>
+              <td>John Doe</td>
+              <td>2025-01-01</td>
+              <td>₱100.00</td>
+              <td>Tuition Fee</td>
+            </tr>
+            <tr>
+              <td>TXN12346</td>
+              <td>Jane Smith</td>
+              <td>2025-01-05</td>
+              <td>₱50.00</td>
+              <td>Library Fee</td>
+            </tr>
+            <tr>
+              <td>TXN12347</td>
+              <td>Mike Johnson</td>
+              <td>2025-01-10</td>
+              <td>₱150.00</td>
+              <td>Sports Fee</td>
+            </tr>
+            <tr>
+              <td>TXN12348</td>
+              <td>Emily Davis</td>
+              <td>2025-01-15</td>
+              <td>₱200.00</td>
+              <td>Graduation Fee</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="no-results" id="noResults" style="display: none">
+          No matching records found
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/transaction.js'%}"></script>
+  </body>
+</html>
