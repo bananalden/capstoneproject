@@ -29,30 +29,30 @@ def admin_dashboard_action(request):
             if form.is_valid():
                 form.save()
                 messages.success(request,"Student successfully created!")
-                return redirect('admin:users:student-list')
+                return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
-                return redirect('admin:users:student-list')
+                return redirect('admin:dashboard')
   #####################LOGIC FOR TEACHER##################################################          
         elif request.POST.get("user_type") == 'TEACHER':
             form = forms.add_teacher(request.POST)
             if form.is_valid():
                 form.save()
                 messages.success(request,"Teacher successfully created!")
-                return redirect('admin:users:teacher-list')
+                return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
-                return redirect('admin:users:teacher-list')
+                return redirect('admin:dashboard')
 ###########################LOGIC FOR REGISTRAR#########################################
         elif request.POST.get("user_type") == 'REGISTRAR':
             form = forms.add_registrar(request.POST)
             if form.is_valid():
                form.save()
                messages.success(request,'Registrar successfully created!')
-               return redirect('admin:users:registrar-list')
+               return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
-                return redirect('admin:users:registrar-list')
+                return redirect('admin:dashboard')
 
  ###########################LOGIC FOR CASHIER#########################################           
         elif request.POST.get("user_type") == 'CASHIER':
@@ -60,10 +60,10 @@ def admin_dashboard_action(request):
             if form.is_valid():
                 form.save()
                 messages.success(request,'Cashier successfully created!')
-                return redirect('admin:users:cashier-list')
+                return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
-                return redirect('admin:users:cashier-list')
+                return redirect('admin:dashboard')
 
 
 #CASHIER ACTION START===================================================
@@ -210,6 +210,7 @@ def delete_student(request):
 
 
 #USER PASSWORD EDIT=============================================
+@login_required(login_url='authentication:login')
 def change_password_user(request):
     if request.method == 'POST':
         form = forms.change_password(request.user, request.POST)
