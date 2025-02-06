@@ -1,3 +1,10 @@
+{% extends "studentview/studentsidebar.html" %}
+{% block title %}
+Student Dashboard
+{% endblock title %}
+
+
+{% block content %}
 <!-- Main Content -->
 <div class="main-content">
   <header>
@@ -5,7 +12,7 @@
       Welcome back, <strong>[Student's Name]</strong>!
     </div>
     <div class="current-time">
-      <p>Today's Date: <strong>January 30, 2025</strong></p>
+      <p>Today's Date: <strong>{%now "M d, Y"%}</strong></p>
     </div>
   </header>
 
@@ -73,3 +80,4 @@
     </div>
   </section>
 </div>
+{% endblock content %}
