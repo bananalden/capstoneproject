@@ -7,7 +7,7 @@
 
 /* Header Styling */
 header {
-  background-color: #3a8dff;
+  background-color: #023047;
   color: white;
   padding: 20px;
   display: flex;
@@ -97,7 +97,7 @@ header {
   background-color: #f9f9f9;
   padding: 18px;
   margin-bottom: 20px;
-  border-left: 5px solid #3a8dff;
+  border-left: 5px solid #023047;
   border-radius: 8px;
   transition: transform 0.3s ease;
 }
@@ -137,7 +137,7 @@ header {
   background-color: #f9f9f9;
   padding: 20px;
   margin-bottom: 15px;
-  border-left: 5px solid #3a8dff;
+  border-left: 5px solid #023047;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
