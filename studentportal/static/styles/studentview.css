@@ -28,6 +28,9 @@ header {
   font-size: 16px;
   margin: 0; /* Para maiwasan ang extra spacing */
 }
+.name-student {
+  margin-left: 10px;
+}
 
 
 
