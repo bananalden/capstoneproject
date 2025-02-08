@@ -184,9 +184,22 @@ input:focus, select:focus {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+/* For Tablets & Small Screens (Below 1024px) */
+@media (max-width: 1024px) {
+  .profile-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .info {
+    width: 100%;
+    padding: 20px;
+  }
+
   .form-container {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 
   .form-group {
@@ -196,7 +209,91 @@ input:focus, select:focus {
 
   label {
     text-align: left;
+    width: 100%;
   }
 }
+
+/* For Mobile Devices (Below 768px) */
+@media (max-width: 768px) {
+  .profile-container {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .profile-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .info {
+    text-align: center;
+    padding: 18px;
+  }
+
+  .form-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  label {
+    width: 100%;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  input, select {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .save-us {
+    width: 100%;
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+
+/* For Extra Small Screens (Below 480px) */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 16px;
+    padding-bottom: 8px;
+  }
+
+  .info {
+    padding: 15px;
+  }
+
+  .info-list li {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .form-group {
+    gap: 5px;
+  }
+
+  input, select {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .save-us {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
 
 
