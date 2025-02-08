@@ -17,7 +17,8 @@ urlpatterns = [
 
     #REGISTRAR URLS END ========================
 
-    path('student/',views.student_home,name='student-home')
+    path('student/',views.student_home,name='student-home'),
+    path('student/profile',views.student_profile,name='student-profile')
 
     #STUDENT URLS START ========================
 ]

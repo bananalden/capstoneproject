@@ -22,3 +22,6 @@ def registrar_home(request):
 
 def student_home(request):
     return render(request,'studentview/studentdashboard.html')
+
+def student_profile(request):
+    return render(request,'studentview/studentprofile.html')
