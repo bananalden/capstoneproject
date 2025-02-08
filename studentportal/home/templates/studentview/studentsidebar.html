@@ -45,9 +45,10 @@
         <span class="aclc-apalit">ACLC Apalit</span>
       </div>
       <ul class="sidebar-menu">
+
         <li>
           <a
-            href="{%url 'admin:dashboard'%}"
+            href="#"
             class="menu-item"
             data-link="dashboard"
             ><i class="fas fa-house-user"></i> Dashboard</a
@@ -56,52 +57,32 @@
 
         <li class="dropdown">
           <a href="#" class="menu-item dropdown-toggle" data-toggle="dropdown"
-            ><i class="fas fa-school"></i> School Management<span
-              class="caret"
-            ></span
-          ></a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="{%url 'admin:schoolmanagement:course-list'%}">Course</a>
-            </li>
-            <li>
-              <a href="{%url 'admin:schoolmanagement:semester-list'%}"
-                >Semester</a
-              >
-            </li>
-            <li>
-              <a href="{%url 'admin:schoolmanagement:subject-list'%}"
-                >Subject</a
-              >
-            </li>
-          </ul>
-        </li>
-
-        <li class="dropdown">
-          <a href="#" class="menu-item dropdown-toggle" data-toggle="dropdown"
-            ><i class="fas fa-users"></i> User Management
+            ><i class="fas fa-users"></i> School Actions
             <span class="caret"></span
           ></a>
           <ul class="dropdown-menu">
-            <li>
-              <a href="{%url 'admin:users:registrar-list'%}">Registrar</a>
-            </li>
-            <li><a href="{%url 'admin:users:cashier-list'%}">Cashier</a></li>
-            <li><a href="{%url 'admin:users:teacher-list'%}">Teacher</a></li>
-            <li><a href="{%url 'admin:users:student-list'%}">Student</a></li>
+            <li><a href="#">View Enrolled Subjects</a></li>
+            <li><a href="#">View Transaction History</a></li>
+            <li><a href="#">View Grades</a></li>
+            <li><a href="#">Create Document Request</a></li>
+
+
           </ul>
         </li>
-        <li>
+
+      <li>
           <a
-            href="{%url 'admin:edit-admin'%}"
+            href="#"
             class="menu-item"
             data-link="dashboard"
-            ><i class="fas fa-user"></i> Edit Admin</a
+            ><i class="fas fa-user"></i> Edit User</a
           >
         </li>
+
+
         <li>
           <a
-            href="{%url 'admin:edit-admin-password'%}"
+            href="#"
             class="menu-item"
             data-link="dashboard"
             ><i class="fas fa-key"></i> Change Password</a
