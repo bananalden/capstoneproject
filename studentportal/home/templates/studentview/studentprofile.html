@@ -6,63 +6,99 @@ Student Dashboard
 
 {% block content %}
 <div class="profile-container">
-  <h2>Student Profile</h2>
-  
-  <!-- Profile View -->
-  <div class="info">
-      <h3>Personal Information</h3>
-      <p><span>Full Name:</span> Mj Mendiola</p>
-      <p><span>Date of Birth:</span> January 1, 2000</p>
-      <p><span>Gender:</span> Male</p>
-      <p><span>Address:</span> Apalit, Pampanga</p>
-      <p><span>Contact:</span> 09123456789</p>
-      <p><span>Email:</span> mj.mendiola@email.com</p>
-      
-      <h3>Academic Information</h3>
-      <p><span>Student ID:</span> 20241234</p>
-      <p><span>Course:</span> BS Information Technology</p>
-      <p><span>Year Level:</span> 4th Year</p>
-  </div>
+    <h2>Student Profile</h2>
 
-  <!-- Edit Profile Section -->
-  <div class="edit-form">
-      <h3>Edit Profile</h3>
+    <div class="profile-info">
+        <!-- Personal Information -->
+        <div class="info">
+            <h3><i class="fas fa-user"></i> Personal Information</h3>
+            <ul class="info-list">
+                <li><i class="fas fa-user-circle"></i> <strong>Full Name:</strong> Mj Mendiola</li>
+                <li><i class="fas fa-calendar-alt"></i> <strong>Date of Birth:</strong> January 1, 2000</li>
+                <li><i class="fas fa-venus-mars"></i> <strong>Gender:</strong> Male</li>
+                <li><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Apalit, Pampanga</li>
+                <li><i class="fas fa-phone-alt"></i> <strong>Contact:</strong> 09123456789</li>
+                <li><i class="fas fa-envelope"></i> <strong>Email:</strong> mj.mendiola@email.com</li>
+            </ul>
+        </div>
+    
+        <!-- Academic Information -->
+        <div class="info">
+            <h3><i class="fas fa-graduation-cap"></i> Academic Information</h3>
+            <ul class="info-list">
+                <li><i class="fas fa-id-badge"></i> <strong>Student ID:</strong> 20241234</li>
+                <li><i class="fas fa-book"></i> <strong>Course:</strong> BS Information Technology</li>
+                <li><i class="fas fa-layer-group"></i> <strong>Year Level:</strong> 4th Year</li>
+            </ul>
+        </div>
+    </div>
+    
 
-      <label for="name">Last Name</label>
-      <input type="text" id="name" value="Mendiola">
+    <!-- Edit Profile Section -->
+<div class="edit-form">
+    <h3><i class="fa-solid fa-user-pen"></i> Edit Profile</h3>
+    
+    <div class="form-container">
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" value="Mendiola">
+        </div>
 
-      <label for="name">First Name</label>
-      <input type="text" id="name" value="Mj">
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" value="Mj">
+        </div>
 
-      <label for="dob">Date of Birth</label>
-      <input type="date" id="dob" value="2000-01-01">
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" value="2000-01-01">
+        </div>
 
-      <label for="gender">Gender</label>
-      <select id="gender">
-          <option>Male</option>
-          <option>Female</option>
-      </select>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>
 
-      <label for="address">Address</label>
-      <input type="text" id="address" value="Apalit, Pampanga">
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" value="Apalit, Pampanga">
+        </div>
 
-      <label for="contact">Contact</label>
-      <input type="text" id="contact" value="09123456789">
+        <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="text" id="contact" value="09123456789">
+        </div>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" value="mj.mendiola@email.com">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" value="mj.mendiola@email.com">
+        </div>
 
-      <label for="studentID">Student ID</label>
-      <input type="text" id="studentID" value="20241234">
+        <div class="form-group">
+            <label for="studentID">Student ID</label>
+            <input type="text" id="studentID" value="20241234">
+        </div>
 
-      <label for="course">Course</label>
-      <input type="text" id="course" value="BS Information Technology">
+        <div class="form-group">
+            <label for="course">Course</label>
+            <input type="text" id="course" value="BS Information Technology">
+        </div>
 
-      <label for="year">Year Level</label>
-      <input type="text" id="year" value="4th Year">
-  </div>
-  <button class="save-us" type="submit">Save Us</button>
+        <div class="form-group">
+            <label for="year">Year Level</label>
+            <input type="text" id="year" value="4th Year">
+        </div>
+    </div>
+
+    <button class="save-us" type="submit">Save Changes</button>
 </div>
+
+</div>
+
+
 
 
 {% endblock content %}
