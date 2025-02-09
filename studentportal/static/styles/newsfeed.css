@@ -1,84 +1,205 @@
-/* Main Section Content */
-.main-section-content {
-  padding: 20px;
-  width: 100%;
+/* Main Content */
+.main_content_wrapper{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1500px; /* Further increased width */
+  padding: 35px;
+  transition: margin-left 0.3s ease-in-out;
+  animation: fadeIn 0.8s ease-in-out; /* Apply fade-in animation */
 }
 
 /* Search Bar Styling */
-.searching {
+.search_bar_container {
   margin-bottom: 20px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Push search bar to the right */
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  margin-left: auto; /* Ensures it stays on the right */
 }
 
-.searching input {
-  padding: 10px;
+.search_announcements {
+  width: 100%;
+  padding: 12px 15px 12px 50px; /* Increased left padding to move placeholder past icon */
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 12px;
   font-size: 16px;
-  width: 300px;
+  transition: all 0.4s ease-in-out;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
 }
 
-/* Newsfeed Container */
-.newsfeed-container {
-  margin-top: 20px;
+/* Search Icon */
+.search_bar_container::before {
+  content: "\1F50D"; /* Unicode for magnifying glass */
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #7f8c8d;
 }
 
-/* Category Dropdown Styling */
-.announcement-category-dropdown select {
-  padding: 10px;
+/* Placeholder Animation */
+.search_announcements::placeholder {
+  transition: all 0.3s ease-in-out;
+  padding-left: 10px; /* Ensures placeholder text starts after the icon */
+}
+
+.search_announcements:focus::placeholder {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Focus Effect */
+.search_announcements:focus {
+  width: 100%;
+  background-color: #f0faff;
+  border-color: #3498db;
+  box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Announcement Category Dropdown */
+.announcement_category_container {
+  margin-bottom: 25px;
+}
+
+.category-dropdown {
+  padding: 12px;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 6px;
   width: 250px;
-  margin-bottom: 20px;
-}
-
-/* Newsfeed Announcements Section */
-.newsfeed-announcements {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-/* Individual Announcement Card */
-.announcement_item {
   background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
+
+.category-dropdown:hover,
+.category-dropdown:focus {
+  border-color: #3498db;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Newsfeed Section */
+.newsfeed_announcements_container {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.6s ease-in-out;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Announcement List */
+.announcement_list {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+/* Individual Announcement */
+.announcement_item {
+  padding: 20px 25px;
+  border-left: 6px solid #023047;
+  background: #f9f9f9;
+  border-radius: 8px;
+  transition: background 0.3s ease, border-left-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 20px; /* Extra spacing */
+}
+
 
 .announcement_item:hover {
-  transform: translateY(-5px);
+  background: #eefaf6;
+  border-left-color: #16a085;
+  transform: scale(1.02);
+  cursor: pointer;
 }
 
-.announcement_item h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+/* Announcement Title */
+.announcement_title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.announcement_item a {
+.announcement_link {
   text-decoration: none;
-  color: #004b87;
+  color: #c1121f;
+  transition: color 0.3s ease;
 }
 
-.post-details {
-  font-size: 14px;
-  color: #777;
+.announcement_link:hover {
+  color: #1abc9c;
+  cursor: pointer;
 }
 
-.announcement-description {
-  font-size: 16px;
-  margin-bottom: 15px;
+/* Announcement Description */
+.announcement_description {
+  font-size: 17px;
+  color: #333;
+  line-height: 1.6;
 }
 
-.read-more-link {
-  color: #004b87;
+/* Announcement Info */
+.announcement_post_info {
+  font-size: 15px;
+  color: #7f8c8d;
+  margin-bottom: 8px;
+}
+
+/* Read More */
+.announcement_read_more {
+  font-size: 15px;
+  color: #1abc9c;
   font-weight: bold;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.read-more-link:hover {
-  text-decoration: underline;
+.announcement_read_more:hover {
+  color: #c1121f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar-navigation {
+    width: 220px;
+  }
+
+  .main-content-wrapper {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 25px;
+  }
+
+  .search_announcements,
+  .category-dropdown {
+    width: 100%;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

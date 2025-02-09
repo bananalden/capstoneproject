@@ -1,10 +1,56 @@
 {% extends "studentview/studentsidebar.html" %}
 {% block title %}
-Student Dashboard
+News Feed
 {% endblock title %}
 {%load static%}
-
 {% block content %}
+<!-- Main Content Section -->
+<div class="main_content_wrapper">
+  <!-- Search Bar -->
+  <div class="search_bar_container">
+      <input type="text" placeholder="Search announcements..." class="search_announcements">
+  </div>
 
+  <!-- Main Newsfeed Section -->
+  <main class="newsfeed-main-container">
+      <!-- Dropdown for Filtering Announcements by Teacher -->
+      <div class="announcement_category_container">
+          <select class="category-dropdown" id="filterDropdown">
+              <option value="all">All Announcements</option>
+              <option value="Ms. Reyes">Ms. Reyes (Math)</option>
+              <option value="Mr. Santos">Mr. Santos (Student Affairs)</option>
+          </select>
+      </div>
+  
+      <!-- Newsfeed Section -->
+      <div class="newsfeed_announcements_container">
+          <div class="announcement_list">
+              <div class="announcement_item" data-teacher="Ms. Reyes">
+                  <h3 class="announcement_title">
+                      <a href="#" class="announcement_link">Midterm Exam Schedule Announcement</a>
+                  </h3>
+                  <p class="announcement_description">
+                      The midterm exam schedule for all sections will be posted on February 12. Please check your schedules.
+                  </p>
+                  <p class="announcement_post_info">Posted: 02/09/2025 | Posted by: Ms. Reyes (Math)</p>
+                  <a href="#" class="announcement_read_more">Read More</a>
+              </div>
+          </div>
+
+          <div class="announcement_list">
+            <div class="announcement_item" data-teacher="Ms. Reyes">
+                <h3 class="announcement_title">
+                    <a href="#" class="announcement_link">Midterm Exam Schedule Announcement</a>
+                </h3>
+                <p class="announcement_description">
+                    The midterm exam schedule for all sections will be posted on February 12. Please check your schedules.
+                </p>
+                <p class="announcement_post_info">Posted: 02/09/2025 | Posted by: Ms. Reyes (Math)</p>
+                <a href="#" class="announcement_read_more">Read More</a>
+            </div>
+          </div>
+    </div>
+  </main>
+</div>
 
 {% endblock content %}
