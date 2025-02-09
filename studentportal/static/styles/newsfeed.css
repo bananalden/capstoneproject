@@ -1,0 +1,84 @@
+/* Main Section Content */
+.main-section-content {
+  padding: 20px;
+  width: 100%;
+}
+
+/* Search Bar Styling */
+.searching {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.searching input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px;
+}
+
+/* Newsfeed Container */
+.newsfeed-container {
+  margin-top: 20px;
+}
+
+/* Category Dropdown Styling */
+.announcement-category-dropdown select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+/* Newsfeed Announcements Section */
+.newsfeed-announcements {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Individual Announcement Card */
+.announcement_item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.announcement_item:hover {
+  transform: translateY(-5px);
+}
+
+.announcement_item h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.announcement_item a {
+  text-decoration: none;
+  color: #004b87;
+}
+
+.post-details {
+  font-size: 14px;
+  color: #777;
+}
+
+.announcement-description {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.read-more-link {
+  color: #004b87;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.read-more-link:hover {
+  text-decoration: underline;
+}

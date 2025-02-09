@@ -42,13 +42,14 @@
   
   .sidebar-menu li {
     padding: 10px 15px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     margin: 5px 0;
     display: flex;
     align-items: center;
   }
   
   .sidebar-menu li:hover {
+    transform: translateX(5px);
     background-color: #c1121f;
     border-radius: 5px;
   }
@@ -150,11 +151,12 @@
     text-decoration: none;
     font-size: 16px;
     padding: 10px 15px; /* Consistent padding */
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     border-radius: 5px; /* Optional: adds rounded corners */
   }
   
   .logout:hover {
+    transform: translateX(5px);
     background-color: #c1121f;
     color: #fff;
   }
