@@ -19,7 +19,7 @@
   margin-left: auto; /* Ensures it stays on the right */
 }
 
-.search_announcements {
+.search_bar_container input{
   width: 100%;
   padding: 12px 15px 12px 50px; /* Increased left padding to move placeholder past icon */
   border: 1px solid #ddd;
@@ -115,7 +115,6 @@
 
 .announcement_item:hover {
   background: #eefaf6;
-  border-left-color: #16a085;
   transform: scale(1.02);
   cursor: pointer;
 }
@@ -129,13 +128,8 @@
 
 .announcement_link {
   text-decoration: none;
-  color: #c1121f;
+  color: #023047;
   transition: color 0.3s ease;
-}
-
-.announcement_link:hover {
-  color: #1abc9c;
-  cursor: pointer;
 }
 
 /* Announcement Description */
@@ -155,14 +149,14 @@
 /* Read More */
 .announcement_read_more {
   font-size: 15px;
-  color: #1abc9c;
+  color: #1e549f;
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .announcement_read_more:hover {
-  color: #c1121f;
+  color: #3498db;
 }
 
 /* Responsive Design */

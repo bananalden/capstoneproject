@@ -10,7 +10,7 @@
 }
 
 /* Heading */
-h2 {
+.profile-container h2 {
   text-align: center;
   color: #333;
   font-size: 24px;
@@ -38,7 +38,7 @@ h2 {
 }
 
 /* Section Headings */
-h3 {
+.info h3 {
   font-size: 22px;
   color: #023047;
   font-weight: bold;
