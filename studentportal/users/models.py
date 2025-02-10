@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from course.models import Course
+
 
 # Create your models here.
 class CustomUserManager(BaseUserManager):

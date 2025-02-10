@@ -1,5 +1,5 @@
 from django.db.models.signals import post_save
-from .models import Student, Teacher, StudentProfile, TeacherProfile
+from .models import Student, Teacher, StudentProfile
 from django.dispatch import receiver
 
 
