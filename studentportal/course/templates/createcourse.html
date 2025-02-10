@@ -33,9 +33,6 @@ Course List
        
         <!-- Search and Add Course Section -->
         <div class="search-container">
-            <button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addCourse">
-                Add Course
-              </button>
             <input type="text" id="search-course" placeholder="Search Course">
         </div>
 
@@ -54,12 +51,16 @@ Course List
                     <td>{{courses.id}}</td>
                     <td>{{courses.name}}</td>
                     <td class="action-btn-container">
-                        <button class="action-btn edit-btn" data-id="{{courses.id}}"data-bs-toggle="modal" data-bs-target="#editCourse">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button type="button" data-id="{{courses.id}}"class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
-                        <i class="fas fa-trash-alt"></i> Delete
-                    </button>
+                      <div class="buttons">
+                        <button class="action-btn edit-btn" data-id="{{courses.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button type="button" data-id="{{courses.id}}" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                    </div>
+                    
+
                 </td>
                 </tr>
         {%endfor%}

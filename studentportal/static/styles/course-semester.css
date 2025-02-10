@@ -18,31 +18,6 @@
   margin-bottom: 20px;
 }
 
-/* Add Course Button Styling */
-.add-btn {
-  padding: 12px 20px;
-  background-color: #023047;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-left: 15px; /* Space between the search bar and the button */
-}
-
-/* Add Course Button Hover Effect */
-.add-btn:hover {
-  background-color: #04548c;
-  transform: translateY(-2px);
-}
-
-/* Add Course Button Active Effect */
-.add-btn:active {
-  transform: translateY(2px);
-}
-
 /* Table Styles */
 table {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -318,14 +293,14 @@ h1 {
 }
 
 /* Search Container Styling */
-.search-container {
+/* .search-container {
   display: flex;
   align-items: center;
   width: 100%;
 }
 
 #search-course {
-  margin-left: auto; /* Pushes the search input to the right */
+  margin-left: auto;
   width: 50%;
   max-width: 300px;
   padding: 10px 15px;
@@ -340,33 +315,58 @@ h1 {
 #search-course:focus {
   border-color: #007bff;
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+} */
+
+.search-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end; /* Push search bar to the right */
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  margin-left: auto; /* Ensures it stays on the right */
 }
 
-
-
-
-/* Add Course Button Styling */
-.add-btn {
-  padding: 12px 20px;
-  background-color: #023047;
-  color: white;
-  border: none;
-  border-radius: 15px;
+#search-course {
+  width: 100%;
+  padding: 12px 15px 12px 50px; /* Increased left padding to move placeholder past icon */
+  border: 1px solid #ddd;
+  border-radius: 12px;
   font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: all 0.4s ease-in-out;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
 }
 
-/* Add Course Button Hover Effect */
-.add-btn:hover {
-  background-color: #04548c;
-  transform: translateY(-2px);
+/* Search Icon */
+.search-container::before {
+  content: "\1F50D"; /* Unicode for magnifying glass */
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #7f8c8d;
 }
 
-/* Add Course Button Active Effect */
-.add-btn:active {
-  transform: translateY(2px);
+/* Placeholder Animation */
+#search-course::placeholder {
+  transition: all 0.3s ease-in-out;
+  padding-left: 10px; /* Ensures placeholder text starts after the icon */
+}
+
+#search-course:focus::placeholder {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Focus Effect */
+#search-course:focus {
+  width: 100%;
+  background-color: #f0faff;
+  border-color: #3498db;
+  box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
 }
 
 /* Table Styles */
@@ -454,6 +454,13 @@ table tr:hover {
   display: inline-block;
   border: none; /* Remove border */
 }
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
 
 /* Edit Button Specific Styling */
 .edit-btn {
