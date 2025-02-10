@@ -8,13 +8,10 @@ def create_student_profile (sender, instance, created, **kwargs):
     if created and instance.role =="STUDENT":
         profile_data = getattr(instance, 'profile_data',{})
         StudentProfile.objects.get_or_create(student=instance,
-                                             course=profile_data.get('course'),
-                                             teacher=profile_data.get('teacher')
-                                             )
+                                             defaults={
+                                                 'date_of_birth': profile_data.get('date_of_birth'),
+                                                 'gender': profile_data.get('gender'),
+                                                 'address': profile_data.get('address'),
+                                                 'date_of_birth': profile_data.get('date_of_birth'),
+                                             })
 
-@receiver(post_save, sender=Teacher)
-def create_teacher_profile (sender, instance, created, **kwargs):
-    if created and instance.role =="TEACHER":
-        profile_data = getattr(instance, 'profile_data', {})
-        TeacherProfile.objects.get_or_create(teacher=instance,
-                                            course=profile_data.get('course'))
