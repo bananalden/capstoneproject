@@ -12,12 +12,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Transaction',
+            name='Announcement',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('is_approved', models.BooleanField()),
-                ('status', models.CharField(choices=[('PENDING', 'Pending'), ('PROCESSING', 'Processing'), ('AVAILABLE', 'Available')], default='PENDING', max_length=255)),
-                ('amount', models.FloatField(max_length=100)),
+                ('title', models.CharField(max_length=255)),
+                ('body', models.TextField()),
+                ('created_on', models.DateTimeField(auto_now_add=True)),
+                ('modified_on', models.DateTimeField(auto_now=True)),
             ],
         ),
     ]
