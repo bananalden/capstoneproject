@@ -11,3 +11,4 @@ class Transaction(models.Model):
     student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
     is_approved = models.BooleanField()
     status = models.CharField(max_length=255, choices=Status.choices, default=Status.PENDING)
+    amount = models.FloatField(max_length=100)

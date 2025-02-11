@@ -143,7 +143,7 @@ def delete_registrar(request):
 def create_teacher(request):
     user_form = forms.add_teacher()
     teacher = get_user_model()
-    teachers = teacher.objects.filter(role='TEACHER').select_related("teacher_id")
+    teachers = teacher.objects.filter(role='TEACHER')
     context = {'user_form':user_form,
                    'teachers':teachers
                 }

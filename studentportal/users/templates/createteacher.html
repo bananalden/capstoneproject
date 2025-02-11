@@ -38,7 +38,6 @@ Teacher List
                     <th>Name</th>
                     <th>Username</th>
                     <th>Email</th>
-                    <th>Course</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -49,7 +48,6 @@ Teacher List
                     <td>{{teacher.first_name}} {{teacher.last_name}}</td>
                     <td>{{teacher.username}}</td>
                     <td>{{teacher.email}}</td>
-                    <td>{{teacher.teacher_id.course}}</td>
                     <td>
                       <div class="buttons">
                         <button class="action-btn edit-btn" data-id="{{courses.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
@@ -111,12 +109,6 @@ Teacher List
                 <input type="password" name="password" required>
             </div>
     
-            <div class="form-group">
-                <label for="course">Select Course:</label>
-                <select name="course" id="course">
-                    <option value="" disabled selected>Select Course</option>
-                </select>
-            </div>
         
         </div>
         <div class="modal-footer">
@@ -153,6 +145,6 @@ Teacher List
     </div>
   </div>
     
-<script src="{%static 'js/teacher_modal_ud.js'%}"></script>
+<script src="{%static 'js/admin_modal_ud.js'%}"></script>
 <!--DELETE COURSE END-->
 {% endblock content %}

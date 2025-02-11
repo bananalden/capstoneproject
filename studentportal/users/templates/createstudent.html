@@ -35,8 +35,6 @@ Student List
                     <th>Name</th>
                     <th>Email</th>
                     <th>Username</th>
-                    <th>Course</th>
-                    <th>Assigned Teacher</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -46,8 +44,6 @@ Student List
                     <td>{{student.first_name}} {{student.last_name}}</td>
                     <td>{{student.email}}</td>
                     <td>{{student.username}}</td>
-                    <td>{{student.student_id.course}}</td>
-                    <td>{{student.student_id.teacher.first_name}} {{student.student_id.teacher.last_name}}</td>
                     <td>
                       <div class="buttons">
                         <button class="action-btn edit-btn" data-id="{{courses.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
@@ -110,23 +106,7 @@ Student List
                 <input type="password" name="password" required>
             </div>
     
-            <div class="form-group">
-              <label for="teacher">Select Teacher:</label>
-              <select name="teacher" id="teacher">
-                  <option value="" disabled selected>--------</option>
-              </select>
-          </div>
-
-
-            <div class="form-group">
-                <label for="semester">Select Course:</label>
-                <select name="course" id="course">
-                    <option value="" disabled selected>-------</option>
-                </select>
-            </div>
-
-              
-        
+  
         </div>
         <div class="modal-footer">
           <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
@@ -161,6 +141,6 @@ Student List
     </div>
   </div>
     
-<script src="{%static 'js/student_modal_ud.js'%}"></script>
+<script src="{%static 'js/admin_modal_ud.js'%}"></script>
 <!--DELETE COURSE END-->
 {% endblock content %}

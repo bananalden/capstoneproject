@@ -18,6 +18,7 @@ def edit_admin_user(request):
         'user':request.user}
     return render(request,'editadmin.html', context)
 
+@login_required(login_url='authentication:login')
 def edit_admin_password(request):
     form = forms.change_password(request.user)
     context={
