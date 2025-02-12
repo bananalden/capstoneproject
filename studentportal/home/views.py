@@ -30,4 +30,7 @@ def student_newsfeed(request):
     return render(request,'studentview/newsfeed.html')
 
 def teacher_home(request):
-    return render(request,'teacherview/teacher.html')
+    return render(request,'teacherview/teacherdashboard.html')
+
+def teacher_newsfeed(request):
+    pass
