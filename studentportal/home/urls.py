@@ -22,7 +22,8 @@ urlpatterns = [
 
     path('student/newsfeed',views.student_newsfeed,name='student-newsfeed'),
 
-    path('teacher/',views.teacher_home,name='teacher-home')
+    path('teacher/',views.teacher_home,name='teacher-home'),
+    path('teacher/teachernewsfeed',views.teacher_newsfeed,name='teacher-newsfeed'),
 
     #STUDENT URLS START ========================
 ]

@@ -63,3 +63,8 @@ function addEmoji(emoji) {
 
 // Load emojis pag nag-load ang page
 window.onload = loadEmojis;
+
+function toggleEmojiList() {
+  document.getElementById("emojiList").classList.toggle("active");
+}
+

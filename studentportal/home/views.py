@@ -33,4 +33,4 @@ def teacher_home(request):
     return render(request,'teacherview/teacherdashboard.html')
 
 def teacher_newsfeed(request):
-    pass
+    return render(request,'teacherview/teachernewsfeed.html')
