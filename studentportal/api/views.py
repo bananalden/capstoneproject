@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from users import models as user_data
+from news import models as news_data
 
 # Create your views here.
 app_name = "api"
@@ -34,3 +35,26 @@ def get_userdata(request,pk):
 
 #USER GRABBING END
 
+#NEWS GRABBING START
+
+def news_list(request):
+    announcements = news_data.Announcement.objects.all().order_by("-created_on")
+    
+    announcement_data = [
+        {
+            "id": announcement.id,
+            "title": announcement.title,
+            "body": announcement.body,
+            "created_on": announcement.created_on.isoformat(),
+            "modified_on": announcement.modified_on.isoformat(),
+            "author": f"{announcement.author.first_name} {announcement.author.last_name}",
+            "formatted_date": announcement.created_on.strftime("%B %d, %Y"), 
+        }
+        for announcement in announcements
+    ]
+
+    return JsonResponse(announcement_data, safe=False)
+        
+
+
+#NEWS GRABBING END

@@ -12,3 +12,6 @@ class Announcement(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def formatted_date(self):
+        return self.date.strftime("%B %d, %Y")
