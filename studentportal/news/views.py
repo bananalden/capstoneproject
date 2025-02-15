@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from news.models import Announcement
 
 # Create your views here.
@@ -9,3 +9,8 @@ def create_announcements(request):
 
         if title and body:
             Announcement.objects.create(title=title, body=body, author=request.user)
+            print("Succesfully created announcement")
+            return redirect('home:teacher-home')
+        else:
+            print("whatareyastupid")
+            return redirect('home:teacher-home')

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from home import views
 
 app_name = 'home'
@@ -30,4 +30,7 @@ urlpatterns = [
     path('teacher/teachernewsfeed',views.teacher_newsfeed,name='teacher-newsfeed'),
 
     #STUDENT URLS START ========================
+    path('announcement/', include('news.urls',namespace='news'))
+
+
 ]

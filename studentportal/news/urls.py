@@ -4,6 +4,6 @@ from news import views
 app_name = 'news'
 
 urlpatterns = [
-    path('create-announcement/',views.create_announcements,name='create-announcement')
+    path('create-announcement/',views.create_announcements, name='create-announcement')
 
 ]
