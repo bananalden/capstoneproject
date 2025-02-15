@@ -5,12 +5,15 @@ Teacher Dashboard
 {%block content%}
 
 <div class="tweet-box">
+<form action="" method="post">
+{% csrf_token %}
     <textarea class="tweet-input" id="tweetInput" placeholder="What's happening?"></textarea>
     <div class="tweet-actions">
         <button class="tweet-btn">Post</button>
         <div class="emoji-picker">
             <button class="emoji-btn" onclick="toggleEmojiList()"><i class="fa-regular fa-face-smile"></i></button>
             <div class="emoji-list" id="emojiList"></div>
+        </form>
         </div>
     </div>
 </div>

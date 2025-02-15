@@ -11,7 +11,7 @@ def home(request):
         elif logged_user_role == 'STUDENT':
             pass
         elif logged_user_role == 'TEACHER':
-            pass
+            return redirect('home:teacher-home')
         elif logged_user_role == 'CASHIER':
             pass
         elif logged_user_role == 'REGISTRAR':
@@ -27,7 +27,7 @@ def home(request):
             elif user.role == 'STUDENT':
                 pass
             elif user.role == 'TEACHER':
-                pass
+                return redirect('home:teacher-home')
             elif user.role == 'REGISTRAR':
                 return redirect('home:registrar-home')
             elif user.role == 'CASHIER':

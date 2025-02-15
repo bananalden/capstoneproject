@@ -10,16 +10,20 @@ from django.contrib import messages
 
 def cashier_home(request):
     return render(request, 'cashier/dashboard.html')
-
 def transaction_cashier(request):
     return render(request, 'cashier/transaction.html')
 
 #CASHIER VIEWS END =============================
 
 
+#REGISTRAR VIEWS START=================================
+
 def registrar_home(request):
     return render(request, 'registrar/registrar.html')
 
+#REGISTRAR VIEWS END  =================================
+
+#STUDENT VIEWS START ==================================
 def student_home(request):
     return render(request,'studentview/studentdashboard.html')
 
@@ -29,8 +33,12 @@ def student_profile(request):
 def student_newsfeed(request):
     return render(request,'studentview/newsfeed.html')
 
+#STUDENT VIEWS END   ==================================
+
+@login_required(login_url='authentication:login')
 def teacher_home(request):
     return render(request,'teacherview/teacherdashboard.html')
 
+@login_required(login_url='authentication:login')
 def teacher_newsfeed(request):
     return render(request,'teacherview/teachernewsfeed.html')
