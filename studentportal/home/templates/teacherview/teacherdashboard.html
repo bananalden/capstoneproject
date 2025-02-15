@@ -4,42 +4,7 @@ Teacher Dashboard
 {% endblock title %}
 {%block content%}
 
-<div class="tweet-box">
-<form action="" method="post">
-{% csrf_token %}
-    <textarea class="tweet-input" id="tweetInput" placeholder="What's happening?"></textarea>
-    <div class="tweet-actions">
-        <button class="tweet-btn">Post</button>
-        <div class="emoji-picker">
-            <button class="emoji-btn" onclick="toggleEmojiList()"><i class="fa-regular fa-face-smile"></i></button>
-            <div class="emoji-list" id="emojiList"></div>
-        </form>
-        </div>
-    </div>
-</div>
 
-<div class="recent-posts">
-    <h3>Recent Posts by Prof. Mj Mendiola</h3>
-
-    <div class="news-item" data-date="2025-02-13">
-        <h2>📚 New Study Tips for Exams</h2>
-        <p>Check out these essential study techniques to improve your focus and retention.</p>
-        <span class="date">February 13, 2025</span>
-    </div>
-
-    <div class="news-item" data-date="2025-02-12">
-        <h2>🎓 Upcoming Online Class Schedule</h2>
-        <p>Here’s the updated schedule for next week’s online classes. Don’t miss it!</p>
-        <span class="date">February 12, 2025</span>
-    </div>
-
-    <div class="news-item" data-date="2025-02-10">
-        <h2>📝 How to Stay Productive While Studying</h2>
-        <p>Learn time management tips to make the most out of your study sessions.</p>
-        <span class="date">February 10, 2025</span>
-    </div>
-
-</div>
 
 
 
