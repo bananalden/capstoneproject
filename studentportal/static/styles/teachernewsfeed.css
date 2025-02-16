@@ -1,106 +1,121 @@
 .tweet-box {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  border: 1px solid #ddd;
-  padding: 25px;
-  border-radius: 20px;
-  background: #ebebeb;
-  position: relative;
-  max-width: 700px;
-  margin: 50px auto 0 auto;
-  font-family: Arial, sans-serif;
+  gap: 22px;
+  border: none;
+  padding: 40px;
+  border-radius: 28px;
+  background: #ececec;
+  max-width: 800px;
+  margin: 60px auto;
+  font-family: "Arial", sans-serif;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  color: #f5f5f5;
 }
 
-#title-announcement {
-  border: none;
+#title-announcement, .tweet-input {
+  width: 100%;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid #555;
+  font-size: 17px;
+  background: rgba(208, 208, 208, 0.3);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   outline: none;
-  background: #fff;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  color: black;
+}
+
+#title-announcement:focus, .tweet-input:focus {
+  box-shadow: 0 6px 18px rgba(0, 133, 161, 0.6);
 }
 
 .tweet-input {
-  width: 100%;
   height: 140px;
-  padding: 15px;
-  border-radius: 5px;
-  border: none;
   resize: none;
-  font-size: 20px;
-  background: #fff;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-  outline: none;
 }
 
 .tweet-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
 }
+
 .tweet-btn {
-  background: #1da1f2;
+  background: linear-gradient(135deg, #008cba, #005f85);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
+  padding: 12px 28px;
+  border-radius: 24px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
-  transition: background 0.3s, transform 0.2s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 7px 16px rgba(0, 0, 0, 0.3);
 }
+
 .tweet-btn:hover {
-  background: #0d8de1;
-  transform: scale(1.03);
+  background: linear-gradient(135deg, #006f9c, #004b70);
+  transform: translateY(-2px);
 }
+
 .emoji-picker {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
+
 .emoji-btn {
   background: none;
+  color: #023047;
   border: none;
+  padding: 10px;
   font-size: 26px;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease;
+}
+
+.emoji-btn:hover {
+  transform: scale(1.2);
 }
 
 .emoji-list {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
   display: none;
   position: absolute;
-  bottom: 20px;
-  right: 0;
-  border-radius: 12px;
-  padding: 12px;
-  width: 300px;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
-  font-size: 24px;
-  white-space: normal;
-  max-height: 280px;
+  bottom: 50px;
+  left: 0;
+  border: 1px solid #888;
+  border-radius: 14px;
+  padding: 16px;
+  width: 260px;
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.35);
+  font-size: 22px;
+  max-height: 260px;
   overflow-y: auto;
-  transition: right 0.3s ease-in-out, left 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease;
+  background-color: #222;
 }
 
 .emoji-list.active {
-  right: auto;
-  left: 0;
   display: block;
+  opacity: 1;
 }
 
 .emoji-list span {
   cursor: pointer;
-  padding: 5px;
-  font-size: 24px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
 }
 
 .emoji-list span:hover {
-  background: #ddd;
-  border-radius: 4px;
+  background: #555;
 }
 
 /* End Post Styling */
-
 
 .news-container {
   display: flex;
@@ -115,6 +130,7 @@
   font-family: Arial, sans-serif;
   margin-bottom: 15px;
 }
+
 .sort-by label {
   font-size: 16px;
   font-weight: normal;
@@ -129,6 +145,31 @@
   cursor: pointer;
   max-width: 150px;
 }
+
+#sort-filter {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  transition: border 0.3s ease;
+  border: 1px solid #555;
+  background: #ececec;
+  border-radius: 12px;
+  padding: 14px;
+  color: black;
+}
+
+#author-select{
+  color: black;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #555;
+  background: #ececec;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border 0.3s ease;
+  margin-left: auto;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  max-width: 270px;
+}
+
 .newsfeed {
   flex: 1;
   background: #fff;
@@ -137,29 +178,35 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
 }
+
 .news-item {
   background: #f9f9f9;
   border-left: 6px solid #023047;
+
   padding: 30px;
   margin-bottom: 20px;
   border-radius: 6px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
+
 .news-item:hover {
   transform: scale(1.01);
   cursor: pointer;
 }
+
 .news-item h2 {
   font-size: 22px;
   margin-bottom: 10px;
   color: #333;
 }
+
 .news-item p {
   font-size: 18px;
   color: #555;
   margin-bottom: 12px;
 }
+
 .news-item .date {
   font-size: 16px;
   color: #777;
