@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from users import models as user_data
@@ -54,7 +55,33 @@ def news_list(request):
     ]
 
     return JsonResponse(announcement_data, safe=False)
-        
+
+def get_news(request):
+    page = request.GET.get("page", 1)  
+    news_list = news_data.Announcement.objects.all().order_by("-created_on")
+
+    paginator = Paginator(news_list, 5)  
+    try:
+        news_page = paginator.page(page)
+    except:
+        news_page = paginator.page(1)  
+
+
+    data = [
+        {
+            "title": news.title,
+            "body": news.body,
+            "formatted_date": news.created_on.strftime("%B %d, %Y %I:%M %p"), 
+            "author": f"{news.author.first_name} {news.author.last_name}",
+        }
+        for news in news_page
+    ]
+
+    return JsonResponse({
+        "news": data,
+        "page": news_page.number,
+        "total_pages": paginator.num_pages,
+    })
 
 
 #NEWS GRABBING END
