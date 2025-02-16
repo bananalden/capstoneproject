@@ -31,7 +31,6 @@
   box-shadow: 0 6px 18px rgba(0, 133, 161, 0.6);
 }
 
-
 .tweet-input {
   height: 140px;
   resize: none;
@@ -57,7 +56,6 @@
   transition: background 0.3s ease, transform 0.2s ease;
   box-shadow: 0 7px 16px rgba(0, 0, 0, 0.3);
 }
-
 
 .tweet-btn:hover {
   background: linear-gradient(135deg, #006f9c, #004b70);
@@ -137,11 +135,7 @@
   box-shadow: 0 7px 16px rgba(0, 180, 216, 0.4);
 }
 
-
-
-
 /* End Post Styling */
-
 
 .news-container {
   display: flex;
@@ -181,7 +175,6 @@
   color: #fafafa;
 }
 
-
 .newsfeed {
   flex: 1;
   background: #fff;
@@ -190,6 +183,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
 }
+
 .news-item {
   background: #f9f9f9;
   border-left: 6px solid #023047;
@@ -200,20 +194,24 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
+
 .news-item:hover {
   transform: scale(1.01);
   cursor: pointer;
 }
+
 .news-item h2 {
   font-size: 22px;
   margin-bottom: 10px;
   color: #333;
 }
+
 .news-item p {
   font-size: 18px;
   color: #555;
   margin-bottom: 12px;
 }
+
 .news-item .date {
   font-size: 16px;
   color: #777;
