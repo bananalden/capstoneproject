@@ -13,4 +13,4 @@ def create_announcements(request):
             return redirect('home:teacher-home')
         else:
             print("whatareyastupid")
-            return redirect('home:teacher-home')
+            return redirect('home:teacher-newsfeed')

@@ -54,7 +54,7 @@
       <ul class="sidebar-menu">
         <li>
           <a
-            href="#"
+            href="{%url 'home:teacher-newsfeed'%}"
             class="menu-item"
             data-link="newsfeed"
             ><i class="fa-solid fa-earth-americas"></i>
@@ -64,7 +64,7 @@
         
         <li>
           <a
-            href="#"
+            href="{%url 'home:teacher-home'%}"
             class="menu-item"
             data-link="dashboard"
             ><i class="fas fa-house-user"></i> Dashboard</a
@@ -110,5 +110,6 @@
     <script src="{% static 'js/sidebar.js'%}"></script>
     <script src="{% static 'js/teacher.js'%}"></script>
     <script src="{% static 'js/teachernewsfeed.js'%}"></script>
+    <script src="{% static 'js/newsfeed_display.js'%}"></script>
   </body>
 </html>

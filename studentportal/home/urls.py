@@ -25,11 +25,13 @@ urlpatterns = [
 
     #STUDENT URLS END ========================
 
+    #TEACHER URLS START ========================
     
     path('teacher/',views.teacher_home,name='teacher-home'),
-    path('teacher/teachernewsfeed',views.teacher_newsfeed,name='teacher-newsfeed'),
+    path('teacher/newsfeed',views.teacher_newsfeed,name='teacher-newsfeed'),
 
-    #STUDENT URLS START ========================
+    #TEACHER URLS START ========================
+    
     path('announcement/', include('news.urls',namespace='news'))
 
 

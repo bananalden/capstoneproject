@@ -38,17 +38,17 @@ def get_userdata(request,pk):
 #NEWS GRABBING START
 
 def news_list(request):
-    announcements = news_data.Announcement.objects.all().order_by("-created_on")
+    announcements = news_data.Announcement.objects.all()
     
     announcement_data = [
         {
             "id": announcement.id,
             "title": announcement.title,
             "body": announcement.body,
-            "created_on": announcement.created_on.isoformat(),
-            "modified_on": announcement.modified_on.isoformat(),
+            "created_on": announcement.created_on.strftime("%Y-%m-%d"),
+            "modified_on": announcement.modified_on.strftime("%Y-%m-%d"),
             "author": f"{announcement.author.first_name} {announcement.author.last_name}",
-            "formatted_date": announcement.created_on.strftime("%B %d, %Y"), 
+            "formatted_date": announcement.created_on.strftime("%B %d, %Y %I:%M %p"), 
         }
         for announcement in announcements
     ]

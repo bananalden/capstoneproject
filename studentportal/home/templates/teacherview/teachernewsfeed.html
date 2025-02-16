@@ -31,17 +31,11 @@ Teacher News Feed
   </div>
 
 
-  <div class="newsfeed">
-  {% for announcement in announcement_list %}
-      <div class="news-item" data-date="{{announcement.created_on|date:'Y-m-d'}}">
-          <h2>{{announcement.title}}</h2>
-          <p>{{announcement.body}}</p>
-          <p>{{announcement.author.first_name}} {{announcement.author.last_name}}</p>
-          <span class="date">{{announcement.created_on}}</span>
-      </div>
-      {% endfor %}
+  <div class="newsfeed" id="newsfeed">
+
   </div>
 </div>
+
 
 
 
