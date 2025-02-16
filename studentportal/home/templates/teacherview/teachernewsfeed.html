@@ -30,24 +30,19 @@ Teacher News Feed
       </select>
   </div>
 
+
   <div class="newsfeed">
-      <div class="news-item" data-date="2025-02-15">
-          <h2>New Teaching Strategies Workshop</h2>
-          <p>Join us this Friday for an interactive workshop on modern teaching techniques.</p>
-          <p><strong>Author:</strong> Mr Teacher</p>
-          <span class="date">February 13, 2025</span>
+  {% for announcement in announcement_list %}
+      <div class="news-item" data-date="{{announcement.created_on|date:'Y-m-d'}}">
+          <h2>{{announcement.title}}</h2>
+          <p>{{announcement.body}}</p>
+          <p>{{announcement.author.first_name}} {{announcement.author.last_name}}</p>
+          <span class="date">{{announcement.created_on}}</span>
       </div>
-      <div class="news-item" data-date="2025-02-10">
-          <h2>Parent-Teacher Conference</h2>
-          <p>The upcoming conference will be held on February 20. Don't miss it!</p>
-          <span class="date">February 10, 2025</span>
-      </div>
-      <div class="news-item" data-date="2025-02-05">
-          <h2>New Curriculum Update</h2>
-          <p>Check out the latest updates to the school curriculum for the next academic year.</p>
-          <span class="date">February 5, 2025</span>
-      </div>
+      {% endfor %}
   </div>
 </div>
+
+
 
 {% endblock content %}

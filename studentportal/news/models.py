@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import CustomUser
+from django.utils import formats
 
 # Create your models here.
 
@@ -14,4 +15,7 @@ class Announcement(models.Model):
         return self.title
     
     def formatted_date(self):
-        return self.date.strftime("%B %d, %Y")
+        return formats.date_format(self.created_on, "Y-d-m")
+    
+    def data_date(self):
+        return self.strftime('%Y-%m-%d')

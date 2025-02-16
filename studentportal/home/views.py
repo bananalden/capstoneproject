@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator
+from news.models import Announcement
 
 
 # Create your views here.
@@ -35,10 +37,26 @@ def student_newsfeed(request):
 
 #STUDENT VIEWS END   ==================================
 
+#TEACHER VIEWS START   ==================================
+
 @login_required(login_url='authentication:login')
 def teacher_home(request):
+    
     return render(request,'teacherview/teacherdashboard.html')
+
 
 @login_required(login_url='authentication:login')
 def teacher_newsfeed(request):
-    return render(request,'teacherview/teachernewsfeed.html')
+    announcement_list = Announcement.objects.all()
+
+    p = Paginator(Announcement.objects.all(), 5)
+    page = request.GET.get('page')
+    announcements = p.get_page(page)
+
+    context = {
+        'announcements': announcements,
+        'announcement_list': announcement_list
+    }
+    return render(request,'teacherview/teachernewsfeed.html',context)
+
+#TEACHER VIEWS START   ==================================
