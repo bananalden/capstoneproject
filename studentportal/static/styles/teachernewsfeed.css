@@ -5,7 +5,7 @@
   border: none;
   padding: 40px;
   border-radius: 28px;
-  background: linear-gradient(145deg, #1e3a5f, #345b7d);
+  background: #ececec;
   max-width: 800px;
   margin: 60px auto;
   font-family: "Arial", sans-serif;
@@ -19,11 +19,11 @@
   border-radius: 16px;
   border: 1px solid #555;
   font-size: 17px;
-  background: rgba(20, 20, 20, 0.3);
+  background: rgba(208, 208, 208, 0.3);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   outline: none;
   transition: border 0.3s ease, box-shadow 0.3s ease;
-  color: #ffffff;
+  color: black;
 }
 
 #title-announcement:focus, .tweet-input:focus {
@@ -71,7 +71,7 @@
 
 .emoji-btn {
   background: none;
-  color: #ffffff;
+  color: #023047;
   border: none;
   padding: 10px;
   font-size: 26px;
@@ -148,26 +148,27 @@
 }
 
 #sort-filter {
-  background: linear-gradient(145deg, #1e3a5f, #345b7d);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
   transition: border 0.3s ease;
+  border: 1px solid #555;
+  background: #ececec;
+  border-radius: 12px;
   padding: 14px;
-  border-radius: 20px;
-  color: #fafafa;
+  color: black;
 }
 
 #author-select{
-  color: #ffffff;
+  color: black;
   padding: 14px;
   border-radius: 12px;
   border: 1px solid #555;
-  background: linear-gradient(145deg, #1e3a5f, #345b7d);
+  background: #ececec;
   font-size: 15px;
   cursor: pointer;
   transition: border 0.3s ease;
   margin-left: auto;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-  max-width: 270px; /* Adjusted width */
+  max-width: 270px;
 }
 
 #author-select:hover {
