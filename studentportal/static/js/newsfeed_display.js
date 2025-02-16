@@ -9,7 +9,7 @@ $(document).ready(function(){
             $("#loading-spinner").remove();
             data.forEach(function(newsItem) {
                 var newsComponent = `
-                    <div class="news-item" data-date="${newsItem.created_on}">
+                    <div class="news-item" data-date="${newsItem.formatted_date}">
                         <h2>${newsItem.title}</h2>
                         <p>${newsItem.body}</p>
                         <span class="date">${newsItem.formatted_date}</span>

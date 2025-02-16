@@ -10,7 +10,7 @@ def create_announcements(request):
         if title and body:
             Announcement.objects.create(title=title, body=body, author=request.user)
             print("Succesfully created announcement")
-            return redirect('home:teacher-home')
+            return redirect('home:teacher-newsfeed')
         else:
             print("whatareyastupid")
             return redirect('home:teacher-newsfeed')

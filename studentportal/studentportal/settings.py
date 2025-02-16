@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'studentportal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'defaultdb',
+        'NAME': 'dev-database',
         'USER': 'avnadmin',
         'PASSWORD': 'AVNS_EHdMVOhXbdD72HDRUA1',
         'HOST': 'django-smis-database-django-smis.i.aivencloud.com',
