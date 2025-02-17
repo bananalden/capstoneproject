@@ -34,7 +34,6 @@ Teacher List
         <table id="course-table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Username</th>
                     <th>Email</th>
@@ -44,7 +43,6 @@ Teacher List
             <tbody id="course-list">
                 {%for teacher in teachers%}
                 <tr>
-                    <td>{{teacher.id}}</td>
                     <td>{{teacher.first_name}} {{teacher.last_name}}</td>
                     <td>{{teacher.username}}</td>
                     <td>{{teacher.email}}</td>
