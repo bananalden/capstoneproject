@@ -40,11 +40,17 @@ $(document).ready(function(){
 
     loadNews(currentPage);
 
-
     $("#pagination").on("click", "#prevPage", function() {
         if (currentPage > 1) {
             currentPage--;
             loadNews(currentPage);
+        }
+    });
+
+    $("#form").submit(function(){
+        if ($.trim($("#title-announcement").val()) == "" || $.trim($("#tweetInput").val()) == ""){
+            alert("Fields are empty, please fill them when making an announcement!")
+            return false;
         }
     });
 

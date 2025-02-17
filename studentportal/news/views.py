@@ -9,6 +9,7 @@ def create_announcements(request):
         body = request.POST.get("body")
 
         if title and body:
+      
 
             Announcement.objects.create(title=title, body=body, author=request.user)
             print("Succesfully created announcement")
