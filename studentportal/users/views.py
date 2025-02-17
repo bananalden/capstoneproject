@@ -12,6 +12,8 @@ from django.contrib.auth.decorators import login_required
 
 #EDIT ADMIN OPERATIONS#####################################
 def edit_admin(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
     if request.method == 'POST':
         form = forms.edit_admin(request.POST, instance=request.user)
         if form.is_valid():
@@ -69,6 +71,8 @@ def admin_dashboard_action(request):
 #CASHIER ACTION START===================================================
 @login_required(login_url='authentication:login')
 def create_cashier(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
     form = forms.add_cashier()
     cashiers = models.CustomUser.objects.filter(role="CASHIER")
 
@@ -105,6 +109,8 @@ def delete_cashier(request):
 #REGISTRAR ACTION START========================================
 @login_required(login_url='authentication:login')
 def create_registrar(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
     form = forms.add_registrar()
     registrars = models.CustomUser.objects.filter(role="REGISTRAR")
    
@@ -141,6 +147,8 @@ def delete_registrar(request):
 #TEACHER ACTION START==============================================
 @login_required(login_url='authentication:login')
 def create_teacher(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
     user_form = forms.add_teacher()
     teacher = get_user_model()
     teachers = teacher.objects.filter(role='TEACHER')
@@ -176,6 +184,8 @@ def delete_teacher(request):
 #STUDENT ACTION START===============================================
 @login_required(login_url='authentication:login')
 def create_student(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
     user_form = forms.add_student()
     student = get_user_model()
     students = student.objects.filter(role='STUDENT').select_related("student_id")
@@ -212,6 +222,8 @@ def delete_student(request):
 #USER PASSWORD EDIT=============================================
 @login_required(login_url='authentication:login')
 def change_password_user(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
     if request.method == 'POST':
         form = forms.change_password(request.user, request.POST)
         if form.is_valid():

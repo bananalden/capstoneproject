@@ -8,10 +8,14 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='authentication:login')
 def home(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
     return render(request, 'dashboard.html')
 
 @login_required(login_url='authentication:login')
 def edit_admin_user(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
     edit_admin = forms.edit_admin(instance=request.user)
     context = {
         'form': edit_admin,
@@ -20,6 +24,8 @@ def edit_admin_user(request):
 
 @login_required(login_url='authentication:login')
 def edit_admin_password(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
     form = forms.change_password(request.user)
     context={
         'form':form
