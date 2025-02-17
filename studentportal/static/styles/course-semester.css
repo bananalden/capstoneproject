@@ -1,17 +1,23 @@
-/****** Course List  ******/
 .crud-dashboard {
-  width: 70%;
+  width: calc(100% - 250px); 
+  max-width: 1300px; /* Prevents stretching */
   margin: 100px auto;
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Prevent overflow */
+  overflow: hidden; /* Prevents overflow */
+  transition: margin-left 0.3s ease;
+}
+
+/* Sidebar Open State */
+.sidebar-open .crud-dashboard {
+  margin-left: 250px; /* Moves when sidebar is opened */
 }
 
 /* Heading */
 .list-title {
-  font-family: "Arial", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 2.5rem;
   color: #023047;
   text-align: center;
@@ -21,9 +27,10 @@
 /* Table Styles */
 table {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  width: 100%;
+  width: 100%; /* Keeps the table at full width but within constraints */
   border-collapse: collapse;
   margin-top: 20px;
+  table-layout: fixed; /* Prevents table from stretching */
 }
 
 /* Table Header Styling */
@@ -32,6 +39,7 @@ table th {
   background-color: #023047;
   color: white;
   text-align: left;
+  white-space: nowrap; /* Prevents text wrapping */
 }
 
 /* Table Cell Styling */
@@ -39,6 +47,7 @@ table td {
   padding: 10px;
   border: 1px solid #ddd;
   background-color: #fafafa;
+  white-space: nowrap; /* Prevents text from wrapping */
 }
 
 /* Table Row Hover Effect */
@@ -58,12 +67,14 @@ table tr:hover {
   background-color: #023047;
   color: white;
   border-radius: 5px;
+  border: none;
 }
 
 #pagination button:hover {
   background-color: #044768;
   cursor: pointer;
 }
+
 
 /* Modal Overlay */
 #add-course-modal {
