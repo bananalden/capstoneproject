@@ -4,7 +4,7 @@ Teacher News Feed
 {% endblock title %}
 {%block content%}
 
-<form action="{%url 'home:news:create-announcement'%}" method="post">
+<form action="{%url 'home:news:create-announcement'%}" method="post" id="form">
 <div class="tweet-box">
 {% csrf_token %}
     <input id="title-announcement" type="text" placeholder="Announcement Title..." name="title">
