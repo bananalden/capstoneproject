@@ -16,7 +16,7 @@ def home(request):
 
 
 def payment_purpose_list(request):
-    purpose_list = PaymentPurpose.objects.all()
+    purpose_list = PaymentPurpose.objects.all().order_by('id')
     form = PaymentPurposeForm()
     context={
         'form':form,

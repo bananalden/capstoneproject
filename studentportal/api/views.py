@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from users import models as user_data
 from news import models as news_data
+from transactions import models as transactions_data
 
 # Create your views here.
 app_name = "api"
@@ -85,3 +86,24 @@ def get_news(request):
 
 
 #NEWS GRABBING END
+
+#PAYMENT PURPOSE START
+def grab_payment_purpose(request,pk):
+    try:
+        payment_purpose = transactions_data.PaymentPurpose.objects.get(pk=pk)
+        if payment_purpose:
+            data = {
+                'id':payment_purpose.id,
+                'payment_purpose':payment_purpose.payment_purpose,
+                'payment_price':payment_purpose.payment_price,
+            }
+            return JsonResponse(data)
+    
+    except:
+         return(JsonResponse({'error':'Payment Purpose not found'}, status=404))
+
+
+
+
+
+#PAYMENT PURPOSE START
