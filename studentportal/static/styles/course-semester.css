@@ -24,6 +24,27 @@
   margin-bottom: 20px;
 }
 
+.add-payment-purpose {
+  background-color: #c1121f;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 20%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+.add-payment-purpose:hover {
+  background-color: #a10d1a;
+  transform: translateY(-3px);
+}
+
+
+
 /* Table Styles */
 table {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
