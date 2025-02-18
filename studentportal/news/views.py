@@ -2,7 +2,6 @@ from django.utils.timezone import now
 from django.shortcuts import render,redirect
 from news.models import Announcement
 
-
 # Create your views here.
 def create_announcements(request):
     if request.method == "POST":

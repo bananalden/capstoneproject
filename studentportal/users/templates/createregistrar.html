@@ -32,7 +32,6 @@ Registrar List
         <table id="course-table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Username</th>
                     <th>Email</th>
@@ -42,7 +41,6 @@ Registrar List
             <tbody id="course-list">
               {%for registrar in registrars%}
                 <tr>
-                    <td>{{registrar.id}}</td>
                     <td>{{registrar.first_name}} {{registrar.last_name}}</td>
                     <td>{{registrar.username}}</td>
                     <td>{{registrar.email}}</td>

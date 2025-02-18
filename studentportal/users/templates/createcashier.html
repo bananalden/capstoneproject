@@ -32,7 +32,6 @@ Cashier List
         <table id="course-table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Username</th>
                     <th>Email</th>
@@ -42,7 +41,6 @@ Cashier List
             <tbody id="course-list">
                 {%for cashier in cashiers%}
                 <tr>
-                    <td>{{cashier.id}}</td>
                     <td>{{cashier.first_name}} {{cashier.last_name}}</td>
                     <td>{{cashier.username}}</td>
                     <td>{{cashier.email}}</td>
