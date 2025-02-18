@@ -4,58 +4,74 @@ Teacher Dashboard
 {% endblock title %}
 {%block content%}
 
-<div class="dashboard">
-    <div class="quick-links">
-        <h2>Upload Grades</h2>
-        <button class="upload-grade-btn">Upload Grade</button>
+<div class="second-dashboard">
+  <div class="second-quick-links">
+    <h2>Upload Grades (Lecture Only)</h2>
+    <div class="upload-container">
+      <!-- This label will act as the button for file upload -->
+      <label for="file-upload" class="custom-upload-btn">Upload File</label>
+      
+      <!-- Hidden file input, only triggered by the label -->
+      <input type="file" id="file-upload" onchange="updateFileName()" style="display: none;">
+      
+      <!-- This span will show the file name once a file is selected -->
+      <span id="file-name">No file chosen</span>
     </div>
+    <button class="upload-grades">Upload Grades</button>
+  </div>
+  
+  <!--  -->
+  
+  
+  
+  
 
-    <div class="calendar">
-      <div class="calendar-header">
+    <div class="second-calendar">
+      <div class="second-calendar-header">
         <button id="prev-month">◀</button>
         <h2 id="calendar-title">February</h2>
         <button id="next-month">▶</button>
       </div>
       
-      <div class="calendar-grid">
-        <div class="day-label">Sun</div>
-        <div class="day-label">Mon</div>
-        <div class="day-label">Tue</div>
-        <div class="day-label">Wed</div>
-        <div class="day-label">Thu</div>
-        <div class="day-label">Fri</div>
-        <div class="day-label">Sat</div>
+      <div class="second-calendar-grid">
+        <div class="day-labels">Sun</div>
+        <div class="day-labels">Mon</div>
+        <div class="day-labels">Tue</div>
+        <div class="day-labels">Wed</div>
+        <div class="day-labels">Thu</div>
+        <div class="day-labels">Fri</div>
+        <div class="day-labels">Sat</div>
       </div>
       
       <div id="calendar-days" class="calendar-grid">
-        <div class="calendar-day">1</div>
-        <div class="calendar-day event">2</div>
-        <div class="calendar-day">3</div>
-        <div class="calendar-day">4</div>
-        <div class="calendar-day event">5 <span class="event-text">Semester Starts</span></div>
-        <div class="calendar-day">6</div>
-        <div class="calendar-day">7</div>
-        <div class="calendar-day">8</div>
-        <div class="calendar-day">9</div>
-        <div class="calendar-day event">10 <span class="event-text">Career Fair</span></div>
-        <div class="calendar-day">11</div>
-        <div class="calendar-day">12</div>
-        <div class="calendar-day">13</div>
-        <div class="calendar-day">14</div>
-        <div class="calendar-day">15</div>
-        <div class="calendar-day">16</div>
-        <div class="calendar-day">17</div>
-        <div class="calendar-day">18</div>
-        <div class="calendar-day">19</div>
-        <div class="calendar-day">20</div>
-        <div class="calendar-day">21</div>
-        <div class="calendar-day">22</div>
-        <div class="calendar-day">23</div>
-        <div class="calendar-day">24</div>
-        <div class="calendar-day">25</div>
-        <div class="calendar-day">26</div>
-        <div class="calendar-day">27</div>
-        <div class="calendar-day">28</div>
+        <div class="second-calendar-day">1</div>
+        <div class="second-calendar-day events">2</div>
+        <div class="second-calendar-day">3</div>
+        <div class="second-calendar-day">4</div>
+        <div class="second-calendar-day events">5 <span class="second-event-text">Semester Starts</span></div>
+        <div class="second-calenda-day">6</div>
+        <div class="second-calenda-day">7</div>
+        <div class="second-calenda-day">8</div>
+        <div class="second-calenda-day">9</div>
+        <div class="second-calenda-day events">10 <span class="second-event-text">Career Fair</span></div>
+        <div class="second-calenda-day">11</div>
+        <div class="second-calenda-day">12</div>
+        <div class="second-calenda-day">13</div>
+        <div class="second-calenda-day">14</div>
+        <div class="second-calenda-day">15</div>
+        <div class="second-calenda-day">16</div>
+        <div class="second-calenda-day">17</div>
+        <div class="second-calenda-day">18</div>
+        <div class="second-calenda-day">19</div>
+        <div class="second-calenda-day">20</div>
+        <div class="second-calenda-day">21</div>
+        <div class="second-calenda-day">22</div>
+        <div class="second-calenda-day">23</div>
+        <div class="second-calenda-day">24</div>
+        <div class="second-calenda-day">25</div>
+        <div class="second-calenda-day">26</div>
+        <div class="second-calenda-day">27</div>
+        <div class="second-calenda-day">28</div>
       </div>
     </div>    
   </div>

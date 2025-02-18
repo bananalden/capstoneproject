@@ -147,3 +147,19 @@ document.getElementById("next-month").addEventListener("click", () => {
 generateCalendar(currentMonth, currentYear);
 
 
+// UPLOAD GRADES SECTION
+
+function updateFileName() {
+  const fileInput = document.getElementById("file-upload");
+  const fileName = document.getElementById("file-name");
+
+  if (fileInput.files.length > 0) {
+    fileName.textContent = fileInput.files[0].name;
+  } else {
+    fileName.textContent = "No file chosen";
+  }
+}
+
+
+
+
