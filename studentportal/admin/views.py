@@ -3,6 +3,8 @@ from users import forms
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from transactions.models import PaymentPurpose
+from transactions.forms import PaymentPurposeForm
 
 # Create your views here.
 
@@ -11,6 +13,20 @@ def home(request):
     if request.user.role != "ADMIN":
         return redirect('authentication:unauthorized-view')
     return render(request, 'dashboard.html')
+
+@login_required(login_url='authentication:login')
+def payment_purpose_list(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
+    purpose_list = PaymentPurpose().objects.all()
+    form = PaymentPurposeForm()
+    context={
+        'form':form,
+        'purpose_list':purpose_list
+    }
+    return render(request, 'registrar-purpose-list.html', context)
+
+
 
 @login_required(login_url='authentication:login')
 def edit_admin_user(request):

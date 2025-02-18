@@ -1,0 +1,67 @@
+{% extends "adminbase/base.html" %}
+{% block title %}
+Payment Purpose List
+{% endblock title %}
+
+{%load static%}
+{% block content %}
+{%for msg in messages%}
+  {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+       <div class="alert alert-warnings alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {%endif%}
+{%endfor%}
+
+<div class="crud-dashboard">
+    <h1 class="list-title">Payment Purpose List</h1>
+
+
+<table id="course-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="course-list">
+        {%for purpose in purpose_list%}
+        <tr>
+            <td>{{purpose.payment_purpose}}</td>
+            <td>{{purpose.payment_price}}</td>
+            <td>
+              <div class="buttons">
+                <button class="action-btn edit-btn" data-id="" data-bs-toggle="modal" data-bs-target="#editCourse">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <button type="button" data-id="" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </button>
+            </div>
+        </td>
+        </tr>
+{%endfor%}
+    </tbody>
+</table>
+
+</div>
+{% endblock content %}
