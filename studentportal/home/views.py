@@ -32,6 +32,9 @@ def student_home(request):
 def student_profile(request):
     return render(request,'studentview/studentprofile.html')
 
+def student_requestform(request):
+    return render(request,'studentview/studentrequestform.html')
+
 def student_newsfeed(request):
     return render(request,'studentview/newsfeed.html')
 

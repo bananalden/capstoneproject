@@ -21,6 +21,7 @@ urlpatterns = [
 
     path('student/',views.student_home,name='student-home'),
     path('student/profile',views.student_profile,name='student-profile'),
+    path('student/request-form',views.student_requestform,name='student-request-form'),
     path('student/newsfeed',views.student_newsfeed,name='student-newsfeed'),
 
     #STUDENT URLS END ========================
