@@ -18,7 +18,8 @@ def home(request):
 def payment_purpose_list(request):
     if request.user.role != "ADMIN":
         return redirect('authentication:unauthorized-view')
-    purpose_list = PaymentPurpose().objects.all()
+    
+    purpose_list = PaymentPurpose.objects.all()
     form = PaymentPurposeForm()
     context={
         'form':form,

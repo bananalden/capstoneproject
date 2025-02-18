@@ -32,36 +32,75 @@ Payment Purpose List
 <div class="crud-dashboard">
     <h1 class="list-title">Payment Purpose List</h1>
 
+        <button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#createPurpose">
+            Add Payment Purpose
+          </button>
+
+ 
+
 
 <table id="course-table">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
+            <th>Payment Purpose</th>
+            <th>Price</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody id="course-list">
-        {%for purpose in purpose_list%}
+        {% for purpose in purpose_list %}
         <tr>
             <td>{{purpose.payment_purpose}}</td>
             <td>{{purpose.payment_price}}</td>
             <td>
               <div class="buttons">
-                <button class="action-btn edit-btn" data-id="" data-bs-toggle="modal" data-bs-target="#editCourse">
+                <button class="action-btn edit-btn" data-id="{{purpose.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
                     <i class="fas fa-edit"></i> Edit
                 </button>
-                <button type="button" data-id="" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
+                <button type="button" data-id="{{purpose.id}}" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
                     <i class="fas fa-trash-alt"></i> Delete
                 </button>
             </div>
         </td>
         </tr>
-{%endfor%}
+    {%endfor%}
     </tbody>
 </table>
 
 </div>
+
+
+
+
+<div class="modal fade" id="createPurpose" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Add Payment Purpose</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form action="{%url 'admin:transactions:create-payment-purpose'%}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="payment_purpose">Payment Purpose:</label>
+                {{form.payment_purpose}}
+            </div>
+            <div class="form-group">
+                <label for="payment_price">Payment Price:</label>
+                {{form.payment_price}}
+            </div>
+   
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="action-btn delete-btn" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="action-btn edit-btn">Save Payment Purpose</button>
+        </form>
+ 
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="{%static 'js/payment_purpose_modal.js'%}"></script>
 {% endblock content %}
