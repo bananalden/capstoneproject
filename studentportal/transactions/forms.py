@@ -10,9 +10,7 @@ class StudentPaymentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
-        self.fields["payment_purpose"].widget.attrs.update({
-            "id": "transaction"
-        })
+        self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
         self.fields["payment_purpose"].queryset = PaymentPurpose.objects.all()
         self.fields["payment_purpose"].empty_label = "----SELECT TRANSACTION TYPE----"
 

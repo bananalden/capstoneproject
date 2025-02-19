@@ -1,4 +1,5 @@
 $(document).ready(function (){
+    $("#transaction option[value=''").prop("disabled",true)
     $('#transaction').change(function(){
         let selected_value = $(this).val();
 
