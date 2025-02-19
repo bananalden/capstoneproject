@@ -32,12 +32,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'styles/allstyles.css'%}" />
-    <link rel="stylesheet" href="{% static 'styles/cashier_dashboard.css'%}" />
+    <link rel="stylesheet" href="{% static 'styles/sidebar.css'%}" />
 
-    <link rel="stylesheet" href="{% static 'styles/transaction.css'%}" />
-
-    <script src="{% static 'js/transaction.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'styles/registrar.css'%}" />
 
   </head>
   <body>
@@ -119,11 +116,10 @@
     <div class="content">
       <button id="toggle-btn" class="toggle-btn">☰</button>
       <button id="close-btn" class="close-btn">×</button>
-
 {% block content %} {% endblock content %}
-    
-    <footer class="cashier-footer">
-      &copy; 2025 Cashier. All rights reserved.
+
+    <footer class="txn-footer">
+      &copy; 2025 Transaction Management System. All rights reserved.
     </footer>
     </div>
 

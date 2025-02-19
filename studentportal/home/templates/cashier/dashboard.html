@@ -6,57 +6,52 @@ Cashier Dashboard
 {% block content %}
 
 <div class="cashier-dashboard">
-          <!-- Main Content -->
-          <div class="cashier-main-content">
-            <div class="cashier-header">
-              <h1>Welcome, Cashier!</h1>
-              <div class="profile">
-                <img
-                  src="https://via.placeholder.com/40"
-                  alt="Profile Picture"
-                />
-                <span>Mary Grace</span>
-              </div>
-            </div>
+  <!-- Header Section -->
+  <div class="cashier-header">
+    <h1>Welcome, Cashier!</h1>
+    <div class="cashier-profile">
+      <span class="cashier-profile-name">Mary Grace Mendiola</span>
+    </div>
+  </div>
 
-            <div class="cashier-grid">
-              <!-- Daily Summary widget -->
-              <div class="cashier-widget">
-                <h3>Daily Summary</h3>
-                <p>Total Collected Today: PHP 50,000</p>
-                <p>Transactions: 120</p>
-              </div>
+  <!-- Grid Layout -->
+  <div class="cashier-grid">
+    <!-- Daily Summary Widget -->
+    <div class="cashier-widget cashier-summary">
+      <h3>Daily Summary</h3>
+      <p class="cashier-summary-total">Total Collected Today: <strong>PHP 50,000</strong></p>
+      <p class="cashier-summary-transactions">Transactions: <strong>120</strong></p>
+    </div>
 
-              <!-- Pending Approvals -->
-              <div class="cashier-widget">
-                <h3>Pending Approvals</h3>
-                <p>5 refund requests awaiting approval.</p>
-                <a href="#" class="btn">View Details</a>
-              </div>
+    <!-- Pending Approvals -->
+    <div class="cashier-widget cashier-approvals">
+      <h3>Pending Approvals</h3>
+      <p class="cashier-approvals-text">5 refund requests awaiting approval.</p>
+      <a href="#" class="cashier-btn cashier-btn-approvals" aria-label="View pending approvals">View Details</a>
+    </div>
 
-              <!-- Recent Transactions -->
-              <div class="cashier-widget">
-                <h3>Recent Transactions</h3>
-                <ul>
-                  <li>John Doe - PHP 5,000 - Tuition</li>
-                  <li>Jane Smith - PHP 2,500 - Miscellaneous</li>
-                  <li>Paul Lee - PHP 3,000 - ID Fee</li>
-                  <li>Anna Taylor - PHP 4,200 - Books</li>
-                  <li>Mark Wilson - PHP 1,800 - Laboratory</li>
-                  <li>Susan Clark - PHP 2,900 - Activity Fee</li>
-                </ul>
-                <a href="#" class="btn">View All</a>
-              </div>
+    <!-- Recent Transactions -->
+    <div class="cashier-widget cashier-transactions">
+      <h3>Recent Transactions</h3>
+      <ul class="cashier-transactions-list">
+        <li>John Doe - PHP 5,000 - Tuition</li>
+        <li>Jane Smith - PHP 2,500 - Miscellaneous</li>
+        <li>Paul Lee - PHP 3,000 - ID Fee</li>
+        <li>Anna Taylor - PHP 4,200 - Books</li>
+        <li>Mark Wilson - PHP 1,800 - Laboratory</li>
+        <li>Susan Clark - PHP 2,900 - Activity Fee</li>
+      </ul>
+      <a href="#" class="cashier-btn cashier-btn-transactions" aria-label="View all transactions">View All</a>
+    </div>
 
-              <!-- Student Notifications cashier-widget -->
-              <div class="cashier-widget">
-                <h3>Student Notifications</h3>
-                <p>3 overdue accounts. Send reminders now!</p>
-                <a href="#" class="btn">Send Reminders</a>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- Student Notifications Widget -->
+    <div class="cashier-widget cashier-notifications">
+      <h3>Student Notifications</h3>
+      <p class="cashier-notifications-text">3 overdue accounts. Send reminders now!</p>
+      <a href="#" class="cashier-btn cashier-btn-notifications" aria-label="Send overdue notifications">Send Reminders</a>
+    </div>
+  </div>
+</div>
 
 
 {% endblock content %}
