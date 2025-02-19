@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
 from news.models import Announcement
-from transactions import forms
+from transactions import forms, models
 
 
 # Create your views here.
@@ -14,7 +14,11 @@ from transactions import forms
 def cashier_home(request):
     return render(request, 'cashier/dashboard.html')
 def transaction_cashier(request):
-    return render(request, 'cashier/transaction.html')
+    transactions = models.Transaction.objects.all().order_by("-date_time")
+    context = {
+        'transactions': transactions
+    }
+    return render(request, 'cashier/transaction.html', context)
 
 #CASHIER VIEWS END =============================
 

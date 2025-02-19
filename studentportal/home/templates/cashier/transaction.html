@@ -36,49 +36,50 @@
         <table id="transactionTable">
           <thead>
             <tr>
-              <th>Transaction ID</th>
+              <th>Student ID</th>
               <th>Name</th>
               <th>Date</th>
-              <th>Amount</th>
-              <th>Purpose</th>
+              <th>Purpose of Payment</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
+          {%for transaction in transactions%}
             <tr>
-              <td>TXN12345</td>
-              <td>John Doe</td>
-              <td>2025-01-01</td>
-              <td>₱100.00</td>
-              <td>Tuition Fee</td>
+              <td>{{transaction.student.username}}</td>
+              <td>{{transaction.student.first_name}} {{transaction.student.last_name}}</td>
+              <td>{{transaction.date_time}}</td>
+              <td>{{transaction.payment_purpose.payment_purpose}}</td>
+              <td><button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#reviewPayment">Review Payment</button></td>
             </tr>
-            <tr>
-              <td>TXN12346</td>
-              <td>Jane Smith</td>
-              <td>2025-01-05</td>
-              <td>₱50.00</td>
-              <td>Library Fee</td>
-            </tr>
-            <tr>
-              <td>TXN12347</td>
-              <td>Mike Johnson</td>
-              <td>2025-01-10</td>
-              <td>₱150.00</td>
-              <td>Sports Fee</td>
-            </tr>
-            <tr>
-              <td>TXN12348</td>
-              <td>Emily Davis</td>
-              <td>2025-01-15</td>
-              <td>₱200.00</td>
-              <td>Graduation Fee</td>
-            </tr>
-          </tbody>
+            {%endfor%}
+        </tbody>
         </table>
         <div class="no-results" id="noResults" style="display: none">
           No matching records found
         </div>
       </div>
     </div>
+
+
+    <div class="modal fade" id="reviewPayment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 {% endblock content %}
 
 
