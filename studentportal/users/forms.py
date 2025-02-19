@@ -1,7 +1,9 @@
 from django import forms
 from users import models
+from django.utils.html import strip_tags
 from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm
 from django.contrib.auth.hashers import make_password
+import re
 
 class edit_admin(forms.ModelForm):
     def __init__(self, *args,**kwargs):
@@ -100,6 +102,20 @@ class add_student(forms.ModelForm):
         widgets = {
             'password':forms.PasswordInput
         }
+
+    def clean_username(self):
+        username =  self.cleaned_data.get("username")
+
+        if models.Student.objects.filter(username=username).exists():
+            error_message = "Username already exists. Please enter a unique one"
+            raise forms.ValidationError(strip_tags(error_message))
+        
+        if re.search(r'[a-zA-Z]',username):
+            error_message = "Username must not contain letters. Please use the student's ID number."
+            raise forms.ValidationError(strip_tags(error_message))
+
+        return username
+
 
     def save(self, commit=True):
         student = super().save(commit=False)

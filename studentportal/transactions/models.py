@@ -18,6 +18,7 @@ class Transaction(models.Model):
         AVAILABLE = "AVAILABLE", 'Available'
 
     payment_purpose = models.ForeignKey(PaymentPurpose, on_delete=models.CASCADE)
+    date_time = models.DateTimeField(auto_now_add=True)
     student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
     is_confirmed = models.BooleanField(default=False)
     registrar_status = models.CharField(max_length=255, choices=RegistrarStatus.choices, default=RegistrarStatus.PENDING)

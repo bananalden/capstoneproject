@@ -8,14 +8,19 @@ def home(request):
         logged_user_role = request.user.role
         if logged_user_role == 'ADMIN':
             return redirect('admin:dashboard')
+        
         elif logged_user_role == 'STUDENT':
-            pass
+            return redirect('home:student-home')
+        
         elif logged_user_role == 'TEACHER':
             return redirect('home:teacher-home')
+        
         elif logged_user_role == 'CASHIER':
-            pass
+            return redirect('home:cashier-home')
+        
         elif logged_user_role == 'REGISTRAR':
             return redirect('home:registrar-home')
+        
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -24,12 +29,16 @@ def home(request):
             login(request,user)
             if user.role == 'ADMIN':
                 return redirect('admin:dashboard')
+            
             elif user.role == 'STUDENT':
-                pass
+                return redirect('home:student-home')
+            
             elif user.role == 'TEACHER':
                 return redirect('home:teacher-home')
+            
             elif user.role == 'REGISTRAR':
                 return redirect('home:registrar-home')
+            
             elif user.role == 'CASHIER':
                 return redirect('home:cashier-home')
         else:

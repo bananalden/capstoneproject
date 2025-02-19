@@ -14,6 +14,13 @@ class StudentPaymentForm(forms.ModelForm):
         self.fields["payment_purpose"].queryset = PaymentPurpose.objects.all()
         self.fields["payment_purpose"].empty_label = "----SELECT TRANSACTION TYPE----"
 
+    def save(self,user, commit=True):
+        instance = super().save(commit=False)
+        instance.student_id = user
+        if commit:
+            instance.save()
+        return instance
+
 class PaymentPurposeForm(forms.ModelForm):
     class Meta:
         model = PaymentPurpose

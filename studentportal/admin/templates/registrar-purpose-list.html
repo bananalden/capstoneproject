@@ -50,8 +50,8 @@ Payment Purpose List
     <tbody id="course-list">
         {% for purpose in purpose_list %}
         <tr>
-            <td>{{purpose.payment_purpose}}</td>
-            <td>{{purpose.payment_price}}</td>
+            <td>{{purpose.payment_purpose}}</td>               
+            <td>₱{{purpose.payment_price}}</td>
             <td>
               <div class="buttons">
                 <button class="action-btn edit-btn purpose-btn" data-id="{{purpose.id}}" data-bs-toggle="modal" data-bs-target="#editPurpose" id="edit-btn">
