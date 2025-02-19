@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import Student
+from users.models import CustomUser
 import os
 
 # Create your models here.
@@ -19,9 +19,9 @@ class Transaction(models.Model):
 
     payment_purpose = models.ForeignKey(PaymentPurpose, on_delete=models.CASCADE)
     date_time = models.DateTimeField(auto_now_add=True)
-    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     is_confirmed = models.BooleanField(default=False)
     registrar_status = models.CharField(max_length=255, choices=RegistrarStatus.choices, default=RegistrarStatus.PENDING)
-    payment_proof = models.ImageField(upload_to='payments/')
+    payment_proof = models.ImageField(upload_to='media/payments/')
 
     

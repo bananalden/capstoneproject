@@ -21,7 +21,7 @@ class StudentPaymentForm(forms.ModelForm):
 
     def save(self,user, commit=True):
         instance = super().save(commit=False)
-        instance.student_id = user
+        instance.student = user
         if commit:
             instance.save()
         return instance
