@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
 from news.models import Announcement
+from transactions import forms
 
 
 # Create your views here.
@@ -33,7 +34,12 @@ def student_profile(request):
     return render(request,'studentview/studentprofile.html')
 
 def student_requestform(request):
-    return render(request,'studentview/studentrequestform.html')
+
+    form = forms.StudentPaymentForm()
+    context = {
+        'form':form
+    }
+    return render(request,'studentview/studentrequestform.html',context)
 
 def student_newsfeed(request):
     return render(request,'studentview/newsfeed.html')

@@ -11,6 +11,9 @@ def create_payment_purpose(request):
         if form.is_valid():
             form.save()
             return redirect('admin:payment-purpose-list')
+        else:
+            print(form.errors)
+            return redirect('admin:payment-purpose-list')
         
 def edit_payment_purpose(request):
     if request.method == 'POST':
@@ -24,6 +27,9 @@ def edit_payment_purpose(request):
 
         if form.is_valid():
             form.save()
+            return redirect('admin:payment-purpose-list')
+        else:
+            print(form.errors)
             return redirect('admin:payment-purpose-list')
         
 

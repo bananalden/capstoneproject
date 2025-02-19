@@ -8,6 +8,7 @@ django = "==5.1.4"
 ipython = "*"
 psycopg2-binary = "*"
 pillow = "*"
+psycopg2 = "*"
 
 [dev-packages]
 

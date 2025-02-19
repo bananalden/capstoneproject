@@ -7,6 +7,9 @@ class PaymentPurpose(models.Model):
     payment_purpose = models.CharField()
     payment_price = models.DecimalField(max_digits=10,decimal_places=2)
 
+    def __str__(self):
+        return self.payment_purpose
+
 
 class Transaction(models.Model):
     class RegistrarStatus(models.TextChoices):

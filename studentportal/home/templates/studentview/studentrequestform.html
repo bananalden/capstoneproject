@@ -1,6 +1,6 @@
 {% extends "studentview/studentsidebar.html" %}
 {% block title %}
-Student Request FOrm
+Student Request Form
 {% endblock title %}
 {%load static%}
 
@@ -12,27 +12,21 @@ Student Request FOrm
 
     <div class="student-transaction-type">
         <label for="transaction">Transaction Type:</label>
-        <select id="transaction">
-            <option value="" disabled selected>----SELECT TRANSACTION TYPE----</option>
-            <option value="certificate-of-grades">Certificate of Grades</option>
-            <option value="certificate-of-enrollment">Certificate of Enrollment</option>
-            <option value="certificate-of-registration">Certificate of Registration</option>
-            <option value="student-checklist">Student Checklist</option>
-        </select>
+        {{form.payment_purpose}}
     </div>
 
     <div class="student-payment-info">
-        <p>Payment: <strong>Amount</strong></p>
+        <p>Payment: <strong></strong></p>
     </div>
     
     <div class="student-payment-proof">
         <label for="paymentproof">Proof of Payment:</label>
-        <input type="file" id="paymentproof" style="display: none;" onchange="updateFileName()">
+        <input type="file" name="payment_proof" id="paymentproof" style="display: none;" onchange="updateFileName()">
         <label for="paymentproof" class="custom-upload-btn">Choose File</label>
         <span id="file-name">No file chosen</span>
     </div>
   <button type="submit" class="submit-transaction">SUBMIT</button>
 </div>
 
-
+<script src="{%static 'js/student_request_form.js'%}"></script>
 {% endblock content %}
