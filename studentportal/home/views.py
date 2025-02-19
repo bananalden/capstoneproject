@@ -13,6 +13,7 @@ from transactions import forms
 
 def cashier_home(request):
     return render(request, 'cashier/dashboard.html')
+
 def transaction_cashier(request):
     return render(request, 'cashier/transaction.html')
 
@@ -23,6 +24,7 @@ def transaction_cashier(request):
 
 def registrar_home(request):
     return render(request, 'registrar/registrar.html')
+
 
 #REGISTRAR VIEWS END  =================================
 
