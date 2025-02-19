@@ -11,6 +11,7 @@ Student Request Form
     </div>
 
     <div class="student-transaction-type">
+    <form action="{%url 'home:transactions:student-payment-request'%}" method="post" enctype="multipart/form-data">
         <label for="transaction">Transaction Type:</label>
         {{form.payment_purpose}}
     </div>
@@ -20,12 +21,15 @@ Student Request Form
     </div>
     
     <div class="student-payment-proof">
+    
+        {% csrf_token %}
         <label for="paymentproof">Proof of Payment:</label>
-        <input type="file" name="payment_proof" id="paymentproof" style="display: none;" onchange="updateFileName()">
+        {{form.payment_proof}}
         <label for="paymentproof" class="custom-upload-btn">Choose File</label>
         <span id="file-name">No file chosen</span>
     </div>
   <button type="submit" class="submit-transaction">SUBMIT</button>
+</form>
 </div>
 
 <script src="{%static 'js/student_request_form.js'%}"></script>

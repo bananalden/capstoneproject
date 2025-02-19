@@ -24,10 +24,4 @@ class Transaction(models.Model):
     registrar_status = models.CharField(max_length=255, choices=RegistrarStatus.choices, default=RegistrarStatus.PENDING)
     payment_proof = models.ImageField(upload_to='payments/')
 
-    def save(self, *args, **kwargs):
-        if self.image:
-            ext = self.image.name.split('.')[-1]
-            modified_filename = f"PAYMENT{self.student_id}.{ext}"
-            new_path = os.path.join("payments/", modified_filename)
-
-            self.image.name = new_path
+    

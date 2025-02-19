@@ -64,7 +64,7 @@
         
         <li>
           <a
-            href="#"
+            href="{%url 'home:student-home'%}"
             class="menu-item"
             data-link="dashboard"
             ><i class="fas fa-house-user"></i> Dashboard</a
@@ -79,8 +79,7 @@
           <ul class="dropdown-menu">
             <li><a href="#">View Enrolled Subjects</a></li>
             <li><a href="#">View Transaction History</a></li>
-            <li><a href="#">View Grades</a></li>
-            <li><a href="#">Create Document Request</a></li>
+            <li><a href="{%url 'home:student-request-form'%}">Create Document Request</a></li>
 
 
           </ul>

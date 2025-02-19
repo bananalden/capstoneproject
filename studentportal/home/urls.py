@@ -33,7 +33,7 @@ urlpatterns = [
 
     #TEACHER URLS START ========================
     
-    path('announcement/', include('news.urls',namespace='news'))
-
+    path('announcement/', include('news.urls',namespace='news')),
+    path('transactions/',include('transactions.urls',namespace='transactions'))
 
 ]

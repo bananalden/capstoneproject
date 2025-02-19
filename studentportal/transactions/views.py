@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
-from transactions.forms import PaymentPurposeForm
+from transactions.forms import PaymentPurposeForm, StudentPaymentForm
 from transactions.models import PaymentPurpose
 
 # Create your views here.
-
+#ADMIN PAYMENT PURPOSE MANAGEMENT START
 def create_payment_purpose(request):
     if request.method == 'POST':
         form = PaymentPurposeForm(request.POST)
@@ -40,4 +40,17 @@ def delete_payment_purpose(request):
         payment_object.delete()
         return redirect('admin:payment-purpose-list')
         
+#ADMIN PAYMENT PURPOSE MANAGEMENT END
+
+def student_payment_request(request):
+    if request.method == 'POST':
+        form = StudentPaymentForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save(user=request.user)
+            return redirect('home:student-request-form')
+        else:
+            print(form.errors)
+            return redirect('home:student-request-form')
+            
   

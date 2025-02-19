@@ -9,7 +9,7 @@ Student Dashboard
 <div class="main_content">
   <header>
     <div class="welcome-message">
-      Welcome Back,<strong class="name-student">Mark Joseph Mendiola</strong>!
+      Welcome Back,<strong class="name-student">{{request.user.first_name}} {{request.user.last_name}}</strong>!
     </div>
     <div class="current-time">
       <p>Today's Date: <strong>{%now "M d, Y"%}</strong></p>
