@@ -1,15 +1,10 @@
+{% extends "cashier/cashiersidebar.html" %}
 {%load static%}
+{% block title %} Transaction History
+{%endblock title %}
+{% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'styles/transaction.css'%}" />
-  </head>
-  <body>
-    <div class="container">
+<div class="container">
       <h1>Transaction History</h1>
       <div class="filters">
         <div class="search-bar">
@@ -84,6 +79,6 @@
         </div>
       </div>
     </div>
-    <script src="{% static 'js/transaction.js'%}"></script>
-  </body>
-</html>
+{% endblock content %}
+
+
