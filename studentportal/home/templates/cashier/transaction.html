@@ -5,6 +5,7 @@
 {% block content %}
 
 <div class="container">
+  
       <h1>Transaction History</h1>
       <div class="filters">
         <div class="search-bar">
@@ -50,7 +51,7 @@
               <td>{{transaction.student.first_name}} {{transaction.student.last_name}}</td>
               <td>{{transaction.date_time}}</td>
               <td>{{transaction.payment_purpose.payment_purpose}}</td>
-              <td><button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#reviewPayment">Review Payment</button></td>
+              <td><button class="btn btn-primary btn-review" type="button" data-bs-toggle="modal" data-bs-target="#reviewPayment" data-id="{{transaction.id}}">Review Payment</button></td>
             </tr>
             {%endfor%}
         </tbody>
@@ -66,12 +67,14 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Payment Information</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            ...
-          </div>
+            <div class="form-group" id="student-info"></div>
+            <div class="form-group" id="payment-proof"></div>
+            <div class="form-group" id="payment-info"></div>
+           
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary">Save changes</button>
@@ -80,6 +83,7 @@
       </div>
     </div>
 
+    <script src="{%static 'js/cashier_review.js'%}"></script>
 {% endblock content %}
 
 
