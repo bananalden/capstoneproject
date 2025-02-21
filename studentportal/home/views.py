@@ -13,6 +13,7 @@ from transactions import forms, models
 
 def cashier_home(request):
     return render(request, 'cashier/dashboard.html')
+
 def transaction_cashier(request):
     transactions = models.Transaction.objects.all().order_by("-date_time")
     context = {
@@ -27,6 +28,7 @@ def transaction_cashier(request):
 
 def registrar_home(request):
     return render(request, 'registrar/registrar.html')
+
 
 #REGISTRAR VIEWS END  =================================
 
