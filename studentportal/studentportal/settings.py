@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'studentportal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'defaultdb',
+        'NAME': 'dev-database',
         'USER': 'avnadmin',
         'PASSWORD': 'AVNS_EHdMVOhXbdD72HDRUA1',
         'HOST': 'django-smis-database-django-smis.i.aivencloud.com',
@@ -136,6 +136,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
 
+MEDIA_URL = '/media/'  # URL for accessing media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -143,4 +146,3 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.CustomUser"
-
