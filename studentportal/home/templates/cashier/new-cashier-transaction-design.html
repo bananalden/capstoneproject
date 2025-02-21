@@ -85,12 +85,7 @@ Transaction History {%endblock title %} {% block content %}
         <h1 class="modal-title fs-5" id="paymentModalLabel">
           Payment Information
         </h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <a href="{%url 'home:cashier-transactions'%}" class="btn-close"></a>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -145,7 +140,7 @@ Transaction History {%endblock title %} {% block content %}
 
 <!-- SECOND MODAL SECTION -->
 <div
-  class="modal fade"
+  class="modal fade modal"
   id="paymentPreview"
   aria-hidden="true"
   aria-labelledby="exampleModalToggleLabel"
