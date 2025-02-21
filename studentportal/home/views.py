@@ -18,7 +18,7 @@ def transaction_cashier(request):
     context = {
         'transactions': transactions
     }
-    return render(request, 'cashier/transaction.html', context)
+    return render(request, 'cashier/new-cashier-transaction-design.html', context)
 
 #CASHIER VIEWS END =============================
 
