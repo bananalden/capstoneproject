@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
@@ -104,6 +104,18 @@ def grab_payment_purpose(request,pk):
 
 
 
+def get_payment_data(request,pk):
+    transaction = transactions_data.Transaction.objects.get(pk=pk)
+
+    data = {
+        "student_name": f"{transaction.student.first_name} {transaction.student.last_name}",
+        "date_time":transaction.date_time.strftime("%B %d, %Y %I:%M %p"),
+        "student_usn":transaction.student.username,
+        "payment_purpose":transaction.payment_purpose.payment_purpose,
+        "payment_proof":transaction.payment_proof.url if transaction.payment_proof else None,
+    }
+
+    return JsonResponse(data)
 
 
 #PAYMENT PURPOSE START

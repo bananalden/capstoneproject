@@ -41,6 +41,7 @@
               <th>Name</th>
               <th>Date</th>
               <th>Purpose of Payment</th>
+              <th>Confirmation Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -51,6 +52,7 @@
               <td>{{transaction.student.first_name}} {{transaction.student.last_name}}</td>
               <td>{{transaction.date_time}}</td>
               <td>{{transaction.payment_purpose.payment_purpose}}</td>
+              <td>True</td>
               <td><button class="btn btn-primary btn-review" type="button" data-bs-toggle="modal" data-bs-target="#reviewPayment" data-id="{{transaction.id}}">Review Payment</button></td>
             </tr>
             {%endfor%}
@@ -71,8 +73,34 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="form-group" id="student-info"></div>
-            <div class="form-group" id="payment-proof"></div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group" id="student-info">
+                  <div class="review-student-info">
+                    <p><strong>Student USN:</strong> 21001396500</p>
+                    <p><strong>Student Name:</strong> Alden Pogi Gaming</p>
+                    <p><strong>Payment Purpose:</strong> TEST</p>
+                    <div class="form-group" id="payment-proof">
+                      <div class="review-payment-header">
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal">Open Payment Proof</button>
+ 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <h3>Cashier Action</h3>
+                <div class="form-group">
+                  <label for="confirmation">Yes</label>
+                  <input type="radio" name="confirmation" id="confirmation">
+                  <input type="radio" name="confirmation" id="confirmation">
+                </div>
+              </div>
+            </div>
+            
+           
+            
             <div class="form-group" id="payment-info"></div>
            
           <div class="modal-footer">
@@ -82,9 +110,33 @@
         </div>
       </div>
     </div>
-    </div>
+</div>
 
-    <script src="{%static 'js/cashier_review.js'%}"></script>
+
+
+<div class="modal fade" id="paymentPreview" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+                             <img src="/media/payments/1740031776494.jpg"  alt="Payment Proof"  style="max-height:800px; border: solid 1px black;"/> 
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#reviewPayment" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+    <!--<script src="{%static 'js/cashier_review.js'%}"></script> -->
 {% endblock content %}
 
 

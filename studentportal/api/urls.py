@@ -9,6 +9,8 @@ urlpatterns = [
     path('get-news/',views.news_list,name='news-list'),
     path('get-news-page/',views.get_news,name='news-page'),
     path('get-payment-purpose/<int:pk>',views.grab_payment_purpose,name='get-payment-purpose'),
+    path('get-payment-data/<int:pk>',views.get_payment_data,name='get-payment-data'),
+
 
 
 
