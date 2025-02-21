@@ -1,22 +1,20 @@
 $(document).ready(function (){
-    $("#transaction option[value=''").prop("disabled",true)
-    $('#transaction').change(function(){
-        let selected_value = $(this).val();
+    $("#payment_other").hide()
+    $("#transaction option[value='']").prop("disabled", true);
 
-        $.ajax({
-            url: '/api/get-payment-purpose/' + selected_value,
-            type: 'GET',
-            dataType: 'json',
-            success: function(data){
-                let selected_value = data.payment_purpose.toLowerCase()
-                if (selected_value.includes("tuition")){
-                    $(".student-payment-info strong").text("Please see your Billing Statement");
-                }
-                else{
-                    $(".student-payment-info strong").text("₱"+`${data.payment_price}`);
-                }
-            }
-        })
+    $("#transaction").change(function(){
+ 
+        if ($(this).val() == "OTHER"){
+            $("#payment_other").show()
+            $("#payment_purpose_other").attr("required", true)
+        }
+        else{
+            $("#payment_other").hide()
+            $("#payment_purpose_other").removeAttr("required")
+        }
+    })
+  
+
+        
         
     })
-})

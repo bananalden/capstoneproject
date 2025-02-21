@@ -3,8 +3,7 @@ from users import forms
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
-from transactions.models import PaymentPurpose
-from transactions.forms import PaymentPurposeForm
+
 
 # Create your views here.
 
@@ -15,14 +14,7 @@ def home(request):
     return render(request, 'dashboard.html')
 
 
-def payment_purpose_list(request):
-    purpose_list = PaymentPurpose.objects.all().order_by('id')
-    form = PaymentPurposeForm()
-    context={
-        'form':form,
-        'purpose_list':purpose_list
-    }
-    return render(request, 'registrar-purpose-list.html', context)
+
 
 
 

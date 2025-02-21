@@ -1,12 +1,12 @@
 from django import forms
 from django.utils.html import strip_tags
-from transactions.models import Transaction, PaymentPurpose
+from transactions.models import Transaction
 
 class StudentPaymentForm(forms.ModelForm):
 
     class Meta:
         model = Transaction
-        fields = ["payment_purpose","payment_proof"]
+        fields = ["payment_purpose","payment_proof","amount","payment_purpose_other"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
@@ -15,9 +15,9 @@ class StudentPaymentForm(forms.ModelForm):
             "style":"display: none;",
             "onchange":"updateFileName()"
                                                           })
+        CHOICES = [("", "-----SELECT TRANSACTION PURPOSE-----")] + list(Transaction.PaymentPurposeChoice.choices)
+        self.fields["payment_purpose"].choices = CHOICES
         self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
-        self.fields["payment_purpose"].queryset = PaymentPurpose.objects.all()
-        self.fields["payment_purpose"].empty_label = "----SELECT TRANSACTION TYPE----"
 
     def save(self,user, commit=True):
         instance = super().save(commit=False)
@@ -26,17 +26,15 @@ class StudentPaymentForm(forms.ModelForm):
             instance.save()
         return instance
 
-class PaymentPurposeForm(forms.ModelForm):
+
+class updatePayment(forms.ModelForm):
+
     class Meta:
-        model = PaymentPurpose
-        fields = ["payment_purpose","payment_price"]
+        model = Transaction
+        fields = ["is_confirmed"]
 
-    def clean_payment_purpose(self):
-        payment_purpose = self.cleaned_data.get("payment_purpose")
-
-        if PaymentPurpose.objects.filter(payment_purpose=payment_purpose).exists():
-            error_message = "Payment purpose already exists. Please enter a unique purpose"
-            raise forms.ValidationError(strip_tags(error_message))
-        
-        return payment_purpose
-
+   
+class manualTransactionAdd(forms.ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ["student", "payment_purpose"]
