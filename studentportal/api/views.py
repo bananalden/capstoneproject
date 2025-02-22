@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from users import models as user_data
 from news import models as news_data
 from transactions import models as transactions_data
+from django.db.models import Q
 
 # Create your views here.
 app_name = "api"
@@ -103,8 +104,17 @@ def get_payment_data(request,pk):
 
 def cashier_transaction_data(request):
     page = request.GET.get("page",1)
+    search_query = request.GET.get("q","")
     transaction_list = transactions_data.Transaction.objects.all().order_by("-date_time")
 
+    
+
+    if search_query:
+        transaction_list = transaction_list.filter(
+            Q(student__first_name__icontains=search_query) |
+            Q(student__last_name__icontains=search_query) |
+            Q(student__username__icontains=search_query) 
+        )
     paginator = Paginator(transaction_list,10)
     try:
         transaction_page = paginator.page(page)
@@ -112,8 +122,9 @@ def cashier_transaction_data(request):
         transaction_page = paginator.page(1)
     data = [{
         "id":transaction.id,
-        "student_name":f"{transaction_list.student.first_name} {transaction.student.last_name}",
-        "date_time":transaction.date_time,
+        "student_name":f"{transaction.student.first_name} {transaction.student.last_name}",
+        "student_username":transaction.student.username,
+        "date_time":transaction.date_time.strftime("%B %d, %Y %I:%M %p"),
         "is_confirmed":transaction.is_confirmed,
         "payment_purpose":transaction.payment_purpose,
         "payment_purpose_other":transaction.payment_purpose_other,

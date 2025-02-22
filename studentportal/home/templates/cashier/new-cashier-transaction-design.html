@@ -43,25 +43,7 @@ Transaction History {%endblock title %} {% block content %}
         </tr>
       </thead>
       <tbody class="table-tbody">
-        <tr class="table-tr">
-          <td>21001396500</td>
-          <td>Alden Justine Flores</td>
-          <td>Feb. 20, 2025, 2:10 p.m.</td>
-          <td>Tuition Fee Payment</td>
-          <td>Alumni</td>
-          <td class="confirmation-status" data-status="Confirmed">Confirmed</td>
-          <td>
-            <button
-              class="btn btn-primary btn-review"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#reviewPayment"
-              data-id="{{transaction.id}}"
-            >
-              Review Payment
-            </button>
-          </td>
-        </tr>
+        
       </tbody>      
     </table>
     <div class="no-results" id="noResults" style="display: none">
@@ -171,6 +153,6 @@ Transaction History {%endblock title %} {% block content %}
     </div>
   </div>
   </div>
-
+<script src="{%static 'js/cashier_transaction_unconfirmed.js'%}"></script>
 <!--<script src="{%static 'js/cashier_review.js'%}"></script> -->
 {% endblock content %}
