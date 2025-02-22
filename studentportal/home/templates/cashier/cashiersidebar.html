@@ -37,8 +37,10 @@
 
     <link rel="stylesheet" href="{% static 'styles/transaction.css'%}" />
 
-    <script src="{% static 'js/transaction.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'styles/trans-history.css'%}" />
 
+    <script src="{% static 'js/transaction.js'%}"></script>
+    <script src="{% static 'js/trans-history.js'%}"></script>
   </head>
   <body>
     <!-- Sidebar -->
@@ -72,14 +74,10 @@
               <a href="#">Course</a>
             </li>
             <li>
-              <a href="#"
-                >Semester</a
-              >
+              <a href="#">Semester</a>
             </li>
             <li>
-              <a href="#"
-                >Subject</a
-              >
+              <a href="#">Subject</a>
             </li>
           </ul>
         </li>
@@ -120,12 +118,11 @@
       <button id="toggle-btn" class="toggle-btn">☰</button>
       <button id="close-btn" class="close-btn">×</button>
 
-{% block content %} 
-{% endblock content %}
-    
-    <footer class="cashier-footer">
-      &copy; 2025 Cashier. All rights reserved.
-    </footer>
+      {% block content %} {% endblock content %}
+
+      <footer class="cashier-footer">
+        &copy; 2025 Cashier. All rights reserved.
+      </footer>
     </div>
 
     <script src="{% static 'js/sidebar.js'%}"></script>

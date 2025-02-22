@@ -1,142 +1,172 @@
-{% extends "cashier/cashiersidebar.html" %}
-{%load static%}
-{% block title %} Transaction History
-{%endblock title %}
-{% block content %}
+{% extends "cashier/cashiersidebar.html" %} {%load static%} {% block title %}
+Transaction History {%endblock title %} {% block content %}
 
-<div class="container">
-  
-      <h1>Transaction History</h1>
-      <div class="filters">
-        <div class="search-bar">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search by Name or Transaction ID..."
-          />
-        </div>
-        <div class="filter-options">
-          <select id="filterPurpose">
-            <option value="">Filter by Purpose</option>
-            <option value="Tuition Fee">Tuition Fee</option>
-            <option value="Library Fee">Library Fee</option>
-            <option value="Sports Fee">Sports Fee</option>
-            <option value="Graduation Fee">Graduation Fee</option>
-          </select>
-          <select id="filterDate">
-            <option value="">Filter by Date</option>
-            <option value="2025-01-01">2025-01-01</option>
-            <option value="2025-01-05">2025-01-05</option>
-            <option value="2025-01-10">2025-01-10</option>
-            <option value="2025-01-15">2025-01-15</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="table-container">
-        <table id="transactionTable">
-          <thead>
-            <tr>
-              <th>Student ID</th>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Purpose of Payment</th>
-              <th>Confirmation Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-          {%for transaction in transactions%}
-            <tr>
-              <td>{{transaction.student.username}}</td>
-              <td>{{transaction.student.first_name}} {{transaction.student.last_name}}</td>
-              <td>{{transaction.date_time}}</td>
-              <td>{{transaction.payment_purpose.payment_purpose}}</td>
-              <td>True</td>
-              <td><button class="btn btn-primary btn-review" type="button" data-bs-toggle="modal" data-bs-target="#reviewPayment" data-id="{{transaction.id}}">Review Payment</button></td>
-            </tr>
-            {%endfor%}
-        </tbody>
-        </table>
-        <div class="no-results" id="noResults" style="display: none">
-          No matching records found
-        </div>
-      </div>
+<div class="trans-container">
+  <h1>Transaction History</h1>
+  <div class="filters">
+    <div class="search-bar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by Name or Transaction ID..."
+      />
     </div>
-
-
-    <div class="modal modal-xl fade" id="reviewPayment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Payment Information</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col">
-                <div class="form-group" id="student-info">
-                  <div class="review-student-info">
-                    <p><strong>Student USN:</strong> 21001396500</p>
-                    <p><strong>Student Name:</strong> Alden Pogi Gaming</p>
-                    <p><strong>Payment Purpose:</strong> TEST</p>
-                    <div class="form-group" id="payment-proof">
-                      <div class="review-payment-header">
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal">Open Payment Proof</button>
- 
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <h3>Cashier Action</h3>
-                <div class="form-group">
-                  <label for="confirmation">Yes</label>
-                  <input type="radio" name="confirmation" id="confirmation">
-                  <input type="radio" name="confirmation" id="confirmation">
-                </div>
-              </div>
-            </div>
-            
-           
-            
-            <div class="form-group" id="payment-info"></div>
-           
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
+    <div class="filter-options">
+      <select id="filterPurpose">
+        <option value="">Filter by Purpose</option>
+        <option value="Tuition Fee">Tuition Fee</option>
+        <option value="Library Fee">Library Fee</option>
+        <option value="Sports Fee">Sports Fee</option>
+        <option value="Graduation Fee">Graduation Fee</option>
+      </select>
+      <select id="filterDate">
+        <option value="">Filter by Date</option>
+        <option value="2025-01-01">2025-01-01</option>
+        <option value="2025-01-05">2025-01-05</option>
+        <option value="2025-01-10">2025-01-10</option>
+        <option value="2025-01-15">2025-01-15</option>
+      </select>
     </div>
+  </div>
+
+  <div class="trans-history-container">
+    <table id="transactionTable">
+      <thead class="thead-title">
+        <tr class="title-table">
+          <th>Student ID</th>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Purpose of Payment</th>
+          <th>Other Purpose</th>
+          <th>Confirmation Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="table-tbody">
+        <tr class="table-tr">
+          <td>21001396500</td>
+          <td>Alden Justine Flores</td>
+          <td>Feb. 20, 2025, 2:10 p.m.</td>
+          <td>Tuition Fee Payment</td>
+          <td>Alumni</td>
+          <td class="confirmation-status" data-status="Confirmed">Confirmed</td>
+          <td>
+            <button
+              class="btn btn-primary btn-review"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#reviewPayment"
+              data-id="{{transaction.id}}"
+            >
+              Review Payment
+            </button>
+          </td>
+        </tr>
+      </tbody>      
+    </table>
+    <div class="no-results" id="noResults" style="display: none">
+      No matching records found
+    </div>
+  </div>
 </div>
 
 
-
-<div class="modal fade" id="paymentPreview" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
+<!-- FIRST MODAL SECTION -->
+<div
+  class="modal custom-payment-modal modal-xl fade"
+  id="reviewPayment"
+  tabindex="-1"
+  aria-labelledby="paymentModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title fs-5" id="paymentModalLabel">
+          Payment Information
+        </h1>
+        <a href="{%url 'home:cashier-transactions'%}" class="btn-close"></a>
       </div>
       <div class="modal-body">
-                             <img src="/media/payments/1740031776494.jpg"  alt="Payment Proof"  style="max-height:800px; border: solid 1px black;"/> 
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#reviewPayment" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
+        <div class="row">
+          <div class="col">
+            <div class="form-group" id="student-info">
+              <div class="review-student-info">
+                <p><strong>Student USN:</strong> 21001396500</p>
+                <p><strong>Student Name:</strong> Alden Pogi Gaming</p>
+                <p><strong>Payment Purpose:</strong> TEST</p>
+                <div class="form-group" id="payment-proof">
+                  <div class="review-payment-header">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#paymentPreview"
+                      data-bs-dismiss="modal"
+                    >
+                      Open Payment Proof
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <h3>Cashier Action</h3>
+            <div class="cashier-action">
+              <label><input type="radio" name="confirmation" id="confirmation-yes"> Yes</label>
+              <label><input type="radio" name="confirmation" id="confirmation-no"> No</label>
+            </div>
+          </div>          
+        </div>
+
+        <div class="form-group" id="payment-info"></div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 
+<!-- SECOND MODAL SECTION -->
+<div
+  class="modal fade modal"
+  id="paymentPreview"
+  aria-hidden="true"
+  aria-labelledby="exampleModalToggleLabel"
+  tabindex="-1"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Proof of Payment</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <img
+          src="/media/payments/1740031776494.jpg"
+          alt="Payment Proof"
+          style="max-height: 800px; border: solid 1px black"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 
-
-
-
-    <!--<script src="{%static 'js/cashier_review.js'%}"></script> -->
+<!--<script src="{%static 'js/cashier_review.js'%}"></script> -->
 {% endblock content %}
-
-
