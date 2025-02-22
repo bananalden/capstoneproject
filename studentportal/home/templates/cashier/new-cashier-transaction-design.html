@@ -71,21 +71,26 @@ Transaction History {%endblock title %} {% block content %}
 </div>
 
 
-<!-- FIRST MODAL SECTION -->
+  <!-- FIRST MODAL SECTION -->
 <div
-  class="modal custom-payment-modal modal-xl fade"
+  class="modal custom-payment-modal modal-xl fade review-payment-modal"
   id="reviewPayment"
   tabindex="-1"
   aria-labelledby="paymentModalLabel"
   aria-hidden="true"
->
+  >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="paymentModalLabel">
           Payment Information
         </h1>
-        <a href="{%url 'home:cashier-transactions'%}" class="btn-close"></a>
+        <button
+          type="button"
+          class="payment-info btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -99,7 +104,7 @@ Transaction History {%endblock title %} {% block content %}
                   <div class="review-payment-header">
                     <button
                       type="button"
-                      class="btn btn-primary"
+                      class="btn btn-primary open-payment-proof"
                       data-bs-toggle="modal"
                       data-bs-target="#paymentPreview"
                       data-bs-dismiss="modal"
@@ -117,11 +122,11 @@ Transaction History {%endblock title %} {% block content %}
               <label><input type="radio" name="confirmation" id="confirmation-yes"> Yes</label>
               <label><input type="radio" name="confirmation" id="confirmation-no"> No</label>
             </div>
-          </div>          
+          </div>
         </div>
-
+  
         <div class="form-group" id="payment-info"></div>
-
+  
         <div class="modal-footer">
           <button
             type="button"
@@ -136,23 +141,22 @@ Transaction History {%endblock title %} {% block content %}
     </div>
   </div>
 </div>
-
-
-<!-- SECOND MODAL SECTION -->
-<div
-  class="modal fade modal"
+  
+  <!-- SECOND MODAL SECTION -->
+  <div
+  class="modal fade modal payment-preview-modal"
   id="paymentPreview"
   aria-hidden="true"
   aria-labelledby="exampleModalToggleLabel"
   tabindex="-1"
->
+  >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Proof of Payment</h1>
         <button
           type="button"
-          class="btn-close"
+          class="proof-payment btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
         ></button>
@@ -166,7 +170,7 @@ Transaction History {%endblock title %} {% block content %}
       </div>
     </div>
   </div>
-</div>
+  </div>
 
 <!--<script src="{%static 'js/cashier_review.js'%}"></script> -->
 {% endblock content %}
