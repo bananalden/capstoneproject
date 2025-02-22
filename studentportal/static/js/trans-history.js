@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('#reviewPayment .btn-primary').on('click', function () {
     $('#reviewPayment').modal('hide');  // Close the "Review Payment" modal
     setTimeout(function() {
-      $('#paymentPreview').modal('show');  // Open the "Proof of Payment"
+      $('#paymentPreview').modal('show');  // Open the "Proof of Payment" modal after a small delay to avoid UI glitches
     }, 200);
   });
 
@@ -16,7 +16,7 @@ $(document).ready(function() {
   });
 
   // Optional: If you want to handle "Close" in the "Review Payment" modal (if needed)
-  // $('.payment-info').on('click', function () {
-  //   $('#reviewPayment').modal('hide');  // Close the "Review Payment" modal
-  // });
+  $('.payment-info').on('click', function () {
+    $('#reviewPayment').modal('hide');  // Close the "Review Payment" modal
+  });
 });
