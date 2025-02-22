@@ -9,10 +9,6 @@ from transactions import models as transactions_data
 # Create your views here.
 app_name = "api"
 
-
-
-
-
 #USER GRABBING START
 
 def get_userdata(request,pk):
@@ -104,5 +100,33 @@ def get_payment_data(request,pk):
 
     return JsonResponse(data)
 
+
+def cashier_transaction_data(request):
+    page = request.GET.get("page",1)
+    transaction_list = transactions_data.Transaction.objects.all().order_by("-date_time")
+
+    paginator = Paginator(transaction_list,10)
+    try:
+        transaction_page = paginator.page(page)
+    except:
+        transaction_page = paginator.page(1)
+    data = [{
+        "id":transaction.id,
+        "student_name":f"{transaction_list.student.first_name} {transaction.student.last_name}",
+        "date_time":transaction.date_time,
+        "is_confirmed":transaction.is_confirmed,
+        "payment_purpose":transaction.payment_purpose,
+        "payment_purpose_other":transaction.payment_purpose_other,
+        "amount":transaction.amount,
+
+    }
+    for transaction in transaction_page
+    ]
+
+    return JsonResponse({
+        "transaction":data,
+        "page":transaction_page.number,
+        "total_pages":paginator.num_pages
+    })
 
 #PAYMENT PURPOSE START
