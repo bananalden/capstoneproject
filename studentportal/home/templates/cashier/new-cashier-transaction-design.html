@@ -2,7 +2,7 @@
 Transaction History {%endblock title %} {% block content %}
 
 <div class="trans-container">
-  <h1>Transaction History</h1>
+  <h1>Pending Transaction History</h1>
   <div class="filters">
     <div class="search-bar">
       <input
@@ -44,14 +44,26 @@ Transaction History {%endblock title %} {% block content %}
         </tr>
       </thead>
       <tbody class="table-tbody">
+      {%for transaction in transactions%}
         <tr class="table-tr">
-          <td>21001396500</td>
-          <td>Alden Justine Flores</td>
-          <td>Feb. 20, 2025, 2:10 p.m.</td>
-          <td>Tuition Fee Payment</td>
-          <td>Alumni</td>
-          <td class="confirmation-status" data-status="Confirmed">Confirmed</td>
-          <td>PHP4860</td>
+          <td>{{transaction.student.username}}</td>
+          <td>{{transaction.student.first_name}}</td>
+          <td>{{transaction.date_time}}</td>
+          <td>{{transaction.payment_purpose}}</td>
+          <td>{%if transaction.payment_purpose_other|length > 0%}
+              {{transaction.payment_purpose_other}}
+              {%else%}
+                N/A
+              {%endif%}
+          </td>
+          <td class="confirmation-status" data-status="Confirmed">
+          {%if transaction.is_confirmed is True%}
+          Confirmed
+          {%else%}
+          Not Confirmed
+          {%endif%}
+          </td>
+          <td>₱{{transaction.amount}}</td>
           <td>
             <button
               class="btn btn-primary btn-review"
@@ -64,6 +76,7 @@ Transaction History {%endblock title %} {% block content %}
             </button>
           </td>
         </tr>
+        {%endfor%}
       </tbody>      
     </table>
     <div class="no-results" id="noResults" style="display: none">
@@ -140,35 +153,7 @@ Transaction History {%endblock title %} {% block content %}
 </div>
 
 
-<!-- SECOND MODAL SECTION -->
-<div
-  class="modal fade modal"
-  id="paymentPreview"
-  aria-hidden="true"
-  aria-labelledby="exampleModalToggleLabel"
-  tabindex="-1"
->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Proof of Payment</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <img
-          src="/media/payments/1740031776494.jpg"
-          alt="Payment Proof"
-          style="max-height: 800px; border: solid 1px black"
-        />
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <script src="{%static 'js/cashier_review.js'%}"></script> 
 {% endblock content %}
