@@ -16,12 +16,18 @@ Student Request Form
         {{form.payment_purpose}}
     </div>
 
+    <div class="student-payment-info" id="payment_other">
+        <label for="payment_purpose_other">Please specify purpose:</label>
+        <input type="text" name="payment_purpose_other" id="payment_purpose_other">
+       
+    </div>
+
     <div class="student-payment-info">
-        <p>Payment: <strong></strong></p>
+        <label for="amount">Enter amount paid:</label>
+        {{form.amount}}
     </div>
     
     <div class="student-payment-proof">
-    
         {% csrf_token %}
         <label for="paymentproof">Proof of Payment:</label>
         {{form.payment_proof}}

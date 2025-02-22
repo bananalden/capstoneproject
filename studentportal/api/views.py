@@ -9,10 +9,6 @@ from transactions import models as transactions_data
 # Create your views here.
 app_name = "api"
 
-
-
-
-
 #USER GRABBING START
 
 def get_userdata(request,pk):
@@ -88,19 +84,6 @@ def get_news(request):
 #NEWS GRABBING END
 
 #PAYMENT PURPOSE START
-def grab_payment_purpose(request,pk):
-    try:
-        payment_purpose = transactions_data.PaymentPurpose.objects.get(pk=pk)
-        if payment_purpose:
-            data = {
-                'id':payment_purpose.id,
-                'payment_purpose':payment_purpose.payment_purpose,
-                'payment_price':payment_purpose.payment_price,
-            }
-            return JsonResponse(data)
-    
-    except:
-         return(JsonResponse({'error':'Payment Purpose not found'}, status=404))
 
 
 
@@ -111,11 +94,39 @@ def get_payment_data(request,pk):
         "student_name": f"{transaction.student.first_name} {transaction.student.last_name}",
         "date_time":transaction.date_time.strftime("%B %d, %Y %I:%M %p"),
         "student_usn":transaction.student.username,
-        "payment_purpose":transaction.payment_purpose.payment_purpose,
+        "payment_purpose":transaction.payment_purpose,
         "payment_proof":transaction.payment_proof.url if transaction.payment_proof else None,
     }
 
     return JsonResponse(data)
 
+
+def cashier_transaction_data(request):
+    page = request.GET.get("page",1)
+    transaction_list = transactions_data.Transaction.objects.all().order_by("-date_time")
+
+    paginator = Paginator(transaction_list,10)
+    try:
+        transaction_page = paginator.page(page)
+    except:
+        transaction_page = paginator.page(1)
+    data = [{
+        "id":transaction.id,
+        "student_name":f"{transaction_list.student.first_name} {transaction.student.last_name}",
+        "date_time":transaction.date_time,
+        "is_confirmed":transaction.is_confirmed,
+        "payment_purpose":transaction.payment_purpose,
+        "payment_purpose_other":transaction.payment_purpose_other,
+        "amount":transaction.amount,
+
+    }
+    for transaction in transaction_page
+    ]
+
+    return JsonResponse({
+        "transaction":data,
+        "page":transaction_page.number,
+        "total_pages":paginator.num_pages
+    })
 
 #PAYMENT PURPOSE START

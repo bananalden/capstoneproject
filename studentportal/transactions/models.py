@@ -3,13 +3,6 @@ from users.models import CustomUser
 import os
 
 # Create your models here.
-class PaymentPurpose(models.Model):
-    payment_purpose = models.CharField()
-    payment_price = models.DecimalField(max_digits=10,decimal_places=2)
-
-    def __str__(self):
-        return self.payment_purpose
-
 
 class Transaction(models.Model):
     class RegistrarStatus(models.TextChoices):
@@ -17,7 +10,16 @@ class Transaction(models.Model):
         PROCESSING = "PROCESSING", 'Processing'
         AVAILABLE = "AVAILABLE", 'Available'
 
-    payment_purpose = models.ForeignKey(PaymentPurpose, on_delete=models.CASCADE)
+    class PaymentPurposeChoice(models.TextChoices):
+        TUITION_FEE = "TUITION FEE", "Tuition Fee"
+        CERT_GRADES = "CERTIFICATE OF GRADES", "Certificate of Grades"
+        CERT_MORALE = "CERTIFICATE OF GOOD MORALE", "Certificate of Good Morale"
+        CERT_ENROL = "CERTIFICATE OF ENROLLMENT", "Certificate of Enrollment"
+        OTHER = "OTHER", "Other"
+
+    payment_purpose = models.CharField(max_length=255, choices=PaymentPurposeChoice.choices,  null=True)
+    payment_purpose_other = models.CharField(max_length=255, null=True, blank=True)
+    amount = models.DecimalField(max_digits=5, decimal_places=2)
     date_time = models.DateTimeField(auto_now_add=True)
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     is_confirmed = models.BooleanField(default=False)
