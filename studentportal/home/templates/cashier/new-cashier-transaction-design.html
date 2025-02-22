@@ -2,7 +2,7 @@
 Transaction History {%endblock title %} {% block content %}
 
 <div class="trans-container">
-  <h1>Pending Transaction History</h1>
+  <h1>Transaction History</h1>
   <div class="filters">
     <div class="search-bar">
       <input
@@ -39,31 +39,17 @@ Transaction History {%endblock title %} {% block content %}
           <th>Purpose of Payment</th>
           <th>Other Purpose</th>
           <th>Confirmation Status</th>
-          <th>Amount</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody class="table-tbody">
-      {%for transaction in transactions%}
         <tr class="table-tr">
-          <td>{{transaction.student.username}}</td>
-          <td>{{transaction.student.first_name}}</td>
-          <td>{{transaction.date_time}}</td>
-          <td>{{transaction.payment_purpose}}</td>
-          <td>{%if transaction.payment_purpose_other|length > 0%}
-              {{transaction.payment_purpose_other}}
-              {%else%}
-                N/A
-              {%endif%}
-          </td>
-          <td class="confirmation-status" data-status="Confirmed">
-          {%if transaction.is_confirmed is True%}
-          Confirmed
-          {%else%}
-          Not Confirmed
-          {%endif%}
-          </td>
-          <td>₱{{transaction.amount}}</td>
+          <td>21001396500</td>
+          <td>Alden Justine Flores</td>
+          <td>Feb. 20, 2025, 2:10 p.m.</td>
+          <td>Tuition Fee Payment</td>
+          <td>Alumni</td>
+          <td class="confirmation-status" data-status="Confirmed">Confirmed</td>
           <td>
             <button
               class="btn btn-primary btn-review"
@@ -76,7 +62,6 @@ Transaction History {%endblock title %} {% block content %}
             </button>
           </td>
         </tr>
-        {%endfor%}
       </tbody>      
     </table>
     <div class="no-results" id="noResults" style="display: none">
@@ -86,14 +71,14 @@ Transaction History {%endblock title %} {% block content %}
 </div>
 
 
-<!-- FIRST MODAL SECTION -->
+  <!-- FIRST MODAL SECTION -->
 <div
-  class="modal custom-payment-modal modal-xl fade"
+  class="modal custom-payment-modal modal-xl fade review-payment-modal"
   id="reviewPayment"
   tabindex="-1"
   aria-labelledby="paymentModalLabel"
   aria-hidden="true"
->
+  >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -102,7 +87,7 @@ Transaction History {%endblock title %} {% block content %}
         </h1>
         <button
           type="button"
-          class="btn-close"
+          class="payment-info btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
         ></button>
@@ -117,26 +102,31 @@ Transaction History {%endblock title %} {% block content %}
                 <p><strong>Payment Purpose:</strong> TEST</p>
                 <div class="form-group" id="payment-proof">
                   <div class="review-payment-header">
-                   <img
-                            src="/media/payments/1740031776494.jpg"
-                            alt="Payment Proof"
-                            style="max-height: 800px; border: solid 1px black"/>
+                    <button
+                      type="button"
+                      class="btn btn-primary open-payment-proof"
+                      data-bs-toggle="modal"
+                      data-bs-target="#paymentPreview"
+                      data-bs-dismiss="modal"
+                    >
+                      Open Payment Proof
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <h3>Confirm Payment?</h3>
+            <h3>Cashier Action</h3>
             <div class="cashier-action">
               <label><input type="radio" name="confirmation" id="confirmation-yes"> Yes</label>
               <label><input type="radio" name="confirmation" id="confirmation-no"> No</label>
             </div>
-          </div>          
+          </div>
         </div>
-
+  
         <div class="form-group" id="payment-info"></div>
-
+  
         <div class="modal-footer">
           <button
             type="button"
@@ -151,9 +141,36 @@ Transaction History {%endblock title %} {% block content %}
     </div>
   </div>
 </div>
+  
+  <!-- SECOND MODAL SECTION -->
+  <div
+  class="modal fade modal payment-preview-modal"
+  id="paymentPreview"
+  aria-hidden="true"
+  aria-labelledby="exampleModalToggleLabel"
+  tabindex="-1"
+  >
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Proof of Payment</h1>
+        <button
+          type="button"
+          class="proof-payment btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <img
+          src="/media/payments/1740031776494.jpg"
+          alt="Payment Proof"
+          style="max-height: 800px; border: solid 1px black"
+        />
+      </div>
+    </div>
+  </div>
+  </div>
 
-
-
-
-<script src="{%static 'js/cashier_review.js'%}"></script> 
+<!--<script src="{%static 'js/cashier_review.js'%}"></script> -->
 {% endblock content %}
