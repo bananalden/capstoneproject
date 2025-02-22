@@ -78,12 +78,12 @@ Transaction History {%endblock title %} {% block content %}
         <div class="row">
           <div class="col">
             <div class="form-group" id="student-info">
-              <div class="review-student-info">
+              <div class="review-student-info" id="review-student-info">
                 <p><strong>Student USN:</strong> 21001396500</p>
                 <p><strong>Student Name:</strong> Alden Pogi Gaming</p>
                 <p><strong>Payment Purpose:</strong> TEST</p>
                 <div class="form-group" id="payment-proof">
-                  <div class="review-payment-header">
+                  <div class="review-payment-header" id="review-payment-header">
                     <button
                       type="button"
                       class="btn btn-primary open-payment-proof"
@@ -99,7 +99,7 @@ Transaction History {%endblock title %} {% block content %}
             </div>
           </div>
           <div class="col">
-            <h3>Cashier Action</h3>
+            <h3>Confirm Payment?</h3>
             <div class="cashier-action">
               <label><input type="radio" name="confirmation" id="confirmation-yes"> Yes</label>
               <label><input type="radio" name="confirmation" id="confirmation-no"> No</label>
@@ -144,15 +144,18 @@ Transaction History {%endblock title %} {% block content %}
         ></button>
       </div>
       <div class="modal-body">
-        <img
+        <div class="pay-proof" id="pay-proof">
+          <img
           src="/media/payments/1740031776494.jpg"
           alt="Payment Proof"
           style="max-height: 800px; border: solid 1px black"
         />
+        </div>
+        
       </div>
     </div>
   </div>
   </div>
 <script src="{%static 'js/cashier_transaction_unconfirmed.js'%}"></script>
-<!--<script src="{%static 'js/cashier_review.js'%}"></script> -->
+<script src="{%static 'js/cashier_review.js'%}"></script>
 {% endblock content %}

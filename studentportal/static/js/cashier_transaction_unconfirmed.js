@@ -27,20 +27,72 @@ $(document).ready(function (){
                         <td>${transaction_list.payment_purpose}</td>
                         <td>${transaction_list.payment_purpose_other || "-" }</td>
                         <td>${transaction_list.is_confirmed ? "Confirmed" : "Not Confirmed"}</td>
-                        <td><button class="btn btn-primary btn-review" type="button" data-bs-toggle="modal" data-bs-target="#reviewPayment" data-id="${transaction_list.id}">Review Payment </button></td>
+                        <td><button class="btn btn-primary btn-review" id="btn-review" type="button" data-bs-toggle="modal" data-bs-target="#reviewPayment" data-id="${transaction_list.id}" >Review Payment </button></td>
                         </tr>`)
                     })
                     
                 }
-                
             }
+       
         });
-    
+        
     }
 
     loadTransactions()
+   
 
 })
+
+
+$(document).on("click",".btn-review", function(){
+        var itemID = $(this).data('id');
+        console.log(itemID)
+
+        $.ajax({
+            url: `/api/get-payment-data/${itemID}`,
+            type: "GET",
+            dataType: "json",
+            success: function(data){
+                var paymentProof = `<button type="button" class="btn btn-primary open-payment-proof" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal"> Open Payment Proof</button>
+                `
+                var studentInfo = `
+                    <div class="review-student-info">
+                        <p><strong>Student USN:</strong> ${data.student_usn}</p>
+                        <p><strong>Student Name:</strong> ${data.student_name}</p>
+                        <p><strong>Payment Purpose:</strong> ${data.payment_purpose}</p>
+                        <button type="button" class="btn btn-primary open-payment-proof" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal"> Open Payment Proof</button>
+                    </div>
+                `
+                $('#student-info').html(studentInfo);
+                $('#preview-payment-header').html(paymentProof)
+
+
+            },
+            error: function(){
+                console.log("Data didn't load")
+            }
+        })
+
+})
+
+
+$(document).on("click","#reviewPayment .btn-primary", function(){
+    $('#reviewPayment').modal('hide');  // Close the "Review Payment" modal
+    setTimeout(function() {
+      $('#paymentPreview').modal('show');  // Open the "Proof of Payment" modal after a small delay to avoid UI glitches
+    }, 200);
+ 
+})
+
+$(document).on("click",".proof-payment", function(){
+    $('#paymentPreview').modal('hide');  // Close the "Proof of Payment" modal
+    setTimeout(function() {
+      $('#reviewPayment').modal('show');  // Reopen the "Review Payment" modal after a small delay
+    }, 200);
+})
+
+
+
 
 $(document).ready(function (){
   

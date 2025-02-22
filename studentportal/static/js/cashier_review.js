@@ -2,7 +2,8 @@
 $(document).ready(function (){
     $('.btn-review').on('click', function(){
         var itemID = $(this).data('id');
-        $('#student-info').html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
+        console.log(itemID)
+        $('#review-student-info').html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
 
 
         $.ajax({
@@ -13,7 +14,6 @@ $(document).ready(function (){
                 var paymentProof = `
                 <div class="review-payment-header">
                     <img src="${data.payment_proof}"  alt="Payment Proof"  style="height:800px; border: solid 1px black;"/>
-                    <p><strong>Payment Purpose:</strong> ${data.payment_purpose}</p>
                 </div>
                 `
                 var studentInfo = `
