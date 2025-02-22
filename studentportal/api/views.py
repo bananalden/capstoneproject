@@ -88,19 +88,6 @@ def get_news(request):
 #NEWS GRABBING END
 
 #PAYMENT PURPOSE START
-def grab_payment_purpose(request,pk):
-    try:
-        payment_purpose = transactions_data.PaymentPurpose.objects.get(pk=pk)
-        if payment_purpose:
-            data = {
-                'id':payment_purpose.id,
-                'payment_purpose':payment_purpose.payment_purpose,
-                'payment_price':payment_purpose.payment_price,
-            }
-            return JsonResponse(data)
-    
-    except:
-         return(JsonResponse({'error':'Payment Purpose not found'}, status=404))
 
 
 
@@ -111,7 +98,7 @@ def get_payment_data(request,pk):
         "student_name": f"{transaction.student.first_name} {transaction.student.last_name}",
         "date_time":transaction.date_time.strftime("%B %d, %Y %I:%M %p"),
         "student_usn":transaction.student.username,
-        "payment_purpose":transaction.payment_purpose.payment_purpose,
+        "payment_purpose":transaction.payment_purpose,
         "payment_proof":transaction.payment_proof.url if transaction.payment_proof else None,
     }
 
