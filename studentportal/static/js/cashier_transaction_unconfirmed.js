@@ -7,6 +7,8 @@ $(document).ready(function (){
     let currentPage= 1;
     let searchQuery = "";
 
+
+    
     function loadTransactions(page = 1, query= ""){
         $(".table-tbody").append('<tr class="table-tr"><td colspan="8">Loading transaction...</td></tr>');
         $.ajax({
@@ -17,7 +19,7 @@ $(document).ready(function (){
                 var transaction_list = response.transaction;
                 var table_body = $(".table-tbody")
                 table_body.empty()
-
+                
                 if (transaction_list.length == 0){
                     table_body.append('<tr class="table-tr"><td colspan="7">No transactions found...</td></tr>')
                 }
@@ -38,7 +40,7 @@ $(document).ready(function (){
                     
                 }
             }
-       
+            
         });
         
     }
@@ -51,14 +53,14 @@ $(document).ready(function (){
 //TABLE DATA END
 
 $(document).on("click",".btn-review", function(){
-        var itemID = $(this).data('id');
-        console.log(itemID)
-        $("#student-info").html(`<div class="spinner-border text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>`); 
-        $("#pay-proof").html(`<div class="spinner-border text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>`); 
-
-
-        $("#preview-payment-header").html("");
-        $.ajax({
+    var itemID = $(this).data('id');
+    console.log(itemID)
+    $("#student-info").html(`<div class="spinner-border text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>`); 
+    $("#pay-proof").html(`<div class="spinner-border text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>`); 
+    $('#confirmPayment').prop("disabled",true)
+    
+    $("#preview-payment-header").html("");
+    $.ajax({
             url: `/api/get-payment-data/${itemID}`,
             type: "GET",
             dataType: "json",
@@ -66,16 +68,17 @@ $(document).on("click",".btn-review", function(){
                 var paymentProof = `<button type="button" class="btn btn-primary open-payment-proof" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal"> Open Payment Proof</button>
                 `
                 var studentInfo = `
-                    <div class="review-student-info">
-                        <input type="hidden" name="trans_id" id="trans_id" value="${itemID}">
-                        <p><strong>Student USN:</strong> ${data.student_usn}</p>
-                        <p><strong>Student Name:</strong> ${data.student_name}</p>
+                <div class="review-student-info">
+                <input type="hidden" name="trans_id" id="trans_id" value="${itemID}">
+                <p><strong>Student USN:</strong> ${data.student_usn}</p>
+                <p><strong>Student Name:</strong> ${data.student_name}</p>
                         <p><strong>Payment Purpose:</strong> ${data.payment_purpose}</p>
                         <p><strong>Amount:</strong> ₱${data.amount}</p>
                         <button type="button" class="btn btn-primary open-payment-proof" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal"> Open Payment Proof</button>
                     </div>
-                `
-
+                    `
+                    
+                $('#confirmPayment').prop("disabled",false)
                 var payment_proof = `<img src="${data.payment_proof}" alt="Payment Proof" style="max-height: 800px; border: solid 1px black"/>`
 
 

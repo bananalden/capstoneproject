@@ -51,8 +51,7 @@ class updatePayment(forms.ModelForm):
             "is_confirmed": forms.RadioSelect(choices=[(True, "Yes"), (False, "No")])
         }
 
-    def save(self, commit=True):
-        instance = super().save(commit=False)
+
 
 
         
