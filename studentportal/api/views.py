@@ -97,6 +97,7 @@ def get_payment_data(request,pk):
         "student_usn":transaction.student.username,
         "payment_purpose":transaction.payment_purpose,
         "payment_proof":transaction.payment_proof.url if transaction.payment_proof else None,
+        "amount":transaction.amount,
     }
 
     return JsonResponse(data)

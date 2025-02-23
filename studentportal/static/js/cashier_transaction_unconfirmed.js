@@ -8,7 +8,7 @@ $(document).ready(function (){
     let searchQuery = "";
 
     function loadTransactions(page = 1, query= ""){
-        $(".table-tbody").append('<tr class="table-tr"><td colspan="7">Loading transaction...</td></tr>');
+        $(".table-tbody").append('<tr class="table-tr"><td colspan="8">Loading transaction...</td></tr>');
         $.ajax({
             url:`/api/get-transaction-page-unconfirmed/?page=${page}&q=${query}`,
             type: "GET",
@@ -30,6 +30,7 @@ $(document).ready(function (){
                         <td>${transaction_list.date_time}</td>
                         <td>${transaction_list.payment_purpose}</td>
                         <td>${transaction_list.payment_purpose_other || "-" }</td>
+                        <td>₱${transaction_list.amount}</td>
                         <td>${transaction_list.is_confirmed ? "Confirmed" : "Not Confirmed"}</td>
                         <td><button class="btn btn-primary btn-review" id="btn-review" type="button" data-bs-toggle="modal" data-bs-target="#reviewPayment" data-id="${transaction_list.id}" >Review Payment </button></td>
                         </tr>`)
@@ -70,6 +71,7 @@ $(document).on("click",".btn-review", function(){
                         <p><strong>Student USN:</strong> ${data.student_usn}</p>
                         <p><strong>Student Name:</strong> ${data.student_name}</p>
                         <p><strong>Payment Purpose:</strong> ${data.payment_purpose}</p>
+                        <p><strong>Amount:</strong> ₱${data.amount}</p>
                         <button type="button" class="btn btn-primary open-payment-proof" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal"> Open Payment Proof</button>
                     </div>
                 `

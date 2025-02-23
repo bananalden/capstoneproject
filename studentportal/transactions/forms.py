@@ -42,10 +42,20 @@ class StudentPaymentForm(forms.ModelForm):
 
 
 class updatePayment(forms.ModelForm):
+    
 
     class Meta:
         model = Transaction
         fields = ["is_confirmed"]
+        widgets = {
+            "is_confirmed": forms.RadioSelect(choices=[(True, "Yes"), (False, "No")])
+        }
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+
+
+        
 
    
 class manualTransactionAdd(forms.ModelForm):

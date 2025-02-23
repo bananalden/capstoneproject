@@ -38,6 +38,7 @@ Transaction History {%endblock title %} {% block content %}
           <th>Date</th>
           <th>Purpose of Payment</th>
           <th>Other Purpose</th>
+          <th>Amount</th>
           <th>Confirmation Status</th>
           <th>Action</th>
         </tr>
@@ -79,7 +80,7 @@ Transaction History {%endblock title %} {% block content %}
           <div class="col">
             <div class="form-group" id="student-info">
               <div class="review-student-info" id="review-student-info">
-                <input type="hidden" name="trans_id" id="trans_id">
+                
                   <div class="loadingSpinner">
                     <div class="spinner-border text-primary" role="status">
                       <span class="visually-hidden">Loading...</span>
@@ -92,8 +93,7 @@ Transaction History {%endblock title %} {% block content %}
           <div class="col">
             <h3>Confirm Payment?</h3>
             <div class="cashier-action">
-              <label><input type="radio" name="confirmation" id="confirmation-yes"> Yes</label>
-              <label><input type="radio" name="confirmation" id="confirmation-no"> No</label>
+              <label>{{form.is_confirmed}}</label>
             </div>
           </div>
         </div>
