@@ -92,6 +92,11 @@
 }
 
 /* Buttons */
+
+.request-payment {
+  border: none;
+}
+
 .cashier-btn {
   display: inline-block;
   margin-top: 12px;
