@@ -33,7 +33,7 @@ $(document).ready(function (){
                         <td>${transaction_list.payment_purpose}</td>
                         <td>${transaction_list.payment_purpose_other || "-" }</td>
                         <td>₱${transaction_list.amount}</td>
-                        <td>${transaction_list.is_confirmed ? "Confirmed" : "Not Confirmed"}</td>
+                        <td class="confirmation-status" data-status="${transaction_list.is_confirmed ? "Confirmed" : "Not Confirmed"}">${transaction_list.is_confirmed ? "Confirmed" : "Not Confirmed"}</td>
                         <td><button class="btn btn-primary btn-review" id="btn-review" type="button" data-bs-toggle="modal" data-bs-target="#reviewPayment" data-id="${transaction_list.id}" >Review Payment </button></td>
                         </tr>`)
                     })
