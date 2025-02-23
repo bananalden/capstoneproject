@@ -130,8 +130,11 @@
 /* Responsive Styles */
 @media (max-width: 1200px) {
   .trans-container {
-    max-width: 95%;
+    max-width: 90%;
     padding: 15px;
+  }
+  .thead-title th, .table-tbody td {
+    padding: 10px;
   }
 }
 
@@ -139,11 +142,11 @@
   .trans-container h1 {
     font-size: 1.8rem;
   }
-  .thead-title th, .table-tbody td {
-    padding: 10px;
+  #transactionTable {
+    font-size: 0.95rem;
   }
-  #searchButton {
-    padding: 8px 12px;
+  .btn-review {
+    padding: 5px 10px;
   }
 }
 
@@ -154,9 +157,15 @@
   #transactionTable {
     font-size: 0.9rem;
   }
+  .thead-title th, .table-tbody td {
+    padding: 8px;
+  }
+  #searchButton {
+    padding: 6px 10px;
+  }
   .btn-review {
-    padding: 5px 10px;
-    font-size: 12px;
+    padding: 4px 8px;
+    font-size: 11px;
   }
 }
 
@@ -168,18 +177,18 @@
     font-size: 1.2rem;
   }
   #transactionTable {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
   .thead-title th, .table-tbody td {
-    padding: 8px;
+    padding: 6px;
   }
   #searchButton {
-    padding: 6px 8px;
+    padding: 5px 8px;
     font-size: 0.9rem;
   }
   #second-pagination button {
-    padding: 6px 12px;
-    font-size: 0.9rem;
+    padding: 5px 10px;
+    font-size: 0.85rem;
   }
 }
 
