@@ -5,6 +5,8 @@
   background: linear-gradient(135deg, #ffffff, #e8f5e9);
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  width: 100%;
 }
 
 .trans-container h1 {
@@ -41,7 +43,7 @@
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
-  table-layout: auto;
+  table-layout: fixed; /* Ensure consistent column widths */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -50,9 +52,9 @@
   padding: 12px 15px;
   text-align: center;
   border-bottom: 1px solid #ddd;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal; /* Allow text wrapping */
+  word-wrap: break-word; /* Ensure long words break properly */
+  text-overflow: clip;
 }
 
 .thead-title th {
