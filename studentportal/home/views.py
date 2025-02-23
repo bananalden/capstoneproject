@@ -15,9 +15,9 @@ def cashier_home(request):
     return render(request, 'cashier/dashboard.html')
 
 def transaction_cashier(request):
-    transactions = models.Transaction.objects.all().order_by("-date_time")
+    form = forms.updatePayment()
     context = {
-        'transactions': transactions
+        'form': form
     }
     return render(request, 'cashier/new-cashier-transaction-design.html', context)
 

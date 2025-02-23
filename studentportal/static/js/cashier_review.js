@@ -2,8 +2,11 @@
 $(document).ready(function (){
     $('.btn-review').on('click', function(){
         var itemID = $(this).data('id');
-        $('#student-info').html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
-
+        console.log(itemID)
+        
+        $("#loadingSpinner").show();
+        $("#student-info").html(""); // Clear old content
+        $("#preview-payment-header").html("");
 
         $.ajax({
             url: `/api/get-payment-data/${itemID}`,
@@ -13,7 +16,6 @@ $(document).ready(function (){
                 var paymentProof = `
                 <div class="review-payment-header">
                     <img src="${data.payment_proof}"  alt="Payment Proof"  style="height:800px; border: solid 1px black;"/>
-                    <p><strong>Payment Purpose:</strong> ${data.payment_purpose}</p>
                 </div>
                 `
                 var studentInfo = `
@@ -36,10 +38,6 @@ $(document).ready(function (){
 
  })
 
- $('.modal').on('hidden.bs.modal', function () {
-    $('#student-info').html("");  
-    $('#payment-proof').html(""); 
-});
 
 })
 
