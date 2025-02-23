@@ -12,7 +12,7 @@ $(document).ready(function (){
 
 
     function loadTransactions(page = 1, query= "", purpose=""){
-        $(".table-tbody").append('<tr class="table-tr"><td colspan="8">Loading transaction...</td></tr>');
+        $(".table-tbody").html('<tr class="table-tr"><td colspan="8">Loading transaction...</td></tr>');
         $.ajax({
             url:`/api/get-transaction-page-unconfirmed/?page=${page}&q=${query}&filter=${purpose}`,
             type: "GET",
@@ -40,39 +40,37 @@ $(document).ready(function (){
                         </tr>`)
                     })
                 }
-                updatePagination(response.page, response.total_pages)
+              $("#second-pagination").html(`
+                    <button class="btn" id="prevPage" ${response.page == 1 ? "disabled" : ""}>Previous</button>
+                    <span> Page ${response.page} of ${response.total_pages} </span>
+                    <button class="btn" id="nextPage" ${response.page == response.total_pages ? "disabled" : ""}>Next</button>
+              
+              
+              
+              `)
             }
 
         });
+        
         
     }
 
     loadTransactions()
    
-    function updatePagination(currentPage, totalPages){
-        let pagination = "";
-
-        if (currentPage > 1){
-            pagination += `<button id="prev-btn" class="pagination-btn" data-page="${currentPage - 1}" aria-label="Previous page">Previous</button>`
-        }
-
-        pagination +=`<span class="mx-2">Page ${currentPage} of ${totalPages}</span>`
-
-        if (currentpage < totalPages){
-            pagination +=`<button id="next-btn" class="pagination-btn" data-page="${currentPage + 1}" aria-label="Next page">Next</button>`
-        }
-
-        $("#second-pagination").html(pagination)
-
-
-    }
+    $("#second-pagination").on("click", "#nextPage", function() {
+        currentPage++;
+        loadTransactions(currentPage);
+    
+    });
   
 
-    $(document).on("click", ".pagination-btn", function () {
-        let newPage = $(this).data("page");
-        loadTransactions(newPage, searchQuery, selectedPurpose);
+    $("#second-pagination").on("click", "#prevPage", function() {
+        if (currentPage > 1) {
+            currentPage--;
+            loadTransactions(currentPage);
+        }
     });
-
+  
 })
 
 //TABLE DATA END
