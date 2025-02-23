@@ -70,6 +70,12 @@ $(document).ready(function (){
             loadTransactions(currentPage);
         }
     });
+
+    $("#searchButton").on("click", function(){
+        var searchVal = $("#searchInput").val()
+        var currentPage = 1
+        loadTransactions(currentPage, searchVal)
+    })
   
 })
 
