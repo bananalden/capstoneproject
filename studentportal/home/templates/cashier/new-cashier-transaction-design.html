@@ -5,29 +5,31 @@ Transaction History {%endblock title %} {% block content %}
   <h1>Transaction History</h1>
   <div class="filters">
     <div class="search-bar">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search by Name or Transaction ID..."
-      />
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by Name or Transaction ID..."
+        />
+        <button id="searchButton">Search</button>
     </div>
     <div class="filter-options">
-      <select id="filterPurpose">
-        <option value="">Filter by Purpose</option>
-        <option value="Tuition Fee">Tuition Fee</option>
-        <option value="Library Fee">Library Fee</option>
-        <option value="Sports Fee">Sports Fee</option>
-        <option value="Graduation Fee">Graduation Fee</option>
-      </select>
-      <select id="filterDate">
-        <option value="">Filter by Date</option>
-        <option value="2025-01-01">2025-01-01</option>
-        <option value="2025-01-05">2025-01-05</option>
-        <option value="2025-01-10">2025-01-10</option>
-        <option value="2025-01-15">2025-01-15</option>
-      </select>
+        <select id="filterPurpose">
+            <option value="">Filter by Purpose</option>
+            <option value="Tuition Fee">Tuition Fee</option>
+            <option value="Library Fee">Library Fee</option>
+            <option value="Sports Fee">Sports Fee</option>
+            <option value="Graduation Fee">Graduation Fee</option>
+        </select>
+        <select id="filterDate">
+            <option value="">Filter by Date</option>
+            <option value="2025-01-01">2025-01-01</option>
+            <option value="2025-01-05">2025-01-05</option>
+            <option value="2025-01-10">2025-01-10</option>
+            <option value="2025-01-15">2025-01-15</option>
+        </select>
     </div>
-  </div>
+</div>
+
 
   <div class="trans-history-container">
     <table id="transactionTable">
@@ -64,6 +66,12 @@ Transaction History {%endblock title %} {% block content %}
         </tr>
       </tbody>      
     </table>
+
+    <div id="second-pagination">
+      <button id="prev-btn" class="pagination-btn" aria-label="Previous page">Previous</button>
+      <button id="next-btn" class="pagination-btn" aria-label="Next page">Next</button>
+    </div>
+
     <div class="no-results" id="noResults" style="display: none">
       No matching records found
     </div>
