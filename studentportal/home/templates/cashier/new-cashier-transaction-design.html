@@ -40,30 +40,13 @@ Transaction History {%endblock title %} {% block content %}
           <th>Date</th>
           <th>Purpose of Payment</th>
           <th>Other Purpose</th>
+          <th>Amount</th>
           <th>Confirmation Status</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody class="table-tbody">
-        <tr class="table-tr">
-          <td>21001396500</td>
-          <td>Alden Justine Flores</td>
-          <td>Feb. 20, 2025, 2:10 p.m.</td>
-          <td>Tuition Fee Payment</td>
-          <td>Alumni</td>
-          <td class="confirmation-status" data-status="Confirmed">Confirmed</td>
-          <td>
-            <button
-              class="btn btn-primary btn-review"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#reviewPayment"
-              data-id="{{transaction.id}}"
-            >
-              Review Payment
-            </button>
-          </td>
-        </tr>
+        
       </tbody>      
     </table>
 
@@ -103,32 +86,24 @@ Transaction History {%endblock title %} {% block content %}
       <div class="modal-body">
         <div class="row">
           <div class="col">
+            <form action="{%url 'home:transactions:confirm-payment'%}" method="post">
             <div class="form-group" id="student-info">
-              <div class="review-student-info">
-                <p><strong>Student USN:</strong> 21001396500</p>
-                <p><strong>Student Name:</strong> Alden Pogi Gaming</p>
-                <p><strong>Payment Purpose:</strong> TEST</p>
-                <div class="form-group" id="payment-proof">
-                  <div class="review-payment-header">
-                    <button
-                      type="button"
-                      class="btn btn-primary open-payment-proof"
-                      data-bs-toggle="modal"
-                      data-bs-target="#paymentPreview"
-                      data-bs-dismiss="modal"
-                    >
-                      Open Payment Proof
-                    </button>
-                  </div>
+              <div class="review-student-info" id="review-student-info">
+                
+                <div class="loadingSpinner">
+                  <div class="spinner-border text-primary" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
+        
               </div>
             </div>
           </div>
           <div class="col">
-            <h3>Cashier Action</h3>
+              {% csrf_token %}
+            <h3>Confirm Payment?</h3>
             <div class="cashier-action">
-              <label><input type="radio" name="confirmation" id="confirmation-yes"> Yes</label>
-              <label><input type="radio" name="confirmation" id="confirmation-no"> No</label>
+              <label>{{form.is_confirmed}}</label>
             </div>
           </div>
         </div>
@@ -143,7 +118,8 @@ Transaction History {%endblock title %} {% block content %}
           >
             Close
           </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn confirm-btn" id="confirmPayment">Confirm changes</button>
+        </form>
         </div>
       </div>
     </div>
@@ -157,6 +133,7 @@ Transaction History {%endblock title %} {% block content %}
   aria-hidden="true"
   aria-labelledby="exampleModalToggleLabel"
   tabindex="-1"
+  data-bs-backdrop="static"
   >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -170,15 +147,14 @@ Transaction History {%endblock title %} {% block content %}
         ></button>
       </div>
       <div class="modal-body">
-        <img
-          src="/media/payments/1740031776494.jpg"
-          alt="Payment Proof"
-          style="max-height: 800px; border: solid 1px black"
-        />
+        <div class="pay-proof" id="pay-proof">
+
+        </div>
+        
       </div>
     </div>
   </div>
   </div>
+<script src="{%static 'js/cashier_transaction_unconfirmed.js'%}"></script>
 
-<!--<script src="{%static 'js/cashier_review.js'%}"></script> -->
 {% endblock content %}

@@ -259,6 +259,24 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
+.custom-payment-modal .confirm-btn{
+  background: linear-gradient(135deg, #007bff, #0046a3);
+  border: none;
+  padding: 14px 24px;
+  font-size: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  color:#ddd;
+}
+
+.custom-payment-modal .confirm-btn:hover{
+  background: linear-gradient(135deg, #0046a3, #002f7a);
+  transform: translateY(-2px);
+  color:#ddd;
+}
+
 .custom-payment-modal .btn-primary:hover {
   background: linear-gradient(135deg, #0046a3, #002f7a);
   transform: translateY(-2px);
