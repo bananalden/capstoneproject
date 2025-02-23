@@ -34,12 +34,9 @@ Cashier Dashboard
     <div class="cashier-widget cashier-transactions">
       <h3>Recent Transactions</h3>
       <ul class="cashier-transactions-list">
-        <li>John Doe - PHP 5,000 - Tuition</li>
-        <li>Jane Smith - PHP 2,500 - Miscellaneous</li>
-        <li>Paul Lee - PHP 3,000 - ID Fee</li>
-        <li>Anna Taylor - PHP 4,200 - Books</li>
-        <li>Mark Wilson - PHP 1,800 - Laboratory</li>
-        <li>Susan Clark - PHP 2,900 - Activity Fee</li>
+      {%for transaction in transactions%}
+        <li>{{transaction.student.first_name}} - PHP {{transaction.amount}} - {{transaction.payment_purpose}}</li>
+        {%endfor%}
       </ul>
       <a href="#" class="cashier-btn cashier-btn-transactions" aria-label="View all transactions">View All</a>
     </div>

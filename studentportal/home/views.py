@@ -12,7 +12,12 @@ from transactions import forms, models
 #CASHIER VIEWS START =============================
 
 def cashier_home(request):
-    return render(request, 'cashier/dashboard.html')
+    transactions = models.Transaction.objects.order_by("-date_time")[:6]
+
+    context = {
+        'transactions': transactions
+    }
+    return render(request, 'cashier/dashboard.html', context)
 
 def transaction_cashier(request):
     form = forms.updatePayment()
