@@ -19,7 +19,7 @@ class Transaction(models.Model):
 
     payment_purpose = models.CharField(max_length=255, choices=PaymentPurposeChoice.choices,  null=True)
     payment_purpose_other = models.CharField(max_length=255, null=True, blank=True)
-    amount = models.DecimalField(max_digits=5, decimal_places=2)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
     date_time = models.DateTimeField(auto_now_add=True)
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     is_confirmed = models.BooleanField(default=False)
