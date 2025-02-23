@@ -48,6 +48,10 @@ $(document).ready(function (){
               
               
               `)
+            },
+            error: function(){
+                alert("Data could not be retrieved")
+                table_body.html('<tr class="table-tr"><td colspan="8">Could not load data...</td></tr>')
             }
 
         });
