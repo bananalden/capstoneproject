@@ -94,6 +94,8 @@ $(document).ready(function (){
 
 //TABLE DATA END
 
+
+//REVIEW PAYMENT BUTTON START
 $(document).on("click",".btn-review", function(){
     var itemID = $(this).data('id');
     console.log(itemID)
@@ -103,7 +105,7 @@ $(document).on("click",".btn-review", function(){
     
     $("#preview-payment-header").html("");
     $.ajax({
-            url: `/api/get-payment-data/${itemID}`,
+        url: `/api/get-payment-data/${itemID}`,
             type: "GET",
             dataType: "json",
             success: function(data){
@@ -120,16 +122,16 @@ $(document).on("click",".btn-review", function(){
                     </div>
                     `
                     
-                $('#confirmPayment').prop("disabled",false)
-                var payment_proof = `<img src="${data.payment_proof}" alt="Payment Proof" style="max-height: 800px; border: solid 1px black"/>`
+                    $('#confirmPayment').prop("disabled",false)
+                    var payment_proof = `<img src="${data.payment_proof}" alt="Payment Proof" style="max-height: 800px; border: solid 1px black"/>`
 
 
                 $('#student-info').html(studentInfo);
                 $('#preview-payment-header').html(paymentProof)
                 $("#pay-proof").html(payment_proof); 
 
-
-
+                
+                
             },
             error: function(){
                 console.log("Data didn't load")
@@ -137,6 +139,7 @@ $(document).on("click",".btn-review", function(){
         })
 
 })
+//REVIEW PAYMENT BUTTON END
 
 $(document).on("click",".payment-info", function(){
     $("#student-info").html(""); 
