@@ -7,12 +7,14 @@ $(document).ready(function (){
     let currentPage= 1;
     let searchQuery = "";
 
+   
 
-    
-    function loadTransactions(page = 1, query= ""){
+
+
+    function loadTransactions(page = 1, query= "", purpose=""){
         $(".table-tbody").append('<tr class="table-tr"><td colspan="8">Loading transaction...</td></tr>');
         $.ajax({
-            url:`/api/get-transaction-page-unconfirmed/?page=${page}&q=${query}`,
+            url:`/api/get-transaction-page-unconfirmed/?page=${page}&q=${query}&filter=${purpose}`,
             type: "GET",
             dataType: "json",
             success: function(response){
@@ -37,16 +39,39 @@ $(document).ready(function (){
                         <td><button class="btn btn-primary btn-review" id="btn-review" type="button" data-bs-toggle="modal" data-bs-target="#reviewPayment" data-id="${transaction_list.id}" >Review Payment </button></td>
                         </tr>`)
                     })
-                    
                 }
+                updatePagination(response.page, response.total_pages)
             }
-            
+
         });
         
     }
 
     loadTransactions()
    
+    function updatePagination(currentPage, totalPages){
+        let pagination = "";
+
+        if (currentPage > 1){
+            pagination += `<button id="prev-btn" class="pagination-btn" data-page="${currentPage - 1}" aria-label="Previous page">Previous</button>`
+        }
+
+        pagination +=`<span class="mx-2">Page ${currentPage} of ${totalPages}</span>`
+
+        if (currentpage < totalPages){
+            pagination +=`<button id="next-btn" class="pagination-btn" data-page="${currentPage + 1}" aria-label="Next page">Next</button>`
+        }
+
+        $("#second-pagination").html(pagination)
+
+
+    }
+  
+
+    $(document).on("click", ".pagination-btn", function () {
+        let newPage = $(this).data("page");
+        loadTransactions(newPage, searchQuery, selectedPurpose);
+    });
 
 })
 

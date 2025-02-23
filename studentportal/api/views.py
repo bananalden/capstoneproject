@@ -106,6 +106,7 @@ def get_payment_data(request,pk):
 def cashier_transaction_data(request):
     page = request.GET.get("page",1)
     search_query = request.GET.get("q","")
+    filter_status = request.GET.get("filter","")
     transaction_list = transactions_data.Transaction.objects.all().order_by("-date_time")
 
     
@@ -116,6 +117,12 @@ def cashier_transaction_data(request):
             Q(student__last_name__icontains=search_query) |
             Q(student__username__icontains=search_query) 
         )
+
+    if filter_status:
+        transaction_list = transaction_list.filter(payment_purpose = filter_status)
+
+    
+
     paginator = Paginator(transaction_list,10)
     try:
         transaction_page = paginator.page(page)
