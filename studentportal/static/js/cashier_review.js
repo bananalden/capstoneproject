@@ -3,8 +3,10 @@ $(document).ready(function (){
     $('.btn-review').on('click', function(){
         var itemID = $(this).data('id');
         console.log(itemID)
-        $('#review-student-info').html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
-
+        
+        $("#loadingSpinner").show();
+        $("#student-info").html(""); // Clear old content
+        $("#preview-payment-header").html("");
 
         $.ajax({
             url: `/api/get-payment-data/${itemID}`,
@@ -36,10 +38,6 @@ $(document).ready(function (){
 
  })
 
- $('.modal').on('hidden.bs.modal', function () {
-    $('#student-info').html("");  
-    $('#payment-proof').html(""); 
-});
 
 })
 

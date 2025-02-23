@@ -19,6 +19,20 @@ class StudentPaymentForm(forms.ModelForm):
         self.fields["payment_purpose"].choices = CHOICES
         self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
 
+    def clean_amount(self):
+        amount = self.cleaned_data.get("amount")
+
+        if amount is not None:
+            return round(amount,2)
+        return amount
+    
+    def clean_payment_purpose_other(self):
+        payment_purpose_other = self.cleaned_data.get("payment_purpose_other")
+
+        if not payment_purpose_other:
+            return None
+        return payment_purpose_other
+
     def save(self,user, commit=True):
         instance = super().save(commit=False)
         instance.student = user

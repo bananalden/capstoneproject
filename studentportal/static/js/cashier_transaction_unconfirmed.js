@@ -1,4 +1,8 @@
 //EDIT MODAL POPULATION
+
+
+
+//TABLE DATA START
 $(document).ready(function (){
     let currentPage= 1;
     let searchQuery = "";
@@ -43,11 +47,16 @@ $(document).ready(function (){
 
 })
 
+//TABLE DATA END
 
 $(document).on("click",".btn-review", function(){
         var itemID = $(this).data('id');
         console.log(itemID)
+        $("#student-info").html(`<div class="spinner-border text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>`); 
+        $("#pay-proof").html(`<div class="spinner-border text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>`); 
 
+
+        $("#preview-payment-header").html("");
         $.ajax({
             url: `/api/get-payment-data/${itemID}`,
             type: "GET",
@@ -57,14 +66,21 @@ $(document).on("click",".btn-review", function(){
                 `
                 var studentInfo = `
                     <div class="review-student-info">
+                        <input type="hidden" name="trans_id" id="trans_id" value="${itemID}">
                         <p><strong>Student USN:</strong> ${data.student_usn}</p>
                         <p><strong>Student Name:</strong> ${data.student_name}</p>
                         <p><strong>Payment Purpose:</strong> ${data.payment_purpose}</p>
                         <button type="button" class="btn btn-primary open-payment-proof" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal"> Open Payment Proof</button>
                     </div>
                 `
+
+                var payment_proof = `<img src="${data.payment_proof}" alt="Payment Proof" style="max-height: 800px; border: solid 1px black"/>`
+
+
                 $('#student-info').html(studentInfo);
                 $('#preview-payment-header').html(paymentProof)
+                $("#pay-proof").html(payment_proof); 
+
 
 
             },
@@ -74,6 +90,11 @@ $(document).on("click",".btn-review", function(){
         })
 
 })
+
+$(document).on("click",".payment-info", function(){
+    $("#student-info").html(""); 
+})
+
 
 
 $(document).on("click","#reviewPayment .btn-primary", function(){
