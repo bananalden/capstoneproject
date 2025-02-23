@@ -23,7 +23,7 @@ $(document).ready(function (){
                 table_body.empty()
                 
                 if (transaction_list.length == 0){
-                    table_body.append('<tr class="table-tr"><td colspan="7">No transactions found...</td></tr>')
+                    table_body.append('<tr class="table-tr"><td colspan="8">No transactions found...</td></tr>')
                 }
                 else{
                     $.each(transaction_list, function(index, transaction_list){
@@ -76,8 +76,17 @@ $(document).ready(function (){
         var currentPage = 1
         loadTransactions(currentPage, searchVal)
     })
-  
+    
+    $("#filterPurpose").on("change",function(){
+        var purposeVal = $(this).val()
+        var currentPage = 1
+        var searchVal = $("#searchInput").val()
+        loadTransactions(currentPage,searchVal,purposeVal)
+    })
+
+
 })
+
 
 //TABLE DATA END
 
