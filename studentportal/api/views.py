@@ -206,11 +206,11 @@ def export_transaction(request):
     except:
         return HttpResponse("Invalid date format!", status = 400)
     
-    transactions = transactions_data.Transaction.objects.filter(date_time__year=year, date_time__month=month)
+    transactions = transactions_data.Transaction.objects.filter(date_time__year=year, date_time__month=month, is_confirmed=True)
 
     data =[{
         "student_usn": trans.student.username,
-        "student_name": f"{trans.student.first_name} {trans.student_last_name}",
+        "student_name": f"{trans.student.first_name} {trans.student.last_name}",
         "payment_purpose":trans.payment_purpose,
         "payment_purpose_other": trans.payment_purpose_other,
         "amount": trans.amount,
@@ -227,7 +227,7 @@ def export_transaction(request):
     response = HttpResponse(content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     response["Content-Disposition"] = f'attachment; filename="transactions_{month_year}.xlsx"'
 
-    with pd.ExcelWriter(response, engine="xlswriter") as writer:
+    with pd.ExcelWriter(response, engine="openpyxl") as writer:
         df.to_excel(writer, index=False,sheet_name="Transactions")
     return response
 

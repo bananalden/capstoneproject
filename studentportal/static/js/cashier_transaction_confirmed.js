@@ -88,8 +88,20 @@ $(document).ready(function (){
     })
 
     $("#exportExcel").on("click", function(){
-        alert("Button clicked")
+        var monthYear = $("#monthSelect").val()
+
+        if (!monthYear){
+            alert("Please input the month and year")
+        }
+
+        else{
+            window.location.href = `/api/export-transaction-report/?month=${monthYear}`
+        }
+
+       
     })
+
+
 
 
 })
