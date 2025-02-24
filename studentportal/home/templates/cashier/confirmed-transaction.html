@@ -20,13 +20,7 @@ Confirmed Transactions {%endblock title %} {% block content %}
             <option value="CERTIFICATE OF GOOD MORALE">Certificate of Good Morale</option>
             <option value="OTHER">Other</option>
         </select>
-        <select id="filterDate">
-            <option value="">Filter by Date</option>
-            <option value="2025-01-01">2025-01-01</option>
-            <option value="2025-01-05">2025-01-05</option>
-            <option value="2025-01-10">2025-01-10</option>
-            <option value="2025-01-15">2025-01-15</option>
-        </select>
+       <button type="button" class="btn btn-primary">Export Transaction Data</button>
     </div>
 </div>
 
@@ -60,99 +54,7 @@ Confirmed Transactions {%endblock title %} {% block content %}
 </div>
 
 
-  <!-- FIRST MODAL SECTION -->
-<div
-  class="modal custom-payment-modal modal-xl fade review-payment-modal"
-  id="reviewPayment"
-  tabindex="-1"
-  aria-labelledby="paymentModalLabel"
-  aria-hidden="true"
-  >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="paymentModalLabel">
-          Payment Information
-        </h1>
-        <button
-          type="button"
-          class="payment-info btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col">
-            <form action="{%url 'home:transactions:confirm-payment'%}" method="post">
-            <div class="form-group" id="student-info">
-              <div class="review-student-info" id="review-student-info">
-                
-                <div class="loadingSpinner">
-                  <div class="spinner-border text-primary" role="status">
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-        
-              </div>
-            </div>
-          </div>
-          <div class="col">
-              {% csrf_token %}
-            <h3>Confirm Payment?</h3>
-            <div class="cashier-action">
-              <label>{{form.is_confirmed}}</label>
-            </div>
-          </div>
-        </div>
-  
-        <div class="form-group" id="payment-info"></div>
-  
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-          <button type="submit" class="btn confirm-btn" id="confirmPayment">Confirm changes</button>
-        </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <!-- SECOND MODAL SECTION -->
-  <div
-  class="modal fade modal payment-preview-modal"
-  id="paymentPreview"
-  aria-hidden="true"
-  aria-labelledby="exampleModalToggleLabel"
-  tabindex="-1"
-  data-bs-backdrop="static"
-  >
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Proof of Payment</h1>
-        <button
-          type="button"
-          class="proof-payment btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <div class="pay-proof" id="pay-proof">
+  <script src="{%static 'js/cashier_transaction_confirmed.js'%}"></script>
 
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  </div>
-<script src="{%static 'js/cashier_transaction_confirmed.js'%}"></script>
 
 {% endblock content %}

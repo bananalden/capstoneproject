@@ -107,7 +107,7 @@ def cashier_transaction_data_unconfirmed(request):
     page = request.GET.get("page",1)
     search_query = request.GET.get("q","")
     filter_status = request.GET.get("filter","")
-    transaction_list = transactions_data.Transaction.objects.all().order_by("-date_time")
+    transaction_list = transactions_data.Transaction.objects.all().order_by("-date_time").filter(is_confirmed=False)
     
 
     if search_query:

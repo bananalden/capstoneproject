@@ -35,7 +35,7 @@ Cashier Dashboard
       <h3>Recent Transactions</h3>
       <ul class="cashier-transactions-list">
       {%for transaction in transactions%}
-        <li>{{transaction.student.first_name}} - PHP {{transaction.amount}} - {{transaction.payment_purpose}}</li>
+        <li>{{transaction.student.first_name}} - PHP {{transaction.amount}} - {%if transaction.payment_purpose == "OTHER"%}{{transaction.payment_purpose_other}}{%else%}{{transaction.payment_purpose}}{%endif%}</li>
         {%endfor%}
       </ul>
       <a href="#" class="cashier-btn cashier-btn-transactions" aria-label="View all transactions">View All</a>
