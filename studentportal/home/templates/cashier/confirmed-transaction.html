@@ -20,7 +20,7 @@ Confirmed Transactions {%endblock title %} {% block content %}
             <option value="CERTIFICATE OF GOOD MORALE">Certificate of Good Morale</option>
             <option value="OTHER">Other</option>
         </select>
-       <button type="button" class="btn btn-primary" id="searchButton" data-bs-target="exportModal">Export Transaction Data</button>
+       <button type="button" class="btn btn-primary" id="searchButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export Transaction Data</button>
     </div>
 </div>
 
@@ -52,6 +52,28 @@ Confirmed Transactions {%endblock title %} {% block content %}
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Export Transaction Data</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+       <input type="month" name="" id="monthSelect">
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="exportExcel">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
   <script src="{%static 'js/cashier_transaction_confirmed.js'%}"></script>

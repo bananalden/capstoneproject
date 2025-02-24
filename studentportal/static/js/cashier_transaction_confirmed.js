@@ -87,6 +87,10 @@ $(document).ready(function (){
         loadTransactions(currentPage,searchVal,purposeVal)
     })
 
+    $("#exportExcel").on("click", function(){
+        alert("Button clicked")
+    })
+
 
 })
 

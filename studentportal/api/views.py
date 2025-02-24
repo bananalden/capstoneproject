@@ -1,6 +1,7 @@
+import pandas as pd
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import get_user_model
 from users import models as user_data
 from news import models as news_data
@@ -192,5 +193,42 @@ def cashier_transaction_data_confirmed(request):
         "page":transaction_page.number,
         "total_pages":paginator.num_pages
     })
+
+
+def export_transaction(request):
+    month_year = request.GET.get("month")
+
+    if not month_year:
+        return HttpResponse("Month and year not inputted!", status=400)
+    
+    try:
+        year, month = map(int, month_year.split("-")) 
+    except:
+        return HttpResponse("Invalid date format!", status = 400)
+    
+    transactions = transactions_data.Transaction.objects.filter(date_time__year=year, date_time__month=month)
+
+    data =[{
+        "student_usn": trans.student.username,
+        "student_name": f"{trans.student.first_name} {trans.student_last_name}",
+        "payment_purpose":trans.payment_purpose,
+        "payment_purpose_other": trans.payment_purpose_other,
+        "amount": trans.amount,
+        "date":trans.date_time.strftime("%Y-%m-%d")
+                }
+        for trans in transactions
+    ]
+
+    if not data:
+        return HttpResponse("No transactions were found...", status=404)
+    
+    df = pd.DataFrame(data)
+
+    response = HttpResponse(content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    response["Content-Disposition"] = f'attachment; filename="transactions_{month_year}.xlsx"'
+
+    with pd.ExcelWriter(response, engine="xlswriter") as writer:
+        df.to_excel(writer, index=False,sheet_name="Transactions")
+    return response
 
 #PAYMENT PURPOSE START
