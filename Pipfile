@@ -9,6 +9,8 @@ ipython = "*"
 psycopg2-binary = "*"
 pillow = "*"
 psycopg2 = "*"
+openpyxl = "*"
+pandas = "*"
 
 [dev-packages]
 
