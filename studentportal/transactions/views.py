@@ -25,9 +25,9 @@ def confirm_payment(request):
         if form.is_valid():
             print(transaction_id)
             form.save()
-            return redirect('home:cashier-transactions')
+            return redirect('home:unconfirmed-cashier-transactions')
         else:
             print(form.errors)
-            return redirect('home:cashier-transactions')
+            return redirect('home:unconfirmed-cashier-transactions')
             
   
