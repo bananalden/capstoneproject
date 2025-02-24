@@ -103,12 +103,57 @@ def get_payment_data(request,pk):
     return JsonResponse(data)
 
 
-def cashier_transaction_data(request):
+def cashier_transaction_data_unconfirmed(request):
     page = request.GET.get("page",1)
     search_query = request.GET.get("q","")
     filter_status = request.GET.get("filter","")
     transaction_list = transactions_data.Transaction.objects.all().order_by("-date_time")
+    
 
+    if search_query:
+        transaction_list = transaction_list.filter(
+            Q(student__first_name__icontains=search_query) |
+            Q(student__last_name__icontains=search_query) |
+            Q(student__username__icontains=search_query) 
+        )
+
+    if filter_status:
+        transaction_list = transaction_list.filter(payment_purpose = filter_status)
+
+    
+
+    paginator = Paginator(transaction_list,10)
+    try:
+        transaction_page = paginator.page(page)
+    except:
+        transaction_page = paginator.page(1)
+    data = [{
+        "id":transaction.id,
+        "student_name":f"{transaction.student.first_name} {transaction.student.last_name}",
+        "student_username":transaction.student.username,
+        "date_time":transaction.date_time.strftime("%B %d, %Y %I:%M %p"),
+        "is_confirmed":transaction.is_confirmed,
+        "payment_purpose":transaction.payment_purpose,
+        "payment_purpose_other":transaction.payment_purpose_other,
+        "amount":transaction.amount,
+
+    }
+    for transaction in transaction_page
+    ]
+
+    return JsonResponse({
+        "transaction":data,
+        "page":transaction_page.number,
+        "total_pages":paginator.num_pages
+    })
+
+
+
+def cashier_transaction_data_confirmed(request):
+    page = request.GET.get("page",1)
+    search_query = request.GET.get("q","")
+    filter_status = request.GET.get("filter","")
+    transaction_list = transactions_data.Transaction.objects.all().order_by("-date_time").filter(is_confirmed=True)
     
 
     if search_query:

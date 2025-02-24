@@ -17,7 +17,7 @@ Cashier Dashboard
   <!-- Grid Layout -->
   <div class="cashier-grid">
     <div class="cashier-widget cashier-summary">
-      <h3>Face-to-Face Student Payment</h3>
+      <h3>Process Face-to-Face Registrar Request</h3>
       <button class="cashier-btn request-payment" data-bs-toggle="modal" data-bs-target="#insertPayment">
         Request Payment
       </button>
@@ -26,7 +26,7 @@ Cashier Dashboard
     <!-- Pending Approvals -->
     <div class="cashier-widget cashier-approvals">
       <h3>Pending Approvals</h3>
-      <p class="cashier-approvals-text">5 refund requests awaiting approval.</p>
+      <p class="cashier-approvals-text">{{unconfirmed_transactions}} confirmation {%if unconfirmed_transactions > 1%} requests {%else%} request {%endif%}awaiting.</p>
       <a href="#" class="cashier-btn cashier-btn-approvals" aria-label="View pending approvals">View Details</a>
     </div>
 

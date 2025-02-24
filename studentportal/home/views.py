@@ -12,19 +12,25 @@ from transactions import forms, models
 #CASHIER VIEWS START =============================
 
 def cashier_home(request):
-    transactions = models.Transaction.objects.order_by("-date_time")[:6]
+    transactions = models.Transaction.objects.order_by("-date_time").filter(is_confirmed=True)[:6]
+    unconfirmed_transactions = models.Transaction.objects.filter(is_confirmed=False).count()
 
     context = {
-        'transactions': transactions
+        'transactions': transactions,
+        'unconfirmed_transactions':unconfirmed_transactions
     }
     return render(request, 'cashier/dashboard.html', context)
 
-def transaction_cashier(request):
+def unconfirmed_transaction_cashier(request):
     form = forms.updatePayment()
     context = {
         'form': form
     }
-    return render(request, 'cashier/new-cashier-transaction-design.html', context)
+    return render(request, 'cashier/unconfirmed-transactions.html', context)
+
+
+def confirmed_transaction_cashier(request):
+    return render(request, 'cashier/confirmed-transaction.html')
 
 #CASHIER VIEWS END =============================
 
