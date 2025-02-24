@@ -41,6 +41,9 @@ def confirmed_transaction_cashier(request):
 def registrar_home(request):
     return render(request, 'registrar/registrar.html')
 
+def registrar_dashboard(request):
+    return render(request, 'registrar/registrar-dashboard.html')
+
 
 #REGISTRAR VIEWS END  =================================
 
