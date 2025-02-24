@@ -14,7 +14,16 @@ $(document).ready(function (){
         }
     })
   
-
+    $(document).ready(function () {
+        $("input[type='file']").change(function () {
+            let fileName = $(this).val().split("\\").pop(); // Get file name
+            if (fileName) {
+                $("#file-name").text(fileName); // Update the span
+            } else {
+                $("#file-name").text("No file chosen");
+            }
+        });
+    });
         
         
     })
