@@ -6,20 +6,21 @@ from django.contrib import messages
 def home(request):
     if request.user.is_authenticated:
         logged_user_role = request.user.role
-        if logged_user_role == 'ADMIN':
-            return redirect('admin:dashboard')
+
+        match logged_user_role:
+            case "ADMIN":
+                return redirect('admin:dashboard')
+            case "STUDENT":
+                return redirect("home:student-home")
+            case "TEACHER":
+                return redirect("home:teacher-home")
+            case "CASHIER":
+                return redirect("home:cashier-home")
+            case "REGISTRAR":
+                return redirect("home:registrar-home")
+
+
         
-        elif logged_user_role == 'STUDENT':
-            return redirect('home:student-home')
-        
-        elif logged_user_role == 'TEACHER':
-            return redirect('home:teacher-home')
-        
-        elif logged_user_role == 'CASHIER':
-            return redirect('home:cashier-home')
-        
-        elif logged_user_role == 'REGISTRAR':
-            return redirect('home:registrar-home')
         
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -27,20 +28,19 @@ def home(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request,user)
-            if user.role == 'ADMIN':
-                return redirect('admin:dashboard')
-            
-            elif user.role == 'STUDENT':
-                return redirect('home:student-home')
-            
-            elif user.role == 'TEACHER':
-                return redirect('home:teacher-home')
-            
-            elif user.role == 'REGISTRAR':
-                return redirect('home:registrar-home')
-            
-            elif user.role == 'CASHIER':
-                return redirect('home:cashier-home')
+
+            match user.role:
+                case "ADMIN":
+                    return redirect('admin:dashboard')
+                case "STUDENT":
+                    return redirect("home:student-home")
+                case "TEACHER":
+                    return redirect("home:teacher-home")
+                case "CASHIER":
+                    return redirect("home:cashier-home")
+                case "REGISTRAR":
+                    return redirect("home:registrar-home")
+      
         else:
             messages.warning(request,'Invalid User credentials')
             return redirect('authentication:login')

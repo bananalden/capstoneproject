@@ -7,6 +7,7 @@ urlpatterns = [
     #CASHIER URLS START =========================
 
     path('cashier/', views.cashier_home, name='cashier-home'),
+    path('cashier/edit-cashier', views.edit_cashier, name='edit-cashier'),
     path('cashier/unconfirmed-transactions',views.unconfirmed_transaction_cashier,name='unconfirmed-cashier-transactions'),
     path('cashier/confirmed-transactions',views.confirmed_transaction_cashier,name='confirmed-cashier-transactions'),
 
