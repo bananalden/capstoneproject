@@ -27,7 +27,7 @@ Cashier Dashboard
     <div class="cashier-widget cashier-approvals">
       <h3>Pending Approvals</h3>
       <p class="cashier-approvals-text">{{unconfirmed_transactions}} confirmation {%if unconfirmed_transactions > 1%} requests {%else%} request {%endif%}awaiting.</p>
-      <a href="#" class="cashier-btn cashier-btn-approvals" aria-label="View pending approvals">View Details</a>
+      <a href="{%url 'home:unconfirmed-cashier-transactions'%}" class="cashier-btn cashier-btn-approvals" aria-label="View pending approvals">View Details</a>
     </div>
 
     <!-- Recent Transactions -->
@@ -38,7 +38,7 @@ Cashier Dashboard
         <li>{{transaction.student.first_name}} - PHP {{transaction.amount}} - {%if transaction.payment_purpose == "OTHER"%}{{transaction.payment_purpose_other}}{%else%}{{transaction.payment_purpose}}{%endif%}</li>
         {%endfor%}
       </ul>
-      <a href="#" class="cashier-btn cashier-btn-transactions" aria-label="View all transactions">View All</a>
+      <a href="{%url 'home:confirmed-cashier-transactions'%}" class="cashier-btn cashier-btn-transactions" aria-label="View all transactions">View All</a>
     </div>
   </div>
 </div>

@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from news.models import Announcement
 from transactions import forms, models
+from users.forms import edit_admin
 
 
 # Create your views here.
@@ -32,6 +33,13 @@ def unconfirmed_transaction_cashier(request):
 
 def confirmed_transaction_cashier(request):
     return render(request, 'cashier/confirmed-transaction.html')
+
+def edit_cashier(request):
+    form = edit_admin()
+    context = {
+        'form':form
+    }
+    return render(request,'cashier/edit-cashier.html',context)
 
 #CASHIER VIEWS END =============================
 

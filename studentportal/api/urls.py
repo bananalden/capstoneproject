@@ -11,6 +11,7 @@ urlpatterns = [
     path('get-payment-data/<int:pk>',views.get_payment_data,name='get-payment-data'),
     path('get-transaction-page-unconfirmed/',views.cashier_transaction_data_unconfirmed,name='cashier-transaction-unconfirmed'),
     path('get-transaction-page-confirmed/',views.cashier_transaction_data_confirmed,name='cashier-transaction-unconfirmed'),
+    path('export-transaction-report/',views.export_transaction,name="export-transaction")
 
 
 
