@@ -1,0 +1,55 @@
+{% extends "cashier/cashiersidebar.html" %}
+{% block title %}
+Edit Registrar
+{% endblock title %}
+
+{%load static%}
+{% block content %}
+
+<div class="edit-cashier-container">
+    <h1>Edit Cashier User</h1>
+    <div class="edit-cashier-form">
+        <form action="{% url 'admin:users:edit-admin' %}" method="POST">
+            {% csrf_token %}
+            
+            <!-- First Name & Last Name Row -->
+            <div class="edit-cashier-row">
+                <div class="edit-cashier-col">
+                    <div class="edit-cashier-field">
+                        <label for="first_name">First Name:</label>
+                        {{ form.first_name }}
+                    </div>
+                </div>
+                <div class="edit-cashier-col">
+                    <div class="edit-cashier-field">
+                        <label for="last_name">Last Name:</label>
+                        {{ form.last_name }}
+                    </div>
+                </div>
+            </div>
+  
+            <!-- Email & Username Row -->
+            <div class="edit-cashier-row">
+                <div class="edit-cashier-col">
+                    <div class="edit-cashier-field">
+                        <label for="email">Email:</label>
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="edit-cashier-col">
+                    <div class="edit-cashier-field">
+                        <label for="username">Username:</label>
+                        {{ form.username }}
+                    </div>
+                </div>
+            </div>
+  
+            <!-- Save Button (Centered Below) -->
+            <button class="edit-cashier-save-btn" type="submit">Save Changes</button>
+        </form>
+    </div>
+</div>
+  
+
+
+{% endblock content %}

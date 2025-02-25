@@ -16,6 +16,7 @@ urlpatterns = [
     #REGISTRAR URLS START ========================
     path('registrar/', views.registrar_dashboard, name='registrar-dashboard'),
 
+
     #REGISTRAR URLS END ========================
 
     #STUDENT URLS START ========================

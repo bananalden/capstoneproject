@@ -53,6 +53,8 @@ def registrar_dashboard(request):
     return render(request, 'registrar/registrar-dashboard.html')
 
 
+
+
 #REGISTRAR VIEWS END  =================================
 
 #STUDENT VIEWS START ==================================
