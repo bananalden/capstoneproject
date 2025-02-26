@@ -2,6 +2,7 @@
 {% block title %}
 News Feed
 {% endblock title %}
+{%load static%}
 {%block content%}
 <!-- Main Content Section -->
 <div class="main_content_wrapper">
@@ -22,59 +23,15 @@ News Feed
         </div>
     
         <!-- Newsfeed Section -->
-        <div class="newsfeed_announcements_container">
-            <div class="announcement_list">
-                <div class="announcement_item" data-teacher="Ms. Reyes">
-                    <h3 class="announcement_title">
-                        <a href="#" class="announcement_link">Midterm Exam Schedule Announcement</a>
-                    </h3>
-                    <p class="announcement_description">
-                        The midterm exam schedule for all sections will be posted on February 12. Please check your schedules.
-                    </p>
-                    <p class="announcement_post_info">Posted: 02/09/2025 | Posted by: Ms. Reyes (Math)</p>
-                    <a href="#" class="announcement_read_more">Read More</a>
-                </div>
-            </div>
+        <div class="newsfeed_announcements_container" id="newsfeed">
+       
   
-            <div class="announcement_list">
-              <div class="announcement_item" data-teacher="Ms. Reyes">
-                  <h3 class="announcement_title">
-                      <a href="#" class="announcement_link">Class Suspension Alert 🚨</a>
-                  </h3>
-                  <p class="announcement_description">
-                    Classes will be suspended on February 15 due to extreme weather conditions. Stay safe, everyone!
-                  </p>
-                  <p class="announcement_post_info">Posted: 02/09/2025 | Posted by: Mr. Santos (Student Affairs) </p>
-                  <a href="#" class="announcement_read_more">Read More</a>
-              </div>
-            </div>
+       
 
-            <div class="announcement_list">
-                <div class="announcement_item" data-teacher="Ms. Reyes">
-                    <h3 class="announcement_title">
-                        <a href="#" class="announcement_link">Quiz Reminder ✏️</a>
-                    </h3>
-                    <p class="announcement_description">
-                        Reminder: A short quiz on Trigonometry will be given this Friday, February 16. Be prepared!
-                    </p>
-                    <p class="announcement_post_info">Posted: 02/09/2025 | Posted by: Ms. Reyes (Math) </p>
-                    <a href="#" class="announcement_read_more">Read More</a>
-                </div>
-            </div>
-
-            <div class="announcement_list">
-                <div class="announcement_item" data-teacher="Ms. Reyes">
-                    <h3 class="announcement_title">
-                        <a href="#" class="announcement_link">Graduation Photo Schedule 📸</a>
-                    </h3>
-                    <p class="announcement_description">
-                        Graduating students, your official photoshoots are scheduled for March 5-7. Details will be posted soon.
-                    </p>
-                    <p class="announcement_post_info">Posted: 02/09/2025 | Posted by: Admin Office </p>
-                    <a href="#" class="announcement_read_more">Read More</a>
-                </div>
-            </div>
+     
       </div>
     </main>
   </div>
+
+<script src="{%static 'js/student_newsfeed.js'%}"></script>
 {% endblock content %}
