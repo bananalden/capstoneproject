@@ -2,3 +2,4 @@ Pipfile
 Pipfile.lock
 studentportal/studentportal/settings.py
 .env
+/studentportal/media/payments
