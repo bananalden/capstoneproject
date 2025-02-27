@@ -1,6 +1,10 @@
 from django import forms
 from django.utils.html import strip_tags
 from transactions.models import Transaction
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+
+User = get_user_model()
 
 class StudentPaymentForm(forms.ModelForm):
 
@@ -58,7 +62,7 @@ class updatePayment(forms.ModelForm):
 
    
 class manualTransactionAdd(forms.ModelForm):
-    
+
     class Meta:
         model = Transaction
         fields = ["student", "payment_purpose", "payment_purpose_other"]
@@ -69,6 +73,14 @@ class manualTransactionAdd(forms.ModelForm):
              self.fields["payment_purpose"].choices = CHOICES
              self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
 
+        def clean_student(self):
+            student_username = self.cleaned_data.get("student")
+
+            try:
+                user = User.objects.get(username=student_username)
+                return user
+            except user.DoesNotExist:
+                raise ValidationError("User does not exist, please re-enter Student USN")
 
         def save(commit=True):
             instance = super().save(commit=False)
