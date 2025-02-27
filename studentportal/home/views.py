@@ -16,10 +16,12 @@ from users.forms import edit_admin
 def cashier_home(request):
     transactions = models.Transaction.objects.order_by("-date_time").filter(is_confirmed=True)[:6]
     unconfirmed_transactions = models.Transaction.objects.filter(is_confirmed=False).count()
+    form = forms.manualTransactionAdd()
 
     context = {
         'transactions': transactions,
-        'unconfirmed_transactions':unconfirmed_transactions
+        'unconfirmed_transactions':unconfirmed_transactions,
+        'form': form
     }
     return render(request, 'cashier/dashboard.html', context)
 

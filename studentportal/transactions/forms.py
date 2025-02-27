@@ -58,6 +58,22 @@ class updatePayment(forms.ModelForm):
 
    
 class manualTransactionAdd(forms.ModelForm):
+    
     class Meta:
         model = Transaction
-        fields = ["student", "payment_purpose"]
+        fields = ["student", "payment_purpose", "payment_purpose_other"]
+
+        def __init__(self, *args, **kwargs):
+             super().__init__(*args,**kwargs)
+             CHOICES = [("", "-----SELECT TRANSACTION PURPOSE-----")] + list(Transaction.PaymentPurposeChoice.choices)
+             self.fields["payment_purpose"].choices = CHOICES
+             self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
+
+
+        def save(commit=True):
+            instance = super().save(commit=False)
+            instance.is_confirmed = True
+
+            if commit:
+                instance.save()
+            return instance
