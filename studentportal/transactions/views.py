@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from transactions.forms import StudentPaymentForm,updatePayment,manualTransactionAdd
 from transactions.models import Transaction
+from users.models import Student
+
 
         
 #ADMIN PAYMENT PURPOSE MANAGEMENT END
@@ -41,7 +43,6 @@ def manual_request(request):
                 transaction = form.save(commit=False)
                 print(f"Student Type: {type(transaction.student)}")
                 print(f"Student Value: {transaction.student}")
-
                 transaction.save()
                 return redirect("home:cashier-home")
             except ValueError as e:

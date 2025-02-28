@@ -72,25 +72,28 @@ class manualTransactionAdd(forms.ModelForm):
         CHOICES = [("", "-----SELECT TRANSACTION PURPOSE-----")] + list(Transaction.PaymentPurposeChoice.choices)
         self.fields["payment_purpose"].choices = CHOICES
         self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
-        self.fields["student"] = forms.CharField(
-            max_length=150,
-            widget=forms.TextInput(attrs={"placeholder": "Enter student USN"})
-        )
-
+        self.fields["student"].widget = forms.TextInput(attrs={"placeholder": "Enter student username"})
     def clean_student(self):
         student_username = self.cleaned_data.get("student")
+        print("Oughh im cleaning your input")
+        if not student_username:
+            raise ValidationError("This field is required.")
+
         try:
             user = User.objects.get(username=student_username)
-            return user
-        except user.DoesNotExist:
-            raise ValidationError("User does not exist, please re-enter Student USN")
+            print(f"User ID:{user.id}")
+            return user  # This ensures the form returns a User instance instead of a string
+        except User.DoesNotExist:
 
-    def save(commit=True):
+            raise ValidationError("User does not exist. Please enter a valid Student username.")
+
+
+    def save(self, commit=True):
         instance = super().save(commit=False)
         instance.is_confirmed = True
+        print(f"Before saving: student type = {type(instance.student)}, value = {instance.student}")  # Debugging
+
         
-        if isinstance(instance.student, str):
-            instance.student = User.objects.get(username=instance.student)
         if commit:
             instance.save()
         return instance
