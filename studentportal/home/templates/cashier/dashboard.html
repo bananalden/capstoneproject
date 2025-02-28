@@ -2,7 +2,7 @@
 {% block title %}
 Cashier Dashboard
 {% endblock title %}
-
+{%load static%}
 {% block content %}
 
 <div class="cashier-dashboard">
@@ -51,25 +51,33 @@ Cashier Dashboard
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <form action="{% url 'home:transactions:manual-transaction'%}">
         <div class="form-group">
+          {% csrf_token %}
           <label for="student_usn">Student USN:</label>
-          <input type="text" name="student_usn" id="student_usn">
+          {{form.student}}
         </div>
         <div class="form-group">
           <label for="payment_purpose">Payment Purpose:</label>
           {{form.payment_purpose}}
         </div>
         <div class="form-group">
+          <label for="amount">Amout:</label>
+          {{form.amount}}
+        </div>
+        <div class="form-group" id="payment_purpose">
           <label for="payment_purpose_other">Specify Purpose:</label>
-          {{form.payment_purpose_other}}
+          <input type="text" name="payment_purpose_other" id="payment_purpose_other">
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </form>
       </div>
     </div>
   </div>
 </div>
 
+<script src="{%static 'js/manual_transaction.js'%}"></script>
 {% endblock content %}

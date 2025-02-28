@@ -1,7 +1,7 @@
 import pandas as pd
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from transactions.forms import StudentPaymentForm,updatePayment
+from transactions.forms import StudentPaymentForm,updatePayment,manualTransactionAdd
 from transactions.models import Transaction
 
         
@@ -31,6 +31,26 @@ def confirm_payment(request):
         else:
             print(form.errors)
             return redirect('home:unconfirmed-cashier-transactions')
+        
+def manual_request(request):
+    if request.method == "POST":
+        form = manualTransactionAdd(request.POST)
+
+        if form.is_valid():
+            try:
+                transaction = form.save(commit=False)
+                print(f"Student Type: {type(transaction.student)}")
+                print(f"Student Value: {transaction.student}")
+
+                transaction.save()
+                return redirect("home:cashier-home")
+            except ValueError as e:
+                print(f"ValueError{e}")
+                return redirect('home:cashier-home')
+            
+        else:
+            print(form.errors)
+            return redirect('home:cashier-home')
         
 
             

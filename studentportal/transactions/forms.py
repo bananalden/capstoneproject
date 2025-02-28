@@ -65,27 +65,32 @@ class manualTransactionAdd(forms.ModelForm):
 
     class Meta:
         model = Transaction
-        fields = ["student", "payment_purpose", "payment_purpose_other"]
+        fields = ["student", "payment_purpose", "payment_purpose_other", "amount"]
 
-        def __init__(self, *args, **kwargs):
-             super().__init__(*args,**kwargs)
-             CHOICES = [("", "-----SELECT TRANSACTION PURPOSE-----")] + list(Transaction.PaymentPurposeChoice.choices)
-             self.fields["payment_purpose"].choices = CHOICES
-             self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args,**kwargs)
+        CHOICES = [("", "-----SELECT TRANSACTION PURPOSE-----")] + list(Transaction.PaymentPurposeChoice.choices)
+        self.fields["payment_purpose"].choices = CHOICES
+        self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
+        self.fields["student"] = forms.CharField(
+            max_length=150,
+            widget=forms.TextInput(attrs={"placeholder": "Enter student USN"})
+        )
 
-        def clean_student(self):
-            student_username = self.cleaned_data.get("student")
+    def clean_student(self):
+        student_username = self.cleaned_data.get("student")
+        try:
+            user = User.objects.get(username=student_username)
+            return user
+        except user.DoesNotExist:
+            raise ValidationError("User does not exist, please re-enter Student USN")
 
-            try:
-                user = User.objects.get(username=student_username)
-                return user
-            except user.DoesNotExist:
-                raise ValidationError("User does not exist, please re-enter Student USN")
-
-        def save(commit=True):
-            instance = super().save(commit=False)
-            instance.is_confirmed = True
-
-            if commit:
-                instance.save()
-            return instance
+    def save(commit=True):
+        instance = super().save(commit=False)
+        instance.is_confirmed = True
+        
+        if isinstance(instance.student, str):
+            instance.student = User.objects.get(username=instance.student)
+        if commit:
+            instance.save()
+        return instance
