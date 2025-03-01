@@ -63,26 +63,31 @@ class updatePayment(forms.ModelForm):
    
 class manualTransactionAdd(forms.ModelForm):
 
+    student = forms.CharField(
+        max_length=150,  
+        widget=forms.TextInput(attrs={"placeholder": "Enter student USN",
+                                      "id":"student_usn"})
+    )
     class Meta:
         model = Transaction
-        fields = ["student", "payment_purpose", "payment_purpose_other", "amount"]
+        fields = ["student","payment_purpose", "payment_purpose_other", "amount"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
         CHOICES = [("", "-----SELECT TRANSACTION PURPOSE-----")] + list(Transaction.PaymentPurposeChoice.choices)
         self.fields["payment_purpose"].choices = CHOICES
         self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
-        self.fields["student"].widget = forms.TextInput(attrs={"placeholder": "Enter student username"})
+
+    
     def clean_student(self):
         student_username = self.cleaned_data.get("student")
-        print("Oughh im cleaning your input")
+
         if not student_username:
             raise ValidationError("This field is required.")
 
         try:
             user = User.objects.get(username=student_username)
-            print(f"User ID:{user.id}")
-            return user  # This ensures the form returns a User instance instead of a string
+            return user  
         except User.DoesNotExist:
 
             raise ValidationError("User does not exist. Please enter a valid Student username.")
@@ -91,6 +96,12 @@ class manualTransactionAdd(forms.ModelForm):
     def save(self, commit=True):
         instance = super().save(commit=False)
         instance.is_confirmed = True
+        if isinstance(instance.student, str):
+            try:
+                instance.student = User.objects.get(username=instance.student)
+            except User.DoesNotExist:
+                raise ValueError("User does not exist!")
+
         print(f"Before saving: student type = {type(instance.student)}, value = {instance.student}")  # Debugging
 
         
