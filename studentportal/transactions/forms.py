@@ -3,6 +3,8 @@ from django.utils.html import strip_tags
 from transactions.models import Transaction
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
+from django.conf import settings
 
 User = get_user_model()
 
@@ -54,6 +56,26 @@ class updatePayment(forms.ModelForm):
         widgets = {
             "is_confirmed": forms.RadioSelect(choices=[(True, "Yes"), (False, "No")])
         }
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+
+        if instance.is_confirmed:
+            subject = "Payment Update"
+            message = f"Hello {instance.student.first_name} {instance.student.last_name}, \n\nThis email is here to inform you that your payment has been confirmed and is now being processed by the registrar!"
+            from_email = settings.DEFAULT_FROM_EMAIL
+            recipient_list = [instance.student.email]
+            send_mail(subject,message,from_email,recipient_list)
+
+        else:
+            subject = "Payment Update"
+            message = f"Hello {instance.student.first_name} {instance.student.last_name}, \n\nWe regret to inform you that your payment was not confirmed. Please contact the cashier to resolve this issue."
+            from_email = settings.DEFAULT_FROM_EMAIL
+            recipient_list = [instance.student.email]
+            send_mail(subject,message,from_email,recipient_list)
+        if commit:
+            instance.save()
+        
+        return instance
 
 
 

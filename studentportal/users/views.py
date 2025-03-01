@@ -12,8 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 #EDIT ADMIN OPERATIONS#####################################
 def edit_admin(request):
-    if request.user.role != "ADMIN":
-        return redirect('authentication:unauthorized-view')
+
     if request.method == 'POST':
         form = forms.edit_admin(request.POST, instance=request.user)
         if form.is_valid():
@@ -126,6 +125,7 @@ def update_registrar(request):
         registrar_id = request.POST.get("id", None)
         registrar_user = models.CustomUser.objects.get(id=registrar_id)
         form = forms.add_registrar(request.POST, instance=registrar_user)
+        
         if form.is_valid():
             form.save()
             messages.success(request,"Registrar has been successfully edited!")
@@ -222,8 +222,7 @@ def delete_student(request):
 #USER PASSWORD EDIT=============================================
 @login_required(login_url='authentication:login')
 def change_password_user(request):
-    if request.user.role != "ADMIN":
-        return redirect('authentication:unauthorized-view')
+
     if request.method == 'POST':
         form = forms.change_password(request.user, request.POST)
         if form.is_valid():

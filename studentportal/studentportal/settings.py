@@ -154,3 +154,4 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'aldenjustineflores@gmail.com'
 EMAIL_HOST_PASSWORD = 'chyh xhkz dfbi twre'
+DEFAULT_FROM_EMAIL = "aldenjustineflores@gmail.com"
