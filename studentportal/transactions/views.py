@@ -6,8 +6,7 @@ from transactions.models import Transaction
 from users.models import Student
 
 
-        
-#ADMIN PAYMENT PURPOSE MANAGEMENT END
+
 
 def student_payment_request(request):
     if request.method == 'POST':
