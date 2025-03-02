@@ -23,7 +23,7 @@ $(document).ready(function (){
                 table_body.empty()
                 
                 if (transaction_list.length == 0){
-                    table_body.append('<tr class="table-tr"><td colspan="4">No transactions found...</td></tr>')
+                    table_body.append('<tr class="table-tr"><td colspan="5">No transactions found...</td></tr>')
                 }
                 else{
                     $.each(transaction_list, function(index, transaction_list){
@@ -50,7 +50,7 @@ $(document).ready(function (){
             },
             error: function(){
 
-                table_body.html('<tr class="table-tr"><td colspan="4">Could not load data...</td></tr>')
+                table_body.html('<tr class="table-tr"><td colspan="5">Could not load data...</td></tr>')
             }
 
         });
