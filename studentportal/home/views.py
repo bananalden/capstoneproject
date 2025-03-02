@@ -84,6 +84,9 @@ def student_requestform(request):
 def student_newsfeed(request):
     return render(request,'studentview/newsfeed.html')
 
+def student_transaction(request):
+    return render(request, 'studentview/transaction-history.html')
+
 #STUDENT VIEWS END   ==================================
 
 #TEACHER VIEWS START   ==================================

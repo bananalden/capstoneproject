@@ -1,0 +1,52 @@
+{% extends "studentview/studentsidebar.html" %} {%load static%} {% block title %}
+Transaction History {%endblock title %} {% block content %}
+
+<div class="trans-container">
+  <h1>Transaction History</h1>
+  <div class="filters">
+    <div class="filter-options">
+        <select id="filterPurpose">
+            <option value="">Display All</option>
+            <option value="TUITION FEE">Tuition Fee</option>
+            <option value="CERTIFICATE OF GRADES">Certificate of Grades</option>
+            <option value="CERTIFICATE OF GOOD MORALE">Certificate of Good Morale</option>
+            <option value="OTHER">Other</option>
+        </select>
+
+    </div>
+</div>
+
+
+  <div class="trans-history-container">
+    <table id="transactionTable">
+      <thead class="thead-title">
+        <tr class="title-table">
+          <th>Payment Purpose</th>
+          <th>Date</th>
+          <th>Confirmation Status</th>
+          <th>Registrar Status</th>
+        </tr>
+      </thead>
+      <tbody class="table-tbody">
+        
+      </tbody>      
+    </table>
+
+    <div id="second-pagination" class="second-pagination">
+
+    </div>
+
+    <div class="no-results" id="noResults" style="display: none">
+      No matching records found
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  <script src="{%static 'js/student-transaction.js'%}"></script>
+
+
+{% endblock content %}
