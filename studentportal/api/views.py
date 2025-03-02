@@ -254,6 +254,7 @@ def student_transaction_list(request):
         "date_time":transaction.date_time.strftime("%B %d, %Y %I:%M %p"),
         "is_confirmed":transaction.is_confirmed,
         "payment_purpose":transaction.payment_purpose,
+        "registrar_status":transaction.registrar_status,
         "payment_purpose_other":transaction.payment_purpose_other,
         "amount":transaction.amount,
 
