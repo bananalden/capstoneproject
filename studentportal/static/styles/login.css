@@ -123,18 +123,6 @@ body, html {
     border: 1px solid #f5c6cb;
 }
 
-/* Password Input with Toggle Button */
-.password-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.password-container input {
-    flex: 1;
-    padding-right: 45px; /* Ensures space for the icon */
-    height: 45px; /* Consistent height */
-}
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
