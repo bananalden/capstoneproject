@@ -25,6 +25,7 @@ urlpatterns = [
     path('student/profile',views.student_profile,name='student-profile'),
     path('student/request-form',views.student_requestform,name='student-request-form'),
     path('student/newsfeed',views.student_newsfeed,name='student-newsfeed'),
+    path('student/transaction-history',views.student_transaction,name='student-transaction'),
 
     #STUDENT URLS END ========================
 

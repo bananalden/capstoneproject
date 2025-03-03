@@ -105,10 +105,6 @@ class add_student(forms.ModelForm):
 
     def clean_username(self):
         username =  self.cleaned_data.get("username")
-
-        if models.Student.objects.filter(username=username).exists():
-            error_message = "Username already exists. Please enter a unique one"
-            raise forms.ValidationError(strip_tags(error_message))
         
         if re.search(r'[a-zA-Z]',username):
             error_message = "Username must not contain letters. Please use the student's ID number."

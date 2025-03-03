@@ -231,4 +231,45 @@ def export_transaction(request):
         df.to_excel(writer, index=False,sheet_name="Transactions")
     return response
 
+
+def student_transaction_list(request):
+    page = request.GET.get("page",1)
+    filter_status = request.GET.get("filter","")
+    transaction_list = transactions_data.Transaction.objects.order_by("-date_time").filter(student=request.user)
+    
+    if filter_status:
+        transaction_list = transaction_list.filter(payment_purpose = filter_status)
+
+    
+
+    paginator = Paginator(transaction_list,10)
+    try:
+        transaction_page = paginator.page(page)
+    except:
+        transaction_page = paginator.page(1)
+    data = [{
+        "id":transaction.id,
+        "student_name":f"{transaction.student.first_name} {transaction.student.last_name}",
+        "student_username":transaction.student.username,
+        "date_time":transaction.date_time.strftime("%B %d, %Y %I:%M %p"),
+        "is_confirmed":transaction.is_confirmed,
+        "payment_purpose":transaction.payment_purpose,
+        "registrar_status":transaction.registrar_status,
+        "payment_purpose_other":transaction.payment_purpose_other,
+        "amount":transaction.amount,
+
+    }
+    for transaction in transaction_page
+    ]
+
+    return JsonResponse({
+        "transaction":data,
+        "page":transaction_page.number,
+        "total_pages":paginator.num_pages
+    })
+
+
+
+
+
 #PAYMENT PURPOSE START

@@ -2,15 +2,42 @@
 {% block title %}
 Cashier Dashboard
 {% endblock title %}
-
+{%load static%}
 {% block content %}
+
+{%for msg in messages%}
+  {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+       <div class="alert alert-warnings alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {%endif%}
+{%endfor%}
+
+
+
 
 <div class="cashier-dashboard">
   <!-- Header Section -->
   <div class="cashier-header">
     <h1>Welcome, Cashier!</h1>
     <div class="cashier-profile">
-      <span class="cashier-profile-name">Mary Grace Mendiola</span>
+      <span class="cashier-profile-name">{{request.user.first_name}} {{request.user.last_name}}</span>
     </div>
   </div>
 
@@ -47,18 +74,42 @@ Cashier Dashboard
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Request from Face-to-Face Transaction</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+      <form action="{% url 'home:transactions:manual-transaction'%}" method="POST">
+        
+        <div class="form-group">
+          {% csrf_token %}
+          <label for="student_usn">Student USN:</label>
+          {{form.student}}
+        </div>
+
+        <div class="form-group">
+          <label for="payment_purpose">Payment Purpose:</label>
+          {{form.payment_purpose}}
+        </div>
+
+        <div class="form-group" id="payment_purpose">
+          <label for="payment_purpose_other">Specify Purpose:</label>
+          <input type="text" name="payment_purpose_other" id="payment_purpose_other">
+        </div>
+
+        <div class="form-group">
+          <label for="amount">Amout:</label>
+          {{form.amount}}
+        </div>
+    
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary" id="save_transaction">Save changes</button>
+      </form>
       </div>
     </div>
   </div>
 </div>
 
+<script src="{%static 'js/manual_transaction.js'%}"></script>
 {% endblock content %}

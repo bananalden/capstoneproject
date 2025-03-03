@@ -13,17 +13,25 @@ from users.forms import edit_admin
 
 #CASHIER VIEWS START =============================
 
+@login_required(login_url='authentication:login')
 def cashier_home(request):
+    if request.user.role != 'CASHIER':
+        return redirect('authentication:unauthorized-view')
     transactions = models.Transaction.objects.order_by("-date_time").filter(is_confirmed=True)[:6]
     unconfirmed_transactions = models.Transaction.objects.filter(is_confirmed=False).count()
+    form = forms.manualTransactionAdd()
 
     context = {
         'transactions': transactions,
-        'unconfirmed_transactions':unconfirmed_transactions
+        'unconfirmed_transactions':unconfirmed_transactions,
+        'form': form
     }
     return render(request, 'cashier/dashboard.html', context)
 
+@login_required(login_url='authentication:login')
 def unconfirmed_transaction_cashier(request):
+    if request.user.role != 'CASHIER':
+        return redirect('authentication:unauthorized-view')
     form = forms.updatePayment()
     context = {
         'form': form
@@ -31,11 +39,17 @@ def unconfirmed_transaction_cashier(request):
     return render(request, 'cashier/unconfirmed-transactions.html', context)
 
 
+@login_required(login_url='authentication:login')
 def confirmed_transaction_cashier(request):
+    if request.user.role != 'CASHIER':
+        return redirect('authentication:unauthorized-view')
     return render(request, 'cashier/confirmed-transaction.html')
 
+@login_required(login_url='authentication:login')
 def edit_cashier(request):
-    form = edit_admin()
+    if request.user.role != 'CASHIER':
+        return redirect('authentication:unauthorized-view')
+    form = edit_admin(instance=request.user)
     context = {
         'form':form
     }
@@ -74,6 +88,9 @@ def student_requestform(request):
 
 def student_newsfeed(request):
     return render(request,'studentview/newsfeed.html')
+
+def student_transaction(request):
+    return render(request, 'studentview/transaction-history.html')
 
 #STUDENT VIEWS END   ==================================
 

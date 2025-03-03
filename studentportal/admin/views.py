@@ -14,10 +14,6 @@ def home(request):
     return render(request, 'dashboard.html')
 
 
-
-
-
-
 @login_required(login_url='authentication:login')
 def edit_admin_user(request):
     if request.user.role != "ADMIN":

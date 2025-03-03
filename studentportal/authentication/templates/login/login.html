@@ -23,10 +23,13 @@
                 <img src="{% static 'images/ama2.png' %}" alt="AMA Logo"> <!-- Replace with your logo -->
 
                 <!-- Error Message Container -->
-                <div id="loginAlertContainer" class="login-alert-container" style="display: none;">
-                    <div id="loginAlertMessage" class="login-alert login-alert-danger"></div>
+                {%for msg in messages %}
+                <div id="loginAlertContainer" class="login-alert-container">
+                    <div id="loginAlertMessage" class="login-alert login-alert-danger">
+                        {{msg}}
+                    </div>
                 </div>
-
+         {%endfor%}
                 <form method="post" id="loginForm" onsubmit="return validateLogin(event)">
                     {% csrf_token %} 
                     <input type="text" class="form-control" id="username" placeholder="USN" name="username" required>
@@ -39,12 +42,12 @@
 
                     <button type="submit" class="btn btn-block btn-login">Log In</button>
                 </form>
-                <a href="#" class="forgot-password">Forgot password?</a>
+                <a href="{%url 'authentication:reset_password'%}" class="forgot-password">Forgot password?</a>
             </div>
         </div>
     </div>
 
-    <script src="{% static 'js/login.js'%}"></script>
+
 </body>
 </html>
 

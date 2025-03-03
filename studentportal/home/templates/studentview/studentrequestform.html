@@ -4,7 +4,36 @@ Student Request Form
 {% endblock title %}
 {%load static%}
 
+
+
+
+
 {% block content %}
+
+{%for msg in messages%}
+  {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+       <div class="alert alert-warnings alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {%endif%}
+{%endfor%}
+
 <div class="student-transaction-container">
     <div class="student-transaction-header">
         <h3>Student Transaction Request</h3>

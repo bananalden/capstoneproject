@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+
 # Create your views here.
 
 def home(request):
@@ -42,9 +43,10 @@ def home(request):
                     return redirect("home:registrar-home")
       
         else:
-            messages.warning(request,'Invalid User credentials')
+            messages.warning(request,'Invalid USN or Password, please try again!')
             return redirect('authentication:login')
     else:
+       
         return render(request, 'login/login.html')
 
 def logout_user(request):

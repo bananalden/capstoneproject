@@ -32,9 +32,9 @@ $(document).ready(function(){
 
 
                 $("#pagination").html(`
-                    <button id="prevPage" ${response.page == 1 ? "disabled" : ""}>Previous</button>
+                    <button class="btn" id="prevPage" ${response.page == 1 ? "disabled" : ""}>Previous</button>
                     <span> Page ${response.page} of ${response.total_pages} </span>
-                    <button id="nextPage" ${response.page == response.total_pages ? "disabled" : ""}>Next</button>
+                    <button class="btn" id="nextPage" ${response.page == response.total_pages ? "disabled" : ""}>Next</button>
                 `);
             },
             error: function() {
