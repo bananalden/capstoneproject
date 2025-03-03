@@ -30,7 +30,7 @@
                     </div>
                 </div>
          {%endfor%}
-                <form method="post" id="loginForm" onsubmit="return validateLogin(event)">
+                <form method="post" id="loginForm">
                     {% csrf_token %} 
                     <input type="text" class="form-control" id="username" placeholder="USN" name="username" required>
 
