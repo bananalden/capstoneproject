@@ -1,0 +1,214 @@
+/* Background and Centering */
+.forgot-password-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+/* Form Card */
+.forgot-password-card {
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 15px;
+  width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  top: -190px; /* Adjusted positioning */
+}
+
+/* Header */
+.forgot-password-header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+/* Description */
+.forgot-password-text {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Form Group - Aligning Label & Input */
+.forgot-password-form-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing between label and input */
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+/* Email Label */
+.forgot-password-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+/* Email Input */
+.forgot-password-input {
+  flex: 1; 
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.forgot-password-input:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 8px rgba(37, 117, 252, 0.3);
+  outline: none;
+}
+
+/* Submit Button */
+.forgot-password-submit-btn {
+  width: 75%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #ef233c;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.forgot-password-submit-btn:hover {
+  background-color: #c1121f;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+/* Back to Login Link */
+.forgot-password-back-link {
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #2575fc;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+.forgot-password-back-link:hover {
+  color: #6a11cb;
+}
+
+/* MEDIA QUERY RESPONSIVE */
+
+/* Large Screens (Above 1440px) */
+@media screen and (min-width: 1440px) {
+  .forgot-password-card {
+    width: 550px;
+    padding: 40px;
+    top: -160px;
+  }
+}
+
+/* Medium Screens (1024px - 1439px) */
+@media screen and (max-width: 1439px) {
+  .forgot-password-card {
+    width: 450px;
+    padding: 35px;
+    top: -140px;
+  }
+}
+
+/* Tablets (768px - 1023px) */
+@media screen and (max-width: 1023px) {
+  .forgot-password-card {
+    width: 400px;
+    padding: 30px;
+    top: -100px;
+  }
+  .forgot-password-form-group {
+    display: flex;
+    align-items: center; /* Keeps label & input on the same line */
+    gap: 10px;
+  }
+  .forgot-password-label {
+    font-size: 15px;
+    min-width: 70px; /* Makes the label shrink slightly */
+    text-align: right;
+  }
+  .forgot-password-input {
+    flex-grow: 1;
+    padding: 10px; /* Shrinks input padding */
+    font-size: 14px; /* Reduces input text size */
+  }
+}
+
+/* Mobile Devices (Below 768px) */
+@media screen and (max-width: 767px) {
+  .forgot-password-card {
+    width: 90%;
+    padding: 25px;
+    top: -80px;
+  }
+  .forgot-password-form-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .forgot-password-label {
+    font-size: 14px;
+    min-width: 65px; /* Label shrinks slightly more */
+    text-align: right;
+  }
+  .forgot-password-input {
+    flex-grow: 1;
+    padding: 9px; /* Further reduces input padding */
+    font-size: 13px;
+  }
+  .forgot-password-submit-btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+  .forgot-password-back-link {
+    font-size: 13px;
+  }
+}
+
+/* Small Mobile Devices (Below 480px) */
+@media screen and (max-width: 480px) {
+  .forgot-password-card {
+    width: 95%;
+    padding: 20px;
+    top: -50px;
+  }
+  .forgot-password-header h1 {
+    font-size: 20px;
+  }
+  .forgot-password-text {
+    font-size: 14px;
+  }
+  .forgot-password-label {
+    font-size: 13px;
+    min-width: 60px; /* Label shrinks more */
+    text-align: right;
+  }
+  .forgot-password-input {
+    flex-grow: 1;
+    padding: 8px; /* Shrinks input even more */
+    font-size: 12px;
+  }
+  .forgot-password-submit-btn {
+    font-size: 13px;
+    padding: 8px;
+    width: 100%;
+  }
+}
+
+
