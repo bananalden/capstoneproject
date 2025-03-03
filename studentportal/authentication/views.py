@@ -64,3 +64,7 @@ def email_sent(request):
 def set_new_pass(request):
     return render(request,'set-new-pass.html')
 
+# PASSWORD RESET SUCCESS
+def pass_success(request):
+    return render(request,'pass-success.html')
+
