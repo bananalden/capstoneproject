@@ -42,9 +42,10 @@ def home(request):
                     return redirect("home:registrar-home")
       
         else:
-            messages.warning(request,'Invalid User credentials')
+            messages.warning(request,'Invalid USN or Password, please try again!')
             return redirect('authentication:login')
     else:
+       
         return render(request, 'login/login.html')
 
 def logout_user(request):
