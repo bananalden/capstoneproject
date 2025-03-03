@@ -1,0 +1,114 @@
+/* Registrar Dashboard Container */
+.registrar-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Header */
+.registrar-header {
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: white;
+  padding: 18px;
+  border-radius: 12px 12px 0 0;
+}
+
+.registrar-title {
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Main Content */
+.registrar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 20px;
+  padding: 30px 15px;
+}
+
+/* Section Cards */
+.registrar-section {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 300px;
+}
+
+.registrar-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Section Titles */
+.registrar-section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* Section Description */
+.registrar-section-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.registrar-btn {
+  width: 90%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  transition: background 0.3s, transform 0.2s;
+}
+
+/* Button Colors */
+.registrar-student-btn {
+  background: #007bff;
+}
+
+.registrar-transactions-btn {
+  background: #28a745;
+}
+
+.registrar-certificates-btn {
+  background: #ffc107;
+  color: black;
+}
+
+/* Button Hover Effects */
+.registrar-btn:hover {
+  filter: brightness(90%);
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .registrar-content {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .registrar-section {
+      max-width: 90%;
+  }
+}

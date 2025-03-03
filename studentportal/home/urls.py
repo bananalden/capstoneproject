@@ -14,8 +14,8 @@ urlpatterns = [
     #CASHIER URLS END=============================
 
     #REGISTRAR URLS START ========================
+    path('registrar/', views.registrar_dashboard, name='registrar-dashboard'),
 
-    path('registrar/', views.registrar_home, name='registrar-home'),
 
     #REGISTRAR URLS END ========================
 

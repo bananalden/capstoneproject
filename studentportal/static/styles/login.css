@@ -101,6 +101,41 @@ body, html {
     text-decoration: underline;
 }
 
+/* INVALID INPUT PASSWORD */
+
+/* Login Alert Message */
+.login-alert-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.login-alert {
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login-alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Password Input with Toggle Button */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    flex: 1;
+    padding-right: 45px; /* Ensures space for the icon */
+    height: 45px; /* Consistent height */
+}
+
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .left-section {
