@@ -58,9 +58,9 @@ body, html {
 
 /* Updated Button Styling */
 .btn-login {
-    display: block; /* Ensures the button behaves like a block element */
+    display: block;
     background-color: #ef233c;
-    width: 70%; /* Adjusts the width */
+    width: 70%;
     color: #fff;
     border: none;
     padding: 10px 16px;
@@ -71,7 +71,7 @@ body, html {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-    margin: 0 auto; /* Centers the button horizontally */
+    margin: 0 auto;
 }
   
 .btn-login:hover {
@@ -123,18 +123,6 @@ body, html {
     border: 1px solid #f5c6cb;
 }
 
-/* Password Input with Toggle Button */
-.password-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.password-container input {
-    flex: 1;
-    padding-right: 45px; /* Ensures space for the icon */
-    height: 45px; /* Consistent height */
-}
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {

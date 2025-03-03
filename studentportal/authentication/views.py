@@ -56,3 +56,11 @@ def logout_user(request):
 def unauthorized_view(request):
     return render(request,'deniedaccess/401.html')
 
+# EMAIL SENT
+def email_sent(request):
+    return render(request,'email-sent.html')
+
+# SET NEW PASSWORD
+def set_new_pass(request):
+    return render(request,'set-new-pass.html')
+
