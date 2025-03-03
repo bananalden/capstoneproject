@@ -22,13 +22,15 @@ $(document).ready(function (){
                 let table_body = $(".table-tbody")
                 table_body.empty()
                 
+            
                 if (transaction_list.length == 0){
                     table_body.append('<tr class="table-tr"><td colspan="5">No transactions found...</td></tr>')
                 }
                 else{
                     $.each(transaction_list, function(index, transaction_list){
-                        let registrarStatus = (transaction_list.payment_purpose == "TUITION FEE" || "OTHER") ? "-" : transaction_list.registrar_status
-
+                        var registrarStatus = (transaction_list.payment_purpose === "TUITION FEE" || transaction_list.payment_purpose === "OTHER") ? "-" : transaction_list.registrar_status
+                        console.log(transaction_list.registrar_status)
+                        console.log(transaction_list.payment_purpose)
                         table_body.append(`
                         <tr class="table-tr">
                         <td>${transaction_list.date_time}</td>
