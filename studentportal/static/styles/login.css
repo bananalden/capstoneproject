@@ -58,9 +58,9 @@ body, html {
 
 /* Updated Button Styling */
 .btn-login {
-    display: block; /* Ensures the button behaves like a block element */
+    display: block;
     background-color: #ef233c;
-    width: 70%; /* Adjusts the width */
+    width: 70%;
     color: #fff;
     border: none;
     padding: 10px 16px;
@@ -71,7 +71,7 @@ body, html {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-    margin: 0 auto; /* Centers the button horizontally */
+    margin: 0 auto;
 }
   
 .btn-login:hover {
