@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from news.models import Announcement
 from transactions import forms, models
-from users.forms import edit_admin
+from users.forms import edit_admin, change_password
 
 
 # Create your views here.
@@ -55,6 +55,13 @@ def edit_cashier(request):
     }
     return render(request,'cashier/edit-cashier.html',context)
 
+def edit_cashier_password(request):
+    form = change_password(request.user)
+    context={
+        'form':form
+    }
+    return render(request,'cashier/edit-cashier-password.html', context)
+
 #CASHIER VIEWS END =============================
 
 
@@ -77,6 +84,9 @@ def student_home(request):
 
 def student_profile(request):
     return render(request,'studentview/studentprofile.html')
+
+def student_edit_password(request):
+    pass
 
 def student_requestform(request):
 

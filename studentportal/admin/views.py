@@ -10,9 +10,10 @@ from django.contrib.auth import authenticate, login
 def admin_login(request):
     if request.user.is_authenticated:
         user_role = request.user.role
-
         if user_role == 'ADMIN':
             return redirect('admin:dashboard')
+        else:
+            return redirect('authentication:login')
     return render(request, 'login/login.html')
 
 @login_required(login_url='authentication:login')
