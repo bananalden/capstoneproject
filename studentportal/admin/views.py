@@ -3,9 +3,17 @@ from users import forms
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 
 
 # Create your views here.
+def admin_login(request):
+    if request.user.is_authenticated:
+        user_role = request.user.role
+
+        if user_role == 'ADMIN':
+            return redirect('admin:dashboard')
+    return render(request, 'login/login.html')
 
 @login_required(login_url='authentication:login')
 def home(request):

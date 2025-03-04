@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACLC Apalit Login Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="{% static 'favicon/favicon.ico' %}">
+</head>
+<body>
+
+    <div class="login-container">
+        <!-- Left section with image -->
+        <div class="left-section"></div>
+
+        <!-- Right section with login form -->
+        <div class="right-section">
+            <div class="login-frame">
+                <img src="{% static 'images/ama2.png' %}" alt="AMA Logo"> <!-- Replace with your logo -->
+
+                <!-- Error Message Container -->
+                {%for msg in messages %}
+                <div id="loginAlertContainer" class="login-alert-container">
+                    <div id="loginAlertMessage" class="login-alert login-alert-danger">
+                        {{msg}}
+                    </div>
+                </div>
+         {%endfor%}
+                <form method="post" action="{%url 'authentication:log-reg-user'%}" id="loginForm">
+                    {% csrf_token %} 
+                    <input type="text" class="form-control" id="username" placeholder="USN" name="username" required>
+
+                    <!-- Password field with show/hide toggle -->
+                    <div class="password-container">
+                        <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+                    </div>
+                    
+
+                    <button type="submit" class="btn btn-block btn-login">Log In</button>
+                </form>
+                <a href="{%url 'authentication:reset_password'%}" class="forgot-password">Forgot password?</a>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
