@@ -8,6 +8,7 @@ urlpatterns = [
 
     path('cashier/', views.cashier_home, name='cashier-home'),
     path('cashier/edit-cashier', views.edit_cashier, name='edit-cashier'),
+    path('cashier/edit-cashier-password', views.edit_cashier_password, name='edit-cashier-password'),
     path('cashier/unconfirmed-transactions',views.unconfirmed_transaction_cashier,name='unconfirmed-cashier-transactions'),
     path('cashier/confirmed-transactions',views.confirmed_transaction_cashier,name='confirmed-cashier-transactions'),
 
@@ -37,6 +38,7 @@ urlpatterns = [
     #TEACHER URLS START ========================
     
     path('announcement/', include('news.urls',namespace='news')),
-    path('transactions/',include('transactions.urls',namespace='transactions'))
+    path('transactions/',include('transactions.urls',namespace='transactions')),
+    path('user/',include('users.urls',namespace='users')),
 
 ]

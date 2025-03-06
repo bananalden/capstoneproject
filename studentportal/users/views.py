@@ -220,7 +220,7 @@ def delete_student(request):
 
 
 #USER PASSWORD EDIT=============================================
-@login_required(login_url='authentication:login')
+
 def change_password_user(request):
 
     if request.method == 'POST':
@@ -229,8 +229,8 @@ def change_password_user(request):
             user = form.save()
             update_session_auth_hash(request, user)
             messages.success(request, "Password has successfully been updated!")
-            return redirect('admin:edit-admin-password')
+            return redirect('authentication:login')
         else:
             print(form.errors)
             messages.error(request, form.errors)
-            return redirect('admin:edit-admin-password')
+            return redirect('authentication:login')

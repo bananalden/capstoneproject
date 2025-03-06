@@ -56,7 +56,7 @@
       <ul class="sidebar-menu">
         <li>
           <a
-            href="#"
+            href="{%url 'home:student-newsfeed'%}"
             class="menu-item"
             data-link="newsfeed"
             ><i class="fa-solid fa-earth-americas"></i>
@@ -80,7 +80,7 @@
           ></a>
           <ul class="dropdown-menu">
             <li><a href="#">View Enrolled Subjects</a></li>
-            <li><a href="#">View Transaction History</a></li>
+            <li><a href="{%url 'home:student-transaction'%}">View Transaction History</a></li>
             <li><a href="{%url 'home:student-request-form'%}">Create Document Request</a></li>
 
 
