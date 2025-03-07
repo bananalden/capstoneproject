@@ -228,9 +228,43 @@ def change_password_user(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            messages.success(request, "Password has successfully been updated!")
+
+            logged_user_role = request.user.role
+
+            match logged_user_role:
+                case 'ADMIN':
+                    messages.success(request, "Password has successfully been updated!")
+                    return redirect('admin:dashboard')
+                case 'STUDENT':
+                    messages.success(request, "Password has successfully been updated!")
+                    return redirect('home:student-home')
+
+                case 'CASHIER':
+                    messages.success(request, "Password has successfully been updated!")
+                    return redirect('home:cashier-home')
+
+                case 'REGISTRAR':
+                    messages.success(request, "Password has successfully been updated!")
+                    return redirect('home:registrar-home')
+            
             return redirect('authentication:login')
         else:
             print(form.errors)
+            logged_user_role = request.user.role
+            match logged_user_role:
+                case 'ADMIN':
+                    messages.warning(request, form.errors)
+                    return redirect('admin:dashboard')
+                case 'STUDENT':
+                    messages.warning(request, form.errors)
+                    return redirect('home:student-home')
+
+                case 'CASHIER':
+                    messages.warning(request, form.errors)
+                    return redirect('home:cashier-home')
+
+                case 'REGISTRAR':
+                    messages.warning(request, form.errors)
+                    return redirect('home:registrar-home')
             messages.error(request, form.errors)
-            return redirect('authentication:login')
+          
