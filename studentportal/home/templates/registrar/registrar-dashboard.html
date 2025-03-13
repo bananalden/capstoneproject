@@ -5,6 +5,71 @@
 {%endblock title %}
 {% block content %}
 
+<main class="registrar-main-content">
+        <header class="registrar-header">
+            <h1 class="registrar-welcome-title">Welcome, Registrar!</h1>
+        </header>
+        
+        <section class="registrar-stats">
+            <div class="registrar-stat-card">
+                <h3 class="registrar-stat-title">Total Students</h3>
+                <p class="registrar-stat-value">1,245</p>
+            </div>
+            <div class="registrar-stat-card">
+                <h3 class="registrar-stat-title">Pending Requests</h3>
+                <p class="registrar-stat-value">32</p>
+            </div>
+            <div class="registrar-stat-card">
+                <h3 class="registrar-stat-title">Approved Requests</h3>
+                <p class="registrar-stat-value">210</p>
+            </div>
+        </section>
+        <section class="registrar-recent-requests">
+            <h2 class="registrar-requests-title">Recent Document Requests</h2>
+            <table class="registrar-requests-table">
+                <thead class="registrar-table-head">
+                    <tr class="registrar-table-row">
+                        <th class="registrar-table-header">Student Name</th>
+                        <th class="registrar-table-header">Document Type</th>
+                        <th class="registrar-table-header">Status</th>
+                        <th class="registrar-table-header">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="registrar-table-body">
+                    <tr class="registrar-table-row">
+                        <td class="registrar-table-data">Mj Mendiola</td>
+                        <td class="registrar-table-data">Transcript of Records</td>
+                        <td class="registrar-table-data">Pending</td>
+                        <td class="registrar-table-data">
+                            <button class="registrar-view-button" onclick="openModal('Mj Mendiola', 'Transcript of Records', 'Pending', 'March 12, 2025', 'Please process urgently.')">View Request</button>
+                        </td>
+                    </tr>
+                    <tr class="registrar-table-row">
+                        <td class="registrar-table-data">Maria Santos</td>
+                        <td class="registrar-table-data">Good Moral Certificate</td>
+                        <td class="registrar-table-data">Approved</td>
+                        <td class="registrar-table-data">
+                            <button class="registrar-view-button" onclick="openModal('Maria Santos', 'Good Moral Certificate', 'Approved', 'March 10, 2025', 'No additional notes.')">View Request</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- View Request Modal -->
+    <div class="unique-modal" id="uniqueViewRequestModal">
+        <div class="unique-modal-content">
+            <span class="unique-close-button" onclick="closeModal()">&times;</span>
+            <h2>Document Request Details</h2>
+            <div class="unique-request-details" id="uniqueRequestDetails"></div>
+            <div class="unique-modal-actions">
+                <button class="unique-approve-btn">Approve</button>
+                <button class="unique-deny-btn">Deny</button>
+            </div>
+        </div>
+    </div>
+
 
 
 
