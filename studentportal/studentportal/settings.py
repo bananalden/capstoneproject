@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'admin.apps.AdminConfig',
     'news.apps.NewsConfig',
+    'grades.apps.GradesConfig',
     'authentication.apps.AuthenticationConfig',
     'transactions.apps.TransactionsConfig',
     'api.apps.ApiConfig'

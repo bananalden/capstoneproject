@@ -4,20 +4,46 @@ Teacher Dashboard
 {% endblock title %}
 {%block content%}
 
+{%for msg in messages%}
+  {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+       <div class="alert alert-warnings alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {%endif%}
+{%endfor%}
+
 <div class="second-dashboard">
   <div class="second-quick-links">
     <h2>Upload Grades (Lecture Only)</h2>
     <div class="upload-container">
-      <!-- This label will act as the button for file upload -->
-      <label for="file-upload" class="custom-upload-btn">Upload File</label>
-      
-      <!-- Hidden file input, only triggered by the label -->
-      <input type="file" id="file-upload" onchange="updateFileName()" style="display: none;">
-      
-      <!-- This span will show the file name once a file is selected -->
-      <span id="file-name">No file chosen</span>
-    </div>
-    <button class="upload-grades">Upload Grades</button>
+      <form action="{%url 'home:grades:grade-upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="file-upload" class="custom-upload-btn">Upload File</label>
+        
+        <!-- Hidden file input, only triggered by the label -->
+        <input type="file" id="file-upload" name="grades" onchange="updateFileName()"  style="display: none;">
+        
+        <!-- This span will show the file name once a file is selected -->
+        <span id="file-name">No file chosen</span>
+      </div>
+      <button type="submit" class="upload-grades">Upload Grades</button>
+    </form>
   </div>
   
   <!--  -->

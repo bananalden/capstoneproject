@@ -40,5 +40,6 @@ urlpatterns = [
     path('announcement/', include('news.urls',namespace='news')),
     path('transactions/',include('transactions.urls',namespace='transactions')),
     path('user/',include('users.urls',namespace='users')),
+    path('grade-management/',include('grades.urls',namespace='grades'))
 
 ]
