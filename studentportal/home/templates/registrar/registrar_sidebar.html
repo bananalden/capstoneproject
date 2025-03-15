@@ -38,6 +38,10 @@
 
     <link rel="stylesheet" href="{% static 'styles/registrar-dashboard.css'%}" />
 
+    <link rel="stylesheet" href="{% static 'styles/document-request.css'%}" />
+
+    <link rel="stylesheet" href="{% static 'styles/generate-document.css'%}" />
+
     <script src="{% static 'js/registrar-dashboard.js'%}"></script>
 
   </head>
@@ -63,15 +67,15 @@
         </li>
 
         <li>
-          <a href="#" class="menu-item" data-link="settings"
-            ><i class="fas fa-cogs"></i> Document Request</a
-          >
+          <a href="#" class="menu-item" data-link="document-request">
+            <i class="fas fa-file-alt"></i> Document Request
+          </a>
         </li>
 
-        <li>
-          <a href="#" class="menu-item" data-link="settings"
-            ><i class="fas fa-cogs"></i>Generate Document</a
-          >
+       <li>
+          <a href="#" class="menu-item" data-link="generate-document">
+            <i class="fas fa-print"></i> Generate Document
+          </a>
         </li>
       </ul>
       <div class="user-profile">

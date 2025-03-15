@@ -1,0 +1,225 @@
+.registrar-crud-dashboard {
+  width: calc(100% - 250px);
+  max-width: 1300px;
+  margin: 100px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Allow horizontal scrolling if necessary */
+  transition: margin-left 0.3s ease;
+}
+
+/* Heading */
+.registrar-list-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5rem;
+  color: #023047;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Search Container */
+.registrar-search-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 350px;
+  margin-left: auto;
+  position: relative;
+}
+
+#registrar-search-request {
+  width: 100%;
+  padding: 12px 15px 12px 50px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.4s ease-in-out;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+/* Search Icon */
+.registrar-search-container::before {
+  content: "\1F50D";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
+/* Table Styles */
+.request-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed;
+  max-width: 100%;
+}
+
+.request-table th {
+  padding: 12px;
+  background-color: #023047;
+  color: white;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.request-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Table Row Hover Effect */
+.request-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Status Colors */
+.unique-status-pending {
+  color: #d39e00;
+  font-weight: bold;
+}
+
+.unique-status-approved {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.unique-status-rejected {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Pagination */
+#registrar-pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#registrar-pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  background-color: #023047;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#registrar-pagination button:hover {
+  background-color: #044768;
+  cursor: pointer;
+  transform: translateY(-2px);
+}
+
+#registrar-pagination button:active {
+  transform: translateY(2px);
+}
+
+/* Action Buttons */
+.unique-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.unique-btn {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.unique-btn-view {
+  background-color: #007bff;
+  color: black;
+}
+
+.unique-btn-approve {
+  background-color: #28a745;
+  color: black;
+}
+
+.unique-btn-reject {
+  background-color: #dc3545;
+  color: black;
+}
+
+/* Action Button Icons */
+.view-icon, .approve-icon, .reject-icon {
+  font-size: 16px;
+  margin-right: 2px;
+}
+
+/* Action Button Hover Effects */
+.unique-btn:hover {
+  transform: translateY(-2px);
+}
+
+.unique-btn:active {
+  transform: translateY(2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .crud-dashboard {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #search-request {
+    width: 200px;
+  }
+
+  .request-table th,
+  .request-table td {
+    padding: 8px;
+  }
+
+  .unique-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #search-request {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .request-table {
+    font-size: 12px;
+  }
+}
