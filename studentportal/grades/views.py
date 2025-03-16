@@ -1,58 +1,89 @@
 import pandas as pd
 from django.shortcuts import render,redirect
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 from django.contrib import messages
 from grades.models import Grades
 
 # Create your views here.
 
 def grade_upload(request):
-    if request.method == 'POST':
-        if "file" not in request.FILES:
-            print("No file")
+   if request.method == 'POST':
+        print("It is indeed a POST request")
+
+        if "grades" not in request.FILES:
+            print("File Checking")
+            messages.error(request, "No file uploaded.")
+            return redirect('home:teacher-home')
 
         excel_file = request.FILES['grades']
-        print(f"Received file: {excel_file.name} Size:{excel_file.size}")
+        print(f"Uploaded file:{excel_file}")
 
         try:
+            # Load Excel file
             xls = pd.ExcelFile(excel_file, engine="openpyxl")
 
+            # Check if the SETUP sheet exists
             identifier_sheet = "SETUP"
             if identifier_sheet not in xls.sheet_names:
-
-                messages.error(request,f"The '{identifier_sheet}' was not found")
+                messages.error(request, f"The '{identifier_sheet}' sheet was not found.")
+                print("SETUP sheet not found")
                 return redirect('home:teacher-home')
-            
-            identifier_df = pd.read_excel(xls, sheet_name=identifier_sheet,engine="openpyxl")
 
-            grade_type = identifier_df.iloc[6,1]
-            
-            if grade_type == "LECTURE":
+            # Read SETUP sheet to determine grade type
+            identifier_df = pd.read_excel(xls, sheet_name=identifier_sheet, engine="openpyxl")
+            print("SETUP was found")
+            grade_type = str(identifier_df.iloc[5, 1]).strip()  # Read B6 cell
+            print(f"Grade Type:{grade_type}")
+
+            if grade_type not in ["LECTURE", "LAB"]:
+                print("Invalid grade type")
+                messages.error(request, "Invalid sheet type. Please use a valid grade sheet.")
+                return redirect('home:teacher-home')
+
+            # Select the appropriate sheet based on grade type
+            if grade_type == "LAB":
+                sheet_name = "ONLINE_F2F_GRADES_LABLECONLY"
+
+            elif grade_type == "LECTURE":
                 sheet_name = "ONLINE_F2F_GRADES_LECONLY"
 
-            elif grade_type == "LAB":
-                sheet_name = "ONLINE_F2F_GRADES_LEBLACONLY"
+            if sheet_name not in xls.sheet_names:
+                print("Could not find sheet name")
+                messages.error(request, f"The expected sheet '{sheet_name}' is missing.")
+                return redirect('home:teacher-home')
 
+            # Read the selected sheet
             df = pd.read_excel(xls, sheet_name=sheet_name, engine="openpyxl")
-
+            
+            print(df.columns.tolist())
+            # Required columns check
             required_columns = ["USN/STUDENT ID", "SUBJECT CODE", "SUBJECT TITLE", "SEMESTER", "YEAR", "FINAL GRADE"]
             if not all(col in df.columns for col in required_columns):
-                messages.error(request,"Sheet invalid, required columns could not be found")
+                print(df.columns.tolist())
+                messages.error(request, "Invalid sheet format. Required columns are missing.")
                 return redirect('home:teacher-home')
-            
+
+            # Save grades to the database
             for _, row in df.iterrows():
+                try:
+                    grade_value = float(row["FINAL GRADE"])
+                except:
+                    print("Invalid grade value")
+                    continue
+                
                 Grades.objects.create(
-                    student_usn=row["USN/STUDENT ID"],
+                    student_usn=str(row["USN/STUDENT ID"]).split(".")[0],
                     subject_code=row["SUBJECT CODE"],
                     subject_name=row["SUBJECT TITLE"],
                     semester=row["SEMESTER"],
                     year=row["YEAR"],
-                    grade_value=row["FINAL GRADE"]
+                    grade_value=grade_value
                 )
 
-                messages.success(request,"Grades have been uploaded successfully!")
-                return redirect('home:teacher-home')
+            messages.success(request, "Grades uploaded successfully!")
+            return redirect('home:teacher-home')
 
         except Exception as e:
-            print(e)
-            messages.error(request,f"Error processing file: {e}")
+            messages.error(request, f"Error processing file: {e}")
             return redirect('home:teacher-home')
