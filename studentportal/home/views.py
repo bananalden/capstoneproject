@@ -73,6 +73,14 @@ def registrar_home(request):
 def registrar_dashboard(request):
     return render(request, 'registrar/registrar-dashboard.html')
 
+def registrar_document_request(request):
+    return render(request, 'registrar/document-request.html')
+
+def registrar_generate_document(request):
+    return render(request, 'registrar/generate-document.html')
+
+
+
 
 
 

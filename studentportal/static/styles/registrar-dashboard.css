@@ -1,114 +1,225 @@
-/* Registrar Dashboard Container */
-.registrar-container {
+/* Registrar Dashboard CSS */
+
+.registrar-main-content {
+  width: 100%;
   max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
-  background: white;
+  background: #ffffff;
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  margin: 0 auto;
 }
 
-/* Header */
 .registrar-header {
-  background: linear-gradient(to right, #007bff, #0056b3);
-  color: white;
-  padding: 18px;
-  border-radius: 12px 12px 0 0;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.registrar-title {
-  font-size: 26px;
-  font-weight: 700;
-  text-transform: uppercase;
+.registrar-welcome-title {
+  font-size: 28px;
+  color: #2c3e50;
 }
 
-/* Main Content */
-.registrar-content {
+.registrar-stats {
   display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 20px;
-  padding: 30px 15px;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 
-/* Section Cards */
-.registrar-section {
-  flex: 1;
-  background: white;
+.registrar-stat-card {
+  background: #3498db;
+  color: #ffffff;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex: 1;
+  margin: 10px;
   text-align: center;
-  min-width: 300px;
+  min-width: 200px;
 }
 
-.registrar-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+.registrar-stat-card:nth-child(2) {
+  background: #f39c12;
 }
 
-/* Section Titles */
-.registrar-section-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 12px;
+.registrar-stat-card:nth-child(3) {
+  background: #2ecc71;
 }
 
-/* Section Description */
-.registrar-section-description {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 15px;
-  line-height: 1.6;
+.registrar-stat-title {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
-/* Buttons */
-.registrar-btn {
-  width: 90%;
-  padding: 12px;
-  font-size: 15px;
+.registrar-stat-value {
+  font-size: 24px;
   font-weight: bold;
+}
+
+.registrar-requests-title {
+  font-size: 22px;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.registrar-requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.registrar-table-head {
+  background: #ecf0f1;
+}
+
+.registrar-table-header {
+  text-align: left;
+  padding: 12px;
+  font-weight: bold;
+}
+
+.registrar-table-row:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.registrar-table-data {
+  padding: 12px;
+}
+
+.registrar-view-button {
+  background: #3498db;
+  color: #ffffff;
   border: none;
+  padding: 6px 10px;
   border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.registrar-view-button:hover {
+  background: #2980b9;
+}
+
+/* Updated Modal Styles */
+
+.unique-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.unique-modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 55%;
+}
+
+.unique-close-button {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.unique-request-details {
+  margin: 20px 0;
+}
+
+.unique-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.unique-approve-btn, .unique-deny-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.unique-approve-btn {
+  background-color: #4CAF50;
   color: white;
-  transition: background 0.3s, transform 0.2s;
 }
 
-/* Button Colors */
-.registrar-student-btn {
-  background: #007bff;
-}
-
-.registrar-transactions-btn {
-  background: #28a745;
-}
-
-.registrar-certificates-btn {
-  background: #ffc107;
-  color: black;
-}
-
-/* Button Hover Effects */
-.registrar-btn:hover {
-  filter: brightness(90%);
+.unique-approve-btn:hover {
+  background-color: #45a049;
   transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.unique-deny-btn {
+  background-color: #F44336;
+  color: white;
+}
+
+.unique-deny-btn:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Design */
-@media (max-width: 992px) {
-  .registrar-content {
+
+@media (max-width: 768px) {
+  .registrar-stats {
       flex-direction: column;
       align-items: center;
   }
 
-  .registrar-section {
-      max-width: 90%;
+  .registrar-stat-card {
+      width: 100%;
+      margin: 10px 0;
+  }
+
+  .registrar-table-header, .registrar-table-data {
+      padding: 8px;
+      font-size: 14px;
+  }
+
+  .unique-modal-content {
+      width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .registrar-welcome-title {
+      font-size: 24px;
+  }
+
+  .registrar-stat-title, .registrar-stat-value {
+      font-size: 16px;
+  }
+
+  .registrar-requests-title {
+      font-size: 18px;
+  }
+
+  .registrar-view-button {
+      padding: 6px 10px;
+      font-size: 12px;
+  }
+
+  .unique-modal-content {
+      padding: 15px;
+  }
+
+  .unique-approve-btn, .unique-deny-btn {
+      padding: 8px 16px;
   }
 }

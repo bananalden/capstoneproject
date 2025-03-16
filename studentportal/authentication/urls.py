@@ -23,4 +23,6 @@ urlpatterns = [
 
      path('set-new-pass/', views.set_new_pass, name='set-new-pass'),
 
+     path('pass-success/', views.pass_success, name='pass-success'),
+
 ]

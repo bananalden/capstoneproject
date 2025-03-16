@@ -17,6 +17,13 @@ urlpatterns = [
     #REGISTRAR URLS START ========================
     path('registrar/', views.registrar_dashboard, name='registrar-dashboard'),
 
+    path('registrar/document-request/', views.registrar_document_request, name='document-request'),
+
+     path('registrar/generate-document/', views.registrar_generate_document, name='generate-document'),
+
+
+
+
 
     #REGISTRAR URLS END ========================
 
