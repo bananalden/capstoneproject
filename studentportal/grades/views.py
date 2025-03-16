@@ -1,7 +1,5 @@
 import pandas as pd
 from django.shortcuts import render,redirect
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
 from django.contrib import messages
 from grades.models import Grades
 
@@ -13,7 +11,7 @@ def grade_upload(request):
 
         if "grades" not in request.FILES:
             print("File Checking")
-            messages.error(request, "No file uploaded.")
+            messages.warning(request, "No file uploaded.")
             return redirect('home:teacher-home')
 
         excel_file = request.FILES['grades']
@@ -26,7 +24,7 @@ def grade_upload(request):
             # Check if the SETUP sheet exists
             identifier_sheet = "SETUP"
             if identifier_sheet not in xls.sheet_names:
-                messages.error(request, f"The '{identifier_sheet}' sheet was not found.")
+                messages.warning(request, f"The '{identifier_sheet}' sheet was not found.")
                 print("SETUP sheet not found")
                 return redirect('home:teacher-home')
 
@@ -38,7 +36,7 @@ def grade_upload(request):
 
             if grade_type not in ["LECTURE", "LAB"]:
                 print("Invalid grade type")
-                messages.error(request, "Invalid sheet type. Please use a valid grade sheet.")
+                messages.warning(request, "Invalid sheet type. Please use a valid grade sheet.")
                 return redirect('home:teacher-home')
 
             # Select the appropriate sheet based on grade type
@@ -50,7 +48,7 @@ def grade_upload(request):
 
             if sheet_name not in xls.sheet_names:
                 print("Could not find sheet name")
-                messages.error(request, f"The expected sheet '{sheet_name}' is missing.")
+                messages.warning(request, f"The expected sheet '{sheet_name}' is missing.")
                 return redirect('home:teacher-home')
 
             # Read the selected sheet
@@ -61,7 +59,7 @@ def grade_upload(request):
             required_columns = ["USN/STUDENT ID", "SUBJECT CODE", "SUBJECT TITLE", "SEMESTER", "YEAR", "FINAL GRADE"]
             if not all(col in df.columns for col in required_columns):
                 print(df.columns.tolist())
-                messages.error(request, "Invalid sheet format. Required columns are missing.")
+                messages.warning(request, "Invalid sheet format. Required columns are missing.")
                 return redirect('home:teacher-home')
 
             # Save grades to the database
@@ -85,5 +83,5 @@ def grade_upload(request):
             return redirect('home:teacher-home')
 
         except Exception as e:
-            messages.error(request, f"Error processing file: {e}")
+            messages.warning(request, f"Error processing file: {e}")
             return redirect('home:teacher-home')
