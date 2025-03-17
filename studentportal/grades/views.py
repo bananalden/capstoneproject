@@ -2,6 +2,7 @@ import pandas as pd
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from grades.models import Grades
+from django.db import IntegrityError
 
 # Create your views here.
 
@@ -76,22 +77,21 @@ def grade_upload(request):
                 student_usn = str(row["USN/STUDENT ID"]).split(".")[0]
                 subject_code = row["SUBJECT CODE"].strip()
        
-                
-
-
-
-                Grades.objects.update_or_create(
-                    student_usn=student_usn,
-                    subject_code=subject_code,
-                    subject_name=row["SUBJECT TITLE"],
-                    semester=row["SEMESTER"],
-                    year=row["YEAR"],
-                    grade_value=grade_value,
-                    defaults={
-                        "subject_name":row["SUBJECT TITLE"],
-                        "grade_value":grade_value
-                    }
-                )
+                try:
+                    Grades.objects.update_or_create(
+                        student_usn=student_usn,
+                        subject_code=subject_code,
+                        subject_name=row["SUBJECT TITLE"].strip,
+                        semester=row["SEMESTER"],
+                        year=row["YEAR"],
+                        grade_value=grade_value,
+                        defaults={
+                            "grade_value":grade_value
+                        }
+                    )
+                except IntegrityError:
+                    messages.warning(request,"Duplicate entries detected, please enter new grades")
+                    return redirect("home:teacher-home")
 
             messages.success(request, "Grades uploaded successfully!")
             return redirect('home:teacher-home')
