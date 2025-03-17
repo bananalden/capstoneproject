@@ -61,16 +61,19 @@ def grade_upload(request):
                 print(df.columns.tolist())
                 messages.warning(request, "Invalid sheet format. Required columns are missing.")
                 return redirect('home:teacher-home')
+            
+            df["FINAL GRADE"] = pd.to_numeric(df["FINAL GRADE"], errors='coerce')
+            df = df.dropna(subset=["FINAL GRADE"])
 
             # Save grades to the database
-            for _, row in df.iterrows():
+            for _, row in df.iterrows():                
                 try:
                     grade_value = float(row["FINAL GRADE"])
                 except:
                     print("Invalid grade value")
                     continue
                 
-                Grades.objects.create(
+                Grades.objects.update_or_create(
                     student_usn=str(row["USN/STUDENT ID"]).split(".")[0],
                     subject_code=row["SUBJECT CODE"],
                     subject_name=row["SUBJECT TITLE"],
