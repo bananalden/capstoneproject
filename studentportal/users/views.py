@@ -273,4 +273,17 @@ def change_password_user(request):
                     messages.warning(request, form.errors)
                     return redirect('home:registrar-home')
             messages.error(request, form.errors)
-          
+
+def student_profile_update(request):
+    if request.method == "POST":
+        u_form = forms.StudentUserUpdate(request.POST, instance=request.user)
+        p_form = forms.StudentProfileUpdate(request.POST,instance=request.user.student_id)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request,"Your profile has been modified!")
+            return redirect('home:student-profile')
+        else:
+            messages.warning(request,"Invalid inputs in profile editing, pelase fix!")
+            return redirect('home:student-profile')

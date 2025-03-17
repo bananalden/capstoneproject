@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from news.models import Announcement
 from transactions import forms, models
-from users.forms import edit_admin, change_password
+from users.forms import edit_admin, change_password, StudentProfileUpdate, StudentUserUpdate
 
 
 # Create your views here.
@@ -91,7 +91,15 @@ def student_home(request):
     return render(request,'studentview/studentdashboard.html')
 
 def student_profile(request):
-    return render(request,'studentview/studentprofile.html')
+    u_form = StudentUserUpdate(instance=request.user)
+    p_form = StudentProfileUpdate(instance=request.user.student_id)
+    context = {
+            'u_form': u_form,
+            'p_form': p_form,
+            
+        }
+
+    return render(request,'studentview/studentprofile.html',context)
 
 def student_edit_password(request):
     pass

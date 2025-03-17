@@ -2,8 +2,11 @@ from django import forms
 from users import models
 from django.utils.html import strip_tags
 from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm
+from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 import re
+
+User = get_user_model()
 
 class edit_admin(forms.ModelForm):
     def __init__(self, *args,**kwargs):
@@ -121,3 +124,17 @@ class add_student(forms.ModelForm):
             student.save()
 
         return student
+
+class StudentUserUpdate(forms.ModelForm):
+    class Meta:
+        model = models.Student
+        fields = ['email']
+
+class StudentProfileUpdate(forms.ModelForm):
+    date_of_birth = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}),)
+    address = forms.TextInput()
+    class Meta:
+        model = models.StudentProfile
+        fields = ["date_of_birth","address","gender","address","contact_info"]
+
