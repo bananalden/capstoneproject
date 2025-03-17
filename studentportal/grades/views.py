@@ -72,14 +72,25 @@ def grade_upload(request):
                 except:
                     print("Invalid grade value")
                     continue
+            
+                student_usn = str(row["USN/STUDENT ID"]).split(".")[0]
+                subject_code = row["SUBJECT CODE"].strip()
+       
                 
+
+
+
                 Grades.objects.update_or_create(
-                    student_usn=str(row["USN/STUDENT ID"]).split(".")[0],
-                    subject_code=row["SUBJECT CODE"],
+                    student_usn=student_usn,
+                    subject_code=subject_code,
                     subject_name=row["SUBJECT TITLE"],
                     semester=row["SEMESTER"],
                     year=row["YEAR"],
-                    grade_value=grade_value
+                    grade_value=grade_value,
+                    defaults={
+                        "subject_name":row["SUBJECT TITLE"],
+                        "grade_value":grade_value
+                    }
                 )
 
             messages.success(request, "Grades uploaded successfully!")
