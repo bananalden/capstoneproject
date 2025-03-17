@@ -28,7 +28,13 @@ def admin_dashboard_action(request):
         if request.POST.get("user_type") == 'STUDENT':
             form = forms.add_student(request.POST)
             if form.is_valid():
-                form.save()
+                student = form.save()
+
+                course = request.POST.get("course")
+                models.StudentProfile.objects.update_or_create(
+                    student=student,defaults={"course":course}
+                ) 
+
                 messages.success(request,"Student successfully created!")
                 return redirect('admin:dashboard')
             else:
