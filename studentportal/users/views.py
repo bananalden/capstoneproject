@@ -287,3 +287,17 @@ def student_profile_update(request):
         else:
             messages.warning(request,"Invalid inputs in profile editing, pelase fix!")
             return redirect('home:student-profile')
+        
+def edit_user(request):
+    if request.method == "POST":
+        form = forms.edit_admin(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "User details successfully edited!")
+            logged_user_role = request.user.role
+
+         
+            return redirect('admin:edit-admin')
+        else:
+            messages.warning(request,"Invalid inputs!")
+            return redirect('admin:edit-admin')

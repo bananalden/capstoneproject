@@ -81,24 +81,14 @@
           <ul class="dropdown-menu">
 
             <li><a href="{%url 'home:student-transaction'%}">View Transaction History</a></li>
-            <li><a href="{%url 'home:student-request-form'%}">Create Document Request</a></li>
+            <li><a href="{%url 'home:student-request-form'%}">Create Transaction Request</a></li>
             
           </ul>
         </li>
 
-      <li>
-          <a
-            href="#"
-            class="menu-item"
-            data-link="dashboard"
-            ><i class="fas fa-user"></i> Edit User</a
-          >
-        </li>
-
-
         <li>
           <a
-            href="#"
+            href="{%url 'home:student-password'%}"
             class="menu-item"
             data-link="dashboard"
             ><i class="fas fa-key"></i> Change Password</a
@@ -106,7 +96,7 @@
         </li>
 
         <li>
-          <a href="#" class="menu-item" data-link="studentprofile"
+          <a href="{%url 'home:student-profile'%}" class="menu-item" data-link="studentprofile"
             ><i class="fas fa-user-graduate"></i> Student Profile</a
           >
         </li>

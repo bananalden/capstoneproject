@@ -102,7 +102,12 @@ def student_profile(request):
     return render(request,'studentview/studentprofile.html',context)
 
 def student_edit_password(request):
-    pass
+    form = change_password(request.user)
+    context={
+        'form':form
+    }
+    return render(request,'studentview/studentchangepassword.html', context)
+
 
 def student_requestform(request):
 
@@ -141,5 +146,13 @@ def teacher_newsfeed(request):
         'announcement_list': announcement_list
     }
     return render(request,'teacherview/teachernewsfeed.html',context)
+
+def edit_teacher(request):
+    form = edit_admin(instance=request.user)
+    context = {
+        'form':form
+    }
+    return render(request,'teacherview/edit-teacher.html',context)
+
 
 #TEACHER VIEWS START   ==================================

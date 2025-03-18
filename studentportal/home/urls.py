@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('student/',views.student_home,name='student-home'),
     path('student/profile',views.student_profile,name='student-profile'),
+    path('student/password-change',views.student_edit_password,name='student-password'),
     path('student/request-form',views.student_requestform,name='student-request-form'),
     path('student/newsfeed',views.student_newsfeed,name='student-newsfeed'),
     path('student/transaction-history',views.student_transaction,name='student-transaction'),
@@ -39,6 +40,7 @@ urlpatterns = [
     
     path('teacher/',views.teacher_home,name='teacher-home'),
     path('teacher/newsfeed',views.teacher_newsfeed,name='teacher-newsfeed'),
+    path('teacher/edit-teacher',views.edit_teacher,name='teacher-edit'),
 
     #TEACHER URLS START ========================
     
