@@ -41,6 +41,7 @@ urlpatterns = [
     path('teacher/',views.teacher_home,name='teacher-home'),
     path('teacher/newsfeed',views.teacher_newsfeed,name='teacher-newsfeed'),
     path('teacher/edit-teacher',views.edit_teacher,name='teacher-edit'),
+    path('teacher/edit-teacher-password',views.edit_teacher_password,name='teacher-edit-password'),
 
     #TEACHER URLS START ========================
     

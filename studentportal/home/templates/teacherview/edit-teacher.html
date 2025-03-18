@@ -1,6 +1,6 @@
 {% extends "cashier/cashiersidebar.html" %}
 {% block title %}
-Edit Admin User
+Edit Teacher User
 {% endblock title %}
 
 {%load static%}
@@ -30,7 +30,7 @@ Edit Admin User
 {%endfor%}
 
 <div class="edit-cashier-container">
-    <h1>Edit Cashier User</h1>
+    <h1>Edit Teacher User</h1>
     <div class="edit-cashier-form">
         <form action="{% url 'home:users:edit-user' %}" method="POST">
             {% csrf_token %}

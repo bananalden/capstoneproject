@@ -154,5 +154,12 @@ def edit_teacher(request):
     }
     return render(request,'teacherview/edit-teacher.html',context)
 
+def edit_teacher_password(request):
+    form = change_password(request.user)
+    context={
+        'form':form
+    }
+    return render(request,'teacherview/teacher-password.html', context)
+
 
 #TEACHER VIEWS START   ==================================
