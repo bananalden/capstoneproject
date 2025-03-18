@@ -27,7 +27,7 @@ def home(request):
 def edit_admin_user(request):
     if request.user.role != "ADMIN":
         return redirect('authentication:unauthorized-view')
-    edit_admin = forms.edit_admin(instance=request.user)
+    edit_admin = forms.edit_user(instance=request.user)
     context = {
         'form': edit_admin,
         'user':request.user}

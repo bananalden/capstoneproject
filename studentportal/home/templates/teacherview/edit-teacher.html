@@ -32,7 +32,7 @@ Edit Admin User
 <div class="edit-cashier-container">
     <h1>Edit Cashier User</h1>
     <div class="edit-cashier-form">
-        <form action="{% url 'home:users:edit-admin' %}" method="POST">
+        <form action="{% url 'home:users:edit-user' %}" method="POST">
             {% csrf_token %}
             
             <!-- First Name & Last Name Row -->

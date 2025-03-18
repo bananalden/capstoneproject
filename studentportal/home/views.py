@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from news.models import Announcement
 from transactions import forms, models
-from users.forms import edit_admin, change_password, StudentProfileUpdate, StudentUserUpdate
+from users.forms import edit_user, change_password, StudentProfileUpdate, StudentUserUpdate
 
 
 # Create your views here.
@@ -49,7 +49,7 @@ def confirmed_transaction_cashier(request):
 def edit_cashier(request):
     if request.user.role != 'CASHIER':
         return redirect('authentication:unauthorized-view')
-    form = edit_admin(instance=request.user)
+    form = edit_user(instance=request.user)
     context = {
         'form':form
     }
@@ -148,7 +148,7 @@ def teacher_newsfeed(request):
     return render(request,'teacherview/teachernewsfeed.html',context)
 
 def edit_teacher(request):
-    form = edit_admin(instance=request.user)
+    form = edit_user(instance=request.user)
     context = {
         'form':form
     }

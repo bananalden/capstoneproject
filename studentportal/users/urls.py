@@ -6,7 +6,7 @@ app_name = 'users'
 urlpatterns =[
 
     path('dashboard-action',views.admin_dashboard_action,name='dashboard-action'),
-    path('edit-admin',views.edit_admin,name='edit-admin'),
+    path('edit-user',views.edit_user,name='edit-user'),
     #CASHIER ROUTES START
     path('cashier-list',views.create_cashier,name='cashier-list'),
     path('cashier-list/edit',views.update_cashier,name='cashier-update'),
@@ -33,6 +33,7 @@ urlpatterns =[
 
     #USER ACTION START
     path('edit-password',views.change_password_user,name='change-password'),
+    path('edit-user',views.change_password_user,name='change-password'),
     path('edit-student-profile',views.student_profile_update,name='student-profile-update')
     #USER ACTION END
 

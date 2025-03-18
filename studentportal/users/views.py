@@ -11,16 +11,48 @@ from django.contrib.auth.decorators import login_required
 #PLACE CRUD OPERATIONS HERE
 
 #EDIT ADMIN OPERATIONS#####################################
-def edit_admin(request):
-
+def edit_user(request):
     if request.method == 'POST':
-        form = forms.edit_admin(request.POST, instance=request.user)
+        form = forms.edit_user(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('admin:edit-admin')
+            logged_user_role = request.user.role
+
+            match logged_user_role:
+                case 'ADMIN':
+                    messages.success(request, "User details successfully edited!")
+                    return redirect('admin:dashboard')
+                
+                case 'CASHIER':
+                    messages.success(request, "User details successfully edited!")
+                    return redirect('home:cashier-home')
+
+                case 'REGISTRAR':
+                    messages.success(request, "User details successfully edited!")
+                    return redirect('home:registrar-home')
+                
+                case 'TEACHER':
+                    messages.success(request, "User details successfully edited!")
+                    return redirect('home:teacher-home')
         else:
-            messages.warning(request,"Invalid inputs!")
-            return redirect('admin:edit-admin')
+             logged_user_role = request.user.role
+             match logged_user_role:
+                case 'ADMIN':
+                    messages.warning(request, form.errors)
+                    return redirect('admin:dashboard')
+                
+                case 'CASHIER':
+                    messages.warning(request, form.errors)
+                    return redirect('home:cashier-home')
+
+                case 'REGISTRAR':
+                    messages.warning(request, form.errors)
+                    return redirect('home:registrar-home')
+                 
+                case 'TEACHER':
+                    messages.warning(request, form.errors)
+                    return redirect('home:teacher-home')
+
 #EDIT ADMIN OPERATIONS#####################################
 def admin_dashboard_action(request):
       if request.method == 'POST':
@@ -288,16 +320,3 @@ def student_profile_update(request):
             messages.warning(request,"Invalid inputs in profile editing, pelase fix!")
             return redirect('home:student-profile')
         
-def edit_user(request):
-    if request.method == "POST":
-        form = forms.edit_admin(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "User details successfully edited!")
-            logged_user_role = request.user.role
-
-         
-            return redirect('admin:edit-admin')
-        else:
-            messages.warning(request,"Invalid inputs!")
-            return redirect('admin:edit-admin')

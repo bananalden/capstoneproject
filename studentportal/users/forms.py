@@ -8,7 +8,7 @@ import re
 
 User = get_user_model()
 
-class edit_admin(forms.ModelForm):
+class edit_user(forms.ModelForm):
     def __init__(self, *args,**kwargs):
         super().__init__(*args, **kwargs)
         self.fields["first_name"].widget.attrs.update({

@@ -32,7 +32,7 @@ Edit Admin User
 <div class="container">
   <h1>Edit Admin User</h1>
   <div class="edit-admin-form">
-      <form action="{% url 'admin:users:edit-admin' %}" method="POST">
+      <form action="{% url 'admin:users:edit-user' %}" method="POST">
           {% csrf_token %}
           
           <!-- First Name & Last Name Row -->
