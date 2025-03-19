@@ -79,6 +79,10 @@ def registrar_document_request(request):
 def registrar_generate_document(request):
     return render(request, 'registrar/generate-document.html')
 
+def registrar_create_student_profile(request):
+    return render(request, 'registrar/create-student-profile.html')
+
+
 
 
 
@@ -109,6 +113,7 @@ def student_newsfeed(request):
 
 def student_transaction(request):
     return render(request, 'studentview/transaction-history.html')
+
 
 #STUDENT VIEWS END   ==================================
 

@@ -19,6 +19,8 @@ urlpatterns = [
     path('registrar/document-request/', views.registrar_document_request, name='document-request'),
     path('registrar/generate-document/', views.registrar_generate_document, name='generate-document'),
 
+    path('registrar/create-student-profile/', views.registrar_create_student_profile, name='create-student-profile'),
+
 
 
 
