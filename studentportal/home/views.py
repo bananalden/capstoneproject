@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 from news.models import Announcement
 from transactions import forms, models
 from users.forms import edit_user, change_password, StudentProfileUpdate, StudentUserUpdate
+from users.models import CustomUser, Student
 
 
 # Create your views here.
@@ -71,7 +72,31 @@ def registrar_home(request):
     return render(request, 'registrar/registrar.html')
 
 def registrar_dashboard(request):
-    return render(request, 'registrar/registrar-dashboard.html')
+    total_students = Student.student.count()
+    pending_transactions = models.Transaction.objects.filter(
+        registrar_status=models.Transaction.RegistrarStatus.PENDING,
+        payment_purpose__in=[
+            models.Transaction.PaymentPurposeChoice.CERT_GRADES,
+            models.Transaction.PaymentPurposeChoice.CERT_MORALE,
+            models.Transaction.PaymentPurposeChoice.CERT_ENROL
+        ], is_confirmed=True
+    ).count()
+    ready_transactions = models.Transaction.objects.filter(
+        registrar_status=models.Transaction.RegistrarStatus.AVAILABLE,
+        payment_purpose__in=[
+            models.Transaction.PaymentPurposeChoice.CERT_GRADES,
+            models.Transaction.PaymentPurposeChoice.CERT_MORALE,
+            models.Transaction.PaymentPurposeChoice.CERT_ENROL
+        ], is_confirmed=True
+    ).count()
+
+    context = {
+        'total_students': total_students,
+        'pending_transactions':pending_transactions,
+        'ready_transactions':ready_transactions
+    }
+    
+    return render(request, 'registrar/registrar-dashboard.html',context)
 
 def registrar_document_request(request):
     return render(request, 'registrar/document-request.html')

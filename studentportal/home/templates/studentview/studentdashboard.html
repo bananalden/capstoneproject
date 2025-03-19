@@ -46,9 +46,9 @@ Student Dashboard
     <div class="quick-links">
       <h2>Quick Links</h2>
       <ul>
-        <li><a href="#">View Courses</a></li>
-        <li><a href="#">Check Upcoming Events</a></li>
-        <li><a href="#">Submit Assignments</a></li>
+        <li><a href="{%url 'home:student-newsfeed'%}">View Newsfeed</a></li>
+        <li><a href="{%url 'home:student-request-form'%}">Create Transaction Request</a></li>
+        <li><a href="{%url 'home:student-request-form'%}">Create Transaction Request</a></li>
       </ul>
     </div>
 
@@ -102,23 +102,7 @@ Student Dashboard
     </div>    
   </section>
 
-  <section class="courses">
-    <h2>Active Courses</h2>
-    <div class="course-card">
-      <div class="course-info">
-        <div class="course-title">Web Development</div>
-          <p>Instructor: <strong>Mr. Reyes</strong></p>
-          <p><strong>Upcoming Assignment:</strong> Final Project (Due: Feb 5)</p>
-        </div>
-      </div>
-      <div class="course-card">
-        <div class="course-info">
-          <div class="course-title">Database Systems</div>
-            <p>Instructor: <strong>Ms. Santos</strong></p>
-            <p><strong>Upcoming Exam:</strong> Midterm (Feb 8)</p>
-        </div>
-    </div>
-  </section>
+ 
 </div>
 <script src="{% static 'js/studentdashboard.js'%}"></script>
 {% endblock content %}
