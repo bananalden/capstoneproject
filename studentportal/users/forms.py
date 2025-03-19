@@ -121,3 +121,12 @@ class add_student(forms.ModelForm):
             student.save()
 
         return student
+    
+#STUDENT PROFILE FIRST============================================
+
+
+
+
+
+
+#STUDENT PROFILE FIRST============================================
