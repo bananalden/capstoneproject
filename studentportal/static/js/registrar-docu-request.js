@@ -14,6 +14,7 @@ $(document).ready(function(){
         }
         
         else if(selected_input=="cog"){
+            $("#enrollment-goodmorale").hide()
             console.log("Certificate of Grades")
 
         }
