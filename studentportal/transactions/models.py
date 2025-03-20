@@ -9,6 +9,7 @@ class Transaction(models.Model):
         PENDING = "PENDING", 'Pending'
         PROCESSING = "PROCESSING", 'Processing'
         AVAILABLE = "AVAILABLE", 'Available'
+        COMPLETE = "COMPLETE", 'Complete'
 
     class PaymentPurposeChoice(models.TextChoices):
         TUITION_FEE = "TUITION FEE", "Tuition Fee"

@@ -14,22 +14,23 @@ Generate Document
         <form action="#" method="POST" class="generate-document-form">
             <label for="document-type">Select Document Type:</label>
             <select id="document-type" name="document_type" required class="generate-document-select">
-                <option value="tor">Transcript of Records</option>
+                <option value="" selected disabled>---------------</option>
                 <option value="coe">Certificate of Enrollment</option>
                 <option value="gm">Good Moral Certificate</option>
+                <option value="cog">Certificate of Grades</option>
             </select>
 
             <label for="student-name">Select Student:</label>
             <input type="text" id="student-name" name="student_name" placeholder="Search student..." list="students" required class="generate-document-input">
-            <datalist id="students" class="generate-document-datalist">
-                <option value="Juan Dela Cruz"></option>
-                <option value="Maria Clara"></option>
-                <option value="Jose Rizal"></option>
-                <option value="Andres Bonifacio"></option>
-            </datalist>
 
-            <label for="extra-data">Additional Information (Optional):</label>
-            <textarea id="extra-data" name="extra_data" placeholder="Enter additional info if needed..." class="generate-document-textarea"></textarea>
+            <div id="enrollment-goodmorale" class="form-group">
+                <label for="Semester">Enter semester:</label>
+                <select name="semester" id="semester" class="generate-document-select">
+                    <option value="1st">1st Semester</option>
+                    <option value="2nd">2nd Semester</option>
+                </select>
+            </div>
+
 
             <label for="status">Update Request Status:</label>
             <select id="status" name="request_status" required class="generate-document-status">
@@ -37,12 +38,12 @@ Generate Document
                 <option value="completed">Completed</option>
             </select>
 
-            <label for="student-email">Student Email:</label>
-            <input type="email" id="student-email" name="student_email" placeholder="Enter student email..." required class="generate-document-email">
+            
 
             <button type="submit" class="generate-document-button">Generate Report & Send Email</button>
         </form>
     </main>
 </div>
 
+<script src="{%static 'js/registrar-docu-request.js'%}"></script>
 {% endblock content %}
