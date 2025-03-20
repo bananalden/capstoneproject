@@ -11,6 +11,7 @@ pillow = "*"
 openpyxl = "*"
 pandas = "*"
 xlsxwriter = "*"
+weasyprint = "*"
 
 [dev-packages]
 
