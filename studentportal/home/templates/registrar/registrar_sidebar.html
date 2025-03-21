@@ -59,7 +59,7 @@
       <ul class="sidebar-menu">
         <li>
           <a
-            href="{%url 'admin:dashboard'%}"
+            href="{%url 'home:registrar-dashboard'%}"
             class="menu-item"
             data-link="dashboard"
             ><i class="fas fa-house-user"></i> Dashboard</a
@@ -67,13 +67,13 @@
         </li>
 
         <li>
-          <a href="#" class="menu-item" data-link="document-request">
+          <a href="{%url 'home:document-request'%}" class="menu-item" data-link="document-request">
             <i class="fas fa-file-alt"></i> Document Request
           </a>
         </li>
 
        <li>
-          <a href="#" class="menu-item" data-link="generate-document">
+          <a href="{%url 'home:generate-document'%}" class="menu-item" data-link="generate-document">
             <i class="fas fa-print"></i> Generate Document
           </a>
         </li>

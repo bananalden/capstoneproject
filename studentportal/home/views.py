@@ -90,10 +90,20 @@ def registrar_dashboard(request):
         ], is_confirmed=True
     ).count()
 
+    pending_transaction_list = models.Transaction.objects.filter(
+        registrar_status=models.Transaction.RegistrarStatus.PENDING,
+        payment_purpose__in=[
+            models.Transaction.PaymentPurposeChoice.CERT_GRADES,
+            models.Transaction.PaymentPurposeChoice.CERT_MORALE,
+            models.Transaction.PaymentPurposeChoice.CERT_ENROL
+        ], is_confirmed=True
+    )[:5]
+
     context = {
         'total_students': total_students,
         'pending_transactions':pending_transactions,
-        'ready_transactions':ready_transactions
+        'ready_transactions':ready_transactions,
+        'transactions':pending_transaction_list 
     }
     
     return render(request, 'registrar/registrar-dashboard.html',context)

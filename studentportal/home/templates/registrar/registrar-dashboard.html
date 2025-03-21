@@ -36,22 +36,16 @@
                     </tr>
                 </thead>
                 <tbody class="registrar-table-body">
+                {%for transaction in transactions%}
                     <tr class="registrar-table-row">
-                        <td class="registrar-table-data">Mj Mendiola</td>
-                        <td class="registrar-table-data">Transcript of Records</td>
-                        <td class="registrar-table-data">Pending</td>
+                        <td class="registrar-table-data">{{transaction.student.first_name}} {{transaction.student.last_name}}</td>
+                        <td class="registrar-table-data">{{transaction.payment_purpose}}</td>
+                        <td class="registrar-table-data">{{transaction.registrar_status}}</td>
                         <td class="registrar-table-data">
-                            <button class="registrar-view-button" onclick="openModal('Mj Mendiola', 'Transcript of Records', 'Pending', 'March 12, 2025', 'Please process urgently.')">View Request</button>
+                            <button class="registrar-view-button" onclick="openModal('{{transaction.student.first_name}} {{transaction.student.last_name}}', '{{transaction.payment_purpose}}', '{{transaction.registrar_status}}', 'March 12, 2025', 'Please process urgently.')">View Request</button>
                         </td>
                     </tr>
-                    <tr class="registrar-table-row">
-                        <td class="registrar-table-data">Maria Santos</td>
-                        <td class="registrar-table-data">Good Moral Certificate</td>
-                        <td class="registrar-table-data">Approved</td>
-                        <td class="registrar-table-data">
-                            <button class="registrar-view-button" onclick="openModal('Maria Santos', 'Good Moral Certificate', 'Approved', 'March 10, 2025', 'No additional notes.')">View Request</button>
-                        </td>
-                    </tr>
+                {%endfor%}
                 </tbody>
             </table>
         </section>
