@@ -42,7 +42,7 @@
                         <td class="registrar-table-data">{{transaction.payment_purpose}}</td>
                         <td class="registrar-table-data">{{transaction.registrar_status}}</td>
                         <td class="registrar-table-data">
-                            <button class="registrar-view-button" onclick="openModal('{{transaction.student.first_name}} {{transaction.student.last_name}}', '{{transaction.payment_purpose}}', '{{transaction.registrar_status}}', 'March 12, 2025', 'Please process urgently.')">View Request</button>
+                            <button class="registrar-view-button" onclick="openModal('{{transaction.student.first_name}} {{transaction.student.last_name}}', '{{transaction.payment_purpose}}', '{{transaction.registrar_status}}', '{{transaction.date_time}}', 'Please process urgently.')">View Request</button>
                         </td>
                     </tr>
                 {%endfor%}
