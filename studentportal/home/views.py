@@ -1,4 +1,5 @@
 import pandas as pd
+from weasyprint import HTML
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -198,5 +199,13 @@ def edit_teacher_password(request):
     }
     return render(request,'teacherview/teacher-password.html', context)
 
-
 #TEACHER VIEWS START   ==================================
+
+
+#GENERATING CERTIFICATES ====================================
+
+def generate_cert(request):
+    pass
+
+
+#GENERATING CERTIFICATES ====================================
