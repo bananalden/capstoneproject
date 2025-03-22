@@ -1,0 +1,63 @@
+{% extends "registrar/registrar_sidebar.html" %}
+{% block title %}
+Grade List
+{% endblock title %}
+
+{%load static%}
+{% block content %}
+
+<div class="registrar-crud-dashboard">
+        <h1 class="registrar-list-title">Grade List</h1>
+    
+        <!-- Search Section -->
+        <div class="registrar-search-container">
+            <input type="text" id="registrar-search-request" placeholder="Search Requests">
+        </div>
+    
+        <!-- Document Request Table -->
+        <table class="request-table unique-request-table">
+            <thead class="registrar-table-head">
+                <tr>
+                    <th class="registrar-table-header">Student ID</th>
+                    <th class="registrar-table-header">Student Name</th>
+                    <th class="registrar-table-header">Subject Code</th>
+                    <th class="registrar-table-header">Subject Title</th>
+                    <th class="registrar-table-header">School Year</th>
+                    <th class="registrar-table-header">Semester</th>
+                    <th class="registrar-table-header">Grade Value</th>
+                    <th class="registrar-table-header">Action</th>
+                </tr>
+            </thead>
+            <tbody id="request-list">
+                <tr class="registrar-table-row">
+                    <td class="registrar-table-data">21001396500</td>
+                    <td class="registrar-table-data">Joe Mama</td>
+                    <td class="registrar-table-data">UGRD-GE6300</td>
+                    <td class="registrar-table-data">Life and Works of Rizal</td>
+                    <td class="registrar-table-data">2024-2025</td>
+                    <td class="registrar-table-data">2nd</td>
+                    <td class="registrar-table-data">96.80</td>
+                    <td class="registrar-table-data actions unique-actions">
+                        <button class="unique-btn unique-btn-view registrar-view-button">
+                            <i class="fas fa-eye view-icon"></i>
+                        </button>
+                        <button class="unique-btn unique-btn-approve registrar-approve-button">
+                            <i class="fas fa-circle-check approve-icon"></i>
+                        </button>
+                        <button class="unique-btn unique-btn-reject registrar-reject-button">
+                            <i class="fas fa-ban reject-icon"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <!-- Pagination -->
+        <div id="registrar-pagination">
+            <button id="prev-btn" class="registrar-pagination-btn" aria-label="Previous page">Previous</button>
+            <button id="next-btn" class="registrar-pagination-btn" aria-label="Next page">Next</button>
+        </div>
+    </div>
+
+
+{% endblock content %}
