@@ -11,7 +11,8 @@ Generate Document
         <header class="generate-document-header">
             <h1>Generate Document</h1>
         </header>
-        <form action="#" method="POST" class="generate-document-form">
+        <form action="{%url 'home:generate-cert'%}" method="POST" class="generate-document-form">
+            {% csrf_token %}
             <label for="document-type">Select Document Type:</label>
             <select id="document-type" name="document_type" required class="generate-document-select">
                 <option value="" selected disabled>---------------</option>
@@ -30,7 +31,7 @@ Generate Document
                     <option value="2nd">2nd Semester</option>
                 </select>
                 <label for="sy">School Year:</label>
-                <input type="text" id="sy" placeholder="Enter the school year (ex. 2024-2025)" class="generate-document-input">
+                <input type="text" id="sy" name="year" placeholder="Enter the school year (ex. 2024-2025)" class="generate-document-input">
 
                 <label for="pickup-date">Set Pickup Date:</label>
                 <input type="date" name="" id="" class="generate-document-input">

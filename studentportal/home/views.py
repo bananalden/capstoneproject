@@ -1,15 +1,16 @@
 import pandas as pd
 from weasyprint import HTML
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.template.loader import render_to_string
 from news.models import Announcement
 from transactions import forms, models
 from users.forms import edit_user, change_password, StudentProfileUpdate, StudentUserUpdate
 from users.models import CustomUser, Student
-
+from grades.models import Grades
 
 # Create your views here.
 
@@ -219,6 +220,41 @@ def generate_cert(request):
         elif document_type == 'cog':
             form = forms.CertificateOfGrades(request.POST)
             template_name = "pdf/certificate_of_grades.html"
+
+        if form.is_valid():
+            student = form.cleaned_data.get("student")
+            year = form.cleaned_data.get('year')
+            semester = form.cleaned_data.get('semester')
+
+            if document_type == 'cog':
+                grades = Grades.objects.get(student_usn=student_usn,year=year,semester=semester)
+
+                if not grades.exists():
+                    messages.warning(request,'No grades were found for the given student')
+                    return redirect('home:generate-document')
+                
+                context = {
+                    'student': student,
+                    'year': year,
+                    'semester':semester,
+                    'grades':grades
+                }
+
+            else:
+                context={
+                    'student':student,
+                    'year':year,
+                    'semester':semester
+                }
+
+            html_content = render_to_string(template_name,context)
+            pdf_file = HTML(string=html_content).write_pdf()
+
+            response = HttpResponse(pdf_file, content_type='application/pdf')
+            response['Content-Disposition'] = f'attachment; filename="{document_type}.pdf"'
+            return response
+
+
 
 
 #GENERATING CERTIFICATES ====================================

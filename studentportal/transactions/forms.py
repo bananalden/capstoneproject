@@ -91,12 +91,11 @@ class GoodMoraleForm(forms.Form):
         "class":"generate-document-input",
         "id":"sy"
     }))
+   
+    semester = forms.ChoiceField(choices=[("1st", "1st Semester"),("2nd", "2nd Semester")], widget=forms.Select(attrs={
+        "class":"generate-document-select"
+    }))
 
-    semester = forms.ChoiceField(choices=[("1st", "1st Semester")("2nd","2nd Semester")], 
-            widget=forms.Select(attrs=
-    "class":"generate-document-select",
-    "id":"semester"
-    ))
 
     def clean_student(self):
         student_usn = self.cleaned_data.get("student")
@@ -105,8 +104,8 @@ class GoodMoraleForm(forms.Form):
             raise ValidationError("This field is required")
         try:
             student = User.objects.get(username=student_usn)
-            student_full_name = f"{student.first_name} {student.last_name}"
-            return student_full_name
+            
+            return student
         except User.DoesNotExist:  
             raise ValidationError("User does not exist. Please enter a valid Student username.")
         
@@ -127,12 +126,11 @@ class EnrollmentForm(forms.Form):
         "class":"generate-document-input",
         "id":"sy"
     }))
-
-    semester = forms.ChoiceField(choices=[("1st", "1st Semester")("2nd","2nd Semester")], 
-            widget=forms.Select(attrs=
-    "class":"generate-document-select",
-    "id":"semester"
-    ))
+    
+    semester = forms.ChoiceField(choices=[("1st", "1st Semester"),("2nd", "2nd Semester")], widget=forms.Select(attrs={
+        "class":"generate-document-select"
+    }))
+    
 
     def clean_student(self):
         student_usn = self.cleaned_data.get("student")
@@ -141,8 +139,7 @@ class EnrollmentForm(forms.Form):
             raise ValidationError("This field is required")
         try:
             student = User.objects.get(username=student_usn)
-            student_full_name = f"{student.first_name} {student.last_name}"
-            return student_full_name
+            return student
         except User.DoesNotExist:  
             raise ValidationError("User does not exist. Please enter a valid Student username.")
         
@@ -165,11 +162,9 @@ class CertificateOfGrades(forms.Form):
         "id":"sy"
     }))
 
-    semester = forms.ChoiceField(choices=[("1st", "1st Semester")("2nd","2nd Semester")], 
-            widget=forms.Select(attrs=
-    "class":"generate-document-select",
-    "id":"semester"
-    ))
+    semester = forms.ChoiceField(choices=[("1st", "1st Semester"),("2nd", "2nd Semester")], widget=forms.Select(attrs={
+        "class":"generate-document-select"
+    }))
 
 
 
@@ -180,8 +175,7 @@ class CertificateOfGrades(forms.Form):
             raise ValidationError("This field is required")
         try:
             student = User.objects.get(username=student_usn)
-            student_full_name = f"{student.first_name} {student.last_name}"
-            return student_full_name
+            return student
         except User.DoesNotExist:  
             raise ValidationError("User does not exist. Please enter a valid Student username.")
         
