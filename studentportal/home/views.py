@@ -205,7 +205,20 @@ def edit_teacher_password(request):
 #GENERATING CERTIFICATES ====================================
 
 def generate_cert(request):
-    pass
+    if request.method == 'POST':
+        document_type = request.POST.get('document_type')
+
+        if document_type == 'coe':
+            form = forms.EnrollmentForm(request.POST)
+            template_name = 'pdf_templates/certificate_of_enrollment.html'
+
+        elif document_type == 'gm':
+            form = forms.GoodMoraleForm(request.POST)
+            template_name = 'pdf_templates/certificate_of_good_morale.html'
+
+        elif document_type == 'cog':
+            form = forms.CertificateOfGrades(request.POST)
+            template_name = "pdf/certificate_of_grades.html"
 
 
 #GENERATING CERTIFICATES ====================================

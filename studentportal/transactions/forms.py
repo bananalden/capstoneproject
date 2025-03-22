@@ -79,7 +79,7 @@ class updatePayment(forms.ModelForm):
         return instance
 
 
-
+#FORM VALIDATION FOR DOCUMENT GENERATION===========================
 class GoodMoraleForm(forms.Form):
     student = forms.CharField(max_length=150,widget=forms.TextInput(attrs={
         "placeholder":"Input student's USN",
@@ -91,6 +91,12 @@ class GoodMoraleForm(forms.Form):
         "class":"generate-document-input",
         "id":"sy"
     }))
+
+    semester = forms.ChoiceField(choices=[("1st", "1st Semester")("2nd","2nd Semester")], 
+            widget=forms.Select(attrs=
+    "class":"generate-document-select",
+    "id":"semester"
+    ))
 
     def clean_student(self):
         student_usn = self.cleaned_data.get("student")
@@ -122,6 +128,51 @@ class EnrollmentForm(forms.Form):
         "id":"sy"
     }))
 
+    semester = forms.ChoiceField(choices=[("1st", "1st Semester")("2nd","2nd Semester")], 
+            widget=forms.Select(attrs=
+    "class":"generate-document-select",
+    "id":"semester"
+    ))
+
+    def clean_student(self):
+        student_usn = self.cleaned_data.get("student")
+
+        if not student_usn:
+            raise ValidationError("This field is required")
+        try:
+            student = User.objects.get(username=student_usn)
+            student_full_name = f"{student.first_name} {student.last_name}"
+            return student_full_name
+        except User.DoesNotExist:  
+            raise ValidationError("User does not exist. Please enter a valid Student username.")
+        
+    def clean_year(self):
+        year = self.cleaned_data.get('year')
+
+        if not re.match(r"^\d{4}-\d{4}$", year):
+            raise ValidationError("Invalid school year format. Please use 'YYYY-YYYY' format.")
+
+
+class CertificateOfGrades(forms.Form):
+    student = forms.CharField(max_length=150,widget=forms.TextInput(attrs={
+        "placeholder":"Input student's USN",
+        "class":"generate-document-input",
+        "id":"student-name"
+    }))
+    year = forms.CharField(max_length=150,widget=forms.TextInput(attrs={
+        "placeholder":"Enter the school year (ex. 2024-2025)",
+        "class":"generate-document-input",
+        "id":"sy"
+    }))
+
+    semester = forms.ChoiceField(choices=[("1st", "1st Semester")("2nd","2nd Semester")], 
+            widget=forms.Select(attrs=
+    "class":"generate-document-select",
+    "id":"semester"
+    ))
+
+
+
     def clean_student(self):
         student_usn = self.cleaned_data.get("student")
 
@@ -142,6 +193,7 @@ class EnrollmentForm(forms.Form):
 
 
             
+#FORM VALIDATION FOR DOCUMENT GENERATION===========================
 
    
 class manualTransactionAdd(forms.ModelForm):

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Grades</title>
+    <style>
+        @page{
+            size: A4;
+            margin: 10;
+        }
+        @media print{
+            html, body{
+                width: 210mm;
+                height: 297mm;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+        }
+        h1{
+            text-align: center;
+        }
+
+        .header{
+            padding-top: 15%;
+        }
+        .signature{
+            float: right;
+            margin-top: 30%;
+            padding-right:5%;
+            margin-right:5%;
+          
+        }
+
+        .signature input{
+            border: none;
+            border-bottom: 1px solid black;
+        }
+
+        .body p{
+            padding: 1%;
+        }
+
+        .sign-line p{
+            margin:0;
+            padding:0;
+        }
+
+        table{
+            border-collapse:collapse;
+        }
+     
+
+    </style>
+</head>
+<body>
+    <div class="header">
+       <h1>Certificate of Enrollment</h1>
+    </div>
+    <div class="body">
+        <p>This is to certify that the student, Joe Mama is enrolled in ACLC College of Apalit in the 2nd Semester of the school year, 2024-2025.</p>
+        <p>The following are the grades the aforemnetioned student had in the previous year.</p>
+
+        <table>
+            <thead>
+            <tr>
+            <th>Subject Code</th>
+            <th>Subject Title</th>
+            <th>Grade Value</th>
+            <th>Remarks</th>
+            </tr>
+        </thead>
+        </table>
+
+        <div class="signature">
+        <input type="text" name="signature" id="">
+        <div class="sign-line">
+            <p>Registrar</p>
+        <p><strong>Joseph T. Calara</strong></p>
+        
+    </div>
+    </div>
+    </div>
+</body>
+</html>
