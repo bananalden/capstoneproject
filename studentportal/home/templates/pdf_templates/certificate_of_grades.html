@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificate of Grades</title>
     <style>
-        @page{
-            size: A4;
-            margin: 10;
+         @page{
+            size: 8.5in 13in;
+            margin: 1in;
+          
         }
         @media print{
             html, body{
-                width: 210mm;
-                height: 297mm;
                 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             }
         }
@@ -44,13 +43,14 @@
             margin:0;
             padding:0;
         }
-
         table,th,td{
             border: 1px solid black;
             border-collapse:collapse;
+
         }
         th,td{
             padding:5px;
+            margin: 5px;
         }
      
 
@@ -58,10 +58,10 @@
 </head>
 <body>
     <div class="header">
-       <h1>Certificate of Enrollment</h1>
+       <h1>Certificate of Grades</h1>
     </div>
     <div class="body">
-        <p>This is to certify that the student, Joe Mama is enrolled in ACLC College of Apalit in the 2nd Semester of the school year, 2024-2025.</p>
+        <p>This is to certify that the student, {{student.first_name}} {{student.last_name}} is enrolled in ACLC College of Apalit in the {{semester}} Semester of the school year, {{year}}.</p>
         <p>The following are the grades the aforemnetioned student had in the previous year.</p>
 
         <table>
@@ -70,9 +70,17 @@
             <th>Subject Code</th>
             <th>Subject Title</th>
             <th>Grade Value</th>
-            <th>Remarks</th>
             </tr>
         </thead>
+        <tbody>
+            {%for grade in grades%}
+            <tr>
+                <td>{{grade.subject_code}}</td>
+                <td>{{grade.subject_name}}</td>
+                <td>{{grade.grade_value}}</td>   
+            </tr>
+            {%endfor%}
+        </tbody>
         </table>
 
         <div class="signature">
