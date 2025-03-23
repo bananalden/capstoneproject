@@ -114,6 +114,7 @@ class GoodMoraleForm(forms.Form):
 
         if not re.match(r"^\d{4}-\d{4}$", year):
             raise ValidationError("Invalid school year format. Please use 'YYYY-YYYY' format.")
+        return year
 
 class EnrollmentForm(forms.Form):
     student = forms.CharField(max_length=150,widget=forms.TextInput(attrs={
@@ -148,7 +149,7 @@ class EnrollmentForm(forms.Form):
 
         if not re.match(r"^\d{4}-\d{4}$", year):
             raise ValidationError("Invalid school year format. Please use 'YYYY-YYYY' format.")
-
+        return year
 
 class CertificateOfGrades(forms.Form):
     student = forms.CharField(max_length=150,widget=forms.TextInput(attrs={
@@ -183,7 +184,8 @@ class CertificateOfGrades(forms.Form):
         year = self.cleaned_data.get('year')
 
         if not re.match(r"^\d{4}-\d{4}$", year):
-            raise ValidationError("Invalid school year format. Please use 'YYYY-YYYY' format.")
+            raise ValidationError("Invalid school year format. Please use 'YYYY-YYYY' format.")    
+        return year
 
 
             

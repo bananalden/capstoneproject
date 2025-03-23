@@ -227,7 +227,7 @@ def generate_cert(request):
             semester = form.cleaned_data.get('semester')
 
             if document_type == 'cog':
-                grades = Grades.objects.get(student_usn=student_usn,year=year,semester=semester)
+                grades = Grades.objects.get(student_usn=student.username,year=year,semester=semester)
 
                 if not grades.exists():
                     messages.warning(request,'No grades were found for the given student')
@@ -251,7 +251,7 @@ def generate_cert(request):
             pdf_file = HTML(string=html_content).write_pdf()
 
             response = HttpResponse(pdf_file, content_type='application/pdf')
-            response['Content-Disposition'] = f'attachment; filename="{document_type}.pdf"'
+            response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.first_name}.pdf"'
             return response
 
 
