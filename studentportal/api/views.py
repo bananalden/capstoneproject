@@ -5,6 +5,7 @@ from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import get_user_model
 from users import models as user_data
 from news import models as news_data
+from grades.models import Grades
 from transactions import models as transactions_data
 from django.db.models import Q
 
@@ -269,6 +270,49 @@ def student_transaction_list(request):
     })
 
 
+def get_grades(request):
+    page = request.GET.get("page",1)
+    search_query = request.GET.get("q","")
+    semester = request.GET.get("filter","")
+    grade_list = Grades.objects.all()
+    
+
+    if search_query:
+        grade_list = grade_list.filter(
+            Q(student__student_usn__icontains=search_query) |
+            Q(student__subject_code__icontains=search_query) |
+            Q(student__subject_name__icontains=search_query) 
+        )
+
+    if semester:
+        grade_list = grade_list.filter(semester = semester)
+
+    
+
+    paginator = Paginator(grade_list,10)
+    try:
+        grade_page = paginator.page(page)
+    except:
+        grade_page = paginator.page(1)
+    data = [{
+       "id":grade.id,
+       "student_usn":grade.student_usn,
+       "subject_code":grade.subject_code,
+       "subject_name":grade.subject_name,
+       "year":grade.year,
+       "semester":grade.semester,
+       "grade_value":grade.grade_value,
+
+
+    }
+    for grade in grade_page
+    ]
+
+    return JsonResponse({
+        "grade":data,
+        "page":grade_page.number,
+        "total_pages":paginator.num_pages
+    })
 
 
 
