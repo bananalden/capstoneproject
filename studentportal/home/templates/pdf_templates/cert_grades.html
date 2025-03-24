@@ -1,0 +1,175 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Grades</title>
+    <style>
+@page{
+            size: A4;
+            margin: 1in;
+          
+        }
+        @media print{
+            html, body{
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+        }
+
+
+
+
+        * {
+  font-family: 'Times New Roman', serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.certificate-wrapper {
+  background: white;
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #2c3e50;
+}
+
+.certificate-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 60px; /* Keeps good spacing below */
+  position: relative;
+}
+
+.certificate-header img {
+  width: 130px;
+  position: absolute;
+  left: 0;
+  margin-top: 35px; /* Adjusted to bring the logo closer to the text */
+  margin-bottom: 15px; /* Slightly reduced spacing below */
+}
+
+.certificate-header h1 {
+  font-size: 28px;
+  color: #2c3e50;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px; /* Keeps text well-spaced */
+}
+
+
+.certificate-content {
+  font-size: 18px;
+  margin-bottom: 30px;
+  line-height: 1.8;
+  color: #333;
+  text-align: justify;
+}
+.certificate-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.certificate-table th, .certificate-table td {
+  border: 2px solid #2c3e50;
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+}
+.certificate-table th {
+  background: #2c3e50;
+  color: white;
+  text-transform: uppercase;
+}
+.certificate-footer {
+  margin-top: 40px;
+  font-size: 16px;
+  font-style: italic;
+  color: #555;
+}
+
+
+.signature-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+.signature-line {
+  width: 300px;
+  border-top: 2px solid #000;
+  margin-bottom: 5px;
+}
+
+.signature-section p {
+  width: 300px;
+  text-align: center;
+}
+
+
+.date-section {
+  text-align: right;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-style: italic;
+  color: #333;
+}
+    </style>
+</head>
+<body>
+  <div class="certificate-wrapper">
+    <div class="certificate-header">
+        <img src="{%static 'images/aclc-college.png'%}" alt="ACLC College of Apalit Logo">
+        <h1>CERTIFICATE OF GRADES</h1>
+    </div>
+    <div class="date-section">
+        <p>Date Issued: <strong>{%now "F j, Y"%}</strong></p>
+    </div>
+    <div class="certificate-content">
+        <p>This is to certify that <strong>{{student.first_name}} {{student.last_name}}</strong>, a duly enrolled student of ACLC College of Apalit, was officially registered in the academic year <strong>{{year}}</strong>. This document serves as an official record of the student's academic performance.</p>
+    </div>
+    <table class="certificate-table">
+      <thead>
+          <tr>
+              <th>SUBJECT CODE</th>
+              <th>SUBJECT TITLE</th>
+              <th>GRADE VALUE</th>
+  
+
+          </tr>
+      </thead>
+      <tbody>
+      {%for grade in grades%}
+          <tr>
+              <td>{{grade.subject_code}}</td>
+              <td>{{grade.subject_name}}</td>
+              <td>{{grade.grade_value}}</td>
+          </tr>
+    {%endfor%}
+      </tbody>
+    </table>
+  
+    <div class="certificate-footer">
+        <p>Certified true and correct.</p>
+    </div>
+    <div class="signature-section">
+        <span class="signature-line"></span>
+        <p><strong>Joseph T. Calara</strong></p>
+        <p>Registrar</p>
+    </div>
+</div>
+</body>
+</html>

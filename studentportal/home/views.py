@@ -211,15 +211,15 @@ def generate_cert(request):
 
         if document_type == 'coe':
             form = forms.EnrollmentForm(request.POST)
-            template_name = 'pdf_templates/certificate_of_enrollment.html'
+            template_name = 'pdf_templates/certenroll.html'
 
         elif document_type == 'gm':
             form = forms.GoodMoraleForm(request.POST)
-            template_name = 'pdf_templates/certificate_of_good_morale.html'
+            template_name = 'pdf_templates/certificate-goodmoral.html'
 
         elif document_type == 'cog':
             form = forms.CertificateOfGrades(request.POST)
-            template_name = "pdf_templates/certificate_of_grades.html"
+            template_name = "pdf_templates/cert_grades.html"
 
         if form.is_valid():
         

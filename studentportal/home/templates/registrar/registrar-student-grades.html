@@ -1,4 +1,5 @@
 {% extends "registrar/registrar_sidebar.html" %}
+
 {% block title %}
 Grade List
 {% endblock title %}
@@ -18,8 +19,7 @@ Grade List
         <table class="request-table unique-request-table">
             <thead class="registrar-table-head">
                 <tr>
-                    <th class="registrar-table-header">Student ID</th>
-                    <th class="registrar-table-header">Student Name</th>
+                    <th class="registrar-table-header">Student USN</th>
                     <th class="registrar-table-header">Subject Code</th>
                     <th class="registrar-table-header">Subject Title</th>
                     <th class="registrar-table-header">School Year</th>
@@ -28,7 +28,7 @@ Grade List
                     <th class="registrar-table-header">Action</th>
                 </tr>
             </thead>
-            <tbody id="request-list">
+            <tbody id="grade-data" class="grade-data">
                 <tr class="registrar-table-row">
                     <td class="registrar-table-data">21001396500</td>
                     <td class="registrar-table-data">Joe Mama</td>
@@ -54,10 +54,9 @@ Grade List
     
         <!-- Pagination -->
         <div id="registrar-pagination">
-            <button id="prev-btn" class="registrar-pagination-btn" aria-label="Previous page">Previous</button>
-            <button id="next-btn" class="registrar-pagination-btn" aria-label="Next page">Next</button>
         </div>
     </div>
 
+<script src="{%static 'js/registrar-grades.js'%}"></script>
 
 {% endblock content %}

@@ -277,12 +277,12 @@ def get_grades(request):
     grade_list = Grades.objects.all()
     
 
-    if search_query:
-        grade_list = grade_list.filter(
-            Q(student__student_usn__icontains=search_query) |
-            Q(student__subject_code__icontains=search_query) |
-            Q(student__subject_name__icontains=search_query) 
-        )
+   # if search_query:
+    #    grade_list = grade_list.filter(
+    #        Q(student__student_usn__icontains=search_query) |
+    #        Q(student__subject_code__icontains=search_query) |
+    #       Q(student__subject_name__icontains=search_query) 
+    #    )
 
     if semester:
         grade_list = grade_list.filter(semester = semester)
@@ -314,6 +314,27 @@ def get_grades(request):
         "total_pages":paginator.num_pages
     })
 
+def get_specific_grade(request,pk):
+     try:
+        grade = Grades.objects.get(id=pk)
+
+        if grade:
+            data = {
+                "id":grade.id,
+                "student_usn":grade.student_usn,
+                "subject_code":grade.subject_code,
+                "subject_name":grade.subject_name,
+                "year":grade.year,
+                "semester":grade.semester,
+                "grade_value":grade.grade_value,         
+            }
+        return JsonResponse(data)
+
+    
+     except:
+        return(JsonResponse({'error':'User not found'}, status=404))
+
+ 
 
 
 #PAYMENT PURPOSE START

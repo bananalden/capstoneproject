@@ -1,0 +1,140 @@
+{%load static%}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Enroll</title>
+  <style>
+@page{
+            size: A4;
+            margin: 1in;
+          
+        }
+        @media print{
+            html, body{
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+        }
+
+
+    * {
+  font-family: 'Times New Roman', serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.certificate-enroll-wrapper {
+  background: white;
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #2c3e50;
+}
+
+.certificate-enroll-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 60px; /* Keeps good spacing below */
+  position: relative;
+}
+
+.certificate-enroll-header img {
+  width: 130px;
+  position: absolute;
+  left: 0;
+  margin-top: 35px; /* Keeps the logo closer to text */
+  margin-bottom: 15px;
+}
+
+.certificate-enroll-header h1 {
+  font-size: 28px;
+  color: #2c3e50;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  position: relative;
+  top: 30px; /* Moves the text slightly lower */
+}
+
+
+.certificate-enroll-date-section {
+  text-align: right;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-style: italic;
+  color: #333;
+}
+
+.certificate-enroll-content {
+  font-size: 18px;
+  margin-bottom: 30px;
+  line-height: 1.8;
+  color: #333;
+  text-align: justify;
+}
+
+.certificate-enroll-footer {
+  margin-top: 40px;
+  font-size: 16px;
+  font-style: italic;
+  color: #555;
+}
+
+.certificate-enroll-signature-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+.certificate-enroll-signature-line {
+  width: 300px;
+  border-top: 2px solid #000;
+  margin-bottom: 5px;
+}
+
+.certificate-enroll-signature-section p {
+  width: 300px;
+  text-align: center;
+}
+
+  </style>
+
+</head>
+<body>
+  <div class="certificate-enroll-wrapper">
+    <div class="certificate-enroll-header">
+        <img src="{%static 'images/aclc-college.png'%}" alt="ACLC College of Apalit Logo">
+        <h1>CERTIFICATE OF ENROLLMENT</h1>
+    </div>
+    <div class="certificate-enroll-date-section">
+        <p>Date Issued: <strong>{%now "F j, Y"%}</strong></p>
+    </div>
+    <div class="certificate-enroll-content">
+        <p>This is to certify that <strong>{{student.first_name}} {{student.last_name}}</strong>, has been enrolled in ACLC College of Apalit in the academic year of <strong>{{year}}</strong> in the <strong>{{semester}}</strong>. This document was created and signed on <strong>{%now "F j, Y"%}</strong>.</p>
+    </div>
+    <div class="certificate-enroll-footer">
+        <p>Certified true and correct.</p>
+    </div>
+    <div class="certificate-enroll-signature-section">
+        <span class="certificate-enroll-signature-line"></span>
+        <p><strong>Joseph T. Calara</strong></p>
+        <p>Registrar</p>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+{%load static%}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Good Moral</title>
+  <style>
+@page{
+            size: A4;
+            margin: 1in;
+          
+        }
+        @media print{
+            html, body{
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+        }
+
+    * {
+  font-family: 'Times New Roman', serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.good-moral-wrapper {
+  background: white;
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #2c3e50;
+}
+
+.good-moral-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 60px; /* Keeps good spacing below */
+  position: relative;
+}
+
+.good-moral-header img {
+  width: 130px;
+  position: absolute;
+  left: 0;
+  margin-top: 35px; /* Keeps the logo closer to text */
+  margin-bottom: 15px;
+}
+
+.good-moral-header h1 {
+  font-size: 28px;
+  color: #2c3e50;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  position: relative;
+  top: 30px; /* Moves the text slightly lower */
+}
+
+
+.good-moral-date-section {
+  text-align: right;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-style: italic;
+  color: #333;
+}
+
+.good-moral-content {
+  font-size: 18px;
+  margin-bottom: 30px;
+  line-height: 1.8;
+  color: #333;
+  text-align: justify;
+}
+
+.good-moral-footer {
+  margin-top: 40px;
+  font-size: 16px;
+  font-style: italic;
+  color: #555;
+}
+
+.good-moral-signature-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+.good-moral-signature-line {
+  width: 300px;
+  border-top: 2px solid #000;
+  margin-bottom: 5px;
+}
+
+.good-moral-signature-section p {
+  width: 300px;
+  text-align: center;
+}
+
+  </style>
+</head>
+<body>
+  <div class="good-moral-wrapper">
+    <div class="good-moral-header">
+                <img src="{%static 'images/aclc-college.png'%}" alt="ACLC College of Apalit Logo">
+        <h1>CERTIFICATE OF GOOD MORAL</h1>
+    </div>
+    <div class="good-moral-date-section">
+        <p>Date Issued: <strong>{%now "F j, Y"%}</strong></p>
+    </div>
+    <div class="good-moral-content">
+        <p>This is to certify that <strong>{{student.first_name}} {{student.last_name}}</strong>, enrolled in ACLC College of Apalit, has never been subjected to any disciplinary action or any cases that have violated rules and regulations. This document was created and signed on <strong>{%now "F j, Y"%}</strong>.</p>
+    </div>
+    <div class="good-moral-footer">
+        <p>Certified true and correct.</p>
+    </div>
+    <div class="good-moral-signature-section">
+        <span class="good-moral-signature-line"></span>
+        <p><strong>Joseph T. Calara</strong></p>
+        <p>Registrar</p>
+    </div>
+</div>
+
+</body>
+</html>
