@@ -70,17 +70,17 @@ $(document).ready(function (){
 
     loadGrades()
    
-    $("#second-pagination").on("click", "#next-btn", function() {
+    $("#registrar-pagination").on("click", "#next-btn", function() {
         currentPage++;
         loadGrades(currentPage);
     
     });
   
 
-    $("#second-pagination").on("click", "#prev-btn", function() {
+    $("#registrar-pagination").on("click", "#prev-btn", function() {
         if (currentPage > 1) {
             currentPage--;
-            loadTransactions(currentPage);
+            loadGrades(currentPage);
         }
     });
 
