@@ -233,6 +233,52 @@ def export_transaction(request):
     return response
 
 
+def registrar_doc_list(request):
+   page = request.GET.get("page",1)
+   search_query = request.GET.get("q","")
+   filter_semester = request.GET.get("filter","")
+   pending_transactions = transactions_data.Transaction.objects.filter(
+        registrar_status=transactions_data.Transaction.RegistrarStatus.PENDING,
+        payment_purpose__in=[
+            transactions_data.Transaction.PaymentPurposeChoice.CERT_GRADES,
+            transactions_data.Transaction.PaymentPurposeChoice.CERT_MORALE,
+            transactions_data.Transaction.PaymentPurposeChoice.CERT_ENROL
+        ], is_confirmed=True
+    )
+   
+
+   if search_query:
+       pending_transactions = pending_transactions.filter(
+            Q(student__first_name__icontains=search_query) |
+            Q(student__last_name__icontains=search_query) |
+            Q(student__username__icontains=search_query) 
+       )
+   
+   paginator = Paginator(pending_transactions, 10)
+   try:
+       pend_trans_page = paginator.page(page)
+   except:
+       pend_trans_page = paginator.page(1)
+    
+   data = [{
+       "id":pend_trans.id,
+       "student_usn": pend_trans.student.username,
+       "student_name":f"{pend_trans.student.first_name} {pend_trans.student.last_name}",
+       "date_time": pend_trans.date_time,
+       "payment_purpose": pend_trans.payment_purpose,
+       "registrar_status": pend_trans.registrar_status
+
+    }
+    for pend_trans in pend_trans_page
+    ]
+   return JsonResponse({
+       "registrar_list": data,
+       "page":pend_trans_page.number,
+       "total_pages": paginator.num_pages
+   })
+   
+       
+
 def student_transaction_list(request):
     page = request.GET.get("page",1)
     filter_status = request.GET.get("filter","")
@@ -277,12 +323,12 @@ def get_grades(request):
     grade_list = Grades.objects.all()
     
 
-   # if search_query:
-    #    grade_list = grade_list.filter(
-    #        Q(student__student_usn__icontains=search_query) |
-    #        Q(student__subject_code__icontains=search_query) |
-    #       Q(student__subject_name__icontains=search_query) 
-    #    )
+    if search_query:
+        grade_list = grade_list.filter(
+            Q(student_usn__icontains=search_query) |
+            Q(subject_code__icontains=search_query) |
+            Q(subject_name__icontains=search_query) 
+        )
 
     if semester:
         grade_list = grade_list.filter(semester = semester)
