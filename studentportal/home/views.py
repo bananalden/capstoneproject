@@ -99,7 +99,7 @@ def registrar_dashboard(request):
             models.Transaction.PaymentPurposeChoice.CERT_MORALE,
             models.Transaction.PaymentPurposeChoice.CERT_ENROL
         ], is_confirmed=True
-    )[:5]
+    ).order_by('-date_time')[:5]
 
     context = {
         'total_students': total_students,
@@ -257,6 +257,7 @@ def generate_cert(request):
 
             response = HttpResponse(pdf_file, content_type='application/pdf')
             response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.username}.pdf"'
+
             return response
         else:
             print(form.errors)

@@ -85,16 +85,16 @@ $(document).ready(function (){
     });
 
     $("#searchButton").on("click", function(){
-        var searchVal = $("#searchInput").val()
+        var searchVal = $("#registrar-search-request").val()
         var currentPage = 1
-        loadTransactions(currentPage, searchVal)
+        loadGrades(currentPage, searchVal)
     })
     
     $("#filterPurpose").on("change",function(){
         var purposeVal = $(this).val()
         var currentPage = 1
         var searchVal = $("#searchInput").val()
-        loadTransactions(currentPage,searchVal,purposeVal)
+        loadGrades(currentPage,searchVal,purposeVal)
     })
 
 

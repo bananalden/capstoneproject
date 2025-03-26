@@ -244,8 +244,10 @@ def registrar_doc_list(request):
             transactions_data.Transaction.PaymentPurposeChoice.CERT_MORALE,
             transactions_data.Transaction.PaymentPurposeChoice.CERT_ENROL
         ], is_confirmed=True
-    )
+    ).order_by('-date_time')
    
+   if filter_semester in ["1st","2nd"]:
+       pending_transactions = pending_transactions.filter(semester=filter_semester)
 
    if search_query:
        pending_transactions = pending_transactions.filter(

@@ -12,8 +12,8 @@ $(document).ready(function (){
 
 
 
-    function loadGrades(page = 1, query= "", semester=""){
-        $(".table-tbody").html('<tr class="table-tr"><td colspan="8">Loading grades...</td></tr>');
+    function loadTransactions(page = 1, query= "", semester=""){
+        $(".table-tbody").html('<tr class="table-tr"><td colspan="6">Loading grades...</td></tr>');
         $.ajax({
             url:`/api/get-registrar-transaction-page/?page=${page}&q=${query}&filter=${semester}`,
             type: "GET",
@@ -24,7 +24,7 @@ $(document).ready(function (){
                 table_body.empty()
                 
                 if (registrar_request.length == 0){
-                    table_body.append('<tr class="table-tr"><td colspan="8">No grades found...</td></tr>')
+                    table_body.append('<tr class="table-tr"><td colspan="6">No Transaction was found...</td></tr>')
                 }
                 else{
                     $.each(registrar_request, function(index, registrar_request){
@@ -68,11 +68,11 @@ $(document).ready(function (){
         
     }
 
-    loadGrades()
+    loadTransactions()
    
     $("#registrar-pagination").on("click", "#next-btn", function() {
         currentPage++;
-        loadGrades(currentPage);
+        loadTransactions(currentPage);
     
     });
   
@@ -80,12 +80,12 @@ $(document).ready(function (){
     $("#registrar-pagination").on("click", "#prev-btn", function() {
         if (currentPage > 1) {
             currentPage--;
-            loadGrades(currentPage);
+            loadTransactions(currentPage);
         }
     });
 
     $("#searchButton").on("click", function(){
-        var searchVal = $("#searchInput").val()
+        var searchVal = $("#registrar-search-request").val()
         var currentPage = 1
         loadTransactions(currentPage, searchVal)
     })
