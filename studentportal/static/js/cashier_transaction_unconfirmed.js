@@ -62,23 +62,28 @@ $(document).ready(function (){
     loadTransactions()
    
     $("#second-pagination").on("click", "#nextPage", function() {
+        var purposeVal = $(this).val()
+        var searchVal = $("#searchInput").val()
         currentPage++;
-        loadTransactions(currentPage);
-    
+        loadTransactions(currentPage,searchVal,purposeVal);
+        
     });
-  
-
+    
+    
     $("#second-pagination").on("click", "#prevPage", function() {
+        var purposeVal = $(this).val()
+        var searchVal = $("#searchInput").val()
         if (currentPage > 1) {
             currentPage--;
-            loadTransactions(currentPage);
+            loadTransactions(currentPage,searchVal,purposeVal);
         }
     });
-
+    
     $("#searchButton").on("click", function(){
+        var purposeVal = $(this).val()
         var searchVal = $("#searchInput").val()
         var currentPage = 1
-        loadTransactions(currentPage, searchVal)
+        loadTransactions(currentPage,searchVal,purposeVal)
     })
     
     $("#filterPurpose").on("change",function(){

@@ -60,24 +60,20 @@ $(document).ready(function (){
 
     loadTransactions()
    
-    $("#second-pagination").on("click", "#nextPage", function() {
-        currentPage++;
-        loadTransactions(currentPage);
-    
-    });
-  
-
     $("#second-pagination").on("click", "#prevPage", function() {
+        var purposeVal = $(this).val()
+        var searchVal = $("#searchInput").val()
         if (currentPage > 1) {
             currentPage--;
-            loadTransactions(currentPage);
+            loadTransactions(currentPage,searchVal,purposeVal);
         }
     });
-
+    
     $("#searchButton").on("click", function(){
+        var purposeVal = $(this).val()
         var searchVal = $("#searchInput").val()
         var currentPage = 1
-        loadTransactions(currentPage, searchVal)
+        loadTransactions(currentPage,searchVal,purposeVal)
     })
     
     $("#filterPurpose").on("change",function(){
@@ -86,6 +82,7 @@ $(document).ready(function (){
         var searchVal = $("#searchInput").val()
         loadTransactions(currentPage,searchVal,purposeVal)
     })
+
 
     $("#exportExcel").on("click", function(){
         var monthYear = $("#monthSelect").val()
