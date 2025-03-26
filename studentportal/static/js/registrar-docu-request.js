@@ -71,16 +71,18 @@ $(document).ready(function (){
     loadTransactions()
    
     $("#registrar-pagination").on("click", "#next-btn", function() {
+        var searchVal = $("#registrar-search-request").val()
         currentPage++;
-        loadTransactions(currentPage);
+        loadTransactions(currentPage,searchVal);
     
     });
   
 
     $("#registrar-pagination").on("click", "#prev-btn", function() {
+        var searchVal = $("#registrar-search-request").val()
         if (currentPage > 1) {
             currentPage--;
-            loadTransactions(currentPage);
+            loadTransactions(currentPage,searchVal);
         }
     });
 

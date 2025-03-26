@@ -71,16 +71,18 @@ $(document).ready(function (){
     loadGrades()
    
     $("#registrar-pagination").on("click", "#next-btn", function() {
+        var searchVal = $("#registrar-search-request").val()
         currentPage++;
-        loadGrades(currentPage);
+        loadGrades(currentPage, searchVal);
     
     });
   
 
     $("#registrar-pagination").on("click", "#prev-btn", function() {
+        var searchVal = $("#registrar-search-request").val()
         if (currentPage > 1) {
             currentPage--;
-            loadGrades(currentPage);
+            loadGrades(currentPage,searchVal);
         }
     });
 
