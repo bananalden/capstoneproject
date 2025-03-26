@@ -19,23 +19,22 @@ $(document).ready(function (){
             type: "GET",
             dataType: "json",
             success: function(response){
-                var grade_list = response.grade;
-                var table_body = $(".grade-data")
+                var registrar_request = response.registrar_list;
+                var table_body = $(".request-list")
                 table_body.empty()
                 
-                if (grade_list.length == 0){
+                if (registrar_request.length == 0){
                     table_body.append('<tr class="table-tr"><td colspan="8">No grades found...</td></tr>')
                 }
                 else{
-                    $.each(grade_list, function(index, grade_list){
+                    $.each(registrar_request, function(index, registrar_request){
                         table_body.append(`
                         <tr class="registrar-table-row">
-                            <td class="registrar-table-data">${grade_list.student_usn}</td>
-                            <td class="registrar-table-data">${grade_list.subject_code}</td>
-                            <td class="registrar-table-data">${grade_list.subject_name}</td>
-                            <td class="registrar-table-data">${grade_list.year}</td>
-                            <td class="registrar-table-data">${grade_list.semester}</td>
-                            <td class="registrar-table-data">${grade_list.grade_value}</td>
+                            <td class="registrar-table-data">${registrar_request.student_usn}</td>
+                            <td class="registrar-table-data">${registrar_request.student_name}</td>
+                            <td class="registrar-table-data">${registrar_request.payment_purpose}</td>
+                            <td class="registrar-table-data">${registrar_request.date_time}</td>
+                            <td class="registrar-table-data">${registrar_request.registrar_status}</td>
                             <td class="registrar-table-data actions unique-actions">
                                     <button class="unique-btn unique-btn-view registrar-view-button">
                                         <i class="fas fa-eye view-icon"></i>

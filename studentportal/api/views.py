@@ -264,7 +264,7 @@ def registrar_doc_list(request):
        "id":pend_trans.id,
        "student_usn": pend_trans.student.username,
        "student_name":f"{pend_trans.student.first_name} {pend_trans.student.last_name}",
-       "date_time": pend_trans.date_time,
+       "date_time": pend_trans.date_time.strftime("%B %d, %Y %I:%M %p"),
        "payment_purpose": pend_trans.payment_purpose,
        "registrar_status": pend_trans.registrar_status
 
