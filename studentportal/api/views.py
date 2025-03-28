@@ -233,6 +233,10 @@ def export_transaction(request):
     return response
 
 
+    
+
+
+
 def registrar_doc_list(request):
    page = request.GET.get("page",1)
    search_query = request.GET.get("q","")

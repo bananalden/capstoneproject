@@ -39,7 +39,7 @@ $(document).ready(function (){
                                     <button class="unique-btn unique-btn-view registrar-view-button">
                                         <i class="fas fa-eye view-icon"></i>
                                     </button>
-                                    <button class="unique-btn unique-btn-approve registrar-approve-button">
+                                    <button class="unique-btn unique-btn-approve registrar-approve-button process-document" data-id="${registrar_request.id}" data-bs-toggle="modal" data-bs-target="#processRequest">
                                         <i class="fas fa-circle-check approve-icon"></i>
                                     </button>
                                     <button class="unique-btn unique-btn-reject registrar-reject-button">
@@ -99,88 +99,40 @@ $(document).ready(function (){
         loadTransactions(currentPage,searchVal,purposeVal)
     })
 
-
+ 
 
 
 
 
 })
 
+$(document).on("click", ".process-document",function(){
+    var transID = $(this).data("id");
+    
+    $.ajax({
+        url:`/api/get-payment-data/${transID}`,
+        type: 'GET',
+        dataType:"json",
+        success:function(data){
+            $("#transID").val(transID)
+            $("#student-usn").val(data.student_usn)
+            $("#student-name").val(data.student_name)
+            $("#document-type").val(data.payment_purpose)
+            $("#date-requested").val(data.date_time)
+
+
+        },
+        error:function(){
+            alert("Could not get Transaction data")
+        }
+
+
+    })
+
+})
 
 //TABLE DATA END
 
 
-//REVIEW PAYMENT BUTTON START
-$(document).on("click",".btn-review", function(){
-    var itemID = $(this).data('id');
-    console.log(itemID)
-    $("#student-info").html(`<div class="spinner-border text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>`); 
-    $("#pay-proof").html(`<div class="spinner-border text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>`); 
-    $('#confirmPayment').prop("disabled",true)
-    
-    $("#preview-payment-header").html("");
-    $.ajax({
-        url: `/api/get-payment-data/${itemID}`,
-            type: "GET",
-            dataType: "json",
-            success: function(data){
-                var paymentProof = `<button type="button" class="btn btn-primary open-payment-proof" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal"> Open Payment Proof</button>
-                `
-                var studentInfo = `
-                <div class="review-student-info">
-                <input type="hidden" name="trans_id" id="trans_id" value="${itemID}">
-                <p><strong>Student USN:</strong> ${data.student_usn}</p>
-                <p><strong>Student Name:</strong> ${data.student_name}</p>
-                        <p><strong>Payment Purpose:</strong> ${data.payment_purpose}</p>
-                        <p><strong>Amount:</strong> ₱${data.amount}</p>
-                        <button type="button" class="btn btn-primary open-payment-proof" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal"> Open Payment Proof</button>
-                    </div>
-                    `
-                    
-                    $('#confirmPayment').prop("disabled",false)
-                    var payment_proof = `<img src="${data.payment_proof}" alt="Payment Proof" style="max-height: 800px; border: solid 1px black"/>`
 
-
-                $('#student-info').html(studentInfo);
-                $('#preview-payment-header').html(paymentProof)
-                $("#pay-proof").html(payment_proof); 
-
-                
-                
-            },
-            error: function(){
-                console.log("Data didn't load")
-            }
-        })
-
-})
-//REVIEW PAYMENT BUTTON END
-
-$(document).on("click",".payment-info", function(){
-    $("#student-info").html(""); 
-})
-
-
-
-$(document).on("click","#reviewPayment .btn-primary", function(){
-    $('#reviewPayment').modal('hide');  // Close the "Review Payment" modal
-    setTimeout(function() {
-      $('#paymentPreview').modal('show');  // Open the "Proof of Payment" modal after a small delay to avoid UI glitches
-    }, 200);
- 
-})
-
-$(document).on("click",".proof-payment", function(){
-    $('#paymentPreview').modal('hide');  // Close the "Proof of Payment" modal
-    setTimeout(function() {
-      $('#reviewPayment').modal('show');  // Reopen the "Review Payment" modal after a small delay
-    }, 200);
-})
-
-
-
-
-$(document).ready(function (){
-  
-    })
 
