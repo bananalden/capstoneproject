@@ -6,7 +6,7 @@
 $(document).ready(function (){
     let currentPage= 1;
     let searchQuery = "";
-    console.log("Penis")
+
 
    
 
@@ -36,10 +36,10 @@ $(document).ready(function (){
                             <td class="registrar-table-data">${registrar_request.date_time}</td>
                             <td class="registrar-table-data">${registrar_request.registrar_status}</td>
                             <td class="registrar-table-data actions unique-actions">
-                                    <button class="unique-btn unique-btn-view registrar-view-button">
+                                    <button class="unique-btn unique-btn-view registrar-view-button process-document" data-id="${registrar_request.id}" data-bs-toggle="modal" data-bs-target="#processRequest">
                                         <i class="fas fa-eye view-icon"></i>
                                     </button>
-                                    <button class="unique-btn unique-btn-approve registrar-approve-button process-document" data-id="${registrar_request.id}" data-bs-toggle="modal" data-bs-target="#processRequest">
+                                    <button class="unique-btn unique-btn-approve registrar-approve-button">
                                         <i class="fas fa-circle-check approve-icon"></i>
                                     </button>
                                     <button class="unique-btn unique-btn-reject registrar-reject-button">
