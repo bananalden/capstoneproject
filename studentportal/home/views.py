@@ -269,13 +269,16 @@ def generate_cert(request):
             transaction = get_object_or_404(models.Transaction, id=transaction_id)
 
             if transaction.registrar_status == 'PENDING':
+                print("TEST")
                 transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
                 transaction.save()
+                response = HttpResponse(pdf_file, content_type='application/pdf')
+                response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.username}.pdf"'
             else:
-                pass
+                response = HttpResponse(pdf_file, content_type='application/pdf')
+                response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.username}.pdf"'
+            
 
-            response = HttpResponse(pdf_file, content_type='application/pdf')
-            response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.username}.pdf"'
 
             return response
         else:
