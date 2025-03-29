@@ -243,7 +243,11 @@ def registrar_doc_list(request):
    search_query = request.GET.get("q","")
    filter_semester = request.GET.get("filter","")
    pending_transactions = transactions_data.Transaction.objects.filter(
-        registrar_status=transactions_data.Transaction.RegistrarStatus.PENDING,
+        registrar_status__in=[
+            transactions_data.Transaction.RegistrarStatus.PENDING,
+            transactions_data.Transaction.RegistrarStatus.AVAILABLE,
+            
+            ],
         payment_purpose__in=[
             transactions_data.Transaction.PaymentPurposeChoice.CERT_GRADES,
             transactions_data.Transaction.PaymentPurposeChoice.CERT_MORALE,

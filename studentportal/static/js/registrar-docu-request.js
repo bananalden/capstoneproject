@@ -122,13 +122,21 @@ $(document).on("click", ".registrar-approve-button",function(){
         type: 'GET',
         dataType:"json",
         success:function(data){
-            var registrarStatus = data.registrarStatus
+            var registrarStatus = data.registrar_status
+            console.log(registrarStatus)
 
             if (registrarStatus != "AVAILABLE"){
                 $(".complete-request").prop("disabled", true)
                 $(".doc-request-message").html(`
                 <p>Request has not been processed yet, please generate to set as completed.</p>
                 `)
+            }
+
+            else{
+                $(".complete-request").prop("disabled", false)
+                $(".doc-request-message").html(`
+                <p>Mark transaction as completed?</p>
+                `) 
             }
 
 

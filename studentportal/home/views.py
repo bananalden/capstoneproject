@@ -1,6 +1,6 @@
 import pandas as pd
 from weasyprint import HTML
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -210,6 +210,7 @@ def edit_teacher_password(request):
 def generate_cert(request):
     if request.method == 'POST':
         document_type = request.POST.get('document_type')
+        transaction_id = request.POST.get('transID')
 
         if document_type == 'CERTIFICATE OF ENROLLMENT':
             form = forms.EnrollmentForm(request.POST)
@@ -228,6 +229,10 @@ def generate_cert(request):
             student = form.cleaned_data.get("student")
             year = form.cleaned_data.get('year')
             semester = form.cleaned_data.get('semester')
+
+            transaction = get_object_or_404(models.Transaction, id=transaction_id)
+            transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
+            transaction.save()
 
             print(student)
 
