@@ -100,6 +100,13 @@ $(document).ready(function (){
     })
 
  
+    $("#process-request").on("click", function(){
+
+        setTimeout(function(){
+            window.location.href = '/home/registrar/gen-cert-success/'
+        },2000)
+
+    })
 
 
 

@@ -38,6 +38,7 @@ Document Request
         </div>
     </div>
 
+     <!-- Process Request Modal -->
     <div class="modal fade" id="processRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -46,7 +47,8 @@ Document Request
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
+          <form action="{%url 'home:generate-cert'%}" method="post">
+            {% csrf_token %}
             <input type="hidden" name="transID" id="transID">
             <div class="container">
                 <div class="row">
@@ -54,17 +56,17 @@ Document Request
                         <h4>Transaction Information</h4>
               <div class="form-group">
                 <label for="student-usn">Student USN:</label>
-                <input type="text" name="student-usn" id="student-usn" readonly>
+                <input type="text" name="student" id="student-usn" readonly>
             </div>
 
             <div class="form-group">
                 <label for="student-name">Student Name:</label>
-                <input type="text" name="student-name" id="student-name" readonly>
+                <input type="text" name="student-name" id="student-name" disabled>
             </div>
             
             <div class="form-group">
                 <label for="doc-type">Document Type:</label>
-                <input type="text" name="document-type" id="document-type" readonly>
+                <input type="text" name="document_type" id="document-type" readonly>
             </div>
             
             <div class="form-group">
@@ -76,20 +78,27 @@ Document Request
         </div>
         <div class="col cert-morale-enrollment">
             <h6>Enter Year and Semester (If Certificate of Grades, enter previous semester)</h6>
+            
             <label for="semester">Semester:</label>
             <select name="semester" id="semester">
                 <option value="1st">1st</option>
                 <option value="2nd">2nd</option>
             </select>
+
             <label for="year">School Year:</label>
             <input type="text" name="year" id="school-year" placeholder="Enter School Year (example: 2024-2025)">
+
+            <label for="pickup-date">Set Pick-up Date:</label>
+            <input type="date" name="" id="">
+
         </div>
         </div>
         </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Process Requests</button>
+              <button type="submit" class="btn btn-primary process-request" id="process-request">Process Requests</button>
+            </form>
             </div>
           </div>
         </div>

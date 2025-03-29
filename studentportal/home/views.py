@@ -123,6 +123,8 @@ def registrar_grade_list(request):
 
 
 
+
+
 #REGISTRAR VIEWS END  =================================
 
 #STUDENT VIEWS START ==================================
@@ -209,17 +211,17 @@ def generate_cert(request):
     if request.method == 'POST':
         document_type = request.POST.get('document_type')
 
-        if document_type == 'coe':
+        if document_type == 'CERTIFICATE OF ENROLLMENT':
             form = forms.EnrollmentForm(request.POST)
-            template_name = 'pdf_templates/certenroll.html'
+            template_name = 'pdf_templates/certificate_of_enrollment.html'
 
-        elif document_type == 'gm':
+        elif document_type == 'CERTIFICATE OF GOOD MORALE':
             form = forms.GoodMoraleForm(request.POST)
-            template_name = 'pdf_templates/certificate-goodmoral.html'
+            template_name = 'pdf_templates/certificate_of_good_morale.html'
 
-        elif document_type == 'cog':
+        elif document_type == 'CERTIFICATE OF GRADES':
             form = forms.CertificateOfGrades(request.POST)
-            template_name = "pdf_templates/cert_grades.html"
+            template_name = "pdf_templates/certificate_of_grades.html"
 
         if form.is_valid():
         
@@ -229,7 +231,7 @@ def generate_cert(request):
 
             print(student)
 
-            if document_type == 'cog':
+            if document_type == 'CERTIFICATE OF GRADES':
                 student_usn = str(student.username)
                 grades = Grades.objects.filter(student_usn=student_usn,year=year,semester=semester)
 
@@ -263,6 +265,8 @@ def generate_cert(request):
             print(form.errors)
             return redirect('home:generate-document')
 
+def gen_cert_success(request):
+    return render(request, 'registrar/document-success.html')
 
 
 

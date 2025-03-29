@@ -20,6 +20,8 @@ urlpatterns = [
     path('registrar/generate-document/', views.registrar_generate_document, name='generate-document'),
     path('registrar/grade-list/', views.registrar_grade_list, name='grade-list'),
     path('registrar/gen-cert/', views.generate_cert, name='generate-cert'),
+    path('registrar/gen-cert-success/', views.gen_cert_success, name='generate-cert-success'),
+
 
 
 
