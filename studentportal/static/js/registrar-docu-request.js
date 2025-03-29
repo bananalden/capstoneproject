@@ -39,7 +39,7 @@ $(document).ready(function (){
                                     <button class="unique-btn unique-btn-view registrar-view-button process-document" data-id="${registrar_request.id}" data-bs-toggle="modal" data-bs-target="#processRequest">
                                         <i class="fas fa-eye view-icon"></i>
                                     </button>
-                                    <button class="unique-btn unique-btn-approve registrar-approve-button">
+                                    <button class="unique-btn unique-btn-approve registrar-approve-button" data-id="${registrar_request.id}" data-bs-toggle="modal" data-bs-target="#approveRequest">
                                         <i class="fas fa-circle-check approve-icon"></i>
                                     </button>
                                     <button class="unique-btn unique-btn-reject registrar-reject-button">
@@ -103,6 +103,35 @@ $(document).ready(function (){
 
 
 
+
+})
+
+$(document).on("click", ".registrar-approve-button",function(){
+    var transID = $(this).data("id");
+    console.log(transID)
+    
+    $.ajax({
+        url:`/api/get-payment-data/${transID}`,
+        type: 'GET',
+        dataType:"json",
+        success:function(data){
+            var registrarStatus = data.registrarStatus
+
+            if (registrarStatus != "AVAILABLE"){
+                $(".complete-request").prop("disabled", true)
+                $(".doc-request-message").html(`
+                <p>Request has not been processed yet, please generate to set as completed.</p>
+                `)
+            }
+
+
+        },
+        error:function(){
+            alert("Could not get Transaction data")
+        }
+
+
+    })
 
 })
 
