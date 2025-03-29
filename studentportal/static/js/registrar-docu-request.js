@@ -135,6 +135,7 @@ $(document).on("click", ".registrar-approve-button",function(){
             else{
                 $(".complete-request").prop("disabled", false)
                 $(".doc-request-message").html(`
+                <input type="hidden" name="transID" value="${transID}">
                 <p>Mark transaction as completed?</p>
                 `) 
             }

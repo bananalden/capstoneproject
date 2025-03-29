@@ -84,7 +84,7 @@ def registrar_dashboard(request):
         ], is_confirmed=True
     ).count()
     ready_transactions = models.Transaction.objects.filter(
-        registrar_status=models.Transaction.RegistrarStatus.AVAILABLE,
+        registrar_status=models.Transaction.RegistrarStatus.COMPLETE,
         payment_purpose__in=[
             models.Transaction.PaymentPurposeChoice.CERT_GRADES,
             models.Transaction.PaymentPurposeChoice.CERT_MORALE,
@@ -93,7 +93,10 @@ def registrar_dashboard(request):
     ).count()
 
     pending_transaction_list = models.Transaction.objects.filter(
-        registrar_status=models.Transaction.RegistrarStatus.PENDING,
+        registrar_status__in=[
+            models.Transaction.RegistrarStatus.PENDING,
+            models.Transaction.RegistrarStatus.AVAILABLE,
+            ],
         payment_purpose__in=[
             models.Transaction.PaymentPurposeChoice.CERT_GRADES,
             models.Transaction.PaymentPurposeChoice.CERT_MORALE,
@@ -211,6 +214,7 @@ def generate_cert(request):
     if request.method == 'POST':
         document_type = request.POST.get('document_type')
         transaction_id = request.POST.get('transID')
+        pickup_date = request.POST.get('pickup-date')
 
         if document_type == 'CERTIFICATE OF ENROLLMENT':
             form = forms.EnrollmentForm(request.POST)
