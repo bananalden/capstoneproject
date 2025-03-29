@@ -266,6 +266,14 @@ def generate_cert(request):
             html_content = render_to_string(template_name,context)
             pdf_file = HTML(string=html_content).write_pdf()
 
+            transaction = get_object_or_404(models.Transaction, id=transaction_id)
+
+            if transaction.registrar_status == 'PENDING':
+                transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
+                transaction.save()
+            else:
+                pass
+
             response = HttpResponse(pdf_file, content_type='application/pdf')
             response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.username}.pdf"'
 
