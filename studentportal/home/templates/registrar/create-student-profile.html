@@ -1,0 +1,17 @@
+{% extends "registrar/registrar_sidebar.html" %}
+{% block title %}
+Create Student Profile
+{% endblock title %}
+
+{%load static%}
+{% block content %}
+
+<div class="create-student-container">
+  <div class="create-student-title">Upload Student List</div>
+  <div class="create-student-text">Select an Excel file to add students to the system.</div>
+  <input type="file" id="fileInput" hidden>
+  <button class="create-student-btn" onclick="document.getElementById('fileInput').click()">Upload Excel File</button>
+</div>
+
+
+{% endblock content %}
