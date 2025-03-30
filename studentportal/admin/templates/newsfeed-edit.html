@@ -1,0 +1,114 @@
+{% extends "adminbase/base.html" %}
+{% block title %}
+News Feed
+{% endblock title %}
+{%load static%}
+{%block content%}
+
+
+{%for msg in messages%}
+  {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+       <div class="alert alert-warnings alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {%endif%}
+{%endfor%}
+
+
+
+
+<!-- Main Content Section -->
+<div class="main_content_wrapper">
+    <!-- Search Bar -->
+    <div class="search_bar_container">
+        <input type="text" placeholder="Search announcements..." class="search_announcements">
+    </div>
+  
+    <!-- Main Newsfeed Section -->
+    <main class="newsfeed-main-container">
+        <!-- Dropdown for Filtering Announcements by Teacher -->
+        <div class="announcement_category_container">
+            <select class="category-dropdown" id="filterDropdown">
+                <option value="all">All Announcements</option>
+                <option value="Ms. Reyes">Ms. Reyes (Math)</option>
+                <option value="Mr. Santos">Mr. Santos (Student Affairs)</option>
+            </select>
+        </div>
+    
+        <!-- Newsfeed Section -->
+        <div class="newsfeed_announcements_container" id="newsfeed">
+      </div>
+      <div id="pagination"></div>
+    </main>
+  </div>
+
+
+  <div class="modal fade" id="edit-newsitem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit News Item</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{%url 'admin:edit-news'%}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="newsID" id="newsID">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title_edit" required>
+            <label for="body">Body:</label>
+       <textarea name="body" id="body_edit" cols="30" rows="5">
+
+       </textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal fade" id="delete-newsitem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="{%url 'admin:delete-news'%}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="newsID" id="deleteID">
+        <p>Delete this news item?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Confirm Delete</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{%static 'js/admin_newsfeed.js'%}"></script>
+{% endblock content %}

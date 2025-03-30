@@ -29,6 +29,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="{% static 'styles/allstyles.css'%}" />
+        <link rel="stylesheet" href="{% static 'styles/newsfeed.css'%}">
   </head>
   <body>
     <!-- Sidebar -->
@@ -42,6 +43,18 @@
         <span class="aclc-apalit">ACLC Apalit</span>
       </div>
       <ul class="sidebar-menu">
+
+        <li>
+          <a
+            href="{%url 'admin:admin-newsfeed'%}"
+            class="menu-item"
+            data-link="newsfeed"
+            ><i class="fa-solid fa-earth-americas"></i>
+            News Feed</a
+          >
+        </li>
+
+
       
         <li>
           <a

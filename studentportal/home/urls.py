@@ -23,7 +23,7 @@ urlpatterns = [
     path('registrar/gen-cert-success/', views.gen_cert_success, name='generate-cert-success'),
 
 
-    path('registrar/create-student-profile/', views.registrar_create_student_profile, name='create-student-profile'),
+    path('registrar/create-student/', views.registrar_create_student, name='create-student-profile'),
 
 
 

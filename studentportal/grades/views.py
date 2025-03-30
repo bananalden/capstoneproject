@@ -2,6 +2,7 @@ import pandas as pd
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from grades.models import Grades
+from grades.forms import edit_grade
 from django.db import IntegrityError
 
 # Create your views here.
@@ -99,3 +100,15 @@ def grade_upload(request):
         except Exception as e:
             messages.warning(request, f"Error processing file: {e}")
             return redirect('home:teacher-home')
+        
+
+def grade_edit(request):
+    if request.method == "POST":
+        grade_id = request.POST.get('gradeID')
+        grade_instance = Grades.objects.get(id=grade_id)
+        form = edit_grade(request.POST, instance=grade_instance)
+        if form.is_valid():
+            form.save()
+            return redirect('home:grade-list')
+        else:
+            return redirect('home:grade-list')

@@ -12,7 +12,7 @@ from django.db.models import Q
 # Create your views here.
 app_name = "api"
 
-#USER GRABBING START
+#USER GRABBING START ================================
 
 def get_userdata(request,pk):
     try:
@@ -34,9 +34,9 @@ def get_userdata(request,pk):
     except:
         return(JsonResponse({'error':'User not found'}, status=404))
 
-#USER GRABBING END
+#USER GRABBING END =================================
 
-#NEWS GRABBING START
+#NEWS GRABBING START ===============================
 
 def news_list(request):
     announcements = news_data.Announcement.objects.all().order_by("-created_on")
@@ -69,6 +69,7 @@ def get_news(request):
 
     data = [
         {
+            "id": news.id,
             "title": news.title,
             "body": news.body,
             "formatted_date": news.created_on.strftime("%B %d, %Y %I:%M %p"), 
@@ -83,10 +84,19 @@ def get_news(request):
         "total_pages": paginator.num_pages,
     })
 
+def get_news_object(request,pk):
+    news_list = news_data.Announcement.objects.get(pk=pk)
 
-#NEWS GRABBING END
+    data = {
+        "id": news_list.id,
+        "title": news_list.title,
+        "body": news_list.body
+    }
 
-#PAYMENT PURPOSE START
+    return JsonResponse(data)
+#NEWS GRABBING END ===========================================
+
+#PAYMENT PURPOSE START =======================================
 
 
 
@@ -234,7 +244,7 @@ def export_transaction(request):
     return response
 
 
-    
+
 
 
 
@@ -326,6 +336,7 @@ def student_transaction_list(request):
         "total_pages":paginator.num_pages
     })
 
+#TRANSACTION END ========================
 
 def get_grades(request):
     page = request.GET.get("page",1)

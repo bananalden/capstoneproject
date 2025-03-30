@@ -119,6 +119,9 @@ def registrar_document_request(request):
 def registrar_generate_document(request):
     return render(request, 'registrar/generate-document.html')
 
+def registrar_create_student(request):
+    return render(request,'registrar/create-student-profile.html')
+
 def registrar_grade_list(request):
     return render(request,'registrar/registrar-student-grades.html')
 

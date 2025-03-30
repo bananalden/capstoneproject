@@ -36,7 +36,7 @@ $(document).ready(function (){
                             <td class="registrar-table-data">${grade_list.semester}</td>
                             <td class="registrar-table-data">${grade_list.grade_value}</td>
                             <td class="registrar-table-data actions unique-actions">
-                                    <button class="unique-btn unique-btn-view registrar-view-button">
+                                    <button class="unique-btn unique-btn-view registrar-view-button edit-grade"  data-id="${grade_list.id}" data-bs-toggle="modal" data-bs-target="#editGrade">
                                         <i class="fas fa-pen-to-square view-icon"></i>
                                     </button>
                             </td>
@@ -97,84 +97,19 @@ $(document).ready(function (){
 
 
 
-
 })
 
+$(document).on("click", ".edit-grade", function(){
+    var gradeID = $(this).data("id")
+
+    $("#gradeID").val(gradeID)
+    $.ajax({
+        url:`/api/get-grade-object/${gradeID}`,
+        type: "GET",
+        dataType: "json "
+        
+    })
+})
 
 //TABLE DATA END
-
-
-//REVIEW PAYMENT BUTTON START
-$(document).on("click",".btn-review", function(){
-    var itemID = $(this).data('id');
-    console.log(itemID)
-    $("#student-info").html(`<div class="spinner-border text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>`); 
-    $("#pay-proof").html(`<div class="spinner-border text-primary" role="status"> <span class="visually-hidden">Loading...</span></div>`); 
-    $('#confirmPayment').prop("disabled",true)
-    
-    $("#preview-payment-header").html("");
-    $.ajax({
-        url: `/api/get-payment-data/${itemID}`,
-            type: "GET",
-            dataType: "json",
-            success: function(data){
-                var paymentProof = `<button type="button" class="btn btn-primary open-payment-proof" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal"> Open Payment Proof</button>
-                `
-                var studentInfo = `
-                <div class="review-student-info">
-                <input type="hidden" name="trans_id" id="trans_id" value="${itemID}">
-                <p><strong>Student USN:</strong> ${data.student_usn}</p>
-                <p><strong>Student Name:</strong> ${data.student_name}</p>
-                        <p><strong>Payment Purpose:</strong> ${data.payment_purpose}</p>
-                        <p><strong>Amount:</strong> ₱${data.amount}</p>
-                        <button type="button" class="btn btn-primary open-payment-proof" data-bs-toggle="modal" data-bs-target="#paymentPreview" data-bs-dismiss="modal"> Open Payment Proof</button>
-                    </div>
-                    `
-                    
-                    $('#confirmPayment').prop("disabled",false)
-                    var payment_proof = `<img src="${data.payment_proof}" alt="Payment Proof" style="max-height: 800px; border: solid 1px black"/>`
-
-
-                $('#student-info').html(studentInfo);
-                $('#preview-payment-header').html(paymentProof)
-                $("#pay-proof").html(payment_proof); 
-
-                
-                
-            },
-            error: function(){
-                console.log("Data didn't load")
-            }
-        })
-
-})
-//REVIEW PAYMENT BUTTON END
-
-$(document).on("click",".payment-info", function(){
-    $("#student-info").html(""); 
-})
-
-
-
-$(document).on("click","#reviewPayment .btn-primary", function(){
-    $('#reviewPayment').modal('hide');  // Close the "Review Payment" modal
-    setTimeout(function() {
-      $('#paymentPreview').modal('show');  // Open the "Proof of Payment" modal after a small delay to avoid UI glitches
-    }, 200);
- 
-})
-
-$(document).on("click",".proof-payment", function(){
-    $('#paymentPreview').modal('hide');  // Close the "Proof of Payment" modal
-    setTimeout(function() {
-      $('#reviewPayment').modal('show');  // Reopen the "Review Payment" modal after a small delay
-    }, 200);
-})
-
-
-
-
-$(document).ready(function (){
-  
-    })
 
