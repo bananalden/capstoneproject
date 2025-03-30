@@ -100,7 +100,7 @@ $(document).ready(function (){
     })
 
  
-    $("#process-request").on("click", function(){
+    $("#process-request").on("click", function(e){
 
         setTimeout(function(){
             window.location.href = '/home/registrar/gen-cert-success/'

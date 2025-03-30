@@ -235,9 +235,13 @@ def generate_cert(request):
             semester = form.cleaned_data.get('semester')
 
             transaction = get_object_or_404(models.Transaction, id=transaction_id)
-            transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
-            transaction.save()
 
+            if transaction.registrar_status != models.Transaction.RegistrarStatus.AVAILABLE:
+                transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
+                print("Something")
+                transaction.save()
+
+      
             print(student)
 
             if document_type == 'CERTIFICATE OF GRADES':
@@ -266,17 +270,9 @@ def generate_cert(request):
             html_content = render_to_string(template_name,context)
             pdf_file = HTML(string=html_content).write_pdf()
 
-            transaction = get_object_or_404(models.Transaction, id=transaction_id)
-
-            if transaction.registrar_status == 'PENDING':
-                print("TEST")
-                transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
-                transaction.save()
-                response = HttpResponse(pdf_file, content_type='application/pdf')
-                response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.username}.pdf"'
-            else:
-                response = HttpResponse(pdf_file, content_type='application/pdf')
-                response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.username}.pdf"'
+           
+            response = HttpResponse(pdf_file, content_type='application/pdf')
+            response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.username}.pdf"'
             
 
 

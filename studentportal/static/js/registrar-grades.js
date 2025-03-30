@@ -37,13 +37,7 @@ $(document).ready(function (){
                             <td class="registrar-table-data">${grade_list.grade_value}</td>
                             <td class="registrar-table-data actions unique-actions">
                                     <button class="unique-btn unique-btn-view registrar-view-button">
-                                        <i class="fas fa-eye view-icon"></i>
-                                    </button>
-                                    <button class="unique-btn unique-btn-approve registrar-approve-button">
-                                        <i class="fas fa-circle-check approve-icon"></i>
-                                    </button>
-                                    <button class="unique-btn unique-btn-reject registrar-reject-button">
-                                        <i class="fas fa-ban reject-icon"></i>
+                                        <i class="fas fa-pen-to-square view-icon"></i>
                                     </button>
                             </td>
                         </tr>`)
