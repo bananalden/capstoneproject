@@ -107,6 +107,7 @@ $(document).on("click", ".edit-grade", function(){
         url:`/api/get-grade-object/${gradeID}`,
         type: "GET",
         dataType: "json "
+        //success: function(data){},
         
     })
 })

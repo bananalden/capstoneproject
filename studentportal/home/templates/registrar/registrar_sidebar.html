@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="{% static 'styles/document-request.css'%}" />
 
     <link rel="stylesheet" href="{% static 'styles/generate-document.css'%}" />
+    <link rel="stylesheet" href="{% static 'styles/create-student-profile.css'%}" />
 
     <script src="{% static 'js/registrar-dashboard.js'%}"></script>
 
@@ -81,6 +82,12 @@
         <li>
           <a href="{%url 'home:grade-list'%}" class="menu-item" data-link="generate-document">
             <i class="fas fa-print"></i> Grade List
+          </a>
+        </li>
+
+        <li>
+          <a href="{%url 'home:create-student-profile'%}" class="menu-item"     data-link="create-student-profile">
+           <i class="fas fa-user-plus"></i> Create Student Users
           </a>
         </li>
 
