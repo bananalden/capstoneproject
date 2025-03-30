@@ -1,3 +1,4 @@
+import pandas as pd
 from django.shortcuts import render, redirect, get_object_or_404
 from users import forms
 from users import models
@@ -254,6 +255,22 @@ def delete_student(request):
         messages.warning(request,"Student deleted successfully")
         return redirect('admin:users:student-list')
 
+
+
+def student_profile_update(request):
+    if request.method == "POST":
+        u_form = forms.StudentUserUpdate(request.POST, instance=request.user)
+        p_form = forms.StudentProfileUpdate(request.POST,instance=request.user.student_id)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request,"Your profile has been modified!")
+            return redirect('home:student-profile')
+        else:
+            messages.warning(request,"Invalid inputs in profile editing, pelase fix!")
+            return redirect('home:student-profile')
+        
 #STUDENT ACTION END=============================================
 
 
@@ -306,17 +323,44 @@ def change_password_user(request):
                     return redirect('home:registrar-home')
             messages.error(request, form.errors)
 
-def student_profile_update(request):
-    if request.method == "POST":
-        u_form = forms.StudentUserUpdate(request.POST, instance=request.user)
-        p_form = forms.StudentProfileUpdate(request.POST,instance=request.user.student_id)
+#USER PASSWORD EDIT=============================================
 
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
-            messages.success(request,"Your profile has been modified!")
-            return redirect('home:student-profile')
-        else:
-            messages.warning(request,"Invalid inputs in profile editing, pelase fix!")
-            return redirect('home:student-profile')
-        
+
+#BULK CREATE STUDENT =====================
+
+def bulk_register_student(request):
+    if request.method == "POST" and request.FILES.get('excel_file'):
+        excel_file = request.FILES['excel_file']
+
+        try:
+            df = pd.read_excel(excel_file)
+
+            required_columns = ['username', 'first_name','last_name','email','course']
+            if not all(col in df.columns for col in required_columns):
+                messages.warning(request,'Missing required columns')
+                return redirect('home:create-student-profile')
+            student_instances = []
+            profile_instances = []
+
+            for _, row in df.iterrows():
+                if models.CustomUser.objects.filter(username=row['username']).exists():
+                    messages.warning(request,f"Student with username {row['username']} already exists")
+                    continue
+
+                student = models.CustomUser(
+                    username=row['username'],
+                    first_name=row['first_name'],
+                    last_name=row['last_name'],
+                    email=row['email'],
+                    user_type='STUDENT',
+                )
+                student_instances.append(student)
+
+                created_students = models.CustomUser.objects.bulk_create(student_instances)
+
+        except Exception as e:
+            messages.warning(request,f"An error occured {e}")
+
+
+
+#BULK CREATE STUDENT =====================

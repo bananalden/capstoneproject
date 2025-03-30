@@ -26,7 +26,10 @@ def login_regular_user(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
+        print(user.id)
+    
         if user is not None:
+            
             if user.role == 'ADMIN':
                 messages.warning(request,'Invalid USN or Password, please try again!')
                 return redirect('authentication:login')
@@ -51,7 +54,9 @@ def login_admin(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-
+        print(user.id)
+        print("====================") 
+        print(request.user.id)
         if user is not None:
             if user.role != "ADMIN":
                 messages.warning(request,'Invalid USN or Password, please try again!')
