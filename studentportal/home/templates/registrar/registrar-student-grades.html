@@ -6,6 +6,32 @@ Grade List
 
 {%load static%}
 {% block content %}
+{%for msg in messages%}
+  {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+       <div class="alert alert-warnings alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {%endif%}
+{%endfor%}
+
+
+
 
 <div class="registrar-crud-dashboard">
         <h1 class="registrar-list-title">Grade List</h1>
@@ -68,7 +94,7 @@ Grade List
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form action="#" method="post">
+      <form action="{%url 'home:grades:grade-edit'%}" method="post">
         {% csrf_token %}
         <input type="hidden" name="gradeID" id="gradeID">
         <div class="form-group">
@@ -78,7 +104,7 @@ Grade List
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
     </form>
       </div>
     </div>
