@@ -177,6 +177,11 @@
   transform: translateY(2px);
 }
 
+
+/* MODAL SECTION */
+
+
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .crud-dashboard {
