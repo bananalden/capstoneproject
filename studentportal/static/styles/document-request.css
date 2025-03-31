@@ -12,7 +12,7 @@
 
 /* Heading */
 .registrar-list-title {
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 2.5rem;
   color: #023047;
   text-align: center;
@@ -163,7 +163,9 @@
 }
 
 /* Action Button Icons */
-.view-icon, .approve-icon, .reject-icon {
+.view-icon,
+.approve-icon,
+.reject-icon {
   font-size: 16px;
   margin-right: 2px;
 }
@@ -174,6 +176,150 @@
 }
 
 .unique-btn:active {
+  transform: translateY(2px);
+}
+
+/* MODAL SECTION */
+
+.req-document-modal {
+  backdrop-filter: blur(5px);
+}
+
+.req-document-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.req-document-header {
+  background-color: #c1121f;
+  color: white;
+}
+
+.req-document-title {
+  font-weight: bold;
+}
+
+.req-document-body {
+  padding: 20px;
+}
+
+.req-document-footer {
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Form Styling */
+.req-document-group {
+  margin-bottom: 15px;
+}
+
+.req-document-group label {
+  font-weight: 600;
+}
+
+.req-document-group input,
+.req-document-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.req-document-container {
+  max-width: 100%;
+}
+
+.req-document-cert h6 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #555;
+  font-weight: bolder;
+}
+
+.req-document-cert select,
+.req-document-cert input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Button Styling */
+.process-request {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.process-request:hover {
+  background: linear-gradient(90deg, #0056b3, #003d80);
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.process-request:active {
+  transform: translateY(2px);
+}
+
+#process-request-closed {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#process-request-closed:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+#process-request-closed:active {
+  transform: translateY(2px);
+}
+
+/* APPROVED REQUEST MODAL */
+
+.approved-request-modal {
+  backdrop-filter: blur(5px);
+}
+
+.approved-request-header {
+  background-color: #c1121f;
+  color: white;
+}
+
+.approved-request-complete {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  transition: all 0.3s ease;
+  color: white;
+  cursor: pointer;
+}
+
+.approved-request-complete:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.approved-request-complete:active {
+  transform: translateY(2px);
+}
+
+.approved-request-closed {
+  transition: all 0.3s ease;
+  color: white;
+  cursor: pointer;
+}
+
+.approved-request-closed:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.approved-request-closed:active {
   transform: translateY(2px);
 }
 

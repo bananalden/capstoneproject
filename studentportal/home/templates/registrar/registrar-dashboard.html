@@ -42,7 +42,7 @@
                         <td class="registrar-table-data">{{transaction.payment_purpose}}</td>
                         <td class="registrar-table-data">{{transaction.registrar_status}}</td>
                         <td class="registrar-table-data">
-                            <button class="registrar-view-button" onclick="openModal('{{transaction.student.first_name}} {{transaction.student.last_name}}', '{{transaction.payment_purpose}}', '{{transaction.registrar_status}}', '{{transaction.date_time}}', 'Please process urgently.')">View Request</button>
+                            <button class="registrar-view-button" onclick="openModal('{{transaction.student.first_name}} {{transaction.student.last_name}}', '{{transaction.payment_purpose}}', '{{transaction.registrar_status}}', '{{transaction.date_time}}')">View Request</button>
                         </td>
                     </tr>
                 {%endfor%}
@@ -57,12 +57,9 @@
             <span class="unique-close-button" onclick="closeModal()">&times;</span>
             <h2>Document Request Details</h2>
             <div class="unique-request-details" id="uniqueRequestDetails"></div>
-            <div class="unique-modal-actions">
-                <button class="unique-approve-btn">Approve</button>
-                <button class="unique-deny-btn">Deny</button>
-            </div>
         </div>
     </div>
+
 
 
 

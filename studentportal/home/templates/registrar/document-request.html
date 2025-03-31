@@ -39,76 +39,70 @@ Document Request
     </div>
 
      <!-- Process Request Modal -->
-    <div class="modal fade" id="processRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Request Details</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-          <form action="{%url 'home:generate-cert'%}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="transID" id="transID">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h4>Transaction Information</h4>
-              <div class="form-group">
-                <label for="student-usn">Student USN:</label>
-                <input type="text" name="student" id="student-usn" readonly>
-            </div>
-
-            <div class="form-group">
-                <label for="student-name">Student Name:</label>
-                <input type="text" name="student-name" id="student-name" disabled>
-            </div>
-            
-            <div class="form-group">
-                <label for="doc-type">Document Type:</label>
-                <input type="text" name="document_type" id="document-type" readonly>
-            </div>
-            
-            <div class="form-group">
-                <label for="date-requested">Date Requested:</label>
-                <input type="text" name="date-requested" id="date-requested" disabled>
-                
-            </div>
-
-        </div>
-        <div class="col cert-morale-enrollment">
-            <h6>Enter Year and Semester (If Certificate of Grades, enter previous semester)</h6>
-            
-            <label for="semester">Semester:</label>
-            <select name="semester" id="semester">
-                <option value="1st">1st</option>
-                <option value="2nd">2nd</option>
-            </select>
-
-            <label for="year">School Year:</label>
-            <input type="text" name="year" id="school-year" placeholder="Enter School Year (example: 2024-2025)">
-
-            <label for="pickup-date">Set Pick-up Date:</label>
-            <input type="date" name="pickup-date" id="">
-
-        </div>
-        </div>
-        </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary process-request" id="process-request">Process Requests</button>
-            </form>
-            </div>
+     <div class="modal fade req-document-modal" id="processRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog req-document-dialog">
+          <div class="modal-content req-document-content">
+              <div class="modal-header req-document-header">
+                  <h5 class="modal-title req-document-title" id="exampleModalLabel">Request Details</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body req-document-body">
+                  <form action="{%url 'home:generate-cert'%}" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="transID" id="transID">
+                      <div class="container req-document-container">
+                          <div class="row req-document-row">
+                              <div class="col req-document-col">
+                                  <h4>Transaction Information</h4>
+                                  <div class="form-group req-document-group">
+                                      <label for="student-usn">Student USN:</label>
+                                      <input type="text" name="student" id="student-usn" readonly>
+                                  </div>
+                                  <div class="form-group req-document-group">
+                                      <label for="student-name">Student Name:</label>
+                                      <input type="text" name="student-name" id="student-name" disabled>
+                                  </div>
+                                  <div class="form-group req-document-group">
+                                      <label for="doc-type">Document Type:</label>
+                                      <input type="text" name="document_type" id="document-type" readonly>
+                                  </div>
+                                  <div class="form-group req-document-group">
+                                      <label for="date-requested">Date Requested:</label>
+                                      <input type="text" name="date-requested" id="date-requested" disabled>
+                                  </div>
+                              </div>
+                              <div class="col cert-morale-enrollment req-document-cert">
+                                  <h6>Enter Year and Semester (If Certificate of Grades, enter previous semester)</h6>
+                                  <label for="semester">Semester:</label>
+                                  <select name="semester" id="semester">
+                                      <option value="1st">1st</option>
+                                      <option value="2nd">2nd</option>
+                                  </select>
+                                  <label for="year">School Year:</label>
+                                  <input type="text" name="year" id="school-year" placeholder="Enter School Year (example: 2024-2025)">
+                                  <label for="pickup-date">Set Pick-up Date:</label>
+                                  <input type="date" name="pickup-date" id="pickup-date">
+                              </div>
+                          </div>
+                      </div>
+              </div>
+              <div class="modal-footer req-document-footer">
+                  <button type="button" class="btn btn-secondary" id="process-request-closed" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary process-request" id="process-request">Process Requests</button>
+                  </form>
+              </div>
           </div>
-        </div>
       </div>
+  </div>
+  
 
-      <div class="modal fade" id="approveRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- APPROVED MODAL SECTION  -->
+
+      <div class="modal fade approved-request-modal" id="approveRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <div class="modal-header approved-request-header">
+              <h5 class="modal-title" id="exampleModalLabel">Approved Request</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -116,8 +110,8 @@ Document Request
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary complete-request">Complete Document Request</button>
+              <button type="button" class="btn btn-secondary approved-request-closed" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary complete-request  approved-request-complete">Complete Document Request</button>
             </div>
           </div>
         </div>

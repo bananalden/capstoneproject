@@ -17,6 +17,18 @@
   letter-spacing: 2px;
 }
 
+.filters {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+}
+
+#filterPurpose {
+  padding: 8px;
+  font-size: 16px;
+}
+
 #searchButton {
   background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
