@@ -126,6 +126,10 @@
   bottom: 55%;
 }
 
+.unique-modal-content h2 {
+  font-size: 25px;
+}
+
 .unique-close-button {
   float: right;
   font-size: 24px;
@@ -136,43 +140,6 @@
   margin: 20px 0;
 }
 
-.unique-modal-actions {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-}
-
-.unique-approve-btn, .unique-deny-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.unique-approve-btn {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.unique-approve-btn:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.unique-deny-btn {
-  background-color: #F44336;
-  color: white;
-}
-
-.unique-deny-btn:hover {
-  background-color: #e53935;
-  transform: scale(1.05);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 /* Responsive Design */
 
