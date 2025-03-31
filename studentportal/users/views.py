@@ -335,31 +335,50 @@ def bulk_register_student(request):
         try:
             df = pd.read_excel(excel_file)
 
-            required_columns = ['username', 'first_name','last_name','email','course']
+            required_columns = ['USN', 'First Name','Last Name','Email','Password','Course']
             if not all(col in df.columns for col in required_columns):
                 messages.warning(request,'Missing required columns')
                 return redirect('home:create-student-profile')
+            
             student_instances = []
             profile_instances = []
 
             for _, row in df.iterrows():
-                if models.CustomUser.objects.filter(username=row['username']).exists():
-                    messages.warning(request,f"Student with username {row['username']} already exists")
+                if models.Student.objects.filter(username=row['USN']).exists():
+                    messages.warning(request,f"Student with username {row['USN']} already exists")
                     continue
 
-                student = models.CustomUser(
-                    username=row['username'],
-                    first_name=row['first_name'],
-                    last_name=row['last_name'],
-                    email=row['email'],
-                    user_type='STUDENT',
+                student, created = models.Student.objects.update_or_create(
+                    username=row['USN'],
+                    defaults={
+                    'first_name':row['First Name'],
+                    'last_name':row['Last Name'],
+                    'email':row['Email'],
+                    'password':make_password(row['Password'])
+                    }
                 )
                 student_instances.append(student)
 
-                created_students = models.CustomUser.objects.bulk_create(student_instances)
+
+
+                profile, _ = models.StudentProfile.objects.update_or_create(
+                    student=student,
+                    defaults={'course':row['Course']}
+                )
+
+                if created:
+                    student_instances.append(student)
+                else:
+                    profile_instances.append(profile)
+            if student_instances:
+                messages.success(request, f"{len(student_instances)}")
+
 
         except Exception as e:
             messages.warning(request,f"An error occured {e}")
+            return redirect('home:create-student-profile')
+        
+        return redirect('home:create-student-profile')
 
 
 
