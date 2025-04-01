@@ -333,53 +333,70 @@ def bulk_register_student(request):
         excel_file = request.FILES['excel_file']
 
         try:
-            df = pd.read_excel(excel_file)
+            # Read Excel file with USN and Password as strings
+            df = pd.read_excel(excel_file, dtype={'USN': str, 'Password': str})
 
-            required_columns = ['USN', 'First Name','Last Name','Email','Password','Course']
+            required_columns = ['USN', 'First Name', 'Last Name', 'Email', 'Password', 'Course']
             if not all(col in df.columns for col in required_columns):
-                messages.warning(request,'Missing required columns')
+                messages.error(request, 'Missing required columns')
                 return redirect('home:create-student-profile')
-            
+
             student_instances = []
-            profile_instances = []
+            updated_profiles = []
 
             for _, row in df.iterrows():
-                if models.Student.objects.filter(username=row['USN']).exists():
-                    messages.warning(request,f"Student with username {row['USN']} already exists")
-                    continue
+                raw_username = row.get('USN')
+                # Check if raw_username is None or empty or "nan" (case insensitive) or "None"
+                if raw_username is None or str(raw_username).strip() in ["", "nan", "None"]:
+                    continue  # Skip this row
 
+                # Convert the raw_username to a proper string and remove trailing .0 if any
+                username = str(raw_username).strip().split('.')[0]
+
+                raw_password = row.get('Password')
+                if raw_password is None or str(raw_password).strip() in ["", "nan", "None"]:
+                    messages.warning(request, f"Skipping {username}: Missing password")
+                    continue
+                password = str(raw_password).strip()
+
+                first_name = str(row.get('First Name', '')).strip()
+                last_name = str(row.get('Last Name', '')).strip()
+                email = str(row.get('Email', '')).strip()
+                course = str(row.get('Course', '')).strip()
+
+                # Create or update the student using the Student proxy model
                 student, created = models.Student.objects.update_or_create(
-                    username=row['USN'],
+                    username=username,
                     defaults={
-                    'first_name':row['First Name'],
-                    'last_name':row['Last Name'],
-                    'email':row['Email'],
-                    'password':make_password(row['Password'])
+                        'first_name': first_name,
+                        'last_name': last_name,
+                        'email': email,
+                        'password': make_password(password),
                     }
                 )
-                student_instances.append(student)
-
-
 
                 profile, _ = models.StudentProfile.objects.update_or_create(
                     student=student,
-                    defaults={'course':row['Course']}
-                )
+                    defaults={'course':course}
+                )                
 
                 if created:
                     student_instances.append(student)
                 else:
-                    profile_instances.append(profile)
-            if student_instances:
-                messages.success(request, f"{len(student_instances)}")
+                    updated_profiles.append(profile)
 
+            if student_instances:
+                messages.success(request, f"Successfully added {len(student_instances)} students!")
+            if updated_profiles:
+                messages.success(request, f"Updated {updated_profiles} student profiles!")
 
         except Exception as e:
-            messages.warning(request,f"An error occured {e}")
+            messages.error(request, f"An error occurred: {e}")
             return redirect('home:create-student-profile')
-        
+
         return redirect('home:create-student-profile')
-
-
+    else:
+        messages.error(request, "No file uploaded")
+        return redirect('home:create-student-profile')
 
 #BULK CREATE STUDENT =====================

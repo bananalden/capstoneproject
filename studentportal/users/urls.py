@@ -34,7 +34,11 @@ urlpatterns =[
     #USER ACTION START
     path('edit-password',views.change_password_user,name='change-password'),
     path('edit-user',views.change_password_user,name='change-password'),
-    path('edit-student-profile',views.student_profile_update,name='student-profile-update')
+    path('edit-student-profile',views.student_profile_update,name='student-profile-update'),
     #USER ACTION END
+
+    #MISC START
+    path('bulk-register-student',views.bulk_register_student,name='bulk-register-student')
+    #MISC END
 
 ]
