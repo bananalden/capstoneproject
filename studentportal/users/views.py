@@ -352,6 +352,9 @@ def bulk_register_student(request):
 
                 # Convert the raw_username to a proper string and remove trailing .0 if any
                 username = str(raw_username).strip().split('.')[0]
+                
+                if models.Student.objects.filter(username=username).exists():
+                    continue
 
                 raw_password = row.get('Password')
                 if raw_password is None or str(raw_password).strip() in ["", "nan", "None"]:
