@@ -1,4 +1,5 @@
 import pandas as pd
+import datetime
 from weasyprint import HTML
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
@@ -11,6 +12,8 @@ from transactions import forms, models
 from users.forms import edit_user, change_password, StudentProfileUpdate, StudentUserUpdate
 from users.models import CustomUser, Student
 from grades.models import Grades
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 
@@ -241,8 +244,15 @@ def generate_cert(request):
 
             if transaction.registrar_status != models.Transaction.RegistrarStatus.AVAILABLE:
                 transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
-                print("Something")
                 transaction.save()
+                print(pickup_date)
+                pickup_date_obj = datetime.datetime.strptime(pickup_date, "%Y-%m-%d")  
+                formatted_datetime = pickup_date_obj.strftime("%B %d, %Y")
+                subject = "Payment Update"
+                message = f"Hello {transaction.student.first_name} {transaction.student.last_name}, \n\nThis email is here to inform you that your request for ${transaction.payment_purpose} is now available for pickup! \n\n Please pick up by {formatted_datetime}."
+                from_email = settings.DEFAULT_FROM_EMAIL
+                recipient_list = [transaction.student.email]
+                send_mail(subject,message,from_email,recipient_list)
 
       
             print(student)

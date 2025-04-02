@@ -12,7 +12,7 @@ $(document).ready(function (){
 
 
     function loadGrades(page = 1, query= "", semester=""){
-        $(".table-tbody").html('<tr class="table-tr"><td colspan="8">Loading grades...</td></tr>');
+        $(".table-tbody").html('<tr class="table-tr"><td colspan="7">Loading grades...</td></tr>');
         $.ajax({
             url:`/api/get-grades/?page=${page}&q=${query}&filter=${semester}`,
             type: "GET",
@@ -23,7 +23,7 @@ $(document).ready(function (){
                 table_body.empty()
                 
                 if (grade_list.length == 0){
-                    table_body.append('<tr class="table-tr"><td colspan="8">No grades found...</td></tr>')
+                    table_body.append('<tr class="table-tr"><td colspan="7">No grades found...</td></tr>')
                 }
                 else{
                     $.each(grade_list, function(index, grade_list){
