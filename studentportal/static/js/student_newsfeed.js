@@ -23,7 +23,7 @@ $(document).ready(function(){
                             ${newsItem.body}
                         </p>
                         <p class="announcement_post_info">Posted: ${newsItem.formatted_date} | Posted by: ${newsItem.author}</p>
-                        <a href="#" class="announcement_read_more">Read More</a>
+                       
                     </div>
                 </div>
                     `;
