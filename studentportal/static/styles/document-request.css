@@ -20,7 +20,7 @@
 }
 
 /* Search Container */
-.registrar-search-container {
+/* .registrar-search-container {
   margin-bottom: 20px;
   display: flex;
   justify-content: flex-end;
@@ -28,7 +28,61 @@
   max-width: 350px;
   margin-left: auto;
   position: relative;
+} */
+
+/* Search Bar Styling */
+.registrar-search-container  {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end; /* Push search bar to the right */
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  margin-left: auto; /* Ensures it stays on the right */
 }
+
+.registrar-search-container  input{
+  width: 100%;
+  padding: 12px 15px 12px 50px; /* Increased left padding to move placeholder past icon */
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.4s ease-in-out;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+/* Search Icon */
+.registrar-search-container ::before {
+  content: "\1F50D"; /* Unicode for magnifying glass */
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
+/* Placeholder Animation */
+.registrar-search-container ::placeholder {
+  transition: all 0.3s ease-in-out;
+  padding-left: 10px; /* Ensures placeholder text starts after the icon */
+}
+
+.registrar-search-container :focus::placeholder {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Focus Effect */
+.registrar-search-container :focus {
+  width: 100%;
+  background-color: #f0faff;
+  border-color: #3498db;
+  box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
+}
+
 
 #registrar-search-request {
   width: 100%;
