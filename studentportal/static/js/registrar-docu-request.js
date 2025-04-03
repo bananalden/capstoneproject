@@ -100,18 +100,46 @@ $(document).ready(function (){
     })
 
  
-    $("#process-request").on("click", function(e){
-
-        setTimeout(function(){
-            window.location.href = '/home/registrar/gen-cert-success/'
-        },2000)
-
-    })
 
 
 
 
 })
+
+$(document).on("click", "#process-request", function(e){
+    
+    e.preventDefault()
+
+    let form = $("#certificate-form");
+    let formData = new FormData(form[0]);
+    let url = form.attr("action")
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        xhrFields: {
+            responseType:'blob'
+        },
+        success: function(data){
+            let blob = new Blob([data], { type: "application/pdf" });
+            let url = window.URL.createObjectURL(blob);
+            window.open(url, "_blank");
+            window.location.href = "/home/registrar/gen-cert-success/"
+        },
+        error: function(xhr, status, error){
+            let reader = new FileReader();
+            reader.onload = function(){
+                let response = JSON.parse(reader.result);
+                alert("An error occurred: " + response.message);
+        }
+        reader.readAsText(xhr.responseText)
+        }
+    })
+})
+
 
 $(document).on("click", ".registrar-approve-button",function(){
     var transID = $(this).data("id");

@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.http import JsonResponse
 from django.template.loader import render_to_string
 from news.models import Announcement
 from transactions import forms, models
@@ -222,6 +223,8 @@ def generate_cert(request):
         transaction_id = request.POST.get('transID')
         pickup_date = request.POST.get('pickup-date')
 
+      
+
         if document_type == 'CERTIFICATE OF ENROLLMENT':
             form = forms.EnrollmentForm(request.POST)
             template_name = 'pdf_templates/certificate_of_enrollment.html'
@@ -235,6 +238,9 @@ def generate_cert(request):
             template_name = "pdf_templates/certificate_of_grades.html"
 
         if form.is_valid():
+
+
+            
         
             student = form.cleaned_data.get("student")
             year = form.cleaned_data.get('year')
@@ -243,16 +249,25 @@ def generate_cert(request):
             transaction = get_object_or_404(models.Transaction, id=transaction_id)
 
             if transaction.registrar_status != models.Transaction.RegistrarStatus.AVAILABLE:
+                if not pickup_date:
+                    return JsonResponse({
+                "status":"error",
+                "message":"Pick up date is required"
+            },status=400)
+                
                 transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
                 transaction.save()
-                print(pickup_date)
+
+                #CONVERT THE DATE INTO ANOTHER FORMAT
                 pickup_date_obj = datetime.datetime.strptime(pickup_date, "%Y-%m-%d")  
                 formatted_datetime = pickup_date_obj.strftime("%B %d, %Y")
-                subject = "Payment Update"
-                message = f"Hello {transaction.student.first_name} {transaction.student.last_name}, \n\nThis email is here to inform you that your request for ${transaction.payment_purpose} is now available for pickup! \n\n Please pick up by {formatted_datetime}."
+
+                subject = "Document Request Update"
+                message = f"Hello {transaction.student.first_name} {transaction.student.last_name}, \n\nThis email is here to inform you that your request for {transaction.payment_purpose} is now available for pickup! \n\n Please pick up by {formatted_datetime}."
                 from_email = settings.DEFAULT_FROM_EMAIL
                 recipient_list = [transaction.student.email]
                 send_mail(subject,message,from_email,recipient_list)
+            
 
       
             print(student)
@@ -262,8 +277,10 @@ def generate_cert(request):
                 grades = Grades.objects.filter(student_usn=student_usn,year=year,semester=semester)
 
                 if not grades.exists():
-                    messages.warning(request,'No grades were found for the given student')
-                    return redirect('home:generate-document')
+                    return JsonResponse({
+                        "status":"error",
+                        "message":"No grades found for this student"
+                    },status=400)
                 
                 context = {
                     'student': student,
@@ -292,7 +309,11 @@ def generate_cert(request):
             return response
         else:
             print(form.errors)
-            return redirect('home:generate-document')
+            return JsonResponse({
+                        "status":"error",
+                        "message":"Invalid form data",
+                        "errors":form.errors
+                    },status=400)
 
 def gen_cert_success(request):
     return render(request, 'registrar/document-success.html')

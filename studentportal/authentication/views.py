@@ -26,7 +26,7 @@ def login_regular_user(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        print(user.id)
+
     
         if user is not None:
             
