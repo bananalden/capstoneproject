@@ -67,16 +67,17 @@
           >
         </li>
 
-        <li>
-          <a href="{%url 'home:document-request'%}" class="menu-item" data-link="document-request">
-            <i class="fas fa-file-alt"></i> Document Request
-          </a>
-        </li>
+        <li class="dropdown">
+          <a href="#" class="menu-item dropdown-toggle" data-toggle="dropdown"
+            ><i class="fas fa-file-alt"></i> Document Requests
+            <span class="caret"></span
+          ></a>
+          <ul class="dropdown-menu">
 
-       <li>
-          <a href="{%url 'home:generate-document'%}" class="menu-item" data-link="generate-document">
-            <i class="fas fa-print"></i> Generate Document
-          </a>
+            <li><a href="{%url 'home:document-request'%}">View Pending/Available Pending Requests</a></li>
+            <li><a href="{%url 'home:complete-document'%}">View Completed Requests</a></li>
+            
+          </ul>
         </li>
 
         <li>
@@ -86,10 +87,11 @@
         </li>
 
         <li>
-          <a href="{%url 'home:create-student-profile'%}" class="menu-item"     data-link="create-student-profile">
+          <a href="{%url 'home:create-student-profile'%}" class="menu-item" data-link="create-student-profile">
            <i class="fas fa-user-plus"></i> Create Student Users
           </a>
         </li>
+        
 
       </ul>
       <div class="user-profile">

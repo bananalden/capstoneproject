@@ -298,6 +298,55 @@ def registrar_doc_list(request):
        "total_pages": paginator.num_pages
    })
    
+
+def registrar_complete_list(request):
+   page = request.GET.get("page",1)
+   search_query = request.GET.get("q","")
+   filter_semester = request.GET.get("filter","")
+   pending_transactions = transactions_data.Transaction.objects.filter(
+        registrar_status__in=[
+            transactions_data.Transaction.RegistrarStatus.COMPLETE,
+            
+            ],
+        payment_purpose__in=[
+            transactions_data.Transaction.PaymentPurposeChoice.CERT_GRADES,
+            transactions_data.Transaction.PaymentPurposeChoice.CERT_MORALE,
+            transactions_data.Transaction.PaymentPurposeChoice.CERT_ENROL
+        ], is_confirmed=True
+    ).order_by('-date_time')
+   
+   if filter_semester in ["1st","2nd"]:
+       pending_transactions = pending_transactions.filter(semester=filter_semester)
+
+   if search_query:
+       pending_transactions = pending_transactions.filter(
+            Q(student__first_name__icontains=search_query) |
+            Q(student__last_name__icontains=search_query) |
+            Q(student__username__icontains=search_query) 
+       )
+   
+   paginator = Paginator(pending_transactions, 10)
+   try:
+       pend_trans_page = paginator.page(page)
+   except:
+       pend_trans_page = paginator.page(1)
+    
+   data = [{
+       "id":pend_trans.id,
+       "student_usn": pend_trans.student.username,
+       "student_name":f"{pend_trans.student.first_name} {pend_trans.student.last_name}",
+       "date_time": pend_trans.date_time.strftime("%B %d, %Y %I:%M %p"),
+       "payment_purpose": pend_trans.payment_purpose,
+       "registrar_status": pend_trans.registrar_status
+
+    }
+    for pend_trans in pend_trans_page
+    ]
+   return JsonResponse({
+       "registrar_list": data,
+       "page":pend_trans_page.number,
+       "total_pages": paginator.num_pages
+   })
        
 
 def student_transaction_list(request):

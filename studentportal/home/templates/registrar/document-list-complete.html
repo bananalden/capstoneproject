@@ -1,6 +1,6 @@
 {% extends "registrar/registrar_sidebar.html" %}
 {% block title %}
-Document Request
+Completed Document Requests
 {% endblock title %}
 
 {%load static%}
@@ -32,7 +32,7 @@ Document Request
 
 
 <div class="registrar-crud-dashboard">
-        <h1 class="registrar-list-title">Document Request List</h1>
+        <h1 class="registrar-list-title">Complete Request List</h1>
     
         <!-- Search Section -->
         <div class="registrar-search-container">
@@ -49,7 +49,6 @@ Document Request
                     <th class="registrar-table-header">Document Type</th>
                     <th class="registrar-table-header">Request Date</th>
                     <th class="registrar-table-header">Status</th>
-                    <th class="registrar-table-header">Actions</th>
                 </tr>
             </thead>
             <tbody id="request-list" class="request-list">
@@ -145,6 +144,6 @@ Document Request
         </div>
       </div>
 
-<script src="{%static 'js/registrar-docu-request.js'%}"></script>
+<script src="{%static 'js/registrar-docu-complete.js'%}"></script>
 
 {% endblock content %}

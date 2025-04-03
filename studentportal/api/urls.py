@@ -24,6 +24,7 @@ urlpatterns = [
     path('get-transaction-page-unconfirmed/',views.cashier_transaction_data_unconfirmed,name='cashier-transaction-unconfirmed'),
     path('get-transaction-page-confirmed/',views.cashier_transaction_data_confirmed,name='cashier-transaction-confirmed'),
     path('get-registrar-transaction-page/',views.registrar_doc_list,name='registrar-doc-list'),
+    path('get-registrar-complete-page/',views.registrar_complete_list,name='registrar-complete-list'),
     path('export-transaction-report/',views.export_transaction,name="export-transaction"),
     path('student-transaction-history/',views.student_transaction_list,name="student-transaction-history")
     #TRANSACTION API END

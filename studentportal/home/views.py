@@ -120,6 +120,9 @@ def registrar_dashboard(request):
 def registrar_document_request(request):
     return render(request, 'registrar/document-request.html')
 
+def registrar_document_complete(request):
+    return render(request, 'registrar/document-list-complete.html')
+
 def registrar_generate_document(request):
     return render(request, 'registrar/generate-document.html')
 
