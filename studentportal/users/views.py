@@ -30,7 +30,7 @@ def edit_user(request):
 
                 case 'REGISTRAR':
                     messages.success(request, "User details successfully edited!")
-                    return redirect('home:registrar-home')
+                    return redirect('home:registrar-dashboard')
                 
                 case 'TEACHER':
                     messages.success(request, "User details successfully edited!")
@@ -48,7 +48,7 @@ def edit_user(request):
 
                 case 'REGISTRAR':
                     messages.warning(request, form.errors)
-                    return redirect('home:registrar-home')
+                    return redirect('home:registrar-dashboard')
                  
                 case 'TEACHER':
                     messages.warning(request, form.errors)
@@ -300,7 +300,13 @@ def change_password_user(request):
 
                 case 'REGISTRAR':
                     messages.success(request, "Password has successfully been updated!")
+                    return redirect('home:registrar-dashboard')
+                
+                case 'TEACHER':
+                    messages.success(request, "Password has successfully been updated!")
                     return redirect('home:registrar-home')
+                    
+                    
             
             return redirect('authentication:login')
         else:

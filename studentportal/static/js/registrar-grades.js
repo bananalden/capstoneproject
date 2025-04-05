@@ -86,11 +86,12 @@ $(document).ready(function (){
         loadGrades(currentPage, searchVal)
     })
     
-    $("#filterPurpose").on("change",function(){
-        var purposeVal = $(this).val()
+    $("#filter-grade").on("click",function(){
+        var semester = $("#semester-select").val()
+        console.log(semester)
         var currentPage = 1
         var searchVal = $("#searchInput").val()
-        loadGrades(currentPage,searchVal,purposeVal)
+        loadGrades(currentPage,searchVal,semester)
     })
 
 

@@ -117,6 +117,13 @@ def registrar_dashboard(request):
     
     return render(request, 'registrar/registrar-dashboard.html',context)
 
+def edit_registrar(request):
+    form = edit_user(instance=request.user)
+    context = {
+        'form':form
+    }
+    return render(request,'registrar/edit-registrar.html',context)
+
 def registrar_document_request(request):
     return render(request, 'registrar/document-request.html')
 

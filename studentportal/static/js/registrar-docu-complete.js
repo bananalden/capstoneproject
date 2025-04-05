@@ -81,10 +81,11 @@ $(document).ready(function (){
         loadTransactions(currentPage, searchVal)
     })
     
-    $("#filterPurpose").on("change",function(){
-        var purposeVal = $(this).val()
+    $("#filter-purpose").on("click",function(){
+        var purposeVal = $("#filter-request").val()
+        console.log(purposeVal)
         var currentPage = 1
-        var searchVal = $("#searchInput").val()
+        var searchVal = $("#registrar-search-request").val()
         loadTransactions(currentPage,searchVal,purposeVal)
     })
 

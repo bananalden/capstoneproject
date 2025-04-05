@@ -251,7 +251,7 @@ def export_transaction(request):
 def registrar_doc_list(request):
    page = request.GET.get("page",1)
    search_query = request.GET.get("q","")
-   filter_semester = request.GET.get("filter","")
+   filter_purpose = request.GET.get("filter","")
    pending_transactions = transactions_data.Transaction.objects.filter(
         registrar_status__in=[
             transactions_data.Transaction.RegistrarStatus.PENDING,
@@ -265,8 +265,8 @@ def registrar_doc_list(request):
         ], is_confirmed=True
     ).order_by('-date_time')
    
-   if filter_semester in ["1st","2nd"]:
-       pending_transactions = pending_transactions.filter(semester=filter_semester)
+   if filter_purpose in ["CERTIFICATE OF GRADES","CERTIFICATE OF GOOD MORALE","CERTIFICATE OF ENROLLMENT"]:
+       pending_transactions = pending_transactions.filter(payment_purpose=filter_purpose)
 
    if search_query:
        pending_transactions = pending_transactions.filter(
@@ -302,7 +302,7 @@ def registrar_doc_list(request):
 def registrar_complete_list(request):
    page = request.GET.get("page",1)
    search_query = request.GET.get("q","")
-   filter_semester = request.GET.get("filter","")
+   filter_purpose = request.GET.get("filter","")
    pending_transactions = transactions_data.Transaction.objects.filter(
         registrar_status__in=[
             transactions_data.Transaction.RegistrarStatus.COMPLETE,
@@ -315,8 +315,9 @@ def registrar_complete_list(request):
         ], is_confirmed=True
     ).order_by('-date_time')
    
-   if filter_semester in ["1st","2nd"]:
-       pending_transactions = pending_transactions.filter(semester=filter_semester)
+   if filter_purpose in ["CERTIFICATE OF GRADES","CERTIFICATE OF GOOD MORALE","CERTIFICATE OF ENROLLMENT"]:
+       pending_transactions = pending_transactions.filter(payment_purpose=filter_purpose)
+
 
    if search_query:
        pending_transactions = pending_transactions.filter(

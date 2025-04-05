@@ -1,4 +1,4 @@
-{% extends "cashier/cashiersidebar.html" %}
+{% extends "registrar/registrar_sidebar.html" %}
 {% block title %}
 Edit Registrar
 {% endblock title %}
@@ -7,9 +7,9 @@ Edit Registrar
 {% block content %}
 
 <div class="edit-cashier-container">
-    <h1>Edit Cashier User</h1>
+    <h1>Edit Registrar User</h1>
     <div class="edit-cashier-form">
-        <form action="{% url 'admin:users:edit-admin' %}" method="POST">
+        <form action="{% url 'home:users:edit-user' %}" method="POST">
             {% csrf_token %}
             
             <!-- First Name & Last Name Row -->

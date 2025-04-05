@@ -39,9 +39,10 @@
     <link rel="stylesheet" href="{% static 'styles/registrar-dashboard.css'%}" />
 
     <link rel="stylesheet" href="{% static 'styles/document-request.css'%}" />
- <link rel="stylesheet" href="{% static 'styles/alert-styles.css'%}" />
+    <link rel="stylesheet" href="{% static 'styles/alert-styles.css'%}" />
     <link rel="stylesheet" href="{% static 'styles/generate-document.css'%}" />
     <link rel="stylesheet" href="{% static 'styles/create-student-profile.css'%}" />
+    <link rel="stylesheet" href="{% static 'styles/edit-cashier.css'%}" />
 
     <script src="{% static 'js/registrar-dashboard.js'%}"></script>
 
@@ -92,12 +93,19 @@
           </a>
         </li>
         
+        <li>
+          <a href="#" class="menu-item" data-link="edit-users">
+            <i class="fas fa-user-edit"></i> Edit User
+          </a>
+        </li>
 
       </ul>
       <div class="user-profile">
-        <a href="#" class="menu-item" data-link="profile"
-          ><i class="fas fa-user"></i> User Profile</a
-        >
+        <a href="#" class="menu-item" data-link="profile">
+          <i class="fas fa-key"></i> Change Password
+        </a>
+
+    
         <a href="#" class="menu-item logout"
           ><i class="fas fa-sign-out-alt"></i> Logout</a
         >

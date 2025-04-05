@@ -59,7 +59,6 @@ $(document).ready(function (){
               `)
             },
             error: function(){
-                alert("Data could not be retrieved")
                 table_body.html('<tr class="table-tr"><td colspan="8">Could not load data...</td></tr>')
             }
 
@@ -92,10 +91,11 @@ $(document).ready(function (){
         loadTransactions(currentPage, searchVal)
     })
     
-    $("#filterPurpose").on("change",function(){
-        var purposeVal = $(this).val()
+    $("#filter-purpose").on("click",function(){
+        var purposeVal = $("#filter-request").val()
+        console.log(purposeVal)
         var currentPage = 1
-        var searchVal = $("#searchInput").val()
+        var searchVal = $("#registrar-search-request").val()
         loadTransactions(currentPage,searchVal,purposeVal)
     })
 
