@@ -124,6 +124,13 @@ def edit_registrar(request):
     }
     return render(request,'registrar/edit-registrar.html',context)
 
+def edit_registrar_password(request):
+    form = change_password(request.user)
+    context={
+        'form':form
+    }
+    return render(request,'registrar/edit-registrar-password.html', context)
+
 def registrar_document_request(request):
     return render(request, 'registrar/document-request.html')
 

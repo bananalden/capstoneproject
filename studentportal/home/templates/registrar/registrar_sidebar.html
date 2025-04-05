@@ -33,7 +33,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{% static 'styles/sidebar.css'%}" />
-
+    
     <link rel="stylesheet" href="{% static 'styles/registrar.css'%}" />
 
     <link rel="stylesheet" href="{% static 'styles/registrar-dashboard.css'%}" />
@@ -94,7 +94,7 @@
         </li>
         
         <li>
-          <a href="#" class="menu-item" data-link="edit-users">
+          <a href="{%url 'home:edit-registrar'%}" class="menu-item" data-link="edit-users">
             <i class="fas fa-user-edit"></i> Edit User
           </a>
         </li>
@@ -106,7 +106,7 @@
         </a>
 
     
-        <a href="#" class="menu-item logout"
+        <a href="{%url 'authentication:logout'%}" class="menu-item logout"
           ><i class="fas fa-sign-out-alt"></i> Logout</a
         >
       </div>
