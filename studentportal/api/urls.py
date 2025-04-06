@@ -6,6 +6,13 @@ app_name='api'
 urlpatterns = [
     #USER APIS START
     path('get-user-object/<int:pk>',views.get_userdata,name='get-admin-object'),
+    path('get-cashiers/',views.get_cashier,name="get-cashiers"),
+    path('get-registrars/',views.get_registrar,name="get-registrars"),
+    path('get-teachers/',views.get_teacher,name="get-teachers"),
+    path('get-students/',views.get_student,name="get-students"),
+    
+    
+    
     #USER APIS END
     
     #NEWS API START

@@ -33,6 +33,138 @@ def get_userdata(request,pk):
 
     except:
         return(JsonResponse({'error':'User not found'}, status=404))
+    
+
+def get_cashier(request):
+    page = request.GET.get("page",1)
+    search_query = request.GET.get("q","")
+    user = user_data.CustomUser.objects.filter(role=user_data.CustomUser.Role.CASHIER)
+    
+    if search_query:
+        user = user_data.CustomUser.objects.filter(
+            Q(first_name__icontains=search_query) |
+            Q(last_name__icontains=search_query)
+        )
+
+    paginator = Paginator(user, 10)
+    try:
+        cashier_page = paginator.page(page)
+    except:
+        cashier_page = paginator.page(1)
+    data = [{
+        "id":cashier.id,
+        "first_name":cashier.first_name,
+        "last_name":cashier.last_name,
+        "email":cashier.email,
+        "username":cashier.username
+
+    }
+    for cashier in cashier_page
+    ]
+    return JsonResponse({
+        "cashier_list":data,
+        "page":cashier_page.number,
+        "total_pages":paginator.num_pages
+    })
+
+def get_teacher(request):
+    page = request.GET.get("page",1)
+    search_query = request.GET.get("q","")
+    user = user_data.CustomUser.objects.filter(role=user_data.CustomUser.Role.TEACHER)
+    
+    if search_query:
+        user = user_data.CustomUser.objects.filter(
+            Q(first_name__icontains=search_query) |
+            Q(last_name__icontains=search_query)
+        )
+
+    paginator = Paginator(user, 10)
+    try:
+        teacher_page = paginator.page(page)
+    except:
+        teacher_page = paginator.page(1)
+    data = [{
+        "id":teacher.id,
+        "first_name":teacher.first_name,
+        "last_name":teacher.last_name,
+        "email":teacher.email,
+        "username":teacher.username
+
+    }
+    for teacher in teacher_page
+    ]
+    return JsonResponse({
+        "teacher_list":data,
+        "page":teacher_page.number,
+        "total_pages":paginator.num_pages
+    })
+
+def get_registrar(request):
+    page = request.GET.get("page",1)
+    search_query = request.GET.get("q","")
+    user = user_data.CustomUser.objects.filter(role=user_data.CustomUser.Role.REGISTRAR)
+    
+    if search_query:
+        user = user_data.CustomUser.objects.filter(
+            Q(first_name__icontains=search_query) |
+            Q(last_name__icontains=search_query)
+        )
+
+    paginator = Paginator(user, 10)
+    try:
+        registrar_page = paginator.page(page)
+    except:
+        registrar_page = paginator.page(1)
+    data = [{
+        "id":registrar.id,
+        "first_name":registrar.first_name,
+        "last_name":registrar.last_name,
+        "email":registrar.email,
+        "username":registrar.username
+
+    }
+    for registrar in registrar_page
+    ]
+    return JsonResponse({
+        "registrar_list":data,
+        "page":registrar_page.number,
+        "total_pages":paginator.num_pages
+    })
+
+def get_student(request):
+    page = request.GET.get("page",1)
+    search_query = request.GET.get("q","")
+    user = user_data.CustomUser.objects.filter(role=user_data.CustomUser.Role.STUDENT)
+    
+    if search_query:
+        user = user_data.CustomUser.objects.filter(
+            Q(first_name__icontains=search_query) |
+            Q(last_name__icontains=search_query)
+        )
+
+    paginator = Paginator(user, 10)
+    try:
+        student_page = paginator.page(page)
+    except:
+        student_page = paginator.page(1)
+    data = [{
+        "id":student.id,
+        "first_name":student.first_name,
+        "last_name":student.last_name,
+        "email":student.email,
+        "username":student.username
+
+    }
+    for student in student_page
+    ]
+    return JsonResponse({
+        "student_list":data,
+        "page":student_page.number,
+        "total_pages":paginator.num_pages
+    })
+
+
+
 
 #USER GRABBING END =================================
 

@@ -27,7 +27,8 @@ Teacher List
         <!-- Search and Add Course Section -->
         <div class="search-container">
 
-            <input type="text" id="search-course" placeholder="Search Course">
+            <input type="text" id="search-course" placeholder="Search Teacher">
+            <button type="button" class="btn btn-primary" id="search-button">Search</button>
         </div>
 
         <!-- Course Table -->
@@ -40,31 +41,12 @@ Teacher List
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="course-list">
-                {%for teacher in teachers%}
-                <tr>
-                    <td>{{teacher.first_name}} {{teacher.last_name}}</td>
-                    <td>{{teacher.username}}</td>
-                    <td>{{teacher.email}}</td>
-                    <td>
-                      <div class="buttons">
-                        <button class="action-btn edit-btn" data-id="{{teacher.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button type="button" data-id="{{teacher.id}}" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </button>
-                    </div>
-                </td>
-                </tr>
-                {%endfor%}
+            <tbody class="teacher-list" id="course-list">
             </tbody>
         </table>
 
         <!-- Pagination -->
         <div id="pagination">
-            <button id="prev-btn" class="pagination-btn" aria-label="Previous page">Previous</button>
-            <button id="next-btn" class="pagination-btn" aria-label="Next page">Next</button>
         </div>
     </div>
 
@@ -143,6 +125,6 @@ Teacher List
     </div>
   </div>
     
-<script src="{%static 'js/admin_modal_ud.js'%}"></script>
+<script src="{%static 'js/admin_teacher_user.js'%}"></script>
 <!--DELETE COURSE END-->
 {% endblock content %}

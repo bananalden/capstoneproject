@@ -25,7 +25,8 @@ Registrar List
         <!-- Search and Add Course Section -->
         <div class="search-container">
 
-            <input type="text" id="search-course" placeholder="Search Course">
+            <input type="text" id="search-course" placeholder="Search Registrars">
+            <button type="button" class="btn btn-primary" id="search-button">Search</button>
         </div>
 
         <!-- Course Table -->
@@ -38,24 +39,7 @@ Registrar List
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="course-list">
-              {%for registrar in registrars%}
-                <tr>
-                    <td>{{registrar.first_name}} {{registrar.last_name}}</td>
-                    <td>{{registrar.username}}</td>
-                    <td>{{registrar.email}}</td>
-                    <td>
-                      <div class="buttons">
-                        <button class="action-btn edit-btn" data-id="{{registrar.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button type="button" data-id="{{registrar.id}}" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </button>
-                    </div>
-                </td>
-                </tr>
-                {%endfor%}
+            <tbody class="registrar-list" id="course-list">
             </tbody>
         </table>
 
@@ -140,6 +124,6 @@ Registrar List
     </div>
   </div>
 
-<script src="{%static 'js/admin_modal_ud.js'%}"></script>
+<script src="{%static 'js/admin_registrar_user.js'%}"></script>
 <!--DELETE COURSE END-->
 {% endblock content %}
