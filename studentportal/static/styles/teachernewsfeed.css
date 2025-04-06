@@ -224,3 +224,24 @@
   font-size: 16px;
   color: #777;
 }
+
+/* PAGINATION SECTION*/
+
+#pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#pagination button {
+  transition: all 0.3s ease;
+}
+
+#pagination button:hover {
+  transform: translateY(-2px);
+}
+
+#pagination:active {
+  transform: translateY(2px);
+}

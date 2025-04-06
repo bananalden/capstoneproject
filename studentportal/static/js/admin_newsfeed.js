@@ -23,8 +23,8 @@ $(document).ready(function(){
                             ${newsItem.body}
                         </p>
                         <p class="announcement_post_info">Posted: ${newsItem.formatted_date} | Posted by: ${newsItem.author}</p>
-                        <button type="button" class="btn btn-success edit-newsfeed" data-bs-toggle="modal" data-id="${newsItem.id}" data-bs-target="#edit-newsitem">Edit</button>
-                        <button type="button" class="btn btn-danger delete-newsfeed" data-bs-toggle="modal" data-id="${newsItem.id}" data-bs-target="#delete-newsitem">Delete</button>
+                        <button type="button" class="btn edit-newsfeed" data-bs-toggle="modal" data-id="${newsItem.id}" data-bs-target="#edit-newsitem">Edit</button>
+                        <button type="button" class="btn delete-newsfeed" data-bs-toggle="modal" data-id="${newsItem.id}" data-bs-target="#delete-newsitem">Delete</button>
                     </div>
                 </div>
                     `;

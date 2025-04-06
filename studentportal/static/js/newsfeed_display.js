@@ -26,9 +26,9 @@ $(document).ready(function(){
 
 
                 $("#pagination").html(`
-                    <button id="prevPage" ${response.page == 1 ? "disabled" : ""}>Previous</button>
+                    <button id="prevPage" class="btn" ${response.page == 1 ? "disabled" : ""}>Previous</button>
                     <span> Page ${response.page} of ${response.total_pages} </span>
-                    <button id="nextPage" ${response.page == response.total_pages ? "disabled" : ""}>Next</button>
+                    <button id="nextPage" class="btn" ${response.page == response.total_pages ? "disabled" : ""}>Next</button>
                 `);
             },
             error: function() {

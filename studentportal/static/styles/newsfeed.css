@@ -159,6 +159,183 @@
   color: #3498db;
 }
 
+/* BUTTON */
+
+.edit-newsfeed {
+  background-color: #007bff;
+  transition: all 0.3s ease;
+}
+
+.edit-newsfeed:hover {
+  background-color: #007bff;
+  transform: translateY(-2px);
+}
+
+.delete-newsfeed:active {
+  transform: translateY(2px);
+}
+
+.delete-newsfeed {
+  color: #222831;
+  background-color: #ef233c;
+  transition: all 0.3s ease;
+}
+
+.delete-newsfeed:hover {
+  color: #222831;
+  background-color: #ef233c;
+  transform: translateY(-2px);
+}
+
+.delete-newsfeed:active {
+  transform: translateY(2px);
+}
+
+
+/* EDIT MODAL SECTION */
+
+.edit-button-modal .modal-content {
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  border: none;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.edit-button-modal .modal-header {
+  background-color: #007bff;
+  color: white;
+  padding: 16px 24px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.edit-button-modal .modal-body {
+  background-color: #fdfdfd;
+  padding: 24px;
+}
+
+.edit-button-modal .modal-footer {
+  background-color: #fdfdfd;
+  padding: 16px 24px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.edit-button-modal input[type="text"],
+.edit-button-modal textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #fff;
+}
+
+.edit-button-modal input[type="text"]:focus,
+.edit-button-modal textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  outline: none;
+}
+
+.edit-button-modal .btn {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease-in-out, transform 0.1s;
+}
+
+.edit-button-modal .btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.edit-button-modal .btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.edit-button-modal .btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.edit-button-modal .btn-secondary:hover {
+  background-color: #5a6268;
+  transform: translateY(-1px);
+}
+
+
+/* DELETE MODAL SECTION */
+
+.delete-button-modal .modal-content {
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  border: none;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-button-modal .delete-header {
+  background-color: #dc3545;
+  color: white;
+  padding: 16px 24px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+.delete-button-modal .modal-body {
+  background-color: #fff;
+  padding: 24px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.delete-button-modal .modal-footer {
+  background-color: #fff;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid #dee2e6;
+}
+
+.delete-button-modal .btn {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease-in-out, transform 0.1s;
+}
+
+.delete-button-modal .btn-primary {
+  background-color: #dc3545;
+  border: none;
+}
+
+.delete-button-modal .btn-primary:hover {
+  background-color: #bb2d3b;
+  transform: translateY(-1px);
+}
+
+.delete-button-modal .btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.delete-button-modal .btn-secondary:hover {
+  background-color: #5a6268;
+  transform: translateY(-1px);
+}
+
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .sidebar-navigation {
