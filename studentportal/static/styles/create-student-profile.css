@@ -43,11 +43,13 @@
   transform: translateY(-2px);
 }
 
+
 .file-name-text {
   display: block;
-  margin-top: 15px;
+  margin-bottom: 15px;
   text-align: center;
   font-size: 14px;
   color: #333;
 }
+
 

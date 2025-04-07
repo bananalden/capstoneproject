@@ -32,17 +32,24 @@ Create Student Profile
 
 
 <div class="create-student-container">
-<form action="{%url 'home:users:bulk-register-student'%}" method="post" enctype="multipart/form-data">
-  <div class="create-student-title">Upload Student List</div>
-  <div class="create-student-text">Select an Excel file to add students to the system.</div>
-  {% csrf_token %}
-  <input type="file" name="excel_file" id="fileInput" hidden>
-  <button type="button" class="create-student-btn" onclick="document.getElementById('fileInput').click()">Select Excel File</button>
-  <div class="m-3">
-    <button type="submit" class="create-student-btn">Upload Student User</button>
+  <form action="{% url 'home:users:bulk-register-student' %}" method="post" enctype="multipart/form-data">
+    <div class="create-student-title">Upload Student List</div>
+    <div class="create-student-text">Select an Excel file to add students to the system.</div>
+    
+    {% csrf_token %}
+    <span id="fileName" class="file-name-text"></span>
+    <input type="file" name="excel_file" id="fileInput" hidden>
+    <button type="button" class="create-student-btn" onclick="document.getElementById('fileInput').click()">Select Excel File</button>
+    
+    
+    <!-- <span id="fileName" class="file-name-text"></span> -->
+
+    <div class="m-3">
+      <button type="submit" class="create-student-btn">Upload Student User</button>
+    </div>
   </form>
-  </div>
 </div>
 
 
+<script src="{% static 'js/create-student.js'%}"></script>
 {% endblock content %}
