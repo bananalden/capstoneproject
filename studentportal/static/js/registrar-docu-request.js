@@ -42,9 +42,7 @@ $(document).ready(function (){
                                     <button class="unique-btn unique-btn-approve registrar-approve-button" data-id="${registrar_request.id}" data-bs-toggle="modal" data-bs-target="#approveRequest">
                                         <i class="fas fa-circle-check approve-icon"></i>
                                     </button>
-                                    <button class="unique-btn unique-btn-reject registrar-reject-button">
-                                        <i class="fas fa-ban reject-icon"></i>
-                                    </button>
+
                             </td>
                         </tr>`)
                     })
@@ -91,7 +89,7 @@ $(document).ready(function (){
         loadTransactions(currentPage, searchVal)
     })
     
-    $("#filter-purpose").on("click",function(){
+    $("#filter-request").on("change",function(){
         var purposeVal = $("#filter-request").val()
         console.log(purposeVal)
         var currentPage = 1
