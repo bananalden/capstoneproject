@@ -60,38 +60,34 @@ $(document).ready(function (){
     loadTransactions()
    
     $("#registrar-pagination").on("click", "#next-btn", function() {
-        var purposeVal = $("#filter-request").val()
         var searchVal = $("#registrar-search-request").val()
         currentPage++;
-        loadTransactions(currentPage,searchVal,purposeVal);
+        loadTransactions(currentPage,searchVal);
     
     });
   
 
     $("#registrar-pagination").on("click", "#prev-btn", function() {
-        var purposeVal = $("#filter-request").val()
         var searchVal = $("#registrar-search-request").val()
         if (currentPage > 1) {
             currentPage--;
-            loadTransactions(currentPage,searchVal,purposeVal);
+            loadTransactions(currentPage,searchVal);
         }
     });
 
     $("#searchButton").on("click", function(){
-        var purposeVal = $("#filter-request").val()
         var searchVal = $("#registrar-search-request").val()
         var currentPage = 1
-        loadTransactions(currentPage, searchVal, purposeVal)
+        loadTransactions(currentPage, searchVal)
     })
     
-    $("#filter-request").on("change",function(){
+    $("#filter-purpose").on("click",function(){
         var purposeVal = $("#filter-request").val()
- 
+        console.log(purposeVal)
         var currentPage = 1
         var searchVal = $("#registrar-search-request").val()
         loadTransactions(currentPage,searchVal,purposeVal)
     })
-
 
  
 
