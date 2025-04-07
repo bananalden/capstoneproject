@@ -3,7 +3,7 @@ $(document).ready(function(){
     let searchQuery = ""
 
     function load_students(page = 1, query=""){
-        $(".student-list").html('<tr><td colspan="4">Loading cashier users...</td></tr>')
+        $(".student-list").html('<tr><td colspan="4">Loading student users...</td></tr>')
         $.ajax({
             url:`/api/get-students/?page=${page}&q=${query}`,
             type: "GET",
@@ -14,7 +14,7 @@ $(document).ready(function(){
                 table_body.empty()
 
                 if (student_user.length == 0){
-                    table_body.append('<tr><td colspan="4">No cashiers found...</td></tr>')
+                    table_body.append('<tr><td colspan="4">No student found...</td></tr>')
                 }
                 else{
                     $.each(student_user, function(index,student_user){
