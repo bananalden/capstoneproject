@@ -97,7 +97,7 @@
 }
 
 /* Search Icon */
-.registrar-search-container::before {
+.registrar-search-request::before {
   content: "\1F50D";
   position: absolute;
   left: 15px;
@@ -106,6 +106,33 @@
   font-size: 18px;
   color: #7f8c8d;
 }
+
+/* FILTER SECTION */
+
+.filter-docu-request {
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+  padding: 10px; /* Optional, adds some space around */
+  position: relative;
+  top: 58px;
+}
+
+#filter-request {
+  padding: 8px 12px; /* Adds some space inside the dropdown */
+  font-size: 16px; /* Adjusts the font size */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ccc; /* Light border */
+  transition: border 0.3s ease-in-out; /* Smooth transition for border */
+}
+
+
+#filter-request:hover {
+  border-color: #007BFF; /* Change border color on hover */
+}
+
+
+
+
 
 /* Table Styles */
 .request-table {
