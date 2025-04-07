@@ -14,7 +14,7 @@ $(document).ready(function(){
                 table_body.empty()
 
                 if (teacher_user.length == 0){
-                    table_body.append('<tr><td colspan="4">No teacher found...</td></tr>')
+                    table_body.append('<tr><td colspan="4">No cashiers found...</td></tr>')
                 }
                 else{
                     $.each(teacher_user, function(index,teacher_user){
