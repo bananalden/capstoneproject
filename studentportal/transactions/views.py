@@ -50,6 +50,18 @@ def manual_request(request):
             print(form.errors)
             return redirect('home:cashier-home')
         
+def complete_docu_request(request):
+    if request.method == "POST":
+        transaction_id = request.POST.get("transID")
+        transaction_object = Transaction.objects.get(id=transaction_id)
+        transaction_object.registrar_status = Transaction.RegistrarStatus.COMPLETE
+        transaction_object.save()
+        messages.success(request, 'Document has now been marked as completed and retrieved!')
+        return redirect('home:document-request')
+    else:
+        messages.warning(request, 'Invalid form data')
+        return redirect('home:document-request')
+        
 
             
   

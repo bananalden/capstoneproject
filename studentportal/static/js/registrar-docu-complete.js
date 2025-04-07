@@ -13,9 +13,9 @@ $(document).ready(function (){
 
 
     function loadTransactions(page = 1, query= "", semester=""){
-        $(".table-tbody").html('<tr class="table-tr"><td colspan="6">Loading grades...</td></tr>');
+        $(".table-tbody").html('<tr class="table-tr"><td colspan="5">Loading grades...</td></tr>');
         $.ajax({
-            url:`/api/get-registrar-transaction-page/?page=${page}&q=${query}&filter=${semester}`,
+            url:`/api/get-registrar-complete-page/?page=${page}&q=${query}&filter=${semester}`,
             type: "GET",
             dataType: "json",
             success: function(response){
@@ -24,7 +24,7 @@ $(document).ready(function (){
                 table_body.empty()
                 
                 if (registrar_request.length == 0){
-                    table_body.append('<tr class="table-tr"><td colspan="6">No Transaction was found...</td></tr>')
+                    table_body.append('<tr class="table-tr"><td colspan="5">No Transaction was found...</td></tr>')
                 }
                 else{
                     $.each(registrar_request, function(index, registrar_request){
@@ -35,17 +35,6 @@ $(document).ready(function (){
                             <td class="registrar-table-data">${registrar_request.payment_purpose}</td>
                             <td class="registrar-table-data">${registrar_request.date_time}</td>
                             <td class="registrar-table-data">${registrar_request.registrar_status}</td>
-                            <td class="registrar-table-data actions unique-actions">
-                                    <button class="unique-btn unique-btn-view registrar-view-button process-document" data-id="${registrar_request.id}" data-bs-toggle="modal" data-bs-target="#processRequest">
-                                        <i class="fas fa-eye view-icon"></i>
-                                    </button>
-                                    <button class="unique-btn unique-btn-approve registrar-approve-button" data-id="${registrar_request.id}" data-bs-toggle="modal" data-bs-target="#approveRequest">
-                                        <i class="fas fa-circle-check approve-icon"></i>
-                                    </button>
-                                    <button class="unique-btn unique-btn-reject registrar-reject-button">
-                                        <i class="fas fa-ban reject-icon"></i>
-                                    </button>
-                            </td>
                         </tr>`)
                     })
                 }
@@ -59,6 +48,7 @@ $(document).ready(function (){
               `)
             },
             error: function(){
+                alert("Data could not be retrieved")
                 table_body.html('<tr class="table-tr"><td colspan="8">Could not load data...</td></tr>')
             }
 

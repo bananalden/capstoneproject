@@ -1,16 +1,20 @@
 import pandas as pd
+import datetime
 from weasyprint import HTML
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.http import JsonResponse
 from django.template.loader import render_to_string
 from news.models import Announcement
 from transactions import forms, models
 from users.forms import edit_user, change_password, StudentProfileUpdate, StudentUserUpdate
 from users.models import CustomUser, Student
 from grades.models import Grades
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 
@@ -59,6 +63,8 @@ def edit_cashier(request):
     return render(request,'cashier/edit-cashier.html',context)
 
 def edit_cashier_password(request):
+    if request.user.role != 'CASHIER':
+        return redirect('authentication:unauthorized-view')
     form = change_password(request.user)
     context={
         'form':form
@@ -70,10 +76,16 @@ def edit_cashier_password(request):
 
 #REGISTRAR VIEWS START=================================
 
+@login_required(login_url='authentication:login')
 def registrar_home(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request, 'registrar/registrar.html')
 
+@login_required(login_url='authentication:login')
 def registrar_dashboard(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     total_students = Student.student.count()
     pending_transactions = models.Transaction.objects.filter(
         registrar_status=models.Transaction.RegistrarStatus.PENDING,
@@ -113,16 +125,54 @@ def registrar_dashboard(request):
     
     return render(request, 'registrar/registrar-dashboard.html',context)
 
+@login_required(login_url='authentication:login')
+def edit_registrar(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
+    form = edit_user(instance=request.user)
+    context = {
+        'form':form
+    }
+    return render(request,'registrar/edit-registrar.html',context)
+
+@login_required(login_url='authentication:login')
+def edit_registrar_password(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
+    form = change_password(request.user)
+    context={
+        'form':form
+    }
+    return render(request,'registrar/edit-registrar-password.html', context)
+
+@login_required(login_url='authentication:login')
 def registrar_document_request(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request, 'registrar/document-request.html')
 
+@login_required(login_url='authentication:login')
+def registrar_document_complete(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
+    return render(request, 'registrar/document-list-complete.html')
+
+@login_required(login_url='authentication:login')
 def registrar_generate_document(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request, 'registrar/generate-document.html')
 
+@login_required(login_url='authentication:login')
 def registrar_create_student(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request,'registrar/create-student-profile.html')
 
+@login_required(login_url='authentication:login')
 def registrar_grade_list(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request,'registrar/registrar-student-grades.html')
 
 
@@ -134,10 +184,16 @@ def registrar_grade_list(request):
 #REGISTRAR VIEWS END  =================================
 
 #STUDENT VIEWS START ==================================
+@login_required(login_url='authentication:login')
 def student_home(request):
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     return render(request,'studentview/studentdashboard.html')
 
+@login_required(login_url='authentication:login')
 def student_profile(request):
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     u_form = StudentUserUpdate(instance=request.user)
     p_form = StudentProfileUpdate(instance=request.user.student_id)
     context = {
@@ -148,7 +204,10 @@ def student_profile(request):
 
     return render(request,'studentview/studentprofile.html',context)
 
+@login_required(login_url='authentication:login')
 def student_edit_password(request):
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     form = change_password(request.user)
     context={
         'form':form
@@ -156,32 +215,45 @@ def student_edit_password(request):
     return render(request,'studentview/studentchangepassword.html', context)
 
 
+@login_required(login_url='authentication:login')
 def student_requestform(request):
-
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     form = forms.StudentPaymentForm()
     context = {
         'form':form
     }
     return render(request,'studentview/studentrequestform.html',context)
 
+@login_required(login_url='authentication:login')
 def student_newsfeed(request):
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     return render(request,'studentview/newsfeed.html')
 
+@login_required(login_url='authentication:login')
 def student_transaction(request):
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     return render(request, 'studentview/transaction-history.html')
 
 #STUDENT VIEWS END   ==================================
 
 #TEACHER VIEWS START   ==================================
 
+
 @login_required(login_url='authentication:login')
 def teacher_home(request):
+    if request.user.role != 'TEACHER':
+        return redirect('authentication:unauthorized-view')
     
     return render(request,'teacherview/teacherdashboard.html')
 
 
 @login_required(login_url='authentication:login')
 def teacher_newsfeed(request):
+    if request.user.role != 'TEACHER':
+        return redirect('authentication:unauthorized-view')
     announcement_list = Announcement.objects.all()
 
     p = Paginator(Announcement.objects.all(), 5)
@@ -194,14 +266,20 @@ def teacher_newsfeed(request):
     }
     return render(request,'teacherview/teachernewsfeed.html',context)
 
+@login_required(login_url='authentication:login')
 def edit_teacher(request):
+    if request.user.role != 'TEACHER':
+        return redirect('authentication:unauthorized-view')
     form = edit_user(instance=request.user)
     context = {
         'form':form
     }
     return render(request,'teacherview/edit-teacher.html',context)
 
+@login_required(login_url='authentication:login')
 def edit_teacher_password(request):
+    if request.user.role != 'TEACHER':
+        return redirect('authentication:unauthorized-view')
     form = change_password(request.user)
     context={
         'form':form
@@ -211,6 +289,7 @@ def edit_teacher_password(request):
 #TEACHER VIEWS START   ==================================
 
 
+
 #GENERATING CERTIFICATES ====================================
 
 def generate_cert(request):
@@ -218,6 +297,8 @@ def generate_cert(request):
         document_type = request.POST.get('document_type')
         transaction_id = request.POST.get('transID')
         pickup_date = request.POST.get('pickup-date')
+
+      
 
         if document_type == 'CERTIFICATE OF ENROLLMENT':
             form = forms.EnrollmentForm(request.POST)
@@ -232,6 +313,9 @@ def generate_cert(request):
             template_name = "pdf_templates/certificate_of_grades.html"
 
         if form.is_valid():
+
+
+            
         
             student = form.cleaned_data.get("student")
             year = form.cleaned_data.get('year')
@@ -240,9 +324,25 @@ def generate_cert(request):
             transaction = get_object_or_404(models.Transaction, id=transaction_id)
 
             if transaction.registrar_status != models.Transaction.RegistrarStatus.AVAILABLE:
+                if not pickup_date:
+                    return JsonResponse({
+                "status":"error",
+                "message":"Pick up date is required"
+            },status=400)
+                
                 transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
-                print("Something")
                 transaction.save()
+
+                #CONVERT THE DATE INTO ANOTHER FORMAT
+                pickup_date_obj = datetime.datetime.strptime(pickup_date, "%Y-%m-%d")  
+                formatted_datetime = pickup_date_obj.strftime("%B %d, %Y")
+
+                subject = "Document Request Update"
+                message = f"Hello {transaction.student.first_name} {transaction.student.last_name}, \n\nThis email is here to inform you that your request for {transaction.payment_purpose} is now available for pickup! \n\n Please pick up by {formatted_datetime}."
+                from_email = settings.DEFAULT_FROM_EMAIL
+                recipient_list = [transaction.student.email]
+                send_mail(subject,message,from_email,recipient_list)
+            
 
       
             print(student)
@@ -252,8 +352,10 @@ def generate_cert(request):
                 grades = Grades.objects.filter(student_usn=student_usn,year=year,semester=semester)
 
                 if not grades.exists():
-                    messages.warning(request,'No grades were found for the given student')
-                    return redirect('home:generate-document')
+                    return JsonResponse({
+                        "status":"error",
+                        "message":"No grades found for this student"
+                    },status=400)
                 
                 context = {
                     'student': student,
@@ -282,7 +384,11 @@ def generate_cert(request):
             return response
         else:
             print(form.errors)
-            return redirect('home:generate-document')
+            return JsonResponse({
+                        "status":"error",
+                        "message":"Invalid form data",
+                        "errors":form.errors
+                    },status=400)
 
 def gen_cert_success(request):
     return render(request, 'registrar/document-success.html')

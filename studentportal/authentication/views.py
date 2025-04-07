@@ -17,7 +17,7 @@ def home(request):
             case "CASHIER":
                 return redirect("home:cashier-home")
             case "REGISTRAR":
-                return redirect("home:registrar-home")
+                return redirect("home:registrar-dashboard")
     else:
         return render(request, 'authlogin/login.html')
 
@@ -26,7 +26,10 @@ def login_regular_user(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
+
+    
         if user is not None:
+            
             if user.role == 'ADMIN':
                 messages.warning(request,'Invalid USN or Password, please try again!')
                 return redirect('authentication:login')
@@ -40,7 +43,7 @@ def login_regular_user(request):
                 case "CASHIER":
                     return redirect("home:cashier-home")
                 case "REGISTRAR":
-                    return redirect("home:registrar-home")
+                    return redirect("home:registrar-dashboard")
       
         else:
             messages.warning(request,'Invalid USN or Password, please try again!')

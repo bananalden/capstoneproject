@@ -62,7 +62,7 @@ class updatePayment(forms.ModelForm):
 
         if instance.is_confirmed:
             subject = "Payment Update"
-            message = f"Hello {instance.student.first_name} {instance.student.last_name}, \n\nThis email is here to inform you that your payment has been confirmed and is now being processed by the registrar!"
+            message = f"Hello {instance.student.first_name} {instance.student.last_name}, \n\nThis email is here to inform you that your payment has been confirmed!\n\nIf your payment was for a document request, please wait for an email showing the pickup date."
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = [instance.student.email]
             send_mail(subject,message,from_email,recipient_list)

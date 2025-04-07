@@ -109,6 +109,8 @@ def grade_edit(request):
         form = edit_grade(request.POST, instance=grade_instance)
         if form.is_valid():
             form.save()
+            messages.success(request,'Grade changed successfully!')
             return redirect('home:grade-list')
         else:
+            messages.warning(request, form.errors)
             return redirect('home:grade-list')

@@ -33,15 +33,16 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{% static 'styles/sidebar.css'%}" />
-
+    
     <link rel="stylesheet" href="{% static 'styles/registrar.css'%}" />
 
     <link rel="stylesheet" href="{% static 'styles/registrar-dashboard.css'%}" />
 
     <link rel="stylesheet" href="{% static 'styles/document-request.css'%}" />
-
+    <link rel="stylesheet" href="{% static 'styles/alert-styles.css'%}" />
     <link rel="stylesheet" href="{% static 'styles/generate-document.css'%}" />
     <link rel="stylesheet" href="{% static 'styles/create-student-profile.css'%}" />
+    <link rel="stylesheet" href="{% static 'styles/edit-cashier.css'%}" />
 
     <script src="{% static 'js/registrar-dashboard.js'%}"></script>
     <script src="{% static 'js/create-student.js'%}"></script>
@@ -68,16 +69,17 @@
           >
         </li>
 
-        <li>
-          <a href="{%url 'home:document-request'%}" class="menu-item" data-link="document-request">
-            <i class="fas fa-file-alt"></i> Document Request
-          </a>
-        </li>
+        <li class="dropdown">
+          <a href="#" class="menu-item dropdown-toggle" data-toggle="dropdown"
+            ><i class="fas fa-file-alt"></i> Document Requests
+            <span class="caret"></span
+          ></a>
+          <ul class="dropdown-menu">
 
-       <li>
-          <a href="{%url 'home:generate-document'%}" class="menu-item" data-link="generate-document">
-            <i class="fas fa-print"></i> Generate Document
-          </a>
+            <li><a href="{%url 'home:document-request'%}">View Pending/Available Pending Requests</a></li>
+            <li><a href="{%url 'home:complete-document'%}">View Completed Requests</a></li>
+            
+          </ul>
         </li>
 
         <li>
@@ -87,17 +89,25 @@
         </li>
 
         <li>
-          <a href="{%url 'home:create-student-profile'%}" class="menu-item"     data-link="create-student-profile">
+          <a href="{%url 'home:create-student-profile'%}" class="menu-item" data-link="create-student-profile">
            <i class="fas fa-user-plus"></i> Create Student Users
+          </a>
+        </li>
+        
+        <li>
+          <a href="{%url 'home:edit-registrar'%}" class="menu-item" data-link="edit-users">
+            <i class="fas fa-user-edit"></i> Edit User
           </a>
         </li>
 
       </ul>
       <div class="user-profile">
-        <a href="#" class="menu-item" data-link="profile"
-          ><i class="fas fa-user"></i> User Profile</a
-        >
-        <a href="#" class="menu-item logout"
+        <a href="{%url 'home:edit-registrar-password'%}" class="menu-item" data-link="profile">
+          <i class="fas fa-key"></i> Change Password
+        </a>
+
+    
+        <a href="{%url 'authentication:logout'%}" class="menu-item logout"
           ><i class="fas fa-sign-out-alt"></i> Logout</a
         >
       </div>

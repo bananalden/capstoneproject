@@ -1,3 +1,4 @@
+import pandas as pd
 from django.shortcuts import render, redirect, get_object_or_404
 from users import forms
 from users import models
@@ -29,7 +30,7 @@ def edit_user(request):
 
                 case 'REGISTRAR':
                     messages.success(request, "User details successfully edited!")
-                    return redirect('home:registrar-home')
+                    return redirect('home:registrar-dashboard')
                 
                 case 'TEACHER':
                     messages.success(request, "User details successfully edited!")
@@ -47,7 +48,7 @@ def edit_user(request):
 
                 case 'REGISTRAR':
                     messages.warning(request, form.errors)
-                    return redirect('home:registrar-home')
+                    return redirect('home:registrar-dashboard')
                  
                 case 'TEACHER':
                     messages.warning(request, form.errors)
@@ -254,6 +255,22 @@ def delete_student(request):
         messages.warning(request,"Student deleted successfully")
         return redirect('admin:users:student-list')
 
+
+
+def student_profile_update(request):
+    if request.method == "POST":
+        u_form = forms.StudentUserUpdate(request.POST, instance=request.user)
+        p_form = forms.StudentProfileUpdate(request.POST,instance=request.user.student_id)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request,"Your profile has been modified!")
+            return redirect('home:student-profile')
+        else:
+            messages.warning(request,"Invalid inputs in profile editing, pelase fix!")
+            return redirect('home:student-profile')
+        
 #STUDENT ACTION END=============================================
 
 
@@ -283,7 +300,13 @@ def change_password_user(request):
 
                 case 'REGISTRAR':
                     messages.success(request, "Password has successfully been updated!")
-                    return redirect('home:registrar-home')
+                    return redirect('home:registrar-dashboard')
+                
+                case 'TEACHER':
+                    messages.success(request, "Password has successfully been updated!")
+                    return redirect('home:teacher-home')
+                    
+                    
             
             return redirect('authentication:login')
         else:
@@ -306,17 +329,83 @@ def change_password_user(request):
                     return redirect('home:registrar-home')
             messages.error(request, form.errors)
 
-def student_profile_update(request):
-    if request.method == "POST":
-        u_form = forms.StudentUserUpdate(request.POST, instance=request.user)
-        p_form = forms.StudentProfileUpdate(request.POST,instance=request.user.student_id)
+#USER PASSWORD EDIT=============================================
 
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
-            messages.success(request,"Your profile has been modified!")
-            return redirect('home:student-profile')
-        else:
-            messages.warning(request,"Invalid inputs in profile editing, pelase fix!")
-            return redirect('home:student-profile')
-        
+
+#BULK CREATE STUDENT =====================
+
+def bulk_register_student(request):
+    if request.method == "POST" and request.FILES.get('excel_file'):
+        excel_file = request.FILES['excel_file']
+
+        try:
+            # Read Excel file with USN and Password as strings
+            df = pd.read_excel(excel_file, dtype={'USN': str, 'Password': str})
+
+            required_columns = ['USN', 'First Name', 'Last Name', 'Email', 'Password', 'Course']
+            if not all(col in df.columns for col in required_columns):
+                messages.error(request, 'Missing required columns')
+                return redirect('home:create-student-profile')
+
+            student_instances = []
+            updated_profiles = []
+
+            for _, row in df.iterrows():
+                raw_username = row.get('USN')
+                # Check if raw_username is None or empty or "nan" (case insensitive) or "None"
+                if raw_username is None or str(raw_username).strip() in ["", "nan", "None"]:
+                    continue  # Skip this row
+
+                # Convert the raw_username to a proper string and remove trailing .0 if any
+                username = str(raw_username).strip().split('.')[0]
+                
+                if models.Student.objects.filter(username=username).exists():
+                    continue
+
+                raw_password = row.get('Password')
+                if raw_password is None or str(raw_password).strip() in ["", "nan", "None"]:
+                    messages.warning(request, f"Skipping {username}: Missing password")
+                    continue
+                password = str(raw_password).strip()
+
+                first_name = str(row.get('First Name', '')).strip()
+                last_name = str(row.get('Last Name', '')).strip()
+                email = str(row.get('Email', '')).strip()
+                course = str(row.get('Course', '')).strip()
+
+                # Create or update the student using the Student proxy model
+                student, created = models.Student.objects.update_or_create(
+                    username=username,
+                    defaults={
+                        'first_name': first_name,
+                        'last_name': last_name,
+                        'email': email,
+                        'password': make_password(password),
+                    }
+                )
+
+                profile, _ = models.StudentProfile.objects.update_or_create(
+                    student=student,
+                    defaults={'course':course}
+                )                
+
+                if created:
+                    student_instances.append(student)
+                else:
+                    updated_profiles.append(profile)
+
+            if student_instances:
+                messages.success(request, f"Successfully added {len(student_instances)} students!")
+            if updated_profiles:
+                messages.success(request, f"Updated {updated_profiles} student profiles!")
+
+        except Exception as e:
+            messages.error(request, f"An error occurred: {e}")
+            return redirect('home:create-student-profile')
+
+        return redirect('home:create-student-profile')
+    else:
+        messages.error(request, "No file uploaded")
+        return redirect('home:create-student-profile')
+
+#BULK CREATE STUDENT =====================

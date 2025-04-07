@@ -6,12 +6,47 @@ Grade List
 
 {%load static%}
 {% block content %}
+{%for msg in messages%}
+  {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+       <div class="alert alert-warnings alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {%endif%}
+{%endfor%}
+
+
+
 
 <div class="registrar-crud-dashboard">
         <h1 class="registrar-list-title">Grade List</h1>
     
         <!-- Search Section -->
         <div class="registrar-search-container">
+          <div class="filter-request">
+            <select id="semester-select">
+              <option value="" selected>Display All</option>
+              <option value="1st">1st</option>
+              <option value="2nd">2nd</option>
+            </select>
+            <button type="button" id="filter-grade">Filter</button>
+          </div>
+            
             <input type="text" id="registrar-search-request" placeholder="Search by USN">
             <button type="button" class="btn btn-primary m-1" id="searchButton">Search</button>
         </div>
@@ -30,26 +65,7 @@ Grade List
                 </tr>
             </thead>
             <tbody id="grade-data" class="grade-data">
-                <tr class="registrar-table-row">
-                    <td class="registrar-table-data">21001396500</td>
-                    <td class="registrar-table-data">Joe Mama</td>
-                    <td class="registrar-table-data">UGRD-GE6300</td>
-                    <td class="registrar-table-data">Life and Works of Rizal</td>
-                    <td class="registrar-table-data">2024-2025</td>
-                    <td class="registrar-table-data">2nd</td>
-                    <td class="registrar-table-data">96.80</td>
-                    <td class="registrar-table-data actions unique-actions">
-                        <button class="unique-btn unique-btn-view registrar-view-button">
-                            <i class="fas fa-eye view-icon"></i>
-                        </button>
-                        <button class="unique-btn unique-btn-approve registrar-approve-button">
-                            <i class="fas fa-circle-check approve-icon"></i>
-                        </button>
-                        <button class="unique-btn unique-btn-reject registrar-reject-button">
-                            <i class="fas fa-ban reject-icon"></i>
-                        </button>
-                    </td>
-                </tr>
+                
             </tbody>
         </table>
     
@@ -64,11 +80,11 @@ Grade List
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Grades</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form action="#" method="post">
+      <form action="{%url 'home:grades:grade-edit'%}" method="post">
         {% csrf_token %}
         <input type="hidden" name="gradeID" id="gradeID">
         <div class="form-group">
@@ -78,7 +94,7 @@ Grade List
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
     </form>
       </div>
     </div>

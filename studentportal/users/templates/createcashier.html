@@ -25,7 +25,8 @@ Cashier List
         <!-- Search and Add Course Section -->
         <div class="search-container">
 
-            <input type="text" id="search-course" placeholder="Search Course">
+            <input type="text" id="search-course" class="search-val" placeholder="Search Cashier User">
+            <button type="button" class="btn btn-primary" id="search-button">Search</button>
         </div>
 
         <!-- Course Table -->
@@ -38,31 +39,13 @@ Cashier List
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="course-list">
-                {%for cashier in cashiers%}
-                <tr>
-                    <td>{{cashier.first_name}} {{cashier.last_name}}</td>
-                    <td>{{cashier.username}}</td>
-                    <td>{{cashier.email}}</td>
-                    <td>
-                      <div class="buttons">
-                        <button class="action-btn edit-btn" data-id="{{cashier.id}}" data-bs-toggle="modal" data-bs-target="#editCourse">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button type="button" data-id="{{cashier.id}}" class="action-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCourse">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </button>
-                    </div>
-                </td>
-                </tr>
-                {%endfor%}
+            <tbody class="cashier-list" id="course-list">
+                
             </tbody>
         </table>
 
         <!-- Pagination -->
         <div id="pagination">
-            <button id="prev-btn" class="pagination-btn" aria-label="Previous page">Previous</button>
-            <button id="next-btn" class="pagination-btn" aria-label="Next page">Next</button>
         </div>
     </div>
 
@@ -139,6 +122,6 @@ Cashier List
       </div>
     </div>
   </div>
-<script src="{%static 'js/admin_modal_ud.js'%}"></script>
+<script src="{%static 'js/admin_cashier_user.js'%}"></script>
 <!--DELETE COURSE END-->
 {% endblock content %}

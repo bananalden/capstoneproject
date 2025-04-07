@@ -1,10 +1,9 @@
-function openModal(studentName, documentType, status, dateRequested, notes) {
+function openModal(studentName, documentType, status, dateRequested) {
   document.getElementById('uniqueRequestDetails').innerHTML = `
       <p><strong>Student Name:</strong> ${studentName}</p>
       <p><strong>Document Type:</strong> ${documentType}</p>
       <p><strong>Status:</strong> ${status}</p>
       <p><strong>Date Requested:</strong> ${dateRequested}</p>
-      <p><strong>Additional Notes:</strong> ${notes}</p>
   `;
 
   const overlay = Object.assign(document.createElement('div'), {
