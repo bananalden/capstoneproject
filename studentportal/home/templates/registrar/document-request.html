@@ -33,14 +33,17 @@ Document Request
 
 <div class="registrar-crud-dashboard">
         <h1 class="registrar-list-title">Document Request List</h1>
-
-        <div class="filter-docu-request">
-          <select id="filter-request">
-              <option value="">Display All</option>
-              <option value="CERTIFICATE OF ENROLLMENT">Certificate of Enrollment</option>
-              <option value="CERTIFICATE OF GOOD MORALE">Certificate of Good Morale</option>
-              <option value="CERTIFICATE OF GRADES">Certificate of Grades</option>
-          </select>
+    
+        <!-- Search Section -->
+        <div class="registrar-search-container">
+          <div class="filter-docu">
+            <select id="filter-request">
+                <option value="">Display All</option>
+                <option value="CERTIFICATE OF ENROLLMENT">Certificate of Enrollment</option>
+                <option value="CERTIFICATE OF GOOD MORALE">Certificate of Good Morale</option>
+                <option value="CERTIFICATE OF GRADES">Certificate of Grades</option>
+            </select>
+            <button type="button" id="filter-purpose">Filter</button>
         </div>
 
         <!-- Search Section -->
