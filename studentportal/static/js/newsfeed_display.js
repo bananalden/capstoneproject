@@ -1,11 +1,11 @@
 $(document).ready(function(){
     let currentPage = 1;  // Track current page
 
-    function loadNews(page) {
+    function loadNews(page,query) {
         $("#newsfeed").html('<div id="loading-spinner">Loading news... <span class="spinner"></span></div>');
 
         $.ajax({
-            url: `/api/get-news-page/?page=${page}`, 
+            url: `/api/get-news-page/?page=${page}&q=${query}`, 
             type: "GET",
             dataType: "json",
             success: function(response) {

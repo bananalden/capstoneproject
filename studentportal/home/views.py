@@ -63,6 +63,8 @@ def edit_cashier(request):
     return render(request,'cashier/edit-cashier.html',context)
 
 def edit_cashier_password(request):
+    if request.user.role != 'CASHIER':
+        return redirect('authentication:unauthorized-view')
     form = change_password(request.user)
     context={
         'form':form
@@ -74,10 +76,16 @@ def edit_cashier_password(request):
 
 #REGISTRAR VIEWS START=================================
 
+@login_required(login_url='authentication:login')
 def registrar_home(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request, 'registrar/registrar.html')
 
+@login_required(login_url='authentication:login')
 def registrar_dashboard(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     total_students = Student.student.count()
     pending_transactions = models.Transaction.objects.filter(
         registrar_status=models.Transaction.RegistrarStatus.PENDING,
@@ -117,33 +125,54 @@ def registrar_dashboard(request):
     
     return render(request, 'registrar/registrar-dashboard.html',context)
 
+@login_required(login_url='authentication:login')
 def edit_registrar(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     form = edit_user(instance=request.user)
     context = {
         'form':form
     }
     return render(request,'registrar/edit-registrar.html',context)
 
+@login_required(login_url='authentication:login')
 def edit_registrar_password(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     form = change_password(request.user)
     context={
         'form':form
     }
     return render(request,'registrar/edit-registrar-password.html', context)
 
+@login_required(login_url='authentication:login')
 def registrar_document_request(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request, 'registrar/document-request.html')
 
+@login_required(login_url='authentication:login')
 def registrar_document_complete(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request, 'registrar/document-list-complete.html')
 
+@login_required(login_url='authentication:login')
 def registrar_generate_document(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request, 'registrar/generate-document.html')
 
+@login_required(login_url='authentication:login')
 def registrar_create_student(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request,'registrar/create-student-profile.html')
 
+@login_required(login_url='authentication:login')
 def registrar_grade_list(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
     return render(request,'registrar/registrar-student-grades.html')
 
 
@@ -155,10 +184,16 @@ def registrar_grade_list(request):
 #REGISTRAR VIEWS END  =================================
 
 #STUDENT VIEWS START ==================================
+@login_required(login_url='authentication:login')
 def student_home(request):
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     return render(request,'studentview/studentdashboard.html')
 
+@login_required(login_url='authentication:login')
 def student_profile(request):
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     u_form = StudentUserUpdate(instance=request.user)
     p_form = StudentProfileUpdate(instance=request.user.student_id)
     context = {
@@ -169,7 +204,10 @@ def student_profile(request):
 
     return render(request,'studentview/studentprofile.html',context)
 
+@login_required(login_url='authentication:login')
 def student_edit_password(request):
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     form = change_password(request.user)
     context={
         'form':form
@@ -177,32 +215,45 @@ def student_edit_password(request):
     return render(request,'studentview/studentchangepassword.html', context)
 
 
+@login_required(login_url='authentication:login')
 def student_requestform(request):
-
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     form = forms.StudentPaymentForm()
     context = {
         'form':form
     }
     return render(request,'studentview/studentrequestform.html',context)
 
+@login_required(login_url='authentication:login')
 def student_newsfeed(request):
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     return render(request,'studentview/newsfeed.html')
 
+@login_required(login_url='authentication:login')
 def student_transaction(request):
+    if request.user.role != 'STUDENT':
+        return redirect('authentication:unauthorized-view')
     return render(request, 'studentview/transaction-history.html')
 
 #STUDENT VIEWS END   ==================================
 
 #TEACHER VIEWS START   ==================================
 
+
 @login_required(login_url='authentication:login')
 def teacher_home(request):
+    if request.user.role != 'TEACHER':
+        return redirect('authentication:unauthorized-view')
     
     return render(request,'teacherview/teacherdashboard.html')
 
 
 @login_required(login_url='authentication:login')
 def teacher_newsfeed(request):
+    if request.user.role != 'TEACHER':
+        return redirect('authentication:unauthorized-view')
     announcement_list = Announcement.objects.all()
 
     p = Paginator(Announcement.objects.all(), 5)
@@ -215,14 +266,20 @@ def teacher_newsfeed(request):
     }
     return render(request,'teacherview/teachernewsfeed.html',context)
 
+@login_required(login_url='authentication:login')
 def edit_teacher(request):
+    if request.user.role != 'TEACHER':
+        return redirect('authentication:unauthorized-view')
     form = edit_user(instance=request.user)
     context = {
         'form':form
     }
     return render(request,'teacherview/edit-teacher.html',context)
 
+@login_required(login_url='authentication:login')
 def edit_teacher_password(request):
+    if request.user.role != 'TEACHER':
+        return redirect('authentication:unauthorized-view')
     form = change_password(request.user)
     context={
         'form':form
@@ -230,6 +287,7 @@ def edit_teacher_password(request):
     return render(request,'teacherview/teacher-password.html', context)
 
 #TEACHER VIEWS START   ==================================
+
 
 
 #GENERATING CERTIFICATES ====================================

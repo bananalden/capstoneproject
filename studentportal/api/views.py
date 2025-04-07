@@ -43,7 +43,8 @@ def get_cashier(request):
     if search_query:
         user = user_data.CustomUser.objects.filter(
             Q(first_name__icontains=search_query) |
-            Q(last_name__icontains=search_query)
+            Q(last_name__icontains=search_query) |
+            Q(username__icontains=search_query)
         )
 
     paginator = Paginator(user, 10)
@@ -75,7 +76,8 @@ def get_teacher(request):
     if search_query:
         user = user_data.CustomUser.objects.filter(
             Q(first_name__icontains=search_query) |
-            Q(last_name__icontains=search_query)
+            Q(last_name__icontains=search_query) |
+            Q(username__icontains=search_query)
         )
 
     paginator = Paginator(user, 10)
@@ -107,7 +109,8 @@ def get_registrar(request):
     if search_query:
         user = user_data.CustomUser.objects.filter(
             Q(first_name__icontains=search_query) |
-            Q(last_name__icontains=search_query)
+            Q(last_name__icontains=search_query) |
+            Q(username__icontains=search_query)
         )
 
     paginator = Paginator(user, 10)
@@ -139,7 +142,8 @@ def get_student(request):
     if search_query:
         user = user_data.CustomUser.objects.filter(
             Q(first_name__icontains=search_query) |
-            Q(last_name__icontains=search_query)
+            Q(last_name__icontains=search_query) |
+            Q(username__icontains=search_query)
         )
 
     paginator = Paginator(user, 10)
@@ -162,6 +166,7 @@ def get_student(request):
         "page":student_page.number,
         "total_pages":paginator.num_pages
     })
+
 
 
 
@@ -190,7 +195,15 @@ def news_list(request):
 
 def get_news(request):
     page = request.GET.get("page", 1)  
+    search_query = request.GET.get("q","")
     news_list = news_data.Announcement.objects.all().order_by("-created_on")
+
+    if search_query:
+        news_list = news_data.Announcement.objects.filter(
+            Q(author__first_name__icontains=search_query) |
+            Q(author__last_name__icontains=search_query) |
+            Q(title__icontains=search_query) 
+        )
 
     paginator = Paginator(news_list, 5)  
     try:
