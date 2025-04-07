@@ -25,6 +25,9 @@ class StudentPaymentForm(forms.ModelForm):
         CHOICES = [("", "-----SELECT TRANSACTION PURPOSE-----")] + list(Transaction.PaymentPurposeChoice.choices)
         self.fields["payment_purpose"].choices = CHOICES
         self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
+        self.fields["payment_proof"].widget.attrs.update({
+            "accept":"image/*"
+        })
 
     def clean_amount(self):
         amount = self.cleaned_data.get("amount")
