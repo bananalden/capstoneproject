@@ -9,8 +9,13 @@ Create Student Profile
 <div class="create-student-container">
   <div class="create-student-title">Upload Student List</div>
   <div class="create-student-text">Select an Excel file to add students to the system.</div>
+  
   <input type="file" id="fileInput" hidden>
+  
   <button class="create-student-btn" onclick="document.getElementById('fileInput').click()">Upload Excel File</button>
+  
+  <!-- Display selected file name -->
+  <span id="fileName" class="file-name-text"></span>
 </div>
 
 
