@@ -86,7 +86,7 @@ $(document).ready(function (){
         loadGrades(currentPage, searchVal)
     })
     
-    $("#filter-grade").on("click",function(){
+    $("#semester-select").on("change",function(){
         var semester = $("#semester-select").val()
         console.log(semester)
         var currentPage = 1

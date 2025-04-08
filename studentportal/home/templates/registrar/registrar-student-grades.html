@@ -35,18 +35,18 @@ Grade List
 
 <div class="registrar-crud-dashboard">
         <h1 class="registrar-list-title">Grade List</h1>
-    
+
+        <div class="filter-docu-request">
+          <select id="filter-request">
+              <option value="">Display All</option>
+              <option value="CERTIFICATE OF ENROLLMENT">Certificate of Enrollment</option>
+              <option value="CERTIFICATE OF GOOD MORALE">Certificate of Good Morale</option>
+              <option value="CERTIFICATE OF GRADES">Certificate of Grades</option>
+          </select>
+        </div>
+
         <!-- Search Section -->
         <div class="registrar-search-container">
-          <div class="filter-request">
-            <select id="semester-select">
-              <option value="" selected>Display All</option>
-              <option value="1st">1st</option>
-              <option value="2nd">2nd</option>
-            </select>
-            <button type="button" id="filter-grade">Filter</button>
-          </div>
-            
             <input type="text" id="registrar-search-request" placeholder="Search by USN">
             <button type="button" class="btn btn-primary m-1" id="searchButton">Search</button>
         </div>
