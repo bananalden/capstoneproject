@@ -42,6 +42,15 @@
   color: #7f8c8d;
 }
 
+.search_announcements {
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  width: 250px; /* Adjust the width for input */
+  box-sizing: border-box;
+}
+
 /* Placeholder Animation */
 .search_announcements::placeholder {
   transition: all 0.3s ease-in-out;
@@ -60,6 +69,39 @@
   border-color: #3498db;
   box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
 }
+
+/* NEWS BUTTON */
+.news-button {
+  background-color: #4A90E2;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 12px;
+  height: 100%;
+  max-width: 100px;
+}
+
+/* Hover effect for the button */
+.news-button:hover {
+  background-color: #357ABD;
+  transform: translateY(-3px);
+}
+
+/* Active effect for the button */
+.news-button:active {
+  background-color: #2C5F9E;
+  transform: scale(0.96);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* NEWSFEED END */
 
 /* Announcement Category Dropdown */
 .announcement_category_container {
