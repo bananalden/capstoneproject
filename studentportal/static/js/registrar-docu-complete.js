@@ -58,30 +58,33 @@ $(document).ready(function (){
     }
 
     loadTransactions()
-   
+    
     $("#registrar-pagination").on("click", "#next-btn", function() {
         var searchVal = $("#registrar-search-request").val()
+        var purposeVal = $("#filter-request").val()
         currentPage++;
-        loadTransactions(currentPage,searchVal);
+        loadTransactions(currentPage,searchVal,purposeVal);
     
     });
-  
-
+    
+    
     $("#registrar-pagination").on("click", "#prev-btn", function() {
         var searchVal = $("#registrar-search-request").val()
+        var purposeVal = $("#filter-request").val()
         if (currentPage > 1) {
             currentPage--;
-            loadTransactions(currentPage,searchVal);
+            loadTransactions(currentPage,searchVal,purposeVal);
         }
     });
 
     $("#searchButton").on("click", function(){
         var searchVal = $("#registrar-search-request").val()
+        var purposeVal = $("#filter-request").val()
         var currentPage = 1
-        loadTransactions(currentPage, searchVal)
+        loadTransactions(currentPage, searchVal, purposeVal)
     })
     
-    $("#filter-purpose").on("click",function(){
+    $("#filter-request").on("click",function(){
         var purposeVal = $("#filter-request").val()
         console.log(purposeVal)
         var currentPage = 1
