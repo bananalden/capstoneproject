@@ -1,4 +1,4 @@
-{% extends "userbase/base.html" %}
+{% extends "adminbase/base.html" %} 
 {% block title %}
 Student List
 {% endblock title %}
@@ -25,7 +25,8 @@ Student List
         <!-- Search and Add Course Section -->
         <div class="search-container">
 
-            <input type="text" id="search-course" placeholder="Search Course">
+            <input type="text" id="search-course" placeholder="Search Registrars">
+            <button type="button" class="button-search-admin" id="search-button">Search</button>
         </div>
 
         <!-- Course Table -->
