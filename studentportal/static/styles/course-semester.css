@@ -324,44 +324,21 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Search Container Styling */
-/* .search-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-#search-course {
-  margin-left: auto;
-  width: 50%;
-  max-width: 300px;
-  padding: 10px 15px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 30px;
-  outline: none;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s;
-}
-
-#search-course:focus {
-  border-color: #007bff;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
-} */
-
+/* SEARCH INPUT */
 .search-container {
   margin-bottom: 20px;
   display: flex;
-  justify-content: flex-end; /* Push search bar to the right */
-  position: relative;
+  justify-content: flex-end;
   width: 100%;
-  max-width: 350px;
-  margin-left: auto; /* Ensures it stays on the right */
+  max-width: 400px;
+  margin-left: auto;
+  position: relative;
 }
 
+/* Search input field */
 #search-course {
   width: 100%;
-  padding: 12px 15px 12px 50px; /* Increased left padding to move placeholder past icon */
+  padding: 12px 15px 12px 50px;
   border: 1px solid #ddd;
   border-radius: 12px;
   font-size: 16px;
@@ -371,9 +348,9 @@ h1 {
   outline: none;
 }
 
-/* Search Icon */
+/* Search icon */
 .search-container::before {
-  content: "\1F50D"; /* Unicode for magnifying glass */
+  content: "\1F50D"; /* Unicode for the magnifying glass */
   position: absolute;
   left: 15px;
   top: 50%;
@@ -382,18 +359,19 @@ h1 {
   color: #7f8c8d;
 }
 
-/* Placeholder Animation */
+/* Placeholder animation */
 #search-course::placeholder {
   transition: all 0.3s ease-in-out;
   padding-left: 10px; /* Ensures placeholder text starts after the icon */
 }
 
+/* Focus placeholder animation */
 #search-course:focus::placeholder {
   opacity: 0;
   transform: translateY(-10px);
 }
 
-/* Focus Effect */
+/* Input focus effect */
 #search-course:focus {
   width: 100%;
   background-color: #f0faff;
@@ -401,6 +379,40 @@ h1 {
   box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
 }
 
+/* BUTTON SEARCH  */
+.button-search-admin {
+  background-color: #4A90E2;
+  color: #fff;
+  border: none;
+  height: 100%;
+  width: 100%;
+  max-width: 100px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 12px;
+  margin-top: 7px;
+}
+
+.button-search-admin:hover {
+  background-color: #357ABD;
+  transform: translateY(-3px);
+}
+
+.button-search-admin:active {
+  background-color: #2C5F9E;
+  transform: scale(0.96);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+/* BUTTON SEARCH END */
 /* Table Styles */
 table {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

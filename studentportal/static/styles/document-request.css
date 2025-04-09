@@ -19,8 +19,9 @@
   margin-bottom: 20px;
 }
 
-/* Search Container */
-/* .registrar-search-container {
+
+/* Search Bar Styling */
+.registrar-search-container {
   margin-bottom: 20px;
   display: flex;
   justify-content: flex-end;
@@ -28,62 +29,9 @@
   max-width: 350px;
   margin-left: auto;
   position: relative;
-} */
-
-/* Search Bar Styling */
-.registrar-search-container  {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-end; /* Push search bar to the right */
-  position: relative;
-  width: 100%;
-  max-width: 350px;
-  margin-left: auto; /* Ensures it stays on the right */
 }
 
-.registrar-search-container  input{
-  width: 100%;
-  padding: 12px 15px 12px 50px; /* Increased left padding to move placeholder past icon */
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  font-size: 16px;
-  transition: all 0.4s ease-in-out;
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  outline: none;
-}
-
-/* Search Icon */
-.registrar-search-container ::before {
-  content: "\1F50D"; /* Unicode for magnifying glass */
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #7f8c8d;
-}
-
-/* Placeholder Animation */
-.registrar-search-container ::placeholder {
-  transition: all 0.3s ease-in-out;
-  padding-left: 10px; /* Ensures placeholder text starts after the icon */
-}
-
-.registrar-search-container :focus::placeholder {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-/* Focus Effect */
-.registrar-search-container :focus {
-  width: 100%;
-  background-color: #f0faff;
-  border-color: #3498db;
-  box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
-}
-
-
+/* Search input field */
 #registrar-search-request {
   width: 100%;
   padding: 12px 15px 12px 50px;
@@ -96,9 +44,9 @@
   outline: none;
 }
 
-/* Search Icon */
-.registrar-search-request::before {
-  content: "\1F50D";
+/* Search icon */
+.registrar-search-container::before {
+  content: "\1F50D"; /* Unicode for the magnifying glass */
   position: absolute;
   left: 15px;
   top: 50%;
@@ -106,6 +54,60 @@
   font-size: 18px;
   color: #7f8c8d;
 }
+
+/* Placeholder animation */
+#registrar-search-request::placeholder {
+  transition: all 0.3s ease-in-out;
+  padding-left: 10px; /* Ensures placeholder text starts after the icon */
+}
+
+/* Focus placeholder animation */
+#registrar-search-request:focus::placeholder {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Input focus effect */
+#registrar-search-request:focus {
+  width: 100%;
+  background-color: #f0faff;
+  border-color: #3498db;
+  box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Search button style */
+.button-req-search {
+  background-color: #4A90E2;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px; /* Space between input and button */
+}
+
+/* Hover effect for button */
+.button-req-search:hover {
+  background-color: #357ABD;
+  transform: translateY(-2px);
+}
+
+/* Active effect for button */
+.button-req-search:active {
+  background-color: #2C5F9E;
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
 
 /* FILTER SECTION */
 
@@ -129,10 +131,6 @@
 #filter-request:hover {
   border-color: #007BFF; /* Change border color on hover */
 }
-
-
-
-
 
 /* Table Styles */
 .request-table {
