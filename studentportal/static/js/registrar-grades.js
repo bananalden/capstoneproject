@@ -65,29 +65,32 @@ $(document).ready(function (){
     loadGrades()
    
     $("#registrar-pagination").on("click", "#next-btn", function() {
+        var semester = $("#filter-request").val()
         var searchVal = $("#registrar-search-request").val()
         currentPage++;
-        loadGrades(currentPage, searchVal);
+        loadGrades(currentPage, searchVal,semester);
     
     });
   
 
     $("#registrar-pagination").on("click", "#prev-btn", function() {
+        var semester = $("#filter-request").val()
         var searchVal = $("#registrar-search-request").val()
         if (currentPage > 1) {
             currentPage--;
-            loadGrades(currentPage,searchVal);
+            loadGrades(currentPage,searchVal,semester);
         }
     });
 
     $("#searchButton").on("click", function(){
+        var semester = $("#filter-request").val()
         var searchVal = $("#registrar-search-request").val()
         var currentPage = 1
-        loadGrades(currentPage, searchVal)
+        loadGrades(currentPage, searchVal,semester)
     })
     
-    $("#filter-grade").on("click",function(){
-        var semester = $("#semester-select").val()
+    $("#filter-request").on("change",function(){
+        var semester = $("#filter-request").val()
         console.log(semester)
         var currentPage = 1
         var searchVal = $("#searchInput").val()

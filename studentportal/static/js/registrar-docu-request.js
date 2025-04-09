@@ -42,9 +42,7 @@ $(document).ready(function (){
                                     <button class="unique-btn unique-btn-approve registrar-approve-button" data-id="${registrar_request.id}" data-bs-toggle="modal" data-bs-target="#approveRequest">
                                         <i class="fas fa-circle-check approve-icon"></i>
                                     </button>
-                                    <button class="unique-btn unique-btn-reject registrar-reject-button">
-                                        <i class="fas fa-ban reject-icon"></i>
-                                    </button>
+
                             </td>
                         </tr>`)
                     })
@@ -91,7 +89,7 @@ $(document).ready(function (){
         loadTransactions(currentPage, searchVal)
     })
     
-    $("#filter-purpose").on("click",function(){
+    $("#filter-request").on("change",function(){
         var purposeVal = $("#filter-request").val()
         console.log(purposeVal)
         var currentPage = 1
@@ -123,20 +121,52 @@ $(document).on("click", "#process-request", function(e){
         xhrFields: {
             responseType:'blob'
         },
-        success: function(data){
+        success: function(data, status, xhr){
             let blob = new Blob([data], { type: "application/pdf" });
             let url = window.URL.createObjectURL(blob);
-            window.open(url, "_blank");
+            let disposition = xhr.getResponseHeader('Content-Disposition');
+            let filename = "certificate.pdf";
+            if (disposition && disposition.indexOf('filename=') !== -1) {
+                filename = disposition.split('filename=')[1].replace(/['"]/g, '').trim();
+            }
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
             window.location.href = "/home/registrar/gen-cert-success/"
         },
-        error: function(xhr, status, error){
-            let reader = new FileReader();
-            reader.onload = function(){
-                let response = JSON.parse(reader.result);
-                alert("An error occurred: " + response.message);
+        error: function(xhr, status, error) {
+            console.log(xhr);
+            const reader = new FileReader();
+        
+            reader.onload = function () {
+                try {
+                    const result = JSON.parse(reader.result);
+                    const message = result.message || "An unexpected error occurred.";
+                    alert("An error occurred: " + message);
+                } catch (e) {
+                    console.error("Failed to parse error response as JSON", reader.result);
+                    alert("An unexpected error occurred while processing the response.");
+                }
+            };
+        
+            // Check if the response is a Blob (because responseType: 'blob' is set)
+            const contentType = xhr.getResponseHeader("Content-Type") || "";
+        
+            if (xhr.response instanceof Blob && contentType.includes("application/json")) {
+                // It's a JSON error in blob form
+                reader.readAsText(xhr.response);
+            } else if (xhr.responseText) {
+                // Fallback: parse as text if not a blob
+                reader.readAsText(new Blob([xhr.responseText]));
+            } else {
+                alert("An unknown error occurred.");
+            }
         }
-        reader.readAsText(xhr.responseText)
-        }
+        
     })
 })
 

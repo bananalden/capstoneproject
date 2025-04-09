@@ -38,7 +38,7 @@ Create Student Profile
     
     {% csrf_token %}
     <span id="fileName" class="file-name-text"></span>
-    <input type="file" name="excel_file" id="fileInput" hidden>
+    <input type="file" name="excel_file" id="fileInput" accept=".xlsx, .xls" hidden>
     <button type="button" class="create-student-btn" onclick="document.getElementById('fileInput').click()">Select Excel File</button>
     
     

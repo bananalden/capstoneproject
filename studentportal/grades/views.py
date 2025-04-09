@@ -1,4 +1,5 @@
 import pandas as pd
+import zipfile
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from grades.models import Grades
@@ -9,7 +10,7 @@ from django.db import IntegrityError
 
 def grade_upload(request):
    if request.method == 'POST':
-        print("It is indeed a POST request")
+      
 
         if "grades" not in request.FILES:
             print("File Checking")
@@ -17,7 +18,7 @@ def grade_upload(request):
             return redirect('home:teacher-home')
 
         excel_file = request.FILES['grades']
-        print(f"Uploaded file:{excel_file}")
+    
 
         try:
             # Load Excel file
@@ -32,12 +33,11 @@ def grade_upload(request):
 
             # Read SETUP sheet to determine grade type
             identifier_df = pd.read_excel(xls, sheet_name=identifier_sheet, engine="openpyxl")
-            print("SETUP was found")
+          
             grade_type = str(identifier_df.iloc[5, 1]).strip()  # Read B6 cell
-            print(f"Grade Type:{grade_type}")
+           
 
             if grade_type not in ["LECTURE", "LAB"]:
-                print("Invalid grade type")
                 messages.warning(request, "Invalid sheet type. Please use a valid grade sheet.")
                 return redirect('home:teacher-home')
 
@@ -49,7 +49,6 @@ def grade_upload(request):
                 sheet_name = "ONLINE_F2F_GRADES_LECONLY"
 
             if sheet_name not in xls.sheet_names:
-                print("Could not find sheet name")
                 messages.warning(request, f"The expected sheet '{sheet_name}' is missing.")
                 return redirect('home:teacher-home')
 
@@ -60,7 +59,6 @@ def grade_upload(request):
             # Required columns check
             required_columns = ["USN/STUDENT ID", "SUBJECT CODE", "SUBJECT TITLE", "SEMESTER", "YEAR", "FINAL GRADE"]
             if not all(col in df.columns for col in required_columns):
-                print(df.columns.tolist())
                 messages.warning(request, "Invalid sheet format. Required columns are missing.")
                 return redirect('home:teacher-home')
             
@@ -72,7 +70,6 @@ def grade_upload(request):
                 try:
                     grade_value = float(row["FINAL GRADE"])
                 except:
-                    print("Invalid grade value")
                     continue
             
                 student_usn = str(row["USN/STUDENT ID"]).split(".")[0]
@@ -95,6 +92,10 @@ def grade_upload(request):
                     return redirect("home:teacher-home")
 
             messages.success(request, "Grades uploaded successfully!")
+            return redirect('home:teacher-home')
+        
+        except zipfile.BadZipFile:
+            messages.warning(request, "Invalid file format, please upload a .xlsx or xls file!")
             return redirect('home:teacher-home')
 
         except Exception as e:

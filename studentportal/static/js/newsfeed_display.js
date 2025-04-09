@@ -1,7 +1,7 @@
 $(document).ready(function(){
     let currentPage = 1;  // Track current page
 
-    function loadNews(page,query) {
+    function loadNews(page,query="") {
         $("#newsfeed").html('<div id="loading-spinner">Loading news... <span class="spinner"></span></div>');
 
         $.ajax({

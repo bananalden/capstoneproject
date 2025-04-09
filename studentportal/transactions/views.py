@@ -30,7 +30,7 @@ def confirm_payment(request):
 
         if form.is_valid():
             
-            messages.success(request,"Payment request succesfully confirmed!")
+            messages.success(request,"Payment request status has been updated!")
             form.save()
             return redirect('home:unconfirmed-cashier-transactions')
         else:

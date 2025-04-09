@@ -45,7 +45,10 @@ def edit_admin_password(request):
     }
     return render(request, 'editadmin-password.html', context)
 
+@login_required(login_url='authentication:login')
 def admin_newsfeed(request):
+    if request.user.role != "ADMIN":
+        return redirect('authentication:unauthorized-view')
     return render(request,'newsfeed-edit.html')
 
 def edit_news_item(request):

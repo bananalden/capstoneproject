@@ -337,6 +337,18 @@ def change_password_user(request):
 def bulk_register_student(request):
     if request.method == "POST" and request.FILES.get('excel_file'):
         excel_file = request.FILES['excel_file']
+        valid_mime_types = [
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',  # .xlsx
+        'application/vnd.ms-excel'  # .xls
+        ]
+        valid_extensions = ['.xls', '.xlsx']
+        file_mime_type = excel_file.content_type
+        file_name = excel_file.name
+
+        if file_mime_type not in valid_mime_types or not any(file_name.endswith(ext) for ext in valid_extensions):
+            messages.warning(request, "Invalid file type. Please upload a valid Excel file (.xls or .xlsx).")
+            return redirect('home:create-student-profile')
+        
 
         try:
             # Read Excel file with USN and Password as strings
