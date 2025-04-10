@@ -7,14 +7,16 @@ $(document).ready(function (){
     let currentPage= 1;
     let searchQuery = "";
 
-   
+    function getSortOrder(){
+        return $("#filterDate").val()
+    }
 
 
 
-    function loadTransactions(page = 1, query= "", purpose=""){
+    function loadTransactions(page = 1, query= "", purpose="",sort="desc"){
         $(".table-tbody").html('<tr class="table-tr"><td colspan="7">Loading transaction...</td></tr>');
         $.ajax({
-            url:`/api/get-transaction-page-confirmed/?page=${page}&q=${query}&filter=${purpose}`,
+            url:`/api/get-transaction-page-confirmed/?page=${page}&q=${query}&filter=${purpose}&sort=${sort}`,
             type: "GET",
             dataType: "json",
             success: function(response){
@@ -60,28 +62,30 @@ $(document).ready(function (){
 
     loadTransactions()
    
-    $("#second-pagination").on("click", "#prevPage", function() {
-        var purposeVal = $(this).val()
-        var searchVal = $("#searchInput").val()
-        if (currentPage > 1) {
-            currentPage--;
-            loadTransactions(currentPage,searchVal,purposeVal);
-        }
-    });
-    
-    $("#searchButton").on("click", function(){
-        var purposeVal = $(this).val()
-        var searchVal = $("#searchInput").val()
-        var currentPage = 1
-        loadTransactions(currentPage,searchVal,purposeVal)
-    })
-    
-    $("#filterPurpose").on("change",function(){
-        var purposeVal = $(this).val()
-        var currentPage = 1
-        var searchVal = $("#searchInput").val()
-        loadTransactions(currentPage,searchVal,purposeVal)
-    })
+ // Search
+ $("#searchButton").on("click", function () {
+    var purposeVal = $("#filterPurpose").val();
+    var searchVal = $("#searchInput").val();
+    currentPage = 1;
+    loadTransactions(currentPage, searchVal, purposeVal, getSortOrder());
+});
+
+// Filter
+$("#filterPurpose").on("change", function () {
+    var purposeVal = $(this).val();
+    var searchVal = $("#searchInput").val();
+    currentPage = 1;
+    loadTransactions(currentPage, searchVal, purposeVal, getSortOrder());
+});
+
+// Sort
+$("#filterDate").on("change", function () {
+    var purposeVal = $("#filterPurpose").val();
+    var searchVal = $("#searchInput").val();
+    currentPage = 1;
+    loadTransactions(currentPage, searchVal, purposeVal, getSortOrder());
+});
+
 
 
     $("#exportExcel").on("click", function(){

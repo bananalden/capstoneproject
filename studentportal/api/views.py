@@ -265,8 +265,14 @@ def cashier_transaction_data_unconfirmed(request):
     page = request.GET.get("page",1)
     search_query = request.GET.get("q","")
     filter_status = request.GET.get("filter","")
-    transaction_list = transactions_data.Transaction.objects.all().order_by("-date_time").filter(is_confirmed=False)
-    
+    sort_order = request.GET.get("sort","desc")
+
+    if sort_order == "asc":
+        ordering = "date_time"
+    else:
+        ordering = "-date_time"
+
+    transaction_list = transactions_data.Transaction.objects.all().order_by(ordering).filter(is_confirmed=False)
 
     if search_query:
         transaction_list = transaction_list.filter(
@@ -311,7 +317,14 @@ def cashier_transaction_data_confirmed(request):
     page = request.GET.get("page",1)
     search_query = request.GET.get("q","")
     filter_status = request.GET.get("filter","")
-    transaction_list = transactions_data.Transaction.objects.all().order_by("-date_time").filter(is_confirmed=True)
+    sort_order = request.GET.get("sort","desc")
+
+    if sort_order == "asc":
+        ordering = "date_time"
+    else:
+        ordering = "-date_time"
+
+    transaction_list = transactions_data.Transaction.objects.all().order_by(ordering).filter(is_confirmed=True)
     
 
     if search_query:
