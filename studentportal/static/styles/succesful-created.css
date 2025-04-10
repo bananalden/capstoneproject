@@ -1,17 +1,44 @@
-
-
 .successful-created {
-  background-color: #52b69a;
+  background-color: #e6ffed;
+  border: 1px solid #b7eb8f;
+  border-left: 5px solid #52c41a;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  height: 100%;
-  width: 100%;
-  max-width: 550px;
-  margin: auto;
-  padding: 25px 20px 20px;
-  
+  padding: 18px 22px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  animation: fadeInUp 0.5s ease-out;
+  display: flex;
+  align-items: center;
 }
 
 .successful {
-  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.successful::before {
+  content: "✔";
+  color: #52c41a;
+  font-size: 22px;
+  margin-right: 12px;
+  font-weight: bold;
+}
+
+.successful p {
+  margin: 0;
+  font-size: 16px;
+  color: #2c662d;
+  line-height: 1.5;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
