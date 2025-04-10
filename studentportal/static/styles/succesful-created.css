@@ -1,0 +1,17 @@
+
+
+.successful-created {
+  background-color: #52b69a;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  height: 100%;
+  width: 100%;
+  max-width: 550px;
+  margin: auto;
+  padding: 25px 20px 20px;
+  
+}
+
+.successful {
+  text-align: center;
+}
