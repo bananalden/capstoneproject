@@ -1,29 +1,41 @@
 $(document).ready(function(){
     let currentPage = 1;  // Track current page
 
-    function loadNews(page,query="") {
+    function loadNews(page,query="",sort="desc") {
         $("#newsfeed").html('<div id="loading-spinner">Loading news... <span class="spinner"></span></div>');
 
         $.ajax({
-            url: `/api/get-news-page/?page=${page}&q=${query}`, 
+            url: `/api/get-news-page/?page=${page}&q=${query}&sort=${sort}`, 
             type: "GET",
             dataType: "json",
             success: function(response) {
-                $("#loading-spinner").remove();
+                var newsItems = response.news
                 $("#newsfeed").empty();
-
-                response.news.forEach(function(newsItem) {
+                if (newsItems.length == 0){
                     var newsComponent = `
-                        <div class="news-item" data-date="${newsItem.formatted_date}">
-                            <h2>${newsItem.title}</h2>
-                            <p>${newsItem.body}</p>
-                            <span class="date">${newsItem.formatted_date}</span>
-                            <p><strong>Author:</strong> ${newsItem.author}</p>
-                        </div>
+                   <div id="loading-spinner">No news... <span class="spinner"></span></div>
                     `;
                     $("#newsfeed").append(newsComponent);
-                });
-
+                }
+                else{
+                    $.each(newsItems, function(index, news_list){
+                        var newsComponent = `
+                    <div class="announcement_list">
+                    <div class="announcement_item" data-teacher="Ms. Reyes">
+                        <h3 class="announcement_title">
+                            <a href="#" class="announcement_link">${news_list.title}</a>
+                        </h3>
+                        <p class="announcement_description">
+                            ${news_list.body}
+                        </p>
+                        <p class="announcement_post_info">Posted: ${news_list.formatted_date} | Posted by: ${news_list.author}</p>
+                       
+                    </div>
+                </div>
+                    `;
+                    $("#newsfeed").append(newsComponent);
+                    })
+                }
 
                 $("#pagination").html(`
                     <button id="prevPage" class="btn" ${response.page == 1 ? "disabled" : ""}>Previous</button>
@@ -58,6 +70,14 @@ $(document).ready(function(){
         currentPage++;
         loadNews(currentPage);
     });
+
+    $("#sort-filter").on("change",function(){
+        console.log("I changed!")
+        var currentPage = 1
+        var searchValue = $("#search-input").val()
+        var sort = $("#sort-filter").val()
+        loadNews(currentPage, searchValue, sort)
+    })
 });
 
 

@@ -196,7 +196,14 @@ def news_list(request):
 def get_news(request):
     page = request.GET.get("page", 1)  
     search_query = request.GET.get("q","")
-    news_list = news_data.Announcement.objects.all().order_by("-created_on")
+    sort_order = request.GET.get("sort","desc")
+
+    if sort_order == "asc":
+        ordering = "created_on"
+    else:
+        ordering = "-created_on"
+
+    news_list = news_data.Announcement.objects.all().order_by(ordering)
 
     if search_query:
         news_list = news_data.Announcement.objects.filter(

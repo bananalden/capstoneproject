@@ -12,7 +12,7 @@ $(document).ready(function (){
 
 
     function loadTransactions(page = 1, query= "", purpose=""){
-        $(".table-tbody").html('<tr class="table-tr"><td colspan="4">Loading transaction...</td></tr>');
+        $(".table-tbody").html('<tr class="table-tr"><td colspan="6">Loading transaction...</td></tr>');
         $.ajax({
             url:`/api/student-transaction-history/?page=${page}&q=${query}&filter=${purpose}`,
             type: "GET",
@@ -24,7 +24,7 @@ $(document).ready(function (){
                 
             
                 if (transaction_list.length == 0){
-                    table_body.append('<tr class="table-tr"><td colspan="5">No transactions found...</td></tr>')
+                    table_body.append('<tr class="table-tr"><td colspan="6">No transactions found...</td></tr>')
                 }
                 else{
                     $.each(transaction_list, function(index, transaction_list){

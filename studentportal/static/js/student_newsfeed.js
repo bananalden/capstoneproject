@@ -1,34 +1,43 @@
 $(document).ready(function(){
     let currentPage = 1;  // Track current page
 
-    function loadNews(page,query="") {
+    function loadNews(page,query="",sort="desc") {
         $("#newsfeed").html('<div id="loading-spinner">Loading news... <span class="spinner"></span></div>');
 
         $.ajax({
-            url: `/api/get-news-page/?page=${page}&q=${query}`, 
+            url: `/api/get-news-page/?page=${page}&q=${query}&sort=${sort}`, 
             type: "GET",
             dataType: "json",
             success: function(response) {
+                var newsItems = response.news
                 $("#loading-spinner").remove();
                 $("#newsfeed").empty();
 
-                response.news.forEach(function(newsItem) {
+                if (newsItems.length == 0){
                     var newsComponent = `
+                    <div id="loading-spinner">Loading news... <span class="spinner"></span></div>
+                    `;
+                    $("#newsfeed").append(newsComponent);
+                }
+                else{
+                    $.each(newsItems, function(index, news_list){
+                        var newsComponent = `
                     <div class="announcement_list">
                     <div class="announcement_item" data-teacher="Ms. Reyes">
                         <h3 class="announcement_title">
-                            <a href="#" class="announcement_link">${newsItem.title}</a>
+                            <a href="#" class="announcement_link">${news_list.title}</a>
                         </h3>
                         <p class="announcement_description">
-                            ${newsItem.body}
+                            ${news_list.body}
                         </p>
-                        <p class="announcement_post_info">Posted: ${newsItem.formatted_date} | Posted by: ${newsItem.author}</p>
+                        <p class="announcement_post_info">Posted: ${news_list.formatted_date} | Posted by: ${news_list.author}</p>
                        
                     </div>
                 </div>
                     `;
                     $("#newsfeed").append(newsComponent);
-                });
+                    })
+                }
 
 
                 $("#pagination").html(`
@@ -67,6 +76,14 @@ $(document).ready(function(){
         var searchValue = $("#search-input").val()
         loadNews(currentPage,searchValue)
 
+    })
+
+    $("#filterDropdown").on("change",function(){
+        console.log("I changed!")
+        var currentPage = 1
+        var searchValue = $("#search-input").val()
+        var sort = $("#filterDropdown").val()
+        loadNews(currentPage, searchValue, sort)
     })
 });
 
