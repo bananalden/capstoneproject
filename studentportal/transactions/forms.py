@@ -28,11 +28,20 @@ class StudentPaymentForm(forms.ModelForm):
         self.fields["payment_proof"].widget.attrs.update({
             "accept":"image/*"
         })
+        self.fields["amount"].widget.attrs.update({
+        "min": "1",
+        "step": "0.01",
+            })
+       
 
     def clean_amount(self):
         amount = self.cleaned_data.get("amount")
 
         if amount is not None:
+            if amount < 0:
+                raise ValidationError("Amount cannot be negative")
+            if amount < 1:
+                raise ValidationError("Amount must be at least 1.00")
             return round(amount,2)
         return amount
     
@@ -69,6 +78,10 @@ class updatePayment(forms.ModelForm):
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = [instance.student.email]
             send_mail(subject,message,from_email,recipient_list)
+            if commit:
+                instance.save()
+            return instance
+
 
         else:
             subject = "Payment Update"
@@ -76,10 +89,11 @@ class updatePayment(forms.ModelForm):
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = [instance.student.email]
             send_mail(subject,message,from_email,recipient_list)
-        if commit:
-            instance.save()
+            if commit:
+                instance.save()
+                instance.delete()
         
-        return instance
+            return None
 
 
 #FORM VALIDATION FOR DOCUMENT GENERATION===========================

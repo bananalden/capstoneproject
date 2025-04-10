@@ -61,6 +61,17 @@ def complete_docu_request(request):
     else:
         messages.warning(request, 'Invalid form data')
         return redirect('home:document-request')
+    
+def cancel_docu_request(request):
+    if request.method == "POST":
+        transaction_id = request.POST.get("transID")
+        transaction_object = Transaction.objects.get(id=transaction_id)
+        transaction_object.delete()
+        messages.success(request, 'Transaction has now been cancelled')
+        return redirect('home:student-transaction')
+    else:
+        messages.warning(request, 'Invalid form data')
+        return redirect('home:student-transaction')
         
 
             

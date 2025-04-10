@@ -1,6 +1,30 @@
 {% extends "studentview/studentsidebar.html" %} {%load static%} {% block title %}
 Transaction History {%endblock title %} {% block content %}
 
+{%for msg in messages%}
+  {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+       <div class="alert alert-warnings alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {%endif%}
+{%endfor%}
+
 <div class="trans-container">
   <h1>Transaction History</h1>
   <div class="filters">
@@ -26,6 +50,7 @@ Transaction History {%endblock title %} {% block content %}
           <th>Other Payment Purpose</th>
           <th>Confirmation Status</th>
           <th>Registrar Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody class="table-tbody">
@@ -43,7 +68,27 @@ Transaction History {%endblock title %} {% block content %}
   </div>
 </div>
 
-
+<div class="modal fade" id="cancelTransaction" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cancel Confirmation</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'home:transactions:cancel-request'%}" method="post">
+          {% csrf_token %}
+        <input type="hidden" name="transID" id="transID">
+        Are you sure you want to cancel this transaction?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Cancel Transaction</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

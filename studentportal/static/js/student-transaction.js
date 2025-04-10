@@ -29,8 +29,6 @@ $(document).ready(function (){
                 else{
                     $.each(transaction_list, function(index, transaction_list){
                         var registrarStatus = (transaction_list.payment_purpose === "TUITION FEE" || transaction_list.payment_purpose === "OTHER") ? "-" : transaction_list.registrar_status
-                        console.log(transaction_list.registrar_status)
-                        console.log(transaction_list.payment_purpose)
                         table_body.append(`
                         <tr class="table-tr">
                         <td>${transaction_list.date_time}</td>
@@ -38,6 +36,7 @@ $(document).ready(function (){
                         <td>${transaction_list.payment_purpose_other || "-" }</td>
                         <td class="confirmation-status" data-status="${transaction_list.is_confirmed ? "Confirmed" : "Not Confirmed"}">${transaction_list.is_confirmed ? "Confirmed" : "Not Confirmed"}</td>
                         <td>${registrarStatus}</td>
+                        <td><button type="button" class="btn btn-danger btn-cancel" data-bs-toggle="modal" data-bs-target="#cancelTransaction" data-id="${transaction_list.id}" ${transaction_list.is_confirmed ? "disabled" : ""}>CANCEL</button></td>
                         </tr>`)
                     })
                 }
@@ -94,6 +93,12 @@ $(document).ready(function (){
 
 
 //TABLE DATA END
+$(document).on("click",".btn-cancel", function(){
+    var transID = $(this).data('id')
 
+    console.log(transID)
+
+    $("#transID").val(transID)
+})
 
 //REVIEW PAYMENT BUTTON START
