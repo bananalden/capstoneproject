@@ -129,9 +129,20 @@ class GoodMoraleForm(forms.Form):
     def clean_year(self):
         year = self.cleaned_data.get('year')
 
-        if not re.match(r"^\d{4}-\d{4}$", year):
-            raise ValidationError("Invalid school year format. Please use 'YYYY-YYYY' format.")
-        return year
+        if not isinstance(year, str):
+            raise ValidationError("Year must be a string")
+        
+        if re.match(r"^\d{4}$", year):
+            next_year = str(int(year) + 1)
+            return f"{year} - {next_year}"
+    
+        if re.match(r"^\d{4}-\d{4}$", year):
+            start, end = map(int, year.split("-"))
+            if end != start + 1:
+                raise ValidationError("School year must span exactly one year, e.g. '2024-2025'.")
+            return year
+
+        raise ValidationError("Invalid school year format. Use 'YYYY' or 'YYYY-YYYY'.")
 
 class EnrollmentForm(forms.Form):
     student = forms.CharField(max_length=150,widget=forms.TextInput(attrs={
@@ -164,9 +175,20 @@ class EnrollmentForm(forms.Form):
     def clean_year(self):
         year = self.cleaned_data.get('year')
 
-        if not re.match(r"^\d{4}-\d{4}$", year):
-            raise ValidationError("Invalid school year format. Please use 'YYYY-YYYY' format.")
-        return year
+        if not isinstance(year, str):
+            raise ValidationError("Year must be a string")
+        
+        if re.match(r"^\d{4}$", year):
+            next_year = str(int(year) + 1)
+            return f"{year} - {next_year}"
+    
+        if re.match(r"^\d{4}-\d{4}$", year):
+            start, end = map(int, year.split("-"))
+            if end != start + 1:
+                raise ValidationError("School year must span exactly one year, e.g. '2024-2025'.")
+            return year
+
+        raise ValidationError("Invalid school year format. Use 'YYYY' or 'YYYY-YYYY'.")
 
 class CertificateOfGrades(forms.Form):
     student = forms.CharField(max_length=150,widget=forms.TextInput(attrs={
@@ -200,9 +222,20 @@ class CertificateOfGrades(forms.Form):
     def clean_year(self):
         year = self.cleaned_data.get('year')
 
-        if not re.match(r"^\d{4}-\d{4}$", year):
-            raise ValidationError("Invalid school year format. Please use 'YYYY-YYYY' format.")    
-        return year
+        if not isinstance(year, str):
+            raise ValidationError("Year must be a string")
+        
+        if re.match(r"^\d{4}$", year):
+            next_year = str(int(year) + 1)
+            return f"{year} - {next_year}"
+    
+        if re.match(r"^\d{4}-\d{4}$", year):
+            start, end = map(int, year.split("-"))
+            if end != start + 1:
+                raise ValidationError("School year must span exactly one year, e.g. '2024-2025'.")
+            return year
+
+        raise ValidationError("Invalid school year format. Use 'YYYY' or 'YYYY-YYYY'.")
 
 
             
