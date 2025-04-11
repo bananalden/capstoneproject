@@ -15,7 +15,7 @@ $(document).ready(function(){
 
                 if (newsItems.length == 0){
                     var newsComponent = `
-                    <div id="loading-spinner">Loading news... <span class="spinner"></span></div>
+                    <div id="loading-spinner">No news items... <span class="spinner"></span></div>
                     `;
                     $("#newsfeed").append(newsComponent);
                 }

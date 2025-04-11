@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 @receiver(post_save, sender=Student)
 def create_student_profile (sender, instance, created, **kwargs):
-    if created and instance.role =="STUDENT":
+    if created and instance.role =="STUDENT" and isinstance(instance, Student):
         profile_data = getattr(instance, 'profile_data',{})
         StudentProfile.objects.get_or_create(student=instance,
                                              defaults={

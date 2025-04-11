@@ -385,6 +385,7 @@ def bulk_register_student(request):
                 email = str(row.get('Email', '')).strip()
                 course = str(row.get('Course', '')).strip()
 
+               
                 # Create or update the student using the Student proxy model
                 student, created = models.Student.objects.update_or_create(
                     username=username,
