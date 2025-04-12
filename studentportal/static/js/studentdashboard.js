@@ -74,3 +74,8 @@ document.getElementById("next-month").addEventListener("click", () => {
 
 // Run calendar generator on page load
 generateCalendar(currentMonth, currentYear);
+
+
+// NOTIFICATION SECTION
+
+
