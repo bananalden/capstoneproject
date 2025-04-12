@@ -78,4 +78,36 @@ generateCalendar(currentMonth, currentYear);
 
 // NOTIFICATION SECTION
 
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".notification-btn");
+  const dropdown = document.querySelector(".notif-dropdown");
+  const clearBtn = document.querySelector(".clear-all");
+  const badge = document.querySelector(".notif-badge");
+
+  btn.addEventListener("click", e => {
+    e.stopPropagation();
+    dropdown.classList.toggle("active");
+  });
+
+  document.addEventListener("click", e => {
+    if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
+      dropdown.classList.remove("active");
+    }
+  });
+
+  clearBtn?.addEventListener("click", () => {
+    dropdown.classList.remove("active");
+
+    document.querySelectorAll(".notif-item").forEach(item => {
+      item.classList.remove("unread");
+      item.classList.add("read");
+    });
+
+    if (badge) {
+      badge.textContent = "0";
+      badge.style.display = "none";
+    }
+  });
+});
+
 
