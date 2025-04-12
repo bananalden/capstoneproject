@@ -2,6 +2,7 @@ import re
 from django import forms
 from django.utils.html import strip_tags
 from transactions.models import Transaction
+from notifications.models import Notification
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
@@ -78,6 +79,13 @@ class updatePayment(forms.ModelForm):
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = [instance.student.email]
             send_mail(subject,message,from_email,recipient_list)
+
+            Notification.objects.create(
+                recipient = instance.student,
+                message = f"Your payment has been confirmed by the cashier! If this transaction was a document request, please wait for a notification or an email to arrive shortly."
+            )
+
+
             if commit:
                 instance.save()
             return instance
@@ -89,6 +97,11 @@ class updatePayment(forms.ModelForm):
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = [instance.student.email]
             send_mail(subject,message,from_email,recipient_list)
+
+            Notification.objects.create(
+                recipient = instance.student,
+                message = f"There was an error confirming your payment, please contact the cashier to resolve this issue."
+            )
             if commit:
                 instance.save()
                 instance.delete()

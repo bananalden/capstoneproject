@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'grades.apps.GradesConfig',
     'authentication.apps.AuthenticationConfig',
     'transactions.apps.TransactionsConfig',
-    'api.apps.ApiConfig'
+    'api.apps.ApiConfig',
+    'notifications.apps.NotificationsConfig'
 ]
 
 

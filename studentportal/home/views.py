@@ -12,6 +12,7 @@ from news.models import Announcement
 from transactions import forms, models
 from users.forms import edit_user, change_password, StudentProfileUpdate, StudentUserUpdate
 from users.models import CustomUser, Student
+from notifications.models import Notification
 from grades.models import Grades
 from django.core.mail import send_mail
 from django.conf import settings
@@ -337,12 +338,17 @@ def generate_cert(request):
                 pickup_date_obj = datetime.datetime.strptime(pickup_date, "%Y-%m-%d")  
                 formatted_datetime = pickup_date_obj.strftime("%B %d, %Y")
 
+                Notification.objects.create(
+                    recipient=transaction.student,
+                    message = f"Your request for {transaction.payment_purpose} has been generated! Please receive by {formatted_datetime}"
+                )
+
                 subject = "Document Request Update"
                 message = f"Hello {transaction.student.first_name} {transaction.student.last_name}, \n\nThis email is here to inform you that your request for {transaction.payment_purpose} is now available for pickup! \n\n Please pick up by {formatted_datetime}."
                 from_email = settings.DEFAULT_FROM_EMAIL
                 recipient_list = [transaction.student.email]
                 send_mail(subject,message,from_email,recipient_list)
-            
+
 
       
             print(student)
