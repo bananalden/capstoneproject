@@ -47,7 +47,7 @@ header {
   font-weight: bold;
   cursor: pointer;
   color: #fff;
-  outline: none;  /* Remove outline for smoother appearance */
+  outline: none;
 }
 
 .notif-badge {
@@ -68,17 +68,24 @@ header {
   right: 0;
   width: 300px;
   background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   display: none;
   flex-direction: column;
   overflow: hidden;
-  z-index: 9998; /* Make sure dropdown is visible above other content */
+  z-index: 9998;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
 }
 
-.notification-btn:focus + .notif-dropdown,
-.notification-btn:active + .notif-dropdown {
-  display: flex; /* Show the dropdown when the button is focused or clicked */
+/* Show dropdown when active class is added */
+.notif-dropdown.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .notif-item {
@@ -128,6 +135,11 @@ header {
 .clear-all:hover {
   background: #f0f0f0;
 }
+
+.clear-all:active {
+  background: #e0e0e0;
+}
+
 
 /* NOTIFICATION END */
 
