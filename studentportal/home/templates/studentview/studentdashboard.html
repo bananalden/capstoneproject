@@ -36,8 +36,25 @@ Student Dashboard
     <div class="welcome-message">
       Welcome Back,<strong class="name-student">{{request.user.first_name}} {{request.user.last_name}}</strong>!
     </div>
-    <div class="current-time">
-      <p>Today's Date: <strong>{%now "M d, Y"%}</strong></p>
+    
+    <div class="notif-wrapper">
+      <div class="notif-header">
+        <button class="notification-btn" tabindex="0">
+          NOTIFICATION
+          <span class="notif-badge">1</span>
+        </button>
+        <div class="notif-dropdown">
+          <div class="notif-item unread">
+            <div class="notif-title">New Message</div>
+            <div class="notif-message">You received a message from Mark.</div>
+          </div>
+          <div class="notif-item read">
+            <div class="notif-title">Welcome!</div>
+            <div class="notif-message">Thanks for signing up. Enjoy your stay.</div>
+          </div>
+          <div class="clear-all">Clear All</div>
+        </div>
+      </div>
     </div>
   </header>
 
