@@ -32,11 +32,22 @@ class StudentPaymentForm(forms.ModelForm):
         self.fields["amount"].widget.attrs.update({
         "min": "1",
         "step": "0.01",
+        "id": "amount_paid",
             })
        
 
     def clean_amount(self):
         amount = self.cleaned_data.get("amount")
+        payment_purpose = self.cleaned_data.get("payment_purpose")
+
+        fixed_prices = {
+            "CERTIFICATE OF ENROLLMENT": 80.00,
+            "CERTIFICATE OF GRADES": 60.00,
+            "CERTIFICATE OF GOOD MORALE": 70.00,
+        }
+
+        if payment_purpose in fixed_prices:
+            return fixed_prices[payment_purpose]
 
         if amount is not None:
             if amount < 0:
