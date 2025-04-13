@@ -324,31 +324,7 @@ def generate_cert(request):
 
             transaction = get_object_or_404(models.Transaction, id=transaction_id)
 
-            if transaction.registrar_status != models.Transaction.RegistrarStatus.AVAILABLE:
-                if not pickup_date:
-                    return JsonResponse({
-                "status":"error",
-                "message":"Pick up date is required"
-            },status=400)
-                
-                transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
-                transaction.save()
-
-                #CONVERT THE DATE INTO ANOTHER FORMAT
-                pickup_date_obj = datetime.datetime.strptime(pickup_date, "%Y-%m-%d")  
-                formatted_datetime = pickup_date_obj.strftime("%B %d, %Y")
-
-                Notification.objects.create(
-                    title="REGISTRAR UPDATE",
-                    recipient=transaction.student,
-                    message = f"Your request for {transaction.payment_purpose} has been generated! Please receive by {formatted_datetime}"
-                )
-
-                subject = "Document Request Update"
-                message = f"Hello {transaction.student.first_name} {transaction.student.last_name}, \n\nThis email is here to inform you that your request for {transaction.payment_purpose} is now available for pickup! \n\n Please pick up by {formatted_datetime}."
-                from_email = settings.DEFAULT_FROM_EMAIL
-                recipient_list = [transaction.student.email]
-                send_mail(subject,message,from_email,recipient_list)
+            
 
 
       
@@ -385,6 +361,32 @@ def generate_cert(request):
            
             response = HttpResponse(pdf_file, content_type='application/pdf')
             response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.username}.pdf"'
+
+            if transaction.registrar_status != models.Transaction.RegistrarStatus.AVAILABLE:
+                if not pickup_date:
+                    return JsonResponse({
+                "status":"error",
+                "message":"Pick up date is required"
+            },status=400)
+                
+                transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
+                transaction.save()
+
+                #CONVERT THE DATE INTO ANOTHER FORMAT
+                pickup_date_obj = datetime.datetime.strptime(pickup_date, "%Y-%m-%d")  
+                formatted_datetime = pickup_date_obj.strftime("%B %d, %Y")
+
+                Notification.objects.create(
+                    title="REGISTRAR UPDATE",
+                    recipient=transaction.student,
+                    message = f"Your request for {transaction.payment_purpose} has been generated! Please receive by {formatted_datetime}"
+                )
+
+                subject = "Document Request Update"
+                message = f"Hello {transaction.student.first_name} {transaction.student.last_name}, \n\nThis email is here to inform you that your request for {transaction.payment_purpose} is now available for pickup! \n\n Please pick up by {formatted_datetime}."
+                from_email = settings.DEFAULT_FROM_EMAIL
+                recipient_list = [transaction.student.email]
+                send_mail(subject,message,from_email,recipient_list)
             
 
 
