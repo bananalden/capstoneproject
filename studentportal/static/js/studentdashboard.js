@@ -78,36 +78,96 @@ generateCalendar(currentMonth, currentYear);
 
 // NOTIFICATION SECTION
 
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.querySelector(".notification-btn");
-  const dropdown = document.querySelector(".notif-dropdown");
-  const clearBtn = document.querySelector(".clear-all");
-  const badge = document.querySelector(".notif-badge");
+$(document).ready(function () {
+  const $btn = $(".notification-btn");
+  const $dropdown = $(".notif-dropdown");
+  const $badge = $(".notif-badge");
 
-  btn.addEventListener("click", e => {
-    e.stopPropagation();
-    dropdown.classList.toggle("active");
-  });
+  function getCSRFToken() {
+    const cookieValue = document.cookie
+      .split("; ")
+      .find(row => row.startsWith("csrftoken="))
+      ?.split("=")[1];
+    return cookieValue || "";
+  }
 
-  document.addEventListener("click", e => {
-    if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
-      dropdown.classList.remove("active");
-    }
-  });
+  function loadNotifications() {
+    $.get("/api/notifications/", function (data) {
+      $dropdown.empty();
+      let unreadCount = 0;
 
-  clearBtn?.addEventListener("click", () => {
-    dropdown.classList.remove("active");
+      data.notifications.forEach(notification => {
+        const isUnread = !notification.is_read;
+        const notifClass = isUnread ? "unread" : "read";
+        if (isUnread) unreadCount++;
 
-    document.querySelectorAll(".notif-item").forEach(item => {
-      item.classList.remove("unread");
-      item.classList.add("read");
+        const notifHtml = `
+          <div class="notif-item ${notifClass}">
+            <div class="notif-title">${notification.title}</div>
+            <div class="notif-message">${notification.message}</div>
+          </div>
+        `;
+        $dropdown.append(notifHtml);
+      });
+
+      if (unreadCount > 0) {
+        $badge.text(unreadCount).show();
+      } else {
+        $badge.hide();
+      }
+
+      $dropdown.append(`<div class="clear-all">Clear All</div>`);
     });
+  }
 
-    if (badge) {
-      badge.textContent = "0";
-      badge.style.display = "none";
+  function markNotificationsAsRead() {
+    $.ajax({
+      url: "/api/notifications/mark-read/",
+      method: "POST",
+      headers: { "X-CSRFToken": getCSRFToken() },
+      success: () => {
+        loadNotifications(); // Refresh UI after marking as read
+      }
+    });
+  }
+
+  function clearNotifications(){
+    $.ajax({
+      url: "/api/notifications/clear-notifs/",
+      method:"POST",
+      headers:{"X-CSRFToken":getCSRFToken()},
+      succes: () =>{
+        loadNotifications()
+      }
+    })
+  }
+
+  // Toggle dropdown visibility
+  $btn.on("click", function (e) {
+    e.stopPropagation();
+    const shouldShow = !$dropdown.hasClass("active");
+    $dropdown.toggleClass("active");
+
+    if (shouldShow) {
+      markNotificationsAsRead(); // Only mark as read when opening
     }
   });
+
+  // Hide on click outside
+  $(document).on("click", function (e) {
+    if (
+      !$dropdown.is(e.target) &&
+      $dropdown.has(e.target).length === 0 &&
+      !$btn.is(e.target) &&
+      $btn.has(e.target).length === 0
+    ) {
+      $dropdown.removeClass("active");
+    }
+  });
+
+  // Optional: Auto-refresh every 60 seconds
+  setInterval(loadNotifications, 60000);
+
+  // Initial load
+  loadNotifications();
 });
-
-

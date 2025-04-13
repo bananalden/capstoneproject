@@ -339,6 +339,7 @@ def generate_cert(request):
                 formatted_datetime = pickup_date_obj.strftime("%B %d, %Y")
 
                 Notification.objects.create(
+                    title="REGISTRAR UPDATE",
                     recipient=transaction.student,
                     message = f"Your request for {transaction.payment_purpose} has been generated! Please receive by {formatted_datetime}"
                 )
