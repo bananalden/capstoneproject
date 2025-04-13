@@ -313,22 +313,11 @@ def generate_cert(request):
             form = forms.CertificateOfGrades(request.POST)
             template_name = "pdf_templates/certificate_of_grades.html"
 
-        if form.is_valid():
-
-
-            
-        
+        if form.is_valid():        
             student = form.cleaned_data.get("student")
             year = form.cleaned_data.get('year')
             semester = form.cleaned_data.get('semester')
-
             transaction = get_object_or_404(models.Transaction, id=transaction_id)
-
-            
-
-
-      
-            print(student)
 
             if document_type == 'CERTIFICATE OF GRADES':
                 student_usn = str(student.username)
