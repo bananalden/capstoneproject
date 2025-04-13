@@ -47,6 +47,7 @@
 .student-transaction-type select:focus {
   border-color: #c1121f;
   outline: none;
+  box-shadow: none;
 }
 
 /* Styling for the payment information */
@@ -55,6 +56,13 @@
   font-size: 18px;
   color: #023047;
 }
+
+.student-payment-info input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
 
 .student-payment-info strong {
   color: #c1121f;
