@@ -630,21 +630,21 @@ def get_specific_grade(request,pk):
 #NOTIF START ================================
 
 def get_notifs(request):
-    user = request.user.id
-    try:
-        notifications = Notification.objects.filter(recipient=user)
-        if notifications:
-            data = [{
-                'id': notif.id,
-                'title':notif.title,
-                'message':notif.message,
-                'is_read':notif.is_read
-            }
-            for notif in notifications
-            ]
-            return JsonResponse({'notifications':data})
-    except:
-        return(JsonResponse({'error':'Notifs not found'}, status=404))
+    user = request.user
+
+    if not user.is_authenticated:
+        return JsonResponse({'notifications': []})  # Return empty for unauthenticated
+
+    notifications = Notification.objects.filter(recipient=user)
+
+    data = [{
+        'id': notif.id,
+        'title': notif.title,
+        'message': notif.message,
+        'is_read': notif.is_read
+    } for notif in notifications]
+
+    return JsonResponse({'notifications': data})
     
 
 def mark_notifs_read(request):
@@ -655,7 +655,10 @@ def mark_notifs_read(request):
 
 def clear_notifs(request):
     user = request.user.id
-    Notification.objects.filter(recipient=user).update(is_read=True)
-    return JsonResponse({'status':'success'})
+    notifications = Notification.objects.filter(recipient=user)
+    notifications.delete()
+    return JsonResponse({"status":"success"})
+
+   
 
 #NOTIF END ================================

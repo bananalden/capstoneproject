@@ -39,6 +39,7 @@ urlpatterns = [
     #NOTIFS START
     path('notifications/',views.get_notifs,name="get-notifs"),
     path('notifications/mark-read/',views.mark_notifs_read,name="mark-notifs"),
+    path('notifications/clear-notifs/',views.clear_notifs,name="clear-notifs"),
 
 
     #NOTIFS END

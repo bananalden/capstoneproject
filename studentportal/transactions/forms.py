@@ -81,6 +81,7 @@ class updatePayment(forms.ModelForm):
             send_mail(subject,message,from_email,recipient_list)
 
             Notification.objects.create(
+                title="CASHIER UPDATE",
                 recipient = instance.student,
                 message = f"Your payment has been confirmed by the cashier! If this transaction was a document request, please wait for a notification or an email to arrive shortly."
             )
@@ -99,6 +100,7 @@ class updatePayment(forms.ModelForm):
             send_mail(subject,message,from_email,recipient_list)
 
             Notification.objects.create(
+                title="CASHIER UPDATE",
                 recipient = instance.student,
                 message = f"There was an error confirming your payment, please contact the cashier to resolve this issue."
             )

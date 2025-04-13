@@ -83,12 +83,23 @@ $(document).ready(function () {
   const $dropdown = $(".notif-dropdown");
   const $badge = $(".notif-badge");
 
-  function getCSRFToken() {
-    const cookieValue = document.cookie
-      .split("; ")
-      .find(row => row.startsWith("csrftoken="))
-      ?.split("=")[1];
-    return cookieValue || "";
+  // Get CSRF token from meta tag in <head>
+  const csrftoken = $('meta[name="csrf-token"]').attr("content");
+
+  function markNotificationsAsRead() {
+    $.ajax({
+      url: "/api/notifications/mark-read/",
+      method: "POST",
+      headers: {
+        "X-CSRFToken": csrftoken,
+      },
+      success: function () {
+        updateBadge(); // Update badge right after marking as read
+      },
+      error: function () {
+        console.error("Failed to mark notifications as read.");
+      },
+    });
   }
 
   function loadNotifications() {
@@ -96,61 +107,57 @@ $(document).ready(function () {
       $dropdown.empty();
       let unreadCount = 0;
 
-      data.notifications.forEach(notification => {
-        const isUnread = !notification.is_read;
-        const notifClass = isUnread ? "unread" : "read";
-        if (isUnread) unreadCount++;
+      if (data.notifications && data.notifications.length > 0) {
+        data.notifications.forEach(notification => {
+          const isUnread = !notification.is_read;
+          const notifClass = isUnread ? "unread" : "read";
+          if (isUnread) unreadCount++;
 
-        const notifHtml = `
-          <div class="notif-item ${notifClass}">
-            <div class="notif-title">${notification.title}</div>
-            <div class="notif-message">${notification.message}</div>
+          const notifHtml = `
+            <div class="notif-item ${notifClass}">
+              <div class="notif-title">${notification.title}</div>
+              <div class="notif-message">${notification.message}</div>
+            </div>
+          `;
+          $dropdown.append(notifHtml);
+        });
+
+        $dropdown.append(`<div class="clear-all">Clear All</div>`);
+      } else {
+        $dropdown.append(`
+          <div class="notif-item read">
+            <div class="notif-title">No new notifications</div>
+            <div class="notif-message">You're all caught up!</div>
           </div>
-        `;
-        $dropdown.append(notifHtml);
-      });
+        `);
+      }
+    });
+  }
+
+  function updateBadge() {
+    $.get("/api/notifications/", function (data) {
+      let unreadCount = 0;
+
+      if (data.notifications && data.notifications.length > 0) {
+        data.notifications.forEach(notification => {
+          if (!notification.is_read) unreadCount++;
+        });
+      }
 
       if (unreadCount > 0) {
-        $badge.text(unreadCount).show();
+        $badge.text(unreadCount).css("display", "inline-block");
       } else {
-        $badge.hide();
-      }
-
-      $dropdown.append(`<div class="clear-all">Clear All</div>`);
-    });
-  }
-
-  function markNotificationsAsRead() {
-    $.ajax({
-      url: "/api/notifications/mark-read/",
-      method: "POST",
-      headers: { "X-CSRFToken": getCSRFToken() },
-      success: () => {
-        loadNotifications(); // Refresh UI after marking as read
+        $badge.text("").css("display", "none");
       }
     });
-  }
-
-  function clearNotifications(){
-    $.ajax({
-      url: "/api/notifications/clear-notifs/",
-      method:"POST",
-      headers:{"X-CSRFToken":getCSRFToken()},
-      succes: () =>{
-        loadNotifications()
-      }
-    })
   }
 
   // Toggle dropdown visibility
   $btn.on("click", function (e) {
     e.stopPropagation();
-    const shouldShow = !$dropdown.hasClass("active");
     $dropdown.toggleClass("active");
-
-    if (shouldShow) {
-      markNotificationsAsRead(); // Only mark as read when opening
-    }
+    loadNotifications(); // Refresh on open
+    markNotificationsAsRead(); // Mark as read on open
   });
 
   // Hide on click outside
@@ -165,9 +172,27 @@ $(document).ready(function () {
     }
   });
 
-  // Optional: Auto-refresh every 60 seconds
-  setInterval(loadNotifications, 60000);
+  // Clear all notifications
+  $dropdown.on("click", ".clear-all", function () {
+    $.ajax({
+      url: "/api/notifications/clear-notifs/",
+      method: "POST",
+      headers: {
+        "X-CSRFToken": csrftoken,
+      },
+      success: function () {
+        loadNotifications();
+        updateBadge();
+      },
+      error: function () {
+        alert("Failed to clear notifications.");
+      },
+    });
+  });
 
-  // Initial load
-  loadNotifications();
+  // Initial badge load
+  updateBadge();
+
+  // Auto-refresh badge every 10 seconds
+  setInterval(updateBadge, 10000);
 });
