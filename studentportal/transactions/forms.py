@@ -284,6 +284,12 @@ class manualTransactionAdd(forms.ModelForm):
         CHOICES = [("", "-----SELECT TRANSACTION PURPOSE-----")] + list(Transaction.PaymentPurposeChoice.choices)
         self.fields["payment_purpose"].choices = CHOICES
         self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
+        self.fields["amount"].widget.attrs.update({
+        "min": "1",
+        "step": "0.01",
+        "id": "amount_paid",
+            })
+        
 
     
     def clean_student(self):
