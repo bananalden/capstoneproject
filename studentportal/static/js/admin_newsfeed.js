@@ -29,6 +29,8 @@ $(document).ready(function(){
                             ${news_list.body}
                         </p>
                         <p class="announcement_post_info">Posted: ${news_list.formatted_date} | Posted by: ${news_list.author}</p>
+                        <button type="button" class="btn edit-newsfeed" data-bs-toggle="modal" data-id="${news_list.id}" data-bs-target="#edit-newsitem">Edit</button>
+                        <button type="button" class="btn delete-newsfeed" data-bs-toggle="modal" data-id="${news_list.id}" data-bs-target="#delete-newsitem">Delete</button>
                        
                     </div>
                 </div>
