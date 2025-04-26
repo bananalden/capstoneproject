@@ -41,9 +41,9 @@ class StudentPaymentForm(forms.ModelForm):
         payment_purpose = self.cleaned_data.get("payment_purpose")
 
         fixed_prices = {
-            "CERTIFICATE OF ENROLLMENT": 80.00,
-            "CERTIFICATE OF GRADES": 60.00,
-            "CERTIFICATE OF GOOD MORALE": 70.00,
+            "CERTIFICATE OF ENROLLMENT": 90.00,
+            "CERTIFICATE OF GRADES": 90.00,
+            "CERTIFICATE OF GOOD MORALE": 90.00,
         }
 
         if payment_purpose in fixed_prices:

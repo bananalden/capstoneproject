@@ -15,19 +15,19 @@ $(document).ready(function (){
                 break;
                 
                 case "CERTIFICATE OF GRADES":
-                    $("#amount_paid").prop("disabled", false).prop("readonly",true).val(60)
+                    $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
                     $("#payment_other").hide()
                     $("#payment_purpose_other").removeAttr("required") 
                     break;
                     
                     case "CERTIFICATE OF GOOD MORALE":
-                        $("#amount_paid").prop("disabled", false).prop("readonly",true).val(70)
+                        $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
                         $("#payment_other").hide()
                         $("#payment_purpose_other").removeAttr("required")   
                         break;
                         
                         case "CERTIFICATE OF ENROLLMENT":    
-                        $("#amount_paid").prop("disabled", false).prop("readonly",true).val(80)
+                        $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
                         $("#payment_other").hide()
                         $("#payment_purpose_other").removeAttr("required")   
                         break;
