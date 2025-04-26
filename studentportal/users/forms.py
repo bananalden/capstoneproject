@@ -4,6 +4,7 @@ from django.utils.html import strip_tags
 from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.core.exceptions import ValidationError
 import re
 
 User = get_user_model()
@@ -47,7 +48,7 @@ class change_password(PasswordChangeForm):
             "placeholder":"Confirm your new password"
         })
         
-    
+
     class Meta:
         model = models.CustomUser
         fields = ['old_password','new_password1','new_password2']
@@ -60,6 +61,15 @@ class add_cashier(forms.ModelForm):
         widgets = {
             'password':forms.PasswordInput
         }
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get("first_name")
+        if re.search(r'\d',first_name):
+            raise ValidationError("First or last name cannot contain numbers!")
+        
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get("last_name")
+        if re.search(r'\d',last_name):
+            raise ValidationError("First or last name cannot contain numbers!")
     def save(self, commit=True):
         cashier = super().save(commit=False)
         cashier.set_password(self.cleaned_data['password'])
@@ -74,6 +84,17 @@ class add_teacher(forms.ModelForm):
         widgets = {
             'password':forms.PasswordInput
         }
+
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get("first_name")
+        if re.search(r'\d',first_name):
+            raise ValidationError("First or last name cannot contain numbers!")
+        
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get("last_name")
+        if re.search(r'\d',last_name):
+            raise ValidationError("First or last name cannot contain numbers!")
+
     def save(self, commit=True):
         teacher = super().save(commit=False)
         teacher.set_password(self.cleaned_data['password'])
@@ -88,6 +109,17 @@ class add_registrar(forms.ModelForm):
         widgets = {
             'password':forms.PasswordInput
         }
+
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get("first_name")
+        if re.search(r'\d',first_name):
+            raise ValidationError("First or last name cannot contain numbers!")
+        
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get("last_name")
+        if re.search(r'\d',last_name):
+            raise ValidationError("First or last name cannot contain numbers!")
+        
     def save(self, commit=True):
         registrar = super().save(commit=False)
         registrar.set_password(self.cleaned_data['password'])
@@ -106,15 +138,15 @@ class add_student(forms.ModelForm):
             'password':forms.PasswordInput
         }
 
-    def clean_username(self):
-        username =  self.cleaned_data.get("username")
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get("first_name")
+        if re.search(r'\d',first_name):
+            raise ValidationError("First or last name cannot contain numbers!")
         
-        if re.search(r'[a-zA-Z]',username):
-            error_message = "Username must not contain letters. Please use the student's ID number."
-            raise forms.ValidationError(strip_tags(error_message))
-
-        return username
-
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get("last_name")
+        if re.search(r'\d',last_name):
+            raise ValidationError("First or last name cannot contain numbers!")
 
     def save(self, commit=True):
         student = super().save(commit=False)
