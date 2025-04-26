@@ -291,7 +291,27 @@ class manualTransactionAdd(forms.ModelForm):
             })
         
 
-    
+    def clean_amount(self):
+        amount = self.cleaned_data.get("amount")
+        payment_purpose = self.cleaned_data.get("payment_purpose")
+
+        fixed_prices = {
+            "CERTIFICATE OF ENROLLMENT": 90.00,
+            "CERTIFICATE OF GRADES": 90.00,
+            "CERTIFICATE OF GOOD MORALE": 90.00,
+        }
+
+        if payment_purpose in fixed_prices:
+            return fixed_prices[payment_purpose]
+
+        if amount is not None:
+            if amount < 0:
+                raise ValidationError("Amount cannot be negative")
+            if amount < 1:
+                raise ValidationError("Amount must be at least 1.00")
+            return round(amount,2)
+        return amount
+        
     def clean_student(self):
         student_username = self.cleaned_data.get("student")
 
