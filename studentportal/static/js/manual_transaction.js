@@ -13,31 +13,35 @@ $(document).ready(function(){
                 $("#payment_purpose").hide()
                 $("#amount_paid").prop("disabled",false).prop("readonly",false).val("")
                 $("#payment_purpose_other").attr("required", false)
-                console.log("test")
+
                 break;
                 
             case "CERTIFICATE OF GRADES":
                 $("#payment_purpose").hide()
                 $("#amount_paid").prop("disabled",false).prop("readonly",true).val(90)
-                $("#payment_purpose_other").attr("required", false)    
+                $("#payment_purpose_other").attr("required", false)
+  
                 break;
                 
                 
-            case "CERTFICATE OF GOOD MORALE":
+                case "CERTIFICATE OF GOOD MORALE":
                 $("#payment_purpose").hide()
                 $("#amount_paid").prop("disabled",false).prop("readonly",true).val(90)
-                $("#payment_purpose_other").attr("required", false)    
+                $("#payment_purpose_other").attr("required", false)
+
                 break;
                 
             case "CERTIFICATE OF ENROLLMENT":
                 $("#payment_purpose").hide()
                 $("#amount_paid").prop("disabled",false).prop("readonly",true).val(90)
-                $("#payment_purpose_other").attr("required", false)    
+                $("#payment_purpose_other").attr("required", false)
+       
                 break;
             case "OTHER":        
                 $("#payment_purpose").show()
                 $("#amount_paid").prop("disabled",false).prop("readonly",false).val("")
-                $("#payment_purpose_other").attr("required", true)    
+                $("#payment_purpose_other").attr("required", true)
+          
                 break;    
 
       }

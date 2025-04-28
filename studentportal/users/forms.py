@@ -65,11 +65,14 @@ class add_cashier(forms.ModelForm):
         first_name = self.cleaned_data.get("first_name")
         if re.search(r'\d',first_name):
             raise ValidationError("First or last name cannot contain numbers!")
+        return first_name
         
     def clean_last_name(self):
         last_name = self.cleaned_data.get("last_name")
         if re.search(r'\d',last_name):
             raise ValidationError("First or last name cannot contain numbers!")
+        return last_name
+    
     def save(self, commit=True):
         cashier = super().save(commit=False)
         cashier.set_password(self.cleaned_data['password'])
@@ -89,11 +92,13 @@ class add_teacher(forms.ModelForm):
         first_name = self.cleaned_data.get("first_name")
         if re.search(r'\d',first_name):
             raise ValidationError("First or last name cannot contain numbers!")
+        return first_name
         
     def clean_last_name(self):
         last_name = self.cleaned_data.get("last_name")
         if re.search(r'\d',last_name):
             raise ValidationError("First or last name cannot contain numbers!")
+        return last_name
 
     def save(self, commit=True):
         teacher = super().save(commit=False)
@@ -114,11 +119,13 @@ class add_registrar(forms.ModelForm):
         first_name = self.cleaned_data.get("first_name")
         if re.search(r'\d',first_name):
             raise ValidationError("First or last name cannot contain numbers!")
+        return first_name
         
     def clean_last_name(self):
         last_name = self.cleaned_data.get("last_name")
         if re.search(r'\d',last_name):
             raise ValidationError("First or last name cannot contain numbers!")
+        return last_name
         
     def save(self, commit=True):
         registrar = super().save(commit=False)
@@ -142,11 +149,13 @@ class add_student(forms.ModelForm):
         first_name = self.cleaned_data.get("first_name")
         if re.search(r'\d',first_name):
             raise ValidationError("First or last name cannot contain numbers!")
+        return first_name
         
     def clean_last_name(self):
         last_name = self.cleaned_data.get("last_name")
         if re.search(r'\d',last_name):
             raise ValidationError("First or last name cannot contain numbers!")
+        return last_name
 
     def save(self, commit=True):
         student = super().save(commit=False)

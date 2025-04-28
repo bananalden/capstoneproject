@@ -1,5 +1,6 @@
 import pandas as pd
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db import transaction
 from users import forms
 from users import models
 from django.contrib.auth import get_user_model,update_session_auth_hash
@@ -338,8 +339,8 @@ def bulk_register_student(request):
     if request.method == "POST" and request.FILES.get('excel_file'):
         excel_file = request.FILES['excel_file']
         valid_mime_types = [
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',  # .xlsx
-        'application/vnd.ms-excel'  # .xls
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'application/vnd.ms-excel'
         ]
         valid_extensions = ['.xls', '.xlsx']
         file_mime_type = excel_file.content_type
@@ -348,10 +349,8 @@ def bulk_register_student(request):
         if file_mime_type not in valid_mime_types or not any(file_name.endswith(ext) for ext in valid_extensions):
             messages.warning(request, "Invalid file type. Please upload a valid Excel file (.xls or .xlsx).")
             return redirect('home:create-student-profile')
-        
 
         try:
-            # Read Excel file with USN and Password as strings
             df = pd.read_excel(excel_file, dtype={'USN': str, 'Password': str})
 
             required_columns = ['USN', 'First Name', 'Last Name', 'Email', 'Password', 'Course']
@@ -359,58 +358,63 @@ def bulk_register_student(request):
                 messages.error(request, 'Missing required columns')
                 return redirect('home:create-student-profile')
 
-            student_instances = []
-            updated_profiles = []
+            new_students = []
+            student_course_mapping = {}  # Save course for each username
+            existing_usernames = set(models.Student.objects.values_list('username', flat=True))
 
             for _, row in df.iterrows():
                 raw_username = row.get('USN')
-                # Check if raw_username is None or empty or "nan" (case insensitive) or "None"
                 if raw_username is None or str(raw_username).strip() in ["", "nan", "None"]:
-                    continue  # Skip this row
-
-                # Convert the raw_username to a proper string and remove trailing .0 if any
-                username = str(raw_username).strip().split('.')[0]
-                
-                if models.Student.objects.filter(username=username).exists():
                     continue
+
+                username = str(raw_username).strip().split('.')[0]
+                if username in existing_usernames:
+                    continue  # Skip if already exists
 
                 raw_password = row.get('Password')
                 if raw_password is None or str(raw_password).strip() in ["", "nan", "None"]:
                     messages.warning(request, f"Skipping {username}: Missing password")
                     continue
-                password = str(raw_password).strip()
 
+                password = str(raw_password).strip()
                 first_name = str(row.get('First Name', '')).strip()
                 last_name = str(row.get('Last Name', '')).strip()
                 email = str(row.get('Email', '')).strip()
                 course = str(row.get('Course', '')).strip()
 
-               
-                # Create or update the student using the Student proxy model
-                student, created = models.Student.objects.update_or_create(
+                if not first_name or not last_name or not email:
+                    messages.warning(request, f"Skipping {username}: Missing required fields")
+                    continue
+
+                new_student = models.Student(
                     username=username,
-                    defaults={
-                        'first_name': first_name,
-                        'last_name': last_name,
-                        'email': email,
-                        'password': make_password(password),
-                    }
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email,
+                    password=make_password(password),
+                    role= models.Student.Role.STUDENT
                 )
+                new_students.append(new_student)
+                student_course_mapping[username] = course  # Save course separately
 
-                profile, _ = models.StudentProfile.objects.update_or_create(
-                    student=student,
-                    defaults={'course':course}
-                )                
+            with transaction.atomic():
+                created_students = models.Student.objects.bulk_create(new_students)
 
-                if created:
-                    student_instances.append(student)
-                else:
-                    updated_profiles.append(profile)
+                new_profiles = []
+                for student in created_students:
+                    course = student_course_mapping.get(student.username, '')
+                    profile = models.StudentProfile(
+                        student=student,
+                        course=course
+                    )
+                    new_profiles.append(profile)
 
-            if student_instances:
-                messages.success(request, f"Successfully added {len(student_instances)} students!")
-            if updated_profiles:
-                messages.success(request, f"Updated {updated_profiles} student profiles!")
+                models.StudentProfile.objects.bulk_create(new_profiles)
+
+            if created_students:
+                messages.success(request, f"Successfully added {len(created_students)} students!")
+            else:
+                messages.warning(request, "No new students were added.")
 
         except Exception as e:
             messages.error(request, f"An error occurred: {e}")
