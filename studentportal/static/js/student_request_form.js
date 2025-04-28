@@ -14,28 +14,28 @@ $(document).ready(function (){
                 $("#payment_purpose_other").removeAttr("required")
                 break;
                 
-                case "CERTIFICATE OF GRADES":
-                    $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
-                    $("#payment_other").hide()
-                    $("#payment_purpose_other").removeAttr("required") 
-                    break;
-                    
-                    case "CERTIFICATE OF GOOD MORALE":
-                        $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
-                        $("#payment_other").hide()
-                        $("#payment_purpose_other").removeAttr("required")   
-                        break;
+            case "CERTIFICATE OF GRADES":
+                $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
+                $("#payment_other").hide()
+                $("#payment_purpose_other").removeAttr("required") 
+                break;
+                
+            case "CERTIFICATE OF GOOD MORALE":
+                $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
+                $("#payment_other").hide()
+                $("#payment_purpose_other").removeAttr("required")   
+                break;
                         
-                        case "CERTIFICATE OF ENROLLMENT":    
-                        $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
-                        $("#payment_other").hide()
-                        $("#payment_purpose_other").removeAttr("required")   
-                        break;
+            case "CERTIFICATE OF ENROLLMENT":    
+                $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
+                $("#payment_other").hide()
+                $("#payment_purpose_other").removeAttr("required")   
+            break;
                         
-                        case "OTHER": 
-                            $("#amount_paid").prop("disabled", false).prop("readonly",false).val("")
-                            $("#payment_other").show()
-                            $("#payment_purpose_other").attr("required", true)
+            case "OTHER": 
+                $("#amount_paid").prop("disabled", false).prop("readonly",false).val("")
+                $("#payment_other").show()
+                $("#payment_purpose_other").attr("required", true)
             break;
         }
 
