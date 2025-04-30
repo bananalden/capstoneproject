@@ -88,18 +88,26 @@
           </ul>
         </li>
 
-        <li class="dropdown">
-          <a href="#" class="menu-item dropdown-toggle" data-toggle="dropdown"
-            ><i class="fas fa-print"></i> Grade Management
-            <span class="caret"></span
-          ></a>
-          <ul class="dropdown-menu">
 
-            <li><a href="{%url 'home:grade-list'%}">Edit Grades</a></li>
-            <li><a href="{%url 'home:upload-grades'%}">Upload Grades</a></li>
-            
-          </ul>
+        <li>
+          <a
+            href="{%url 'home:upload-grades'%}"
+            class="menu-item"
+            data-link="dashboard"
+            ><i class="fas fa-print"></i>Upload Grades</a
+          >
         </li>
+
+        <li>
+          <a
+            href="{%url 'home:grade-list'%}"
+            class="menu-item"
+            data-link="dashboard"
+            ><i class="fas fa-house-user"></i>Edit Grades</a
+          >
+        </li>
+
+        
 
 
         <li>

@@ -89,18 +89,18 @@ def grade_upload(request):
                     )
                 except IntegrityError:
                     messages.warning(request,"Duplicate entries detected, please enter new grades")
-                    return redirect("home:teacher-home")
+                    return redirect('home:upload-grades')
 
             messages.success(request, "Grades uploaded successfully!")
-            return redirect('home:teacher-home')
+            return redirect('home:upload-grades')
         
         except zipfile.BadZipFile:
             messages.warning(request, "Invalid file format, please upload a .xlsx or xls file!")
-            return redirect('home:teacher-home')
+            return redirect('home:upload-grades')
 
         except Exception as e:
             messages.warning(request, f"Error processing file: {e}")
-            return redirect('home:teacher-home')
+            return redirect('home:upload-grades')
         
 
 def grade_edit(request):
