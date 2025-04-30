@@ -52,9 +52,9 @@ Dashboard{%endblock%} {%block content%}
           </div>
           <div class="card">
             <i class="fa fa-edit"></i>
-            <h3>View Teacher Users</h3>
-            <p>Manage accounts for teachers.</p>
-            <a href="{%url 'admin:users:teacher-list'%}" class="btn">Go</a>
+            <h3>View Registrar Users</h3>
+            <p>Manage accounts for registrars.</p>
+            <a href="{%url 'admin:users:registrar-list'%}" class="btn">Go</a>
           </div>
           <div class="card">
             <i class="fa fa-book"></i>
@@ -78,7 +78,6 @@ Dashboard{%endblock%} {%block content%}
             <select id="userType" name="user_type" required>
               <option value="" disabled selected>Select User type</option>
               <option value="STUDENT">Student</option>
-              <option value="TEACHER">Teacher</option>
               <option value="REGISTRAR">Registrar</option>
               <option value="CASHIER">Cashier</option>
             </select>

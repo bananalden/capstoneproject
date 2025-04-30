@@ -303,9 +303,6 @@ def change_password_user(request):
                     messages.success(request, "Password has successfully been updated!")
                     return redirect('home:registrar-dashboard')
                 
-                case 'TEACHER':
-                    messages.success(request, "Password has successfully been updated!")
-                    return redirect('home:teacher-home')
                     
                     
             

@@ -177,6 +177,12 @@ def registrar_grade_list(request):
     return render(request,'registrar/registrar-student-grades.html')
 
 
+@login_required(login_url='authentication:login')
+def registrar_upload_grades(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
+    
+    return render(request,'registrar/registrar-upload-grades.html')
 
 
 
@@ -243,49 +249,7 @@ def student_transaction(request):
 #TEACHER VIEWS START   ==================================
 
 
-@login_required(login_url='authentication:login')
-def teacher_home(request):
-    if request.user.role != 'TEACHER':
-        return redirect('authentication:unauthorized-view')
-    
-    return render(request,'teacherview/teacherdashboard.html')
 
-
-@login_required(login_url='authentication:login')
-def teacher_newsfeed(request):
-    if request.user.role != 'TEACHER':
-        return redirect('authentication:unauthorized-view')
-    announcement_list = Announcement.objects.all()
-
-    p = Paginator(Announcement.objects.all(), 5)
-    page = request.GET.get('page')
-    announcements = p.get_page(page)
-
-    context = {
-        'announcements': announcements,
-        'announcement_list': announcement_list
-    }
-    return render(request,'teacherview/teachernewsfeed.html',context)
-
-@login_required(login_url='authentication:login')
-def edit_teacher(request):
-    if request.user.role != 'TEACHER':
-        return redirect('authentication:unauthorized-view')
-    form = edit_user(instance=request.user)
-    context = {
-        'form':form
-    }
-    return render(request,'teacherview/edit-teacher.html',context)
-
-@login_required(login_url='authentication:login')
-def edit_teacher_password(request):
-    if request.user.role != 'TEACHER':
-        return redirect('authentication:unauthorized-view')
-    form = change_password(request.user)
-    context={
-        'form':form
-    }
-    return render(request,'teacherview/teacher-password.html', context)
 
 #TEACHER VIEWS START   ==================================
 

@@ -25,6 +25,7 @@ urlpatterns = [
     path('registrar/edit-registrar', views.edit_registrar, name='edit-registrar'),
     path('registrar/edit-registrar-password', views.edit_registrar_password, name='edit-registrar-password'),
     path('registrar/create-student/', views.registrar_create_student, name='create-student-profile'),
+    path('registrar/upload-grades/',views.registrar_upload_grades,name='upload-grades'),
 
 
 
@@ -42,15 +43,6 @@ urlpatterns = [
     path('student/transaction-history',views.student_transaction,name='student-transaction'),
 
     #STUDENT URLS END ========================
-
-    #TEACHER URLS START ========================
-    
-    path('teacher/',views.teacher_home,name='teacher-home'),
-    path('teacher/newsfeed',views.teacher_newsfeed,name='teacher-newsfeed'),
-    path('teacher/edit-teacher',views.edit_teacher,name='teacher-edit'),
-    path('teacher/edit-teacher-password',views.edit_teacher_password,name='teacher-edit-password'),
-
-    #TEACHER URLS START ========================
     
     path('announcement/', include('news.urls',namespace='news')),
     path('transactions/',include('transactions.urls',namespace='transactions')),
