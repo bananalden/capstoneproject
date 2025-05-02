@@ -1,4 +1,5 @@
 {% extends "registrar/registrar_sidebar.html" %}
+{%load static%}
 {% block title %}
 Registrar Upload Grade
 {% endblock title %}
@@ -46,7 +47,7 @@ Registrar Upload Grade
       <button type="submit" class="upload-grades">Upload Grades</button>
     </form>
   </div>
-
+<script src="{% static 'js/teacher.js'%}"></script>
 
 
 {% endblock content %}
