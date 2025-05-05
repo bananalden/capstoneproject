@@ -79,22 +79,36 @@ Grade List
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Grades</h5>
+        <h5 class="modal-title" id="exampleModalLabel">View Grade Value</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form action="{%url 'home:grades:grade-edit'%}" method="post">
-        {% csrf_token %}
+ 
         <input type="hidden" name="gradeID" id="gradeID">
         <div class="form-group">
-          <label for="grade_value">Enter Grade Value:</label>
-          <input type="number" name="grade_value" id="grade_value">
+          <label for="usn">USN:</label>
+          <input type="text" name="usn" id="usn" disabled>
+
+          <label for="subject_code">Subject Code:</label>
+          <input type="text" name="subject_code" id="subject_code" disabled>
+
+          <label for="subject_code">Subject Name:</label>
+          <input type="text" name="subject_name" id="subject_name" disabled>
+
+          <label for="subject_code">Semester:</label>
+          <input type="text" name="semester" id="semester" disabled>
+
+          <label for="subject_code">School Year:</label>
+          <input type="text" name="school_year" id="school_year" disabled>
+
+          <label for="grade_value">Grade Value:</label>
+          <input type="number" name="grade_value" id="grade_value" disabled>
+          
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-    </form>
+
       </div>
     </div>
   </div>

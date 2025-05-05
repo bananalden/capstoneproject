@@ -7,6 +7,7 @@ from users import models as user_data
 from news import models as news_data
 from grades.models import Grades
 from transactions import models as transactions_data
+from notifications.models import Notification
 from django.db.models import Q
 
 # Create your views here.
@@ -553,6 +554,9 @@ def student_transaction_list(request):
 
 #TRANSACTION END ========================
 
+
+#GRADES START ===========================
+
 def get_grades(request):
     page = request.GET.get("page",1)
     search_query = request.GET.get("q","")
@@ -620,4 +624,41 @@ def get_specific_grade(request,pk):
  
 
 
-#PAYMENT PURPOSE START
+#GRADES END ================================
+
+
+#NOTIF START ================================
+
+def get_notifs(request):
+    user = request.user
+
+    if not user.is_authenticated:
+        return JsonResponse({'notifications': []})  # Return empty for unauthenticated
+
+    notifications = Notification.objects.filter(recipient=user)
+
+    data = [{
+        'id': notif.id,
+        'title': notif.title,
+        'message': notif.message,
+        'is_read': notif.is_read
+    } for notif in notifications]
+
+    return JsonResponse({'notifications': data})
+    
+
+def mark_notifs_read(request):
+    user = request.user.id
+    Notification.objects.filter(recipient=user,is_read=False).update(is_read=True)
+    return JsonResponse({'status':'success'})
+
+
+def clear_notifs(request):
+    user = request.user.id
+    notifications = Notification.objects.filter(recipient=user)
+    notifications.delete()
+    return JsonResponse({"status":"success"})
+
+   
+
+#NOTIF END ================================

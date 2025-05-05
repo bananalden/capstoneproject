@@ -12,6 +12,7 @@ from news.models import Announcement
 from transactions import forms, models
 from users.forms import edit_user, change_password, StudentProfileUpdate, StudentUserUpdate
 from users.models import CustomUser, Student
+from notifications.models import Notification
 from grades.models import Grades
 from django.core.mail import send_mail
 from django.conf import settings
@@ -176,6 +177,12 @@ def registrar_grade_list(request):
     return render(request,'registrar/registrar-student-grades.html')
 
 
+@login_required(login_url='authentication:login')
+def registrar_upload_grades(request):
+    if request.user.role != 'REGISTRAR':
+        return redirect('authentication:unauthorized-view')
+    
+    return render(request,'registrar/registrar-upload-grades.html')
 
 
 
@@ -242,49 +249,7 @@ def student_transaction(request):
 #TEACHER VIEWS START   ==================================
 
 
-@login_required(login_url='authentication:login')
-def teacher_home(request):
-    if request.user.role != 'TEACHER':
-        return redirect('authentication:unauthorized-view')
-    
-    return render(request,'teacherview/teacherdashboard.html')
 
-
-@login_required(login_url='authentication:login')
-def teacher_newsfeed(request):
-    if request.user.role != 'TEACHER':
-        return redirect('authentication:unauthorized-view')
-    announcement_list = Announcement.objects.all()
-
-    p = Paginator(Announcement.objects.all(), 5)
-    page = request.GET.get('page')
-    announcements = p.get_page(page)
-
-    context = {
-        'announcements': announcements,
-        'announcement_list': announcement_list
-    }
-    return render(request,'teacherview/teachernewsfeed.html',context)
-
-@login_required(login_url='authentication:login')
-def edit_teacher(request):
-    if request.user.role != 'TEACHER':
-        return redirect('authentication:unauthorized-view')
-    form = edit_user(instance=request.user)
-    context = {
-        'form':form
-    }
-    return render(request,'teacherview/edit-teacher.html',context)
-
-@login_required(login_url='authentication:login')
-def edit_teacher_password(request):
-    if request.user.role != 'TEACHER':
-        return redirect('authentication:unauthorized-view')
-    form = change_password(request.user)
-    context={
-        'form':form
-    }
-    return render(request,'teacherview/teacher-password.html', context)
 
 #TEACHER VIEWS START   ==================================
 
@@ -312,40 +277,11 @@ def generate_cert(request):
             form = forms.CertificateOfGrades(request.POST)
             template_name = "pdf_templates/certificate_of_grades.html"
 
-        if form.is_valid():
-
-
-            
-        
+        if form.is_valid():        
             student = form.cleaned_data.get("student")
             year = form.cleaned_data.get('year')
             semester = form.cleaned_data.get('semester')
-
             transaction = get_object_or_404(models.Transaction, id=transaction_id)
-
-            if transaction.registrar_status != models.Transaction.RegistrarStatus.AVAILABLE:
-                if not pickup_date:
-                    return JsonResponse({
-                "status":"error",
-                "message":"Pick up date is required"
-            },status=400)
-                
-                transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
-                transaction.save()
-
-                #CONVERT THE DATE INTO ANOTHER FORMAT
-                pickup_date_obj = datetime.datetime.strptime(pickup_date, "%Y-%m-%d")  
-                formatted_datetime = pickup_date_obj.strftime("%B %d, %Y")
-
-                subject = "Document Request Update"
-                message = f"Hello {transaction.student.first_name} {transaction.student.last_name}, \n\nThis email is here to inform you that your request for {transaction.payment_purpose} is now available for pickup! \n\n Please pick up by {formatted_datetime}."
-                from_email = settings.DEFAULT_FROM_EMAIL
-                recipient_list = [transaction.student.email]
-                send_mail(subject,message,from_email,recipient_list)
-            
-
-      
-            print(student)
 
             if document_type == 'CERTIFICATE OF GRADES':
                 student_usn = str(student.username)
@@ -378,6 +314,32 @@ def generate_cert(request):
            
             response = HttpResponse(pdf_file, content_type='application/pdf')
             response['Content-Disposition'] = f'attachment; filename="{document_type}_{student.username}.pdf"'
+
+            if transaction.registrar_status != models.Transaction.RegistrarStatus.AVAILABLE:
+                if not pickup_date:
+                    return JsonResponse({
+                "status":"error",
+                "message":"Pick up date is required"
+            },status=400)
+                
+                transaction.registrar_status = models.Transaction.RegistrarStatus.AVAILABLE
+                transaction.save()
+
+                #CONVERT THE DATE INTO ANOTHER FORMAT
+                pickup_date_obj = datetime.datetime.strptime(pickup_date, "%Y-%m-%d")  
+                formatted_datetime = pickup_date_obj.strftime("%B %d, %Y")
+
+                Notification.objects.create(
+                    title="REGISTRAR UPDATE",
+                    recipient=transaction.student,
+                    message = f"Your request for {transaction.payment_purpose} has been generated! Please receive by {formatted_datetime}"
+                )
+
+                subject = "Document Request Update"
+                message = f"Hello {transaction.student.first_name} {transaction.student.last_name}, \n\nThis email is here to inform you that your request for {transaction.payment_purpose} is now available for pickup! \n\n Please pick up by {formatted_datetime}."
+                from_email = settings.DEFAULT_FROM_EMAIL
+                recipient_list = [transaction.student.email]
+                send_mail(subject,message,from_email,recipient_list)
             
 
 

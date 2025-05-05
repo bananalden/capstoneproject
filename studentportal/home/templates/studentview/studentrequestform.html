@@ -45,16 +45,19 @@ Student Request Form
         {{form.payment_purpose}}
     </div>
 
+    <div class="student-payment-info" id="payment_amount">
+      <label for="amount" id="label_amount">Enter amount paid:</label>
+      <span>₱</span>
+      <input type="number" name="amount" step="0.01" min="1" id="amount_paid" required> 
+    </div>
+
     <div class="student-payment-info" id="payment_other">
         <label for="payment_purpose_other">Please specify purpose:</label>
         <input type="text" name="payment_purpose_other" id="payment_purpose_other">
        
     </div>
 
-    <div class="student-payment-info">
-        <label for="amount">Enter amount paid:</label>
-        {{form.amount}}
-    </div>
+    
     
     <div class="student-payment-proof">
         {% csrf_token %}

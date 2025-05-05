@@ -12,8 +12,6 @@ def home(request):
                 return redirect('admin:dashboard')
             case "STUDENT":
                 return redirect("home:student-home")
-            case "TEACHER":
-                return redirect("home:teacher-home")
             case "CASHIER":
                 return redirect("home:cashier-home")
             case "REGISTRAR":
@@ -38,8 +36,6 @@ def login_regular_user(request):
             match user.role:
                 case "STUDENT":
                     return redirect("home:student-home")
-                case "TEACHER":
-                    return redirect("home:teacher-home")
                 case "CASHIER":
                     return redirect("home:cashier-home")
                 case "REGISTRAR":

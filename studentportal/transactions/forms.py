@@ -2,6 +2,7 @@ import re
 from django import forms
 from django.utils.html import strip_tags
 from transactions.models import Transaction
+from notifications.models import Notification
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
@@ -31,11 +32,22 @@ class StudentPaymentForm(forms.ModelForm):
         self.fields["amount"].widget.attrs.update({
         "min": "1",
         "step": "0.01",
+        "id": "amount_paid",
             })
        
 
     def clean_amount(self):
         amount = self.cleaned_data.get("amount")
+        payment_purpose = self.cleaned_data.get("payment_purpose")
+
+        fixed_prices = {
+            "CERTIFICATE OF ENROLLMENT": 90.00,
+            "CERTIFICATE OF GRADES": 90.00,
+            "CERTIFICATE OF GOOD MORALE": 90.00,
+        }
+
+        if payment_purpose in fixed_prices:
+            return fixed_prices[payment_purpose]
 
         if amount is not None:
             if amount < 0:
@@ -78,6 +90,14 @@ class updatePayment(forms.ModelForm):
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = [instance.student.email]
             send_mail(subject,message,from_email,recipient_list)
+
+            Notification.objects.create(
+                title="CASHIER UPDATE",
+                recipient = instance.student,
+                message = f"Your payment has been confirmed by the cashier! If this transaction was a document request, please wait for a notification or an email to arrive shortly."
+            )
+
+
             if commit:
                 instance.save()
             return instance
@@ -89,6 +109,12 @@ class updatePayment(forms.ModelForm):
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = [instance.student.email]
             send_mail(subject,message,from_email,recipient_list)
+
+            Notification.objects.create(
+                title="CASHIER UPDATE",
+                recipient = instance.student,
+                message = f"There was an error confirming your payment, please contact the cashier to resolve this issue."
+            )
             if commit:
                 instance.save()
                 instance.delete()
@@ -258,8 +284,34 @@ class manualTransactionAdd(forms.ModelForm):
         CHOICES = [("", "-----SELECT TRANSACTION PURPOSE-----")] + list(Transaction.PaymentPurposeChoice.choices)
         self.fields["payment_purpose"].choices = CHOICES
         self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
+        self.fields["amount"].widget.attrs.update({
+        "min": "1",
+        "step": "0.01",
+        "id": "amount_paid",
+            })
+        
 
-    
+    def clean_amount(self):
+        amount = self.cleaned_data.get("amount")
+        payment_purpose = self.cleaned_data.get("payment_purpose")
+
+        fixed_prices = {
+            "CERTIFICATE OF ENROLLMENT": 90.00,
+            "CERTIFICATE OF GRADES": 90.00,
+            "CERTIFICATE OF GOOD MORALE": 90.00,
+        }
+
+        if payment_purpose in fixed_prices:
+            return fixed_prices[payment_purpose]
+
+        if amount is not None:
+            if amount < 0:
+                raise ValidationError("Amount cannot be negative")
+            if amount < 1:
+                raise ValidationError("Amount must be at least 1.00")
+            return round(amount,2)
+        return amount
+        
     def clean_student(self):
         student_username = self.cleaned_data.get("student")
 

@@ -33,11 +33,16 @@ urlpatterns = [
     path('get-registrar-transaction-page/',views.registrar_doc_list,name='registrar-doc-list'),
     path('get-registrar-complete-page/',views.registrar_complete_list,name='registrar-complete-list'),
     path('export-transaction-report/',views.export_transaction,name="export-transaction"),
-    path('student-transaction-history/',views.student_transaction_list,name="student-transaction-history")
+    path('student-transaction-history/',views.student_transaction_list,name="student-transaction-history"),
     #TRANSACTION API END
 
+    #NOTIFS START
+    path('notifications/',views.get_notifs,name="get-notifs"),
+    path('notifications/mark-read/',views.mark_notifs_read,name="mark-notifs"),
+    path('notifications/clear-notifs/',views.clear_notifs,name="clear-notifs"),
 
 
+    #NOTIFS END
 
 
 ]

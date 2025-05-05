@@ -37,7 +37,7 @@ $(document).ready(function (){
                             <td class="registrar-table-data">${grade_list.grade_value}</td>
                             <td class="registrar-table-data actions unique-actions">
                                     <button class="unique-btn unique-btn-view registrar-view-button edit-grade"  data-id="${grade_list.id}" data-bs-toggle="modal" data-bs-target="#editGrade">
-                                        <i class="fas fa-pen-to-square view-icon"></i>
+                                        <i class="fas fa-eye view-icon"></i>
                                     </button>
                             </td>
                         </tr>`)
@@ -110,8 +110,17 @@ $(document).on("click", ".edit-grade", function(){
     $.ajax({
         url:`/api/get-grade-object/${gradeID}`,
         type: "GET",
-        dataType: "json "
-        //success: function(data){},
+        dataType: "json",
+        success: function(data){
+            console.log(data.grade_value)
+            $("#usn").val(data.student_usn)
+            $("#grade_value").val(data.grade_value)
+            $("#subject_code").val(data.subject_code)
+            $("#subject_name").val(data.subject_name)
+            $("#school_year").val(data.year)
+            $("#semester").val(data.semester)
+
+        },
         
     })
 })

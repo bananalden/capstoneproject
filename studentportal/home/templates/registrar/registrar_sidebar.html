@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="{% static 'styles/generate-document.css'%}" />
     <link rel="stylesheet" href="{% static 'styles/create-student-profile.css'%}" />
     <link rel="stylesheet" href="{% static 'styles/edit-cashier.css'%}" />
+    <link rel="stylesheet" href="{% static 'styles/registrar-upload-grades.css'%}">
 
     <link rel="stylesheet" href="{% static 'styles/edit-registrar.css'%}" />
 
@@ -87,11 +88,27 @@
           </ul>
         </li>
 
+
         <li>
-          <a href="{%url 'home:grade-list'%}" class="menu-item" data-link="generate-document">
-            <i class="fas fa-print"></i> Grade List
-          </a>
+          <a
+            href="{%url 'home:upload-grades'%}"
+            class="menu-item"
+            data-link="dashboard"
+            ><i class="fas fa-upload"></i>Upload Grades</a
+          >
         </li>
+
+        <li>
+          <a
+            href="{%url 'home:grade-list'%}"
+            class="menu-item"
+            data-link="dashboard"
+            ><i class="fas fa-edit"></i>View Grades</a
+          >
+        </li>
+
+        
+
 
         <li>
           <a href="{%url 'home:create-student-profile'%}" class="menu-item" data-link="create-student-profile">

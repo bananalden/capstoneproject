@@ -36,8 +36,16 @@ Student Dashboard
     <div class="welcome-message">
       Welcome Back,<strong class="name-student">{{request.user.first_name}} {{request.user.last_name}}</strong>!
     </div>
-    <div class="current-time">
-      <p>Today's Date: <strong>{%now "M d, Y"%}</strong></p>
+    
+    <div class="notif-wrapper">
+      <div class="notif-header">
+        <button class="notification-btn" tabindex="0">
+          NOTIFICATION
+          <span class="notif-badge"></span>
+        </button>
+        <div class="notif-dropdown">
+        </div>
+      </div>
     </div>
   </header>
 

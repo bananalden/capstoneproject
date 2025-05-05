@@ -5,6 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>{% block title %}{% endblock title %}</title>
     <link rel="icon" href="{%static 'favicon/favicon.ico'%}" />
     <link
@@ -55,15 +56,6 @@
         <span class="aclc-apalit">ACLC Apalit</span>
       </div>
       <ul class="sidebar-menu">
-        <li>
-          <a
-            href="{%url 'home:student-newsfeed'%}"
-            class="menu-item"
-            data-link="newsfeed"
-            ><i class="fa-solid fa-earth-americas"></i>
-            News Feed</a
-          >
-        </li>
         
         <li>
           <a
