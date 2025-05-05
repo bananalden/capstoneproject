@@ -1,4 +1,8 @@
-Django==5.1.2
+Django==5.1.4
 pandas==2.2.3
 python-dotenv==1.1.0
 weasyprint==65.1
+psycopg2-binary==2.9.10
+pillow==11.2.1
+openpyxl==3.1.5
+xlsxwriter==3.2.3
