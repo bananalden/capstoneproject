@@ -1,0 +1,685 @@
+.crud-dashboard {
+  width: calc(100% - 250px); 
+  max-width: 1300px; /* Prevents stretching */
+  margin: 100px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevents overflow */
+  transition: margin-left 0.3s ease;
+}
+
+/* Sidebar Open State */
+.sidebar-open .crud-dashboard {
+  margin-left: 250px; /* Moves when sidebar is opened */
+}
+
+/* Heading */
+.list-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5rem;
+  color: #023047;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.add-payment-purpose {
+  background-color: #c1121f;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 20%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+.add-payment-purpose:hover {
+  background-color: #a10d1a;
+  transform: translateY(-3px);
+}
+
+
+
+/* Table Styles */
+table {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%; /* Keeps the table at full width but within constraints */
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed; /* Prevents table from stretching */
+}
+
+/* Table Header Styling */
+table th {
+  padding: 12px;
+  background-color: #023047;
+  color: white;
+  text-align: left;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* Table Cell Styling */
+table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* Table Row Hover Effect */
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Pagination */
+#pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  background-color: #023047;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+
+#pagination button:hover {
+  background-color: #044768;
+  cursor: pointer;
+}
+
+
+/* Modal Overlay */
+#add-course-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Action Button Styles (Edit, Delete, etc.) */
+.action-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  background-color: #a30f15;
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  border: none; 
+}
+
+/* Edit Button Specific Styling */
+.edit-btn {
+  background-color: #4caf50;
+}
+
+/* Delete Button Specific Styling */
+.delete-btn {
+  background-color: #a30f15;
+}
+
+/* Action Button Hover Effect */
+.action-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Action Button Active Effect (click effect) */
+.action-btn:active {
+  transform: translateY(2px);
+}
+
+/* Unique Action Button with Icon */
+.action-btn.icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn.icon-btn i {
+  font-size: 16px;
+}
+
+/* Input Field Styling */
+input[type="text"] {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Label Styling */
+label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Modal Header Styling */
+.modal-dialog {
+  position: relative;
+  top: 20%;
+}
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: none;
+  padding: 15px;
+  border-radius: 5px 5px 0 0;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Modal Footer */
+.modal-footer {
+  border-top: none;
+  padding: 15px;
+  justify-content: space-between;
+}
+
+/* Body Text */
+.modal-body {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Close Button Styling */
+.btn-close {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.btn-close:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .crud-dashboard {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #search-course {
+    width: 200px;
+  }
+
+  table th,
+  table td {
+    padding: 8px;
+  }
+
+  .add-btn {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .action-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #search-course {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  table {
+    font-size: 12px;
+  }
+}
+/****** Course List End ******/
+
+/****** Semester List End ******/
+.semester-list {
+  width: 70%;
+  margin: 100px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Heading */
+h1 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* SEARCH INPUT */
+.search-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  position: relative;
+}
+
+/* Search input field */
+#search-course {
+  width: 100%;
+  padding: 12px 15px 12px 50px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.4s ease-in-out;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+/* Search icon */
+.search-container::before {
+  content: "\1F50D"; /* Unicode for the magnifying glass */
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
+/* Placeholder animation */
+#search-course::placeholder {
+  transition: all 0.3s ease-in-out;
+  padding-left: 10px; /* Ensures placeholder text starts after the icon */
+}
+
+/* Focus placeholder animation */
+#search-course:focus::placeholder {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Input focus effect */
+#search-course:focus {
+  width: 100%;
+  background-color: #f0faff;
+  border-color: #3498db;
+  box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* BUTTON SEARCH  */
+.button-search-admin {
+  background-color: #4A90E2;
+  color: #fff;
+  border: none;
+  height: 100%;
+  width: 100%;
+  max-width: 100px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 12px;
+  margin-top: 7px;
+}
+
+.button-search-admin:hover {
+  background-color: #357ABD;
+  transform: translateY(-3px);
+}
+
+.button-search-admin:active {
+  background-color: #2C5F9E;
+  transform: scale(0.96);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* BUTTON SEARCH END */
+
+/* Table Styles */
+table {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Table Header Styling */
+table th {
+  padding: 12px;
+  background-color: #023047;
+  color: white;
+  text-align: left;
+}
+
+/* Table Cell Styling */
+table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+}
+
+/* Table Row Hover Effect */
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Pagination */
+#pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  background-color: #023047;
+  color: white;
+  border-radius: 5px;
+}
+
+#pagination button:hover {
+  background-color: #044768;
+  cursor: pointer;
+}
+
+/* Modal Overlay */
+#add-course-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Action Button Styles (Edit, Delete, etc.) */
+.action-btn {
+  padding: 10px 20px;
+  background-color: #a30f15;
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border: none; /* Remove border */
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+/* Edit Button Specific Styling */
+.edit-btn {
+  background-color: #4caf50;
+}
+
+/* Delete Button Specific Styling */
+.delete-btn {
+  background-color: #a30f15;
+}
+
+/* Action Button Hover Effect */
+.action-btn:hover {
+  transform: translateY(-2px); 
+}
+
+/* Action Button Active Effect (click effect) */
+.action-btn:active {
+  transform: translateY(2px);
+}
+
+/* Unique Action Button with Icon */
+.action-btn.icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn.icon-btn i {
+  font-size: 16px;
+}
+
+/* Input Field Styling */
+input[type="text"] {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Select Dropdown Styling */
+select {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+select:hover {
+  background-color: #f1f1f1;
+}
+
+/* Label Styling */
+label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Modal Header Styling */
+.modal-dialog {
+  position: relative;
+  top: 10%;
+}
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: none;
+  padding: 15px;
+  border-radius: 5px 5px 0 0;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Modal Footer */
+.modal-footer {
+  border-top: none;
+  padding: 15px;
+  justify-content: space-between;
+}
+
+/* Body Text */
+.modal-body {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Close Button Styling */
+.btn-close {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.btn-close:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .semester-list {
+    width: 90%; 
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #search-course {
+    width: 200px; 
+  }
+
+  table th,
+  table td {
+    padding: 8px;
+  }
+
+  .add-btn {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .action-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #search-course {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .add-btn {
+    width: 100%; 
+  }
+
+  table {
+    font-size: 12px;
+  }
+}

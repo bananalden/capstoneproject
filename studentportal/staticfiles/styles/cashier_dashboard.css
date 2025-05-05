@@ -1,0 +1,135 @@
+/* Cashier Dashboard Container */
+.cashier-dashboard {
+  width: 90%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin: 40px auto;
+  backdrop-filter: blur(6px);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header Section */
+.cashier-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.cashier-header h1 {
+  font-size: 26px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.cashier-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid Layout */
+.cashier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 25px;
+}
+
+/* Widgets */
+.cashier-widget {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(6px);
+}
+
+/* Widget Titles */
+.cashier-widget h3 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+/* Widget Content */
+.cashier-widget p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Transactions List */
+.cashier-transactions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cashier-transactions li {
+  background: #f8f9fa;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #333;
+  transition: background 0.3s ease;
+}
+
+.cashier-transactions li:hover {
+  cursor: pointer;
+  background: #e3e6ea;
+}
+
+/* Buttons */
+
+.request-payment {
+  border: none;
+}
+
+.cashier-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 15px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cashier-btn:hover {
+  background: linear-gradient(135deg, #0056b3, #003f80);
+  transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .cashier-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cashier-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .cashier-header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+}

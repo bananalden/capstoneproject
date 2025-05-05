@@ -1,0 +1,299 @@
+/* Profile Container */
+.profile-container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.profile-container h2 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Profile Info Section */
+.profile-info {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+/* Personal & Academic Info */
+.info {
+  flex: 1;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  border-left: 6px solid #023047;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Section Headings */
+.info h3 {
+  font-size: 22px;
+  color: #023047;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 18px;
+  border-bottom: 3px solid #ef233c;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* List Layout */
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* List Items */
+.info-list li {
+  background: #f1f1f1;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #333;
+  /* border-left: 5px solid #ef233c; */
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Icons */
+.info-list li i {
+  color: #007bff;
+  font-size: 18px;
+}
+
+/* Labels */
+.info-list li strong {
+  color: #222;
+  font-size: 17px;
+}
+
+/* Edit Profile Section */
+.edit-form {
+  margin-top: 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Edit Profile Heading */
+.edit-form h3 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #023047;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #ef233c;
+  margin-bottom: 20px;
+}
+
+/* Two Column Layout */
+.form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Form Groups */
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Labels */
+label {
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 13px;
+  min-width: 120px;
+  text-align: right;
+}
+
+/* Input & Select Fields */
+input, select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+input:focus, select:focus {
+  border-color: #007bff;
+  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Save Button */
+.save-us {
+  display: block;
+  background-color: #ef233c;
+  width: 50%;
+  color: #fff;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  margin: 15px auto; /* Centers the button horizontally */
+}
+
+
+.save-us:hover {
+  background-color: #c1121f;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+}
+
+.save-us:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.save-us:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+/* Responsive Design */
+/* For Tablets & Small Screens (Below 1024px) */
+@media (max-width: 1024px) {
+  .profile-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .info {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .form-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  label {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+/* For Mobile Devices (Below 768px) */
+@media (max-width: 768px) {
+  .profile-container {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .profile-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .info {
+    text-align: center;
+    padding: 18px;
+  }
+
+  .form-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  label {
+    width: 100%;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  input, select {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .save-us {
+    width: 100%;
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+
+/* For Extra Small Screens (Below 480px) */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 16px;
+    padding-bottom: 8px;
+  }
+
+  .info {
+    padding: 15px;
+  }
+
+  .info-list li {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .form-group {
+    gap: 5px;
+  }
+
+  input, select {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .save-us {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+
+

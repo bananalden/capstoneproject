@@ -1,0 +1,108 @@
+/* Dashboard Layout */
+.second-dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+/* Upload Grade Section */
+.second-quick-links {
+  width: 45%;
+  max-width: 550px; /* Fixed max-width para hindi lumawak */
+  background: #023047;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0; /* HINDI na ito mag-eexpand kahit anong mangyari */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.second-quick-links h2 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-top: -10px; /* Move h2 up slightly */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Flex container for button and file name text */
+.upload-container {
+  display: flex;
+  align-items: center;  /* Vertically align items */
+}
+
+/* Custom File Upload Button */
+.custom-upload-btn {
+  background-color: white;
+  color: #c1121f;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+  display: inline-block;
+  text-align: center;
+}
+
+.custom-upload-btn:hover {
+  background-color: #f1f1f1;
+  transform: scale(1.03);
+}
+
+/* File Name Text */
+#file-name {
+  color: white;
+  font-size: 16px;
+  margin-left: 10px;  /* Small space between button and text */
+  text-align: left; /* Align text to the left */
+}
+
+/* Upload Grades Button */
+.upload-grades {
+  background-color: #c1121f;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+  margin-top: 20px; /* Add spacing between file upload and this button */
+  width: 100%; /* Make the button fill the available width */
+  text-align: center;
+}
+
+.upload-grades:hover {
+  background-color: #a10d1a;
+  transform: scale(1.02);
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .quick-links, .calendar {
+    width: 100%;
+  }
+}

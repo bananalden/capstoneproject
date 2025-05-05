@@ -1,0 +1,248 @@
+/* Sidebar styles */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background: linear-gradient(135deg, #023047, #219ebc);
+    transition: left 0.3s ease;
+    color: white;
+    z-index: 1000;
+    box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+  }
+  
+  .aclc-logo {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 5px;
+  }
+  
+  .aclc-apalit {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .sidebar-menu {
+    list-style-type: none;
+    padding: 10px 0;
+  }
+  
+  .sidebar-menu li {
+    padding: 10px 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar-menu li:hover {
+    transform: translateX(5px);
+    background-color: #c1121f;
+    border-radius: 5px;
+  }
+  
+  .sidebar-menu li a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .sidebar-menu li a i {
+    margin-right: 10px;
+  }
+  
+  .sidebar-menu li a:hover {
+    color: #fff;
+  }
+  
+  /* User Management dropdown */
+  .sidebar-menu .dropdown {
+    position: relative;
+  }
+  
+  .sidebar-menu .dropdown .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #bbb;
+    font-size: 16px;
+    text-decoration: none;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .sidebar-menu .dropdown .dropdown-toggle i {
+    margin-right: 10px;
+  }
+  
+  .sidebar-menu .dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #0b3f59; /* Simplified background */
+    padding: 10px 0;
+    list-style-type: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  
+  .sidebar-menu .dropdown .dropdown-menu li {
+    padding: 8px 15px;
+  }
+  
+  .sidebar-menu .dropdown .dropdown-menu li a {
+    font-size: 14px;
+    color: #ccc;
+    text-decoration: none;
+    padding: 8px 0;
+  }
+  
+  .sidebar-menu .dropdown .dropdown-menu li a {
+    color: #fff;
+    background-color: transparent; /* Remove any background color change on hover */
+  }
+
+  /* User Profile styles */
+.user-profile {
+    margin-top: 20px;
+    padding: 10px 15px;
+  }
+  
+  .user-profile a {
+    display: block;
+    color: #bbb;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px; /* Adjust padding to match the layout */
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px; /* Optional: adds rounded corners */
+  }
+  
+  .user-profile a:hover {
+    background-color: #c1121f;
+    color: #fff;
+  }
+  
+  /* Logout button styles */
+  .logout {
+    font-weight: bold;
+    display: block;
+    color: #bbb;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px; /* Consistent padding */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 5px; /* Optional: adds rounded corners */
+  }
+  
+  .logout:hover {
+    transform: translateX(5px);
+    background-color: #c1121f;
+    color: #fff;
+  }
+  
+  /* Main content */
+  .content {
+    padding: 20px;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .centered-content {
+    text-align: center;
+  }
+  
+  /* Toggle button */
+  .toggle-btn,
+  .close-btn {
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+    color: #111;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 1100;
+  }
+  
+  .close-btn {
+    display: none;
+    color: #fff;
+  }
+  
+  /* Sidebar open styles */
+  .open {
+    left: 0;
+  }
+  
+  .open + .content {
+    margin-left: 250px;
+  }
+
+  .cashier-footer{
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    color: #555;
+    background: #f1f1f1;
+    border-radius: 8px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 652px) {
+    .sidebar {
+      width: 100%;
+      left: -100%;
+    }
+  
+    .open {
+      left: 0;
+    }
+  
+    .open + .content {
+      margin-left: 0;
+    }
+  
+    .sidebar-menu li a {
+      font-size: 14px;
+    }
+  
+    .aclc-logo {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .sidebar-header .aclc-apalit {
+      font-size: 18px;
+    }
+  
+    .content {
+      padding: 15px;
+    }
+  }
+  

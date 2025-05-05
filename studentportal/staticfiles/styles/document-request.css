@@ -1,0 +1,450 @@
+.registrar-crud-dashboard {
+  width: calc(100% - 250px);
+  max-width: 1300px;
+  margin: 100px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Allow horizontal scrolling if necessary */
+  transition: margin-left 0.3s ease;
+}
+
+/* Heading */
+.registrar-list-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 2.5rem;
+  color: #023047;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+/* Search Bar Styling */
+.registrar-search-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 350px;
+  margin-left: auto;
+  position: relative;
+}
+
+/* Search input field */
+#registrar-search-request {
+  width: 100%;
+  padding: 12px 15px 12px 50px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.4s ease-in-out;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+/* Search icon */
+.registrar-search-container::before {
+  content: "\1F50D"; /* Unicode for the magnifying glass */
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
+/* Placeholder animation */
+#registrar-search-request::placeholder {
+  transition: all 0.3s ease-in-out;
+  padding-left: 10px; /* Ensures placeholder text starts after the icon */
+}
+
+/* Focus placeholder animation */
+#registrar-search-request:focus::placeholder {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Input focus effect */
+#registrar-search-request:focus {
+  width: 100%;
+  background-color: #f0faff;
+  border-color: #3498db;
+  box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Search button style */
+.button-req-search {
+  background-color: #4A90E2;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px; /* Space between input and button */
+}
+
+/* Hover effect for button */
+.button-req-search:hover {
+  background-color: #357ABD;
+  transform: translateY(-2px);
+}
+
+/* Active effect for button */
+.button-req-search:active {
+  background-color: #2C5F9E;
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+/* FILTER SECTION */
+
+.filter-docu-request {
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+  padding: 10px; /* Optional, adds some space around */
+  position: relative;
+  top: 58px;
+}
+
+#filter-request {
+  padding: 8px 12px; /* Adds some space inside the dropdown */
+  font-size: 16px; /* Adjusts the font size */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ccc; /* Light border */
+  transition: border 0.3s ease-in-out; /* Smooth transition for border */
+}
+
+
+#filter-request:hover {
+  border-color: #007BFF; /* Change border color on hover */
+}
+
+/* Table Styles */
+.request-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed;
+  max-width: 100%;
+}
+
+.request-table th {
+  padding: 12px;
+  background-color: #023047;
+  color: white;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.request-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Table Row Hover Effect */
+.request-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Status Colors */
+.unique-status-pending {
+  color: #d39e00;
+  font-weight: bold;
+}
+
+.unique-status-approved {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.unique-status-rejected {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Pagination */
+#registrar-pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#registrar-pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  background-color: #023047;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#registrar-pagination button:hover {
+  background-color: #044768;
+  cursor: pointer;
+  transform: translateY(-2px);
+}
+
+#registrar-pagination button:active {
+  transform: translateY(2px);
+}
+
+/* Action Buttons */
+.unique-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.unique-btn {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.unique-btn-view {
+  background-color: #007bff;
+  color: black;
+}
+
+.unique-btn-approve {
+  background-color: #28a745;
+  color: black;
+}
+
+.unique-btn-reject {
+  background-color: #dc3545;
+  color: black;
+}
+
+/* Action Button Icons */
+.view-icon,
+.approve-icon,
+.reject-icon {
+  font-size: 16px;
+  margin-right: 2px;
+}
+
+/* Action Button Hover Effects */
+.unique-btn:hover {
+  transform: translateY(-2px);
+}
+
+.unique-btn:active {
+  transform: translateY(2px);
+}
+
+/* MODAL SECTION */
+
+.req-document-modal {
+  backdrop-filter: blur(5px);
+}
+
+.req-document-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.req-document-header {
+  background-color: #c1121f;
+  color: white;
+}
+
+.req-document-title {
+  font-weight: bold;
+}
+
+.req-document-body {
+  padding: 20px;
+}
+
+.req-document-footer {
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Form Styling */
+.req-document-group {
+  margin-bottom: 15px;
+}
+
+.req-document-group label {
+  font-weight: 600;
+}
+
+.req-document-group input,
+.req-document-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.req-document-container {
+  max-width: 100%;
+}
+
+.req-document-cert h6 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #555;
+  font-weight: bolder;
+}
+
+.req-document-cert select,
+.req-document-cert input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Button Styling */
+.process-request {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.process-request:hover {
+  background: linear-gradient(90deg, #0056b3, #003d80);
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.process-request:active {
+  transform: translateY(2px);
+}
+
+#process-request-closed {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#process-request-closed:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+#process-request-closed:active {
+  transform: translateY(2px);
+}
+
+/* APPROVED REQUEST MODAL */
+
+.approved-request-modal {
+  backdrop-filter: blur(5px);
+}
+
+.approved-request-header {
+  background-color: #c1121f;
+  color: white;
+}
+
+.approved-request-complete {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  transition: all 0.3s ease;
+  color: white;
+  cursor: pointer;
+}
+
+.approved-request-complete:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.approved-request-complete:active {
+  transform: translateY(2px);
+}
+
+.approved-request-closed {
+  transition: all 0.3s ease;
+  color: white;
+  cursor: pointer;
+}
+
+.approved-request-closed:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.approved-request-closed:active {
+  transform: translateY(2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .crud-dashboard {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #search-request {
+    width: 200px;
+  }
+
+  .request-table th,
+  .request-table td {
+    padding: 8px;
+  }
+
+  .unique-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #search-request {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .request-table {
+    font-size: 12px;
+  }
+}

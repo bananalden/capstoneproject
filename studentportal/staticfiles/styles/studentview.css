@@ -1,0 +1,538 @@
+.main_content {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Styling */
+header {
+  background-color: #023047;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-message {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+/* NOTIFICATION SECTION */
+
+.notif-wrapper {
+  padding: 0 2rem;
+}
+
+.notif-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-right: 2rem;
+}
+
+.notification-btn {
+  position: relative;
+  top: 7px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+}
+
+.notif-badge {
+  position: absolute;
+  top: -6px;
+  right: -14px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  display:none;
+}
+
+.notif-dropdown {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  width: 300px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9998;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* Show dropdown when active class is added */
+.notif-dropdown.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.notif-item {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s ease;
+}
+
+.notif-item.unread {
+  background-color: #e6f0ff;
+  font-weight: bold;
+  border-left: 5px solid #4a90e2;
+}
+
+.notif-item.read {
+  background-color: #f9f9f9;
+  opacity: 0.8;
+}
+
+.notif-item:last-child {
+  border-bottom: none;
+}
+
+.notif-title {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.notif-message {
+  font-size: 13px;
+  color: #555;
+}
+
+.clear-all {
+  text-align: center;
+  padding: 0.8rem;
+  background: #f8f8f8;
+  font-size: 14px;
+  font-weight: bold;
+  color: #d9534f;
+  border-top: 1px solid #eee;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.clear-all:hover {
+  background: #f0f0f0;
+}
+
+.clear-all:active {
+  background: #e0e0e0;
+}
+
+
+/* NOTIFICATION END */
+
+.name-student {
+  margin-left: 10px;
+}
+
+
+/* Dashboard Styling */
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 0%;
+  gap: 20px;
+}
+
+.quick-links {
+  width: 48%;
+  background-color: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-height: 60%;
+}
+
+.quick-links h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.quick-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quick-links ul li {
+  margin-bottom: 12px;
+}
+
+.quick-links ul li a {
+  text-decoration: none;
+  color: #3a8dff;
+  font-size: 17px;
+  transition: color 0.3s ease;
+}
+
+.quick-links ul li a:hover {
+  color: #2a6dd8;
+  text-decoration: underline;
+}
+
+/* Calendar Styling */
+.calendar {
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Calendar Header */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.calendar h2 {
+  font-size: 22px;
+  color: #023047;
+  margin: 0;
+}
+
+/* Navigation Buttons */
+#prev-month, #next-month {
+  background-color: #023047;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#prev-month:hover, #next-month:hover {
+  background-color: #035e91;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.day-label {
+  font-weight: bold;
+  padding: 10px;
+  background: #023047;
+  color: white;
+  border-radius: 5px;
+}
+
+.calendar-day {
+  padding: 18px;
+  font-size: 16px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #f9f9f9;
+  transition: 0.3s;
+  position: relative;
+}
+
+.calendar-day:hover {
+  background-color: #023047;
+  color: white;
+  cursor: pointer;
+}
+
+.event {
+  background-color: #c1121f;
+  font-weight: bold;
+  color: #fafafa;
+}
+
+.event-text {
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+  color: #fafafa;
+}
+
+.today {
+  background-color: #023047;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+
+
+
+/* Courses Section Styling */
+.courses {
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.courses h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Course Card Styling */
+.course-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-left: 5px solid #023047;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px); /* Hover effect to lift the card */
+}
+
+/* Course Info Styling */
+.course-info {
+  margin-top: 10px;
+}
+
+.course-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.course-info p {
+  font-size: 16px;
+  color: #666;
+}
+
+.course-info strong {
+  color: #3a8dff; /* Highlight instructor and important details */
+}
+
+/* Mobile Responsiveness */
+/* Tablets & Small Screens (Below 1024px) */
+@media (max-width: 1024px) {
+  .dashboard, header {
+    flex-direction: column;
+  }
+  .quick-links, .calendar, 
+  .courses, .calendar-grid {
+    width: 100%;
+    padding: 10px;
+  }
+  .calendar-day, .course-title,
+  .course-info p {
+    font-size: 14px;
+  }
+  .course-card, #prev-month,
+  #next-month {
+    padding: 16px;
+  }
+}
+
+/* Mobile Devices (Below 768px) */
+@media (max-width: 768px) {
+  .main_content, header, .dashboard,
+  .quick-links, .calendar, .courses {
+    padding: 10px;
+    flex-direction: column;
+  }
+  .calendar-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+  }
+  .calendar-day {
+    padding: 10px;
+    font-size: 13px;
+  }
+  .course-title {
+    font-size: 17px;
+  }
+  .course-info p, h2 {
+    font-size: 13px;
+  }
+}
+
+/* Extra Small Screens (Below 480px) */
+@media (max-width: 480px) {
+  .main_content, header, .calendar,
+  .quick-links, .courses {
+    padding: 8px;
+  }
+  .calendar-day {
+    padding: 8px;
+    font-size: 12px;
+  }
+  .course-card {
+    padding: 10px;
+  }
+  .course-title {
+    font-size: 15px;
+  }
+  .course-info p {
+    font-size: 12px;
+  }
+  #prev-month, #next-month {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}
+
+/* Small Phones (Below 430px) */
+@media (max-width: 430px) {
+  .main_content, header,
+  .quick-links, .calendar,
+  .courses {
+    padding: 6px;
+  }
+  .calendar-day {
+    padding: 5px;
+    font-size: 11px;
+  }
+  .course-card {
+    padding: 7px;
+  }
+  .course-title {
+    font-size: 13px;
+  }
+  .course-info p {
+    font-size: 11px;
+  }
+  #prev-month, #next-month {
+    padding: 5px 7px;
+    font-size: 11px;
+  }
+}
+
+/* Medium Phones (390px x 844px) */
+@media (max-width: 390px) {
+  header, .dashboard, .quick-links,
+  .calendar, .courses {
+    padding: 6px;
+    flex-direction: column;
+  }
+  .welcome-message, .current-time {
+    font-size: 18px;
+  }
+  .calendar-day {
+    padding: 6px;
+    font-size: 12px;
+  }
+  .course-card {
+    padding: 8px;
+  }
+  .course-title {
+    font-size: 14px;
+  }
+  .course-info p {
+    font-size: 12px;
+  }
+  #prev-month, #next-month {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+}
+
+/* Small Screens (Below 375px) */
+@media (max-width: 375px) {
+  .main_content, header, .quick-links,
+  .calendar, .courses {
+    padding: 4px;
+  }
+  .calendar-day {
+    padding: 4px;
+    font-size: 10px;
+  }
+  .course-card {
+    padding: 6px;
+  }
+  .course-title {
+    font-size: 12px;
+  }
+  .course-info p {
+    font-size: 10px;
+  }
+  #prev-month, #next-month {
+    padding: 4px 5px;
+    font-size: 10px;
+  }
+}
+
+/* Ultra Small Screens (Below 360px) */
+@media (max-width: 360px) {
+  .main_content, header, .calendar,
+  .quick-links, .courses {
+    padding: 3px;
+  }
+  .calendar-day {
+    padding: 3px;
+    font-size: 9px;
+  }
+  .course-card {
+    padding: 5px;
+  }
+  .course-title {
+    font-size: 11px;
+  }
+  .course-info p {
+    font-size: 9px;
+  }
+  #prev-month, #next-month {
+    padding: 3px 4px;
+    font-size: 9px;
+  }
+}
+
+/* Super Compact Screens (Below 320px) */
+@media (max-width: 320px) {
+  .calendar-day {
+    padding: 2px;
+    font-size: 8px;
+  }
+  .course-card {
+    padding: 4px;
+  }
+  .course-title {
+    font-size: 10px;
+  }
+  .course-info p {
+    font-size: 8px;
+  }
+  #prev-month, #next-month {
+    padding: 2px 3px;
+    font-size: 8px;
+  }
+}

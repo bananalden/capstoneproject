@@ -1,0 +1,146 @@
+@import url("edit-admin-pass.css");
+
+.txn-container {
+  width: 90%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin: 40px auto;
+  backdrop-filter: blur(6px);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 🔹 Center the Heading */
+.txn-container h1 {
+  text-align: center;
+}
+
+
+.txn-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.txn-table-head {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+}
+
+.txn-table-header {
+  padding: 12px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.txn-table-body .txn-table-row:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.txn-table-data {
+  padding: 12px;
+  font-size: 15px;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.txn-status {
+  padding: 5px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.txn-pending {
+  background: #ffc107;
+  color: #856404;
+}
+
+.txn-progress {
+  background: #17a2b8;
+  color: #fff;
+}
+
+.txn-approved {
+  background: #28a745;
+  color: #fff;
+}
+
+
+.txn-action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.txn-btn {
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.txn-btn-pending {
+  background: #ffc107;
+  color: #856404;
+}
+
+.txn-btn-progress {
+  background: #17a2b8;
+  color: #fff;
+}
+
+.txn-btn-approved {
+  background: #28a745;
+  color: #fff;
+}
+
+.txn-btn:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+
+.txn-footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  color: #555;
+  background: #f1f1f1;
+  border-radius: 8px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+  .txn-container {
+      padding: 20px;
+  }
+
+  .txn-table-header, .txn-table-data {
+      font-size: 14px;
+      padding: 10px;
+  }
+
+  .txn-action-buttons {
+      flex-direction: column;
+      gap: 5px;
+  }
+
+  .txn-btn {
+      width: 100%;
+  }
+}

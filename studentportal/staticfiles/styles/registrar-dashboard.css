@@ -1,0 +1,192 @@
+/* Registrar Dashboard CSS */
+
+.registrar-main-content {
+  width: 100%;
+  max-width: 1200px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  margin: 0 auto;
+}
+
+.registrar-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.registrar-welcome-title {
+  font-size: 28px;
+  color: #2c3e50;
+}
+
+.registrar-stats {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.registrar-stat-card {
+  background: #3498db;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  flex: 1;
+  margin: 10px;
+  text-align: center;
+  min-width: 200px;
+}
+
+.registrar-stat-card:nth-child(2) {
+  background: #f39c12;
+}
+
+.registrar-stat-card:nth-child(3) {
+  background: #2ecc71;
+}
+
+.registrar-stat-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.registrar-stat-value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.registrar-requests-title {
+  font-size: 22px;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.registrar-requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.registrar-table-head {
+  background: #ecf0f1;
+}
+
+.registrar-table-header {
+  text-align: left;
+  padding: 12px;
+  font-weight: bold;
+}
+
+.registrar-table-row:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.registrar-table-data {
+  padding: 12px;
+}
+
+.registrar-view-button {
+  background: #3498db;
+  color: #ffffff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.registrar-view-button:hover {
+  background: #2980b9;
+}
+
+/* Updated Modal Styles */
+
+.unique-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.unique-modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 55%;
+}
+
+.unique-modal-content h2 {
+  font-size: 25px;
+}
+
+.unique-close-button {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.unique-request-details {
+  margin: 20px 0;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .registrar-stats {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .registrar-stat-card {
+      width: 100%;
+      margin: 10px 0;
+  }
+
+  .registrar-table-header, .registrar-table-data {
+      padding: 8px;
+      font-size: 14px;
+  }
+
+  .unique-modal-content {
+      width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .registrar-welcome-title {
+      font-size: 24px;
+  }
+
+  .registrar-stat-title, .registrar-stat-value {
+      font-size: 16px;
+  }
+
+  .registrar-requests-title {
+      font-size: 18px;
+  }
+
+  .registrar-view-button {
+      padding: 6px 10px;
+      font-size: 12px;
+  }
+
+  .unique-modal-content {
+      padding: 15px;
+  }
+
+  .unique-approve-btn, .unique-deny-btn {
+      padding: 8px 16px;
+  }
+}
