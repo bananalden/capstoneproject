@@ -15,6 +15,7 @@ weasyprint = "*"
 dj-database-url = "*"
 whitenoise = {extras = ["brotli"], version = "*"}
 pipreqs = "*"
+gunicorn = "*"
 
 [dev-packages]
 
