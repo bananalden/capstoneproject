@@ -61,6 +61,7 @@ def login_admin(request):
         else:
             messages.warning(request,'Invalid USN or Password, please try again!')
             return redirect('admin:admin-login')
+        
 
 def logout_user(request):
     logout(request)

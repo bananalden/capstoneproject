@@ -102,10 +102,10 @@ class Cashier(CustomUser):
     
 class StudentProfile(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE, related_name='student_id')
-    course = models.CharField(null=True,blank=True)
+    course = models.CharField(null=True,blank=True, max_length=255)
     date_of_birth = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=10, choices=[("Male","Male"),("Female","Female"),("Other","Other"),], null=True,blank=True)
-    address = models.CharField(null=True,blank=True)
+    address = models.CharField(null=True,blank=True, max_length=255)
     contact_info = models.CharField(max_length=15,null=True,blank=True)
     
     def __str__(self):

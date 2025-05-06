@@ -12,6 +12,9 @@ openpyxl = "*"
 pandas = "*"
 xlsxwriter = "*"
 weasyprint = "*"
+dj-database-url = "*"
+whitenoise = {extras = ["brotli"], version = "*"}
+pipreqs = "*"
 
 [dev-packages]
 
