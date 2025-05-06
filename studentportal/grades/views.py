@@ -79,10 +79,9 @@ def grade_upload(request):
                     Grades.objects.update_or_create(
                         student_usn=student_usn,
                         subject_code=subject_code,
-                        subject_name=row["SUBJECT TITLE"].strip,
+                        subject_name=row["SUBJECT TITLE"].strip(),
                         semester=row["SEMESTER"],
                         year=row["YEAR"],
-                        grade_value=grade_value,
                         defaults={
                             "grade_value":grade_value
                         }
