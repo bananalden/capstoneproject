@@ -92,10 +92,12 @@ WSGI_APPLICATION = 'studentportal.wsgi.application'
 DATABASES = {
     'default': {
         'default': dj_database_url.config(
-            default=os.getenv('DB_URL')
+            default=os.getenv('INTERNAL_URL')
         )
     }
 }
+
+DATABASES["default"] = dj_database_url.parse(os.getenv('EXTERNAL_URL'))
 
 
 # Password validation
@@ -132,7 +134,6 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATIC_URL = '/static/'
 
@@ -140,6 +141,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -152,6 +156,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'aldenjustineflores@gmail.com'
-EMAIL_HOST_PASSWORD = 'chyh xhkz dfbi twre'
-DEFAULT_FROM_EMAIL = "aldenjustineflores@gmail.com"
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAILT_FROM_EMAIL')
