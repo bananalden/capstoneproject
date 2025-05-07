@@ -25,6 +25,6 @@ class Transaction(models.Model):
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     is_confirmed = models.BooleanField(default=False)
     registrar_status = models.CharField(max_length=255, choices=RegistrarStatus.choices, default=RegistrarStatus.PENDING)
-    payment_proof = models.ImageField(upload_to='payments/', null=True, blank=True)
+    payment_proof = models.URLField(null=True, blank=True)
 
     

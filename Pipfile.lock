@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "45e7b73858d8e625e586e06c204a2fa02d34bf3658b5bb726a75b3491026e609"
+            "sha256": "a0e1f5c0e06ee84a9b2b8299aedbabc0c022836aa1cb88fd215f47bc2dce3ac8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -528,6 +528,15 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==3.10"
+        },
+        "imagekitio": {
+            "hashes": [
+                "sha256:2dbced021aab3c4a55c458f61a5e19f17511540e04981900e959670365881750",
+                "sha256:893874c2a55f366a09628bbf504647fab671f44eb0815dcbc5e6c49fa07810c4"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.6'",
+            "version": "==4.1.0"
         },
         "ipython": {
             "hashes": [
@@ -1230,6 +1239,14 @@
             "markers": "python_version >= '3.8'",
             "version": "==2.32.3"
         },
+        "requests-toolbelt": {
+            "hashes": [
+                "sha256:18565aa58116d9951ac39baa288d3adb5b3ff975c4f25eee78555d89e8f247f7",
+                "sha256:62e09f7ff5ccbda92772a29f394a49c3ad6cb181d568b1337626b2abb628a63d"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==0.10.1"
+        },
         "rpds-py": {
             "hashes": [
                 "sha256:0047638c3aa0dbcd0ab99ed1e549bbf0e142c9ecc173b6492868432d8989a046",
@@ -1440,11 +1457,11 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:414bc6535b787febd7567804cc015fee39daab8ad86268f1310a9250697de466",
-                "sha256:4e16665048960a0900c702d4a66415956a584919c03361cac9f1df5c5dd7e813"
+                "sha256:0ed14ccfbf1c30a9072c7ca157e4319b70d65f623e91e7b32fadb2853431016e",
+                "sha256:40c2dc0c681e47eb8f90e7e27bf6ff7df2e677421fd46756da1161c39ca70d32"
             ],
-            "markers": "python_version >= '3.9'",
-            "version": "==2.4.0"
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
+            "version": "==1.26.20"
         },
         "wcwidth": {
             "hashes": [

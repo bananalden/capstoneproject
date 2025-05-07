@@ -7,6 +7,8 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.conf import settings
+from .imagekit_utils import upload_to_imagekit
+
 
 User = get_user_model()
 
@@ -67,6 +69,12 @@ class StudentPaymentForm(forms.ModelForm):
     def save(self,user, commit=True):
         instance = super().save(commit=False)
         instance.student = user
+
+        file_obj = self.files.get('payment_proof')
+        if file_obj:
+            image_url = upload_to_imagekit(file_obj, file_obj.name)
+            instance.payment_proof = image_url
+
         if commit:
             instance.save()
         return instance
