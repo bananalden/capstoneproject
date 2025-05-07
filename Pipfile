@@ -16,6 +16,7 @@ dj-database-url = "*"
 whitenoise = {extras = ["brotli"], version = "*"}
 pipreqs = "*"
 gunicorn = "*"
+django-cloudinary-storage = "*"
 
 [dev-packages]
 
