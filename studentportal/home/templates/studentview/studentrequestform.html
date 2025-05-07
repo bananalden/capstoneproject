@@ -62,7 +62,7 @@ Student Request Form
     <div class="student-payment-proof">
         {% csrf_token %}
         <label for="paymentproof">Proof of Payment:</label>
-        {{form.payment_proof}}
+        <input type="file" name="payment_proof" id="paymentproof" style="display: none;" accept="image/*">
         <label for="paymentproof" class="custom-upload-btn">Choose File</label>
         <span id="file-name">No file chosen</span>
     </div>
