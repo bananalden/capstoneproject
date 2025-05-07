@@ -5,7 +5,6 @@ from transactions.forms import StudentPaymentForm,updatePayment,manualTransactio
 from transactions.models import Transaction
 from users.models import Student
 from django.contrib import messages
-from .imagekit_utils import upload_to_imagekit
 
 
 
@@ -15,15 +14,7 @@ def student_payment_request(request):
         form = StudentPaymentForm(request.POST, request.FILES)
 
         if form.is_valid():
-            transaction = form.save(commit=False)
-            transaction.student = request.user
-            file = request.FILES.get('payment_proof')
-            if file:
-                image_url = upload_to_imagekit(file, file.name)
-                transaction.payment_proof = image_url
-
-            transaction.save()
-
+            form.save(user=request.user)
             messages.success(request,"Payment request succesfully sent!")
             return redirect('home:student-request-form')
         else:
