@@ -27,6 +27,7 @@ class StudentPaymentForm(forms.ModelForm):
                                                           })
         CHOICES = [("", "-----SELECT TRANSACTION PURPOSE-----")] + list(Transaction.PaymentPurposeChoice.choices)
         self.fields["payment_purpose"].choices = CHOICES
+        self.fields["payment_proof"] = forms.FileField(required=False)
         self.fields["payment_purpose"].widget.attrs.update({"id": "transaction"})
         self.fields["payment_proof"].widget.attrs.update({
             "accept":"image/*"
