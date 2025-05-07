@@ -39,7 +39,7 @@ Registrar Upload Grade
         <label for="file-upload" class="custom-upload-btn">Upload File</label>
         
         <!-- Hidden file input, only triggered by the label -->
-        <input type="file" id="file-upload" name="grades" onchange="updateFileName()" accept=".xlsx, .xls" style="display: none;">
+        <input type="file" id="file-upload" name="grades" onchange="updateFileName()" accept=".xlsx, .xls" style="display: none;" required>
         
         <!-- This span will show the file name once a file is selected -->
         <span id="file-name">No file chosen</span>
