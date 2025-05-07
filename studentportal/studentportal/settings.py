@@ -147,7 +147,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.getenv('CLOUD_API_SECRET'),
 }
 
-MEDIA_ROOT = BASE_DIR / 'media'
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
