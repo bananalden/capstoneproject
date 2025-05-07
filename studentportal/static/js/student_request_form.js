@@ -43,7 +43,7 @@ $(document).ready(function (){
     })
   
     $(document).ready(function () {
-        $("#paymentproof").change(function () {
+        $("#id_payment_proof").change(function () {
             let fileName = $(this).val().split("\\").pop(); // Get file name
             if (fileName) {
                 $("#file-name").text(fileName); // Update the span

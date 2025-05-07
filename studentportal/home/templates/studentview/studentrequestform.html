@@ -46,6 +46,7 @@ Student Request Form
     </div>
 
     <div class="student-payment-info" id="payment_amount">
+        {% csrf_token %}
       <label for="amount" id="label_amount">Enter amount paid:</label>
       <span>₱</span>
       <input type="number" name="amount" step="0.01" min="1" id="amount_paid" required> 
@@ -60,10 +61,12 @@ Student Request Form
     
     
     <div class="student-payment-proof">
-        {% csrf_token %}
-        <label for="paymentproof">Proof of Payment:</label>
+        <label for="id_payment_proof">Proof of Payment:</label>
+        <label for="id_payment_proof" class="custom-upload-btn">Choose File</label>
+
         {{form.payment_proof}}
-        <label for="paymentproof" class="custom-upload-btn">Choose File</label>
+
+
         <span id="file-name">No file chosen</span>
     </div>
   <button type="submit" class="submit-transaction">SUBMIT</button>

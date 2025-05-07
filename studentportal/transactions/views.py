@@ -12,7 +12,8 @@ from django.contrib import messages
 def student_payment_request(request):
     if request.method == 'POST':
         form = StudentPaymentForm(request.POST, request.FILES)
-
+        
+        print(request.FILES)
         if form.is_valid():
             form.save(user=request.user)
             messages.success(request,"Payment request succesfully sent!")

@@ -20,8 +20,8 @@ class StudentPaymentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
+        self.fields["payment_proof"] = forms.FileField(required=False)
         self.fields['payment_proof'].widget.attrs.update({
-            "id": "paymentproof",
             "style":"display: none;",
             "onchange":"updateFileName()"
                                                           })
