@@ -27,8 +27,8 @@ urlpatterns = [
     path('', include('authentication.urls', namespace='authentication')),
     path('admin/', include('admin.urls',namespace='admin')),
     path('home/',include('home.urls', namespace='home')),
-    path('api/',include('api.urls', namespace='api'))
-    
+    path('api/',include('api.urls', namespace='api')),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
 
 if settings.DEBUG:
