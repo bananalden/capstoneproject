@@ -256,12 +256,17 @@ def get_news_object(request,pk):
 def get_payment_data(request,pk):
     transaction = transactions_data.Transaction.objects.get(pk=pk)
 
+    if transaction.payment_proof:
+        payment_proof_url = request.build_absolute_uri(transaction.payment_proof.url)
+    else:
+        payment_proof_url = None
+
     data = {
         "student_name": f"{transaction.student.first_name} {transaction.student.last_name}",
         "date_time":transaction.date_time.strftime("%B %d, %Y %I:%M %p"),
         "student_usn":transaction.student.username,
         "payment_purpose":transaction.payment_purpose,
-        "payment_proof":transaction.payment_proof.url if transaction.payment_proof else None,
+        "payment_proof":payment_proof_url,
         "registrar_status":transaction.registrar_status,
         "amount":transaction.amount,
     }
