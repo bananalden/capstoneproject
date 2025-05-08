@@ -17,6 +17,8 @@ whitenoise = {extras = ["brotli"], version = "*"}
 pipreqs = "*"
 gunicorn = "*"
 imagekitio = "*"
+boto3 = "*"
+django-storages = "*"
 
 [dev-packages]
 
