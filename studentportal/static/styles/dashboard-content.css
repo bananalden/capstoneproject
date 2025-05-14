@@ -92,10 +92,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #016a9e;
+  background: #fafafa;
   padding: 15px 20px;
   color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 5px;
 }
 
 .admin-dashboard-header .logo img {
@@ -109,7 +110,7 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   margin: 0;
-  color: #fff;
+  color: #1B48A0;
 }
 
 .admin-dashboard-main {
