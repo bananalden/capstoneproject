@@ -108,24 +108,41 @@ Document Request
                               </div>
 
                               <div class="col-md-6 cert-morale-enrollment req-document-cert">
-                              <h6>Enter Year and Semester (If Certificate of Grades, enter previous semester)</h6>
 
                               <div class="form-half">
-                                <label for="semester">Semester:</label>
-                                <select name="semester" id="semester">
-                                  <option value="1st">1st</option>
-                                  <option value="2nd">2nd</option>
-                                </select>
+                               <h6 id="instruction"></h6>
+                                <div class="m-2">
+                                  <label for="semester">Semester:</label>
+                                  <select name="semester" id="semester"><br>
+                                    <option value="1st">1st</option>
+                                    <option value="2nd">2nd</option>
+                                  </select><br>
+                                  </div>
 
-                                <label for="year">School Year:</label>
-                                <input type="text" name="year" id="school-year" placeholder="Enter School Year (example: 2024-2025)">
+                                  <div class="m-2">
+                                    <label for="year">School Year:</label>
+                                    <input type="text" name="year" id="school-year" placeholder="Enter School Year (example: 2024-2025)">
+                                  </div>
+
+                                  <div class="m-2" id="remarks-for-morale">
+                                    <label for="remarks">Enter remarks:</label><br>
+                                    <textarea name="remarks" id="remarks"></textarea>
+                                  </div>
+
+                                
+
+                                
+
                               </div>
 
                               <div class="form-half">
-                                <label for="pickup-date">Set Pick-up Date:</label>
-                                <input type="date" name="pickup-date" id="pickup-date">
+                                  <div id="pickup-date">
+                                    <h6>Enter pick-up date:</h6>
+                                    <label for="pickup-date">Set Pick-up Date:</label>
+                                    <input type="date" name="pickup-date" id="pickup-date">
+                                  </div>
                               </div>
-                            </div>
+                              </div>
 
 
                           </div>

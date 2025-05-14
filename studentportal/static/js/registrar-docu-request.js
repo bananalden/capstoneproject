@@ -8,10 +8,6 @@ $(document).ready(function (){
     let searchQuery = "";
 
 
-   
-
-
-
     function loadTransactions(page = 1, query= "", semester=""){
         $(".table-tbody").html('<tr class="table-tr"><td colspan="6">Loading grades...</td></tr>');
         $.ajax({
@@ -112,6 +108,7 @@ $(document).on("click", "#process-request", function(e){
     let formData = new FormData(form[0]);
     let url = form.attr("action")
 
+
     $.ajax({
         url: url,
         type: "POST",
@@ -211,7 +208,7 @@ $(document).on("click", ".registrar-approve-button",function(){
 
 $(document).on("click", ".process-document",function(){
     var transID = $(this).data("id");
-    
+    $("#remarks-for-morale").hide()
     $.ajax({
         url:`/api/get-payment-data/${transID}`,
         type: 'GET',
@@ -222,7 +219,40 @@ $(document).on("click", ".process-document",function(){
             $("#student-name").val(data.student_name)
             $("#document-type").val(data.payment_purpose)
             $("#date-requested").val(data.date_time)
+            
+            
+            var document_type = data.payment_purpose
+            var registrar_status = data.registrar_status
+            console.log(data.registrar_status)
+            
+            if (registrar_status=='AVAILABLE'){
+                $("#pickup-date").hide()
+            }
+            else{
+                $("#pickup-date").show()
+            }
+            
+            
+            if(document_type == "CERTIFICATE OF ENROLLMENT" ){
+                $("#instruction").html("Enter current year and semester")
+                $("#remarks-for-morale").hide()
+            }
+            else if (document_type == "CERTIFICATE OF GRADES"){
+                $("#instruction").html("Enter previous year and semester")
+                $("#remarks-for-morale").hide()
+                
+            }
+            
+            else if(document_type=="CERTIFICATE OF GOOD MORALE"){
+                $("#instruction").html("Enter current year and semester")
+                $("#remarks-for-morale").show()
+                
+            }
+              
 
+                        
+          
+            
 
         },
         error:function(){
