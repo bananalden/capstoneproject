@@ -19,7 +19,6 @@
   margin-bottom: 20px;
 }
 
-
 /* Search Bar Styling */
 .registrar-search-container {
   margin-bottom: 20px;
@@ -254,7 +253,7 @@
 
 /* MODAL SECTION */
 
-.modal-dialog {
+.req-document-dialog {
   max-width: 900px; /* default is ~500px; adjust as needed */
   width: 90%; /* responsive width */
 }
@@ -383,26 +382,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ENTER YEAR AND SEMESTER STYLING */
 
 
@@ -448,7 +427,7 @@
 }
 
 .approved-request-header {
-  background-color: #c1121f;
+  background-color: #1B48A0;
   color: white;
 }
 

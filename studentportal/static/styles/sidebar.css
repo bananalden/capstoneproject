@@ -50,7 +50,7 @@
   
   .sidebar-menu li:hover {
     transform: translateX(5px);
-    background-color: #c1121f;
+    background-color: #F07A0F;
     border-radius: 5px;
   }
   
@@ -139,7 +139,7 @@
   }
   
   .user-profile a:hover {
-    background-color: #c1121f;
+    background-color: #F07A0F;
     color: #fff;
   }
   
@@ -157,7 +157,7 @@
   
   .logout:hover {
     transform: translateX(5px);
-    background-color: #c1121f;
+    background-color: #F07A0F;
     color: #fff;
   }
   
