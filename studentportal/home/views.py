@@ -150,6 +150,8 @@ def edit_registrar_password(request):
 def registrar_document_request(request):
     if request.user.role != 'REGISTRAR':
         return redirect('authentication:unauthorized-view')
+    if request.GET.get("success") == "1":
+        messages.success(request, "Certificate has been successfully downloaded.")
     return render(request, 'registrar/document-request.html')
 
 @login_required(login_url='authentication:login')
@@ -160,6 +162,9 @@ def registrar_document_complete(request):
 
 @login_required(login_url='authentication:login')
 def registrar_generate_document(request):
+    if request.GET.get("success") == "1":
+        messages.success(request, "Certificate has been successfully downloaded.")
+
     if request.user.role != 'REGISTRAR':
         return redirect('authentication:unauthorized-view')
     return render(request, 'registrar/generate-document.html')

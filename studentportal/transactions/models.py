@@ -12,11 +12,12 @@ class Transaction(models.Model):
         COMPLETE = "COMPLETE", 'Complete'
 
     class PaymentPurposeChoice(models.TextChoices):
-        TUITION_FEE = "TUITION FEE", "Tuition Fee"
         CERT_GRADES = "CERTIFICATE OF GRADES", "Certificate of Grades"
         CERT_MORALE = "CERTIFICATE OF GOOD MORALE", "Certificate of Good Morale"
         CERT_ENROL = "CERTIFICATE OF ENROLLMENT", "Certificate of Enrollment"
+        TRANS_RECORD = "TRANSCRIPT OF RECORDS", "Transcript of Records"
         OTHER = "OTHER", "Other"
+
 
     payment_purpose = models.CharField(max_length=255, choices=PaymentPurposeChoice.choices,  null=True)
     payment_purpose_other = models.CharField(max_length=255, null=True, blank=True)

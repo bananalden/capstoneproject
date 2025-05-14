@@ -136,7 +136,7 @@ $(document).on("click", "#process-request", function(e){
             a.click();
             a.remove();
             window.URL.revokeObjectURL(url);
-            window.location.href = "/home/registrar/gen-cert-success/"
+            window.location.href = window.location.pathname + "?success=1"
         },
         error: function(xhr, status, error) {
             console.log(xhr);

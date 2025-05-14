@@ -18,7 +18,7 @@ class CustomUser(AbstractUser):
         STUDENT = "STUDENT", 'Student'
 
     base_role = Role.ADMIN
-
+    email = models.EmailField(blank=True, null=True)
     role = models.CharField(max_length=50 ,choices=Role.choices)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
