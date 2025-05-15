@@ -1,66 +1,165 @@
+{%load static%}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate of Enrollment</title>
-    <style>
-        @page{
-            size: A4;
-            margin: 1in;
-          
-        }
-        @media print{
-            html, body{
-                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            }
-        }
-        h1{
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certificate of Enrollment</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
 
-        .header{
-            padding-top: 15%;
-        }
-        .signature{
-            float: right;
-            margin-top: 30%;
-            padding-right:5%;
-            margin-right:5%;
-          
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        .signature input{
-            border: none;
-            border-bottom: 1px solid black;
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Times New Roman', serif;
+      background: #fff;
+    }
 
-        .body p{
-            padding: 1%;
-        }
+    .certificate-container {
+      width: 210mm;
+      height: 297mm;
+      padding: 25mm 20mm;
+      margin: auto;
+      background-color: white;
+      color: #000;
+      position: relative;
+    }
 
-        .sign-line p{
-            margin:0;
-            padding:0;
-        }
-    </style>
+    .certificate-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    
+    .school-logo {
+      position: relative;
+      top: 50px;
+      left: 30px;
+      width: 100px;
+      height: auto;
+      display: block;
+    }
+
+    .school-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .school-address {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .certificate-title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 30px 0;
+      text-decoration: underline;
+    }
+
+    .certificate-body {
+      font-size: 16px;
+      text-align: justify;
+      line-height: 1.6;
+      margin-top: 20px;
+    }
+
+    .certificate-signature {
+      margin-top: 70px;
+      text-align: right;
+    }
+
+    .signature-line {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .signature-underline {
+      border-top: 1px solid #000;
+      width: 200px;
+      margin: 0 auto 5px auto;
+    }
+
+    .signature-title,
+    .signature-name {
+      margin: 0;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    #download-pdf {
+      margin: 20px auto;
+      display: block;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    @media print {
+      #download-pdf {
+        display: none;
+      }
+
+      html, body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 0;
+      }
+
+      .certificate-container {
+        box-shadow: none;
+        page-break-after: always;
+      }
+    }
+  </style>
+
+  <!-- HTML2Canvas & jsPDF CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div class="header">
-       <h1>Certificate of Enrollment</h1>
+  <div class="certificate-container" id="certificate">
+    <div class="certificate-header">
+      <img src="{%static 'images/LOGO-VA.png'%}" alt="Vision Academy Logo" class="school-logo" />
+      <h2 class="school-name">Vision Academy of Apalit</h2>
+      <h3 class="school-address">MacArthur Highway, Apalit, Pampanga</h3>
     </div>
-    <div class="body">
-        <p>This is to certify that the student, {{student.first_name}} {{student.last_name}} is enrolled in ACLC College of Apalit in the {{semester}} Semester of the school year, {{year}}.</p>
-        <p>This certification is issued upon the request of the above mentioned for whatever legal purpose it may serve the student best.</p>
-        <p>This document was signed and stamped in {%now "F j, Y"%}</p>
-        <div class="signature">
-        <input type="text" name="signature" id="">
-        <div class="sign-line">
-            <p>Registrar</p>
-        <p><strong>Joseph T. Calara</strong></p>
-        
+
+    <div class="certificate-title">CERTIFICATE OF ENROLLMENT</div>
+
+    <div class="certificate-body">
+      <p>
+        This is to certify that the student, <strong>{{student.first_name}} {{student.last_name}}</strong> is enrolled in <strong>Vision Academy of Apalit</strong> in the
+        {{semester}} of the school year, <strong>{{year}} </strong>.
+      </p>
+
+      <p>
+        This certification is issued upon the request of the above mentioned for whatever legal purpose it may serve the student best.
+      </p>
+
+      <p>
+        This document was signed and stamped in {%now "F j, Y"%}.
+      </p>
     </div>
+
+    <div class="certificate-signature">
+      <div class="signature-line">
+        <div class="signature-underline"></div>
+        <p class="signature-title">Registrar</p>
+        <p class="signature-name">Joseph T. Calara</p>
+      </div>
     </div>
-    </div>
+  </div>
 </body>
 </html>

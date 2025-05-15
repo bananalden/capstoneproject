@@ -1,4 +1,169 @@
+{%load static%}
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificate of Good Moral Character</title>
+  <!-- HTML2Canvas & jsPDF CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+@page {
+      size: A4;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Times New Roman', serif;
+      background: #fff;
+    }
+
+    .certificate-container {
+      width: 210mm;
+      height: 297mm;
+      padding: 25mm 20mm;
+      margin: auto;
+      background-color: white;
+      color: #000;
+      position: relative;
+    }
+
+    .certificate-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .school-logo {
+      width: 80px;
+      height: auto;
+    }
+
+    .school-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .school-address {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .certificate-title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 30px 0;
+      text-decoration: underline;
+    }
+
+    .certificate-body {
+      font-size: 16px;
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    .certificate-signature {
+      margin-top: 50px;
+      text-align: right;
+    }
+
+    .signature-line {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .signature-underline {
+      border-top: 1px solid #000;
+      width: 200px;
+      margin: 0 auto 5px auto;
+    }
+
+    .signature-title,
+    .signature-name {
+      margin: 0;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    #download-pdf {
+      margin: 20px auto;
+      display: block;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    @media print {
+      #download-pdf {
+        display: none;
+      }
+
+      html, body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 0;
+      }
+
+      .certificate-container {
+        box-shadow: none;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="certificate-container" id="certificate">
+    <div class="certificate-header">
+      <img src="{% static 'images/LOGO-VA.png'%}" alt=" Academy Logo" class="school-logo" />
+      <h2 class="school-name">Vision Academy of Apalit</h2>
+      <h3 class="school-address">MacArthur Highway, Apalit, Pampanga</h3>
+    </div>
+
+    <div class="certificate-title">CERTIFICATE OF GOOD MORAL CHARACTER</div>
+
+    <div class="certificate-body">
+      <p>This is to certify that <strong class="student-name">{{student.first_name}} {{student.last_name}}</strong> is a bonafide student of 
+      <strong>Vision Academy of Apalit</strong>, currently enrolled in the {{semester}} of the Academic Year 
+      <strong>{{year}}</strong>.</p>
+
+      <p>Based on the records of this institution, the aforementioned student has not committed any form of misbehavior 
+      nor violated any of the school’s rules and regulations during his/her stay in the college.</p>
+
+      <p>This certification is issued upon the request of the above-named student for whatever legal purpose it may serve.</p>
+
+      <p>Issued this <strong class="issue-date">{%now "F j, Y"%}
+      </strong> at Vision Academy of Apalit, Pampanga.</p>
+    </div>
+
+    <div class="certificate-signature">
+      <div class="signature-line">
+        <div class="signature-underline"></div>
+        <p class="signature-title">Registrar</p>
+        <p class="signature-name">Joseph T. Calara</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -73,4 +238,4 @@
       </div>
     </div>
   </body>
-</html>
+</html> {% endcomment %}
