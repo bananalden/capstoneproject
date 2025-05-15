@@ -12,7 +12,7 @@
 /* Heading */
 .profile-container h2 {
   text-align: center;
-  color: #333;
+  color: #1B48A0;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 15px;
@@ -33,18 +33,18 @@
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-  border-left: 6px solid #023047;
+  border-left: 6px solid #1B48A0;
   transition: all 0.3s ease-in-out;
 }
 
 /* Section Headings */
 .info h3 {
   font-size: 22px;
-  color: #023047;
+  color: #1B48A0;
   font-weight: bold;
   text-align: center;
   margin-bottom: 18px;
-  border-bottom: 3px solid #ef233c;
+  border-bottom: 3px solid #F07A0F;
   padding-bottom: 10px;
   display: flex;
   align-items: center;
@@ -76,7 +76,7 @@
 
 /* Icons */
 .info-list li i {
-  color: #007bff;
+  color: #1B48A0;
   font-size: 18px;
 }
 
@@ -103,9 +103,9 @@
   text-align: center;
   font-size: 22px;
   font-weight: bold;
-  color: #023047;
+  color: #1B48A0;
   padding-bottom: 8px;
-  border-bottom: 2px solid #ef233c;
+  border-bottom: 2px solid #F07A0F;
   margin-bottom: 20px;
 }
 
@@ -151,7 +151,7 @@ input:focus, select:focus {
 /* Save Button */
 .save-us {
   display: block;
-  background-color: #ef233c;
+  background-color: #1B48A0;
   width: 50%;
   color: #fff;
   border: none;
@@ -168,7 +168,7 @@ input:focus, select:focus {
 
 
 .save-us:hover {
-  background-color: #c1121f;
+  background-color: #016a9e;
   transform: translateY(-2px);
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
 }

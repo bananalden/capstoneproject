@@ -7,7 +7,7 @@
 
 /* Header Styling */
 header {
-  background-color: #023047;
+  background-color: #1B48A0;
   color: white;
   padding: 20px;
   display: flex;
@@ -171,7 +171,7 @@ header {
 .quick-links h2 {
   font-size: 22px;
   margin-bottom: 15px;
-  color: #333;
+  color: #F07A0F;
 }
 
 .quick-links ul {
@@ -185,13 +185,13 @@ header {
 
 .quick-links ul li a {
   text-decoration: none;
-  color: #3a8dff;
+  color: #1B48A0;
   font-size: 17px;
   transition: color 0.3s ease;
 }
 
 .quick-links ul li a:hover {
-  color: #2a6dd8;
+  color: #016a9e;
   text-decoration: underline;
 }
 
@@ -216,13 +216,13 @@ header {
 
 .calendar h2 {
   font-size: 22px;
-  color: #023047;
+  color: #F07A0F;
   margin: 0;
 }
 
 /* Navigation Buttons */
 #prev-month, #next-month {
-  background-color: #023047;
+  background-color: #1B48A0;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -233,7 +233,7 @@ header {
 }
 
 #prev-month:hover, #next-month:hover {
-  background-color: #035e91;
+  background-color: #016a9e;
 }
 
 .calendar-grid {
@@ -246,7 +246,7 @@ header {
 .day-label {
   font-weight: bold;
   padding: 10px;
-  background: #023047;
+  background: #1B48A0;
   color: white;
   border-radius: 5px;
 }
@@ -262,7 +262,7 @@ header {
 }
 
 .calendar-day:hover {
-  background-color: #023047;
+  background-color: #016a9e;
   color: white;
   cursor: pointer;
 }
@@ -281,7 +281,7 @@ header {
 }
 
 .today {
-  background-color: #023047;
+  background-color: #016a9e;
   color: white;
   font-weight: bold;
   border-radius: 8px;

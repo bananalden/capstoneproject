@@ -1,4 +1,205 @@
 {%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transcript of Records</title>
+
+  <!-- JS Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Times New Roman', serif;
+    background: white;
+  }
+
+  .certificate-container {
+    width: 210mm;
+    height: 297mm;
+    padding: 25mm 20mm;
+    margin: auto;
+    background-color: white;
+    color: #000;
+  }
+
+  .certificate-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .school-logo {
+      position: relative;
+      top: 50px;
+      left: 30px;
+      width: 100px;
+      height: auto;
+      display: block;
+    }
+
+  .school-name {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+
+  .school-address {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .certificate-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 30px 0;
+    text-decoration: underline;
+  }
+
+  .certificate-body {
+    font-size: 16px;
+    text-align: justify;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .certificate-table {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .certificate-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .certificate-table th,
+  .certificate-table td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .certificate-signature {
+    text-align: right;
+  }
+
+  .signature-line {
+    display: inline-block;
+    text-align: center;
+  }
+
+  .signature-underline {
+    border-top: 1px solid #000;
+    width: 200px;
+    margin: 0 auto 5px auto;
+  }
+
+  .signature-title,
+  .signature-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  #download-pdf {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  @media print {
+    #download-pdf {
+      display: none;
+    }
+
+    html, body {
+      width: 210mm;
+      height: 297mm;
+      margin: 0;
+      padding: 0;
+    }
+
+    .certificate-container {
+      page-break-after: always;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="certificate-container" id="certificate">
+    <!-- Header -->
+    <div class="certificate-header">
+      <img src="{%static 'images/LOGO-VA.png'%}" alt="Vision Academy Logo" class="school-logo" />
+      <h2 class="school-name">Vision Academy of Apalit</h2>
+      <h3 class="school-address">MacArthur Highway, Apalit, Pampanga</h3>
+    </div>
+
+    <!-- Title -->
+    <div class="certificate-title">CERTIFICATE OF GRADES</div>
+
+    <!-- Body Text -->
+    <div class="certificate-body">
+      <p>This is to certify that the student, <strong>{{student.first_name}} {{student.last_name}}</strong>, is enrolled in <strong>Vision Academy of Apalit</strong> in the <strong>{{semester}}</strong> of the school year <strong>{{year}}</strong>.</p>
+
+      <p>The following are the grades the aforementioned student had in the previous year:</p>
+    </div>
+
+    <!-- Grades Table -->
+    <div class="certificate-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Subject Code</th>
+            <th>Subject Title</th>
+            <th>Grade Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ENGL101</td>
+            <td>Communication Skills 1</td>
+            <td>97.55</td>
+          </tr>
+          <tr>
+            <td>UGRD-GE6300</td>
+            <td>Life and Works of Rizal</td>
+            <td>97.55</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Signature -->
+    <div class="certificate-signature">
+      <div class="signature-line">
+        <div class="signature-underline"></div>
+        <p class="signature-title">Registrar</p>
+        <p class="signature-name">Joseph T. Calara</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+{% comment %} {%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -172,4 +373,4 @@
     </div>
 </div>
 </body>
-</html>
+</html> {% endcomment %}
