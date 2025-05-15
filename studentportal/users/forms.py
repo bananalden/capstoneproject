@@ -57,7 +57,7 @@ class change_password(PasswordChangeForm):
 class add_cashier(forms.ModelForm):
     class Meta:
         model = models.Cashier
-        fields = ['first_name','last_name','email','username','password']
+        fields = ['first_name','last_name','email','username']
         widgets = {
             'password':forms.PasswordInput
         }
@@ -73,17 +73,21 @@ class add_cashier(forms.ModelForm):
             raise ValidationError("First or last name cannot contain numbers!")
         return last_name
     
-    def save(self, commit=True):
+    def save(self, commit=True, password=None):
         cashier = super().save(commit=False)
-        cashier.set_password(self.cleaned_data['password'])
+        if password is None:
+            raise ValueError("Password must be provided for user creation!")
+        
+        cashier.set_password(password)
         if commit:
             cashier.save()
+        return cashier
 
 
 class add_teacher(forms.ModelForm):
     class Meta:
         model = models.Teacher
-        fields = ['first_name','last_name','email','username','password']
+        fields = ['first_name','last_name','email','username']
         widgets = {
             'password':forms.PasswordInput
         }
@@ -100,17 +104,21 @@ class add_teacher(forms.ModelForm):
             raise ValidationError("First or last name cannot contain numbers!")
         return last_name
 
-    def save(self, commit=True):
+    def save(self, commit=True, password=None):
         teacher = super().save(commit=False)
-        teacher.set_password(self.cleaned_data['password'])
+        if password is None:
+            raise ValueError("Password must be provided for user creation!")
+        
+        teacher.set_password(password)
         if commit:
             teacher.save()
+        return teacher
 
 
 class add_registrar(forms.ModelForm):
     class Meta:
         model = models.Registrar
-        fields = ['first_name','last_name','email','username','password']
+        fields = ['first_name','last_name','email','username']
         widgets = {
             'password':forms.PasswordInput
         }
@@ -127,11 +135,15 @@ class add_registrar(forms.ModelForm):
             raise ValidationError("First or last name cannot contain numbers!")
         return last_name
         
-    def save(self, commit=True):
+    def save(self, commit=True, password=None):
         registrar = super().save(commit=False)
-        registrar.set_password(self.cleaned_data['password'])
+        if password is None:
+            raise ValueError("Password must be provided for user creation!")
+        
+        registrar.set_password(password)
         if commit:
             registrar.save()
+        return registrar
 
 
 
@@ -140,7 +152,7 @@ class add_student(forms.ModelForm):
 
     class Meta:
         model = models.Student
-        fields = ['first_name','last_name','email','username','password']
+        fields = ['first_name','last_name','email','username']
         widgets = {
             'password':forms.PasswordInput
         }
@@ -157,13 +169,14 @@ class add_student(forms.ModelForm):
             raise ValidationError("First or last name cannot contain numbers!")
         return last_name
 
-    def save(self, commit=True):
+    def save(self, commit=True, password=None):
         student = super().save(commit=False)
-        student.set_password(self.cleaned_data['password'])
+        if password is None:
+            raise ValueError("Password must be provided for user creation!")
         
+        student.set_password(password)
         if commit:
             student.save()
-
         return student
 
 class StudentUserUpdate(forms.ModelForm):

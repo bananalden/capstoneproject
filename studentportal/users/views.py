@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model,update_session_auth_hash
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils.crypto import get_random_string
 
 # Create your views here.
 
@@ -62,14 +63,15 @@ def admin_dashboard_action(request):
         if request.POST.get("user_type") == 'STUDENT':
             form = forms.add_student(request.POST)
             if form.is_valid():
-                student = form.save()
+                random_password = get_random_string(length=8)
+                student = form.save(password=random_password)
 
                 course = request.POST.get("course")
                 models.StudentProfile.objects.update_or_create(
                     student=student,defaults={"course":course}
                 ) 
 
-                messages.success(request,"Student successfully created!")
+                messages.success(request,f"Student successfully created! Password:{random_password}")
                 return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
@@ -88,8 +90,9 @@ def admin_dashboard_action(request):
         elif request.POST.get("user_type") == 'REGISTRAR':
             form = forms.add_registrar(request.POST)
             if form.is_valid():
-               form.save()
-               messages.success(request,'Registrar successfully created!')
+               random_password = get_random_string(length=8)
+               form.save(password=random_password)
+               messages.success(request,f'Registrar successfully created! Password: {random_password}')
                return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)

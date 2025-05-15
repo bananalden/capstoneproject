@@ -282,6 +282,10 @@ def generate_cert(request):
             form = forms.CertificateOfGrades(request.POST)
             template_name = "pdf_templates/certificate_of_grades.html"
 
+        elif document_type == "TRANSCRIPT OF RECORDS":
+            form = forms.TranscriptRecords(request.POST)
+            template_name = "pdf_templates/transcript_records.html"
+
         if form.is_valid():        
             student = form.cleaned_data.get("student")
             year = form.cleaned_data.get('year')
@@ -304,6 +308,11 @@ def generate_cert(request):
                     'semester':semester,
                     'grades':grades
                 }
+            
+            elif document_type =="TRANSCRIPT OF RECORDS":
+                student_usn = str(student.username)
+                grades_unfiltered = Grades.objects.filter(student_usn=student_usn)
+                grades = grades_unfiltered.sort(key=lambda g: (g.sort_year, g.sort_semester))
 
             else:
                 context={

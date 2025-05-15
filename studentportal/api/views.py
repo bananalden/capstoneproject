@@ -566,7 +566,8 @@ def get_grades(request):
     page = request.GET.get("page",1)
     search_query = request.GET.get("q","")
     semester = request.GET.get("filter","")
-    grade_list = Grades.objects.all()
+    grade_list = list(Grades.objects.all())
+    grade_list.sort(key=lambda g: (-g.sort_year, g.sort_semester))
     
 
     if search_query:
@@ -578,6 +579,7 @@ def get_grades(request):
 
     if semester:
         grade_list = grade_list.filter(semester = semester)
+        grade_list.sort(key=lambda g:(g.sort_year, g.sort_semester), reverse=True)
 
     
 

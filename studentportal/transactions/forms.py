@@ -265,6 +265,24 @@ class CertificateOfGrades(forms.Form):
             return year
 
         raise ValidationError("Invalid school year format. Use 'YYYY' or 'YYYY-YYYY'.")
+    
+class TranscriptRecords(forms.Form):
+    student = forms.CharField(max_length=150,widget=forms.TextInput(attrs={
+        "placeholder":"Input student's USN",
+        "class":"generate-document-input",
+        "id":"student-name"
+    }))
+    
+    def clean_student(self):
+        student_usn = self.cleaned_data.get("student")
+
+        if not student_usn:
+            raise ValidationError("This field is required")
+        try:
+            student = User.objects.get(username=student_usn)
+            return student
+        except User.DoesNotExist:  
+            raise ValidationError("User does not exist. Please enter a valid Student username.")
 
 
             

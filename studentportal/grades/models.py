@@ -10,5 +10,18 @@ class Grades(models.Model):
     year = models.CharField(max_length=255)
     grade_value = models.DecimalField(max_digits=5,decimal_places=2)
 
+    @property
+    def sort_year(self):
+        try:
+            return int(self.year.split('-')[0])
+        except (ValueError, AttributeError):
+            return 0
+    @property 
+    def sort_semester(self):
+        try:
+            return int(''.join(filter(str.isdigit, self.semester)))
+        except (ValueError, TypeError):
+            return 0
+
     class Meta:
         unique_together = ('student_usn','subject_code','subject_name','semester','year')
