@@ -61,39 +61,36 @@ def admin_dashboard_action(request):
       if request.method == 'POST':
 ##################LOGIC FOR STUDENT########################################################
         if request.POST.get("user_type") == 'STUDENT':
-            form = forms.add_student(request.POST)
+            form = forms.edit_student(request.POST)
             if form.is_valid():
-                random_password = get_random_string(length=8)
-                student = form.save(password=random_password)
+                student = form.save()
 
                 course = request.POST.get("course")
                 models.StudentProfile.objects.update_or_create(
                     student=student,defaults={"course":course}
                 ) 
 
-                messages.success(request,f"Student successfully created! Password:{random_password}")
+                messages.success(request,"Student successfully created!")
                 return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
                 return redirect('admin:dashboard')
   #####################LOGIC FOR TEACHER##################################################          
         elif request.POST.get("user_type") == 'TEACHER':
-            form = forms.add_teacher(request.POST)
+            form = forms.edit_teacher(request.POST)
             if form.is_valid():
-                random_password = get_random_string(length=8)
-                form.save(password=random_password)
-                messages.success(request,f"Teacher successfully created! Password: {random_password}")
+                form.save()
+                messages.success(request,"Teacher successfully created!")
                 return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
                 return redirect('admin:dashboard')
 ###########################LOGIC FOR REGISTRAR#########################################
         elif request.POST.get("user_type") == 'REGISTRAR':
-            form = forms.add_registrar(request.POST)
+            form = forms.edit_registrar(request.POST)
             if form.is_valid():
-               random_password = get_random_string(length=8)
-               form.save(password=random_password)
-               messages.success(request,f'Registrar successfully created! Password: {random_password}')
+               form.save()
+               messages.success(request,'Registrar successfully created!')
                return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
@@ -101,11 +98,10 @@ def admin_dashboard_action(request):
 
  ###########################LOGIC FOR CASHIER#########################################           
         elif request.POST.get("user_type") == 'CASHIER':
-            form = forms.add_cashier(request.POST)
+            form = forms.edit_cashier(request.POST)
             if form.is_valid():
-                random_password = get_random_string(length=8)
-                form.save(password=random_password)
-                messages.success(request,f'Cashier successfully created! Password: {random_password}')
+                form.save()
+                messages.success(request,'Cashier successfully created!')
                 return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
