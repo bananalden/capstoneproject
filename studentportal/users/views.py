@@ -132,7 +132,7 @@ def update_cashier(request):
             print("Coudn't find this admin")
             return redirect('admin:users:admin-list')
         cashier_user = models.CustomUser.objects.get(id=cashier_id)
-        form = forms.add_cashier(request.POST, instance=cashier_user)
+        form = forms.edit_cashier(request.POST, instance=cashier_user)
         if form.is_valid():
             form.save()
             messages.success(request,"Cashier successfully edited!")
@@ -169,7 +169,7 @@ def update_registrar(request):
     if request.method == 'POST':
         registrar_id = request.POST.get("id", None)
         registrar_user = models.CustomUser.objects.get(id=registrar_id)
-        form = forms.add_registrar(request.POST, instance=registrar_user)
+        form = forms.edit_registrar(request.POST, instance=registrar_user)
         
         if form.is_valid():
             form.save()
@@ -206,7 +206,7 @@ def update_teacher(request):
     if request.method == 'POST':
         teacher_id = request.POST.get("edit_id")
         teacher_user = models.CustomUser.objects.get(id=teacher_id)
-        teacher_update =forms.add_teacher(request.POST, instance=teacher_user)
+        teacher_update =forms.edit_teacher(request.POST, instance=teacher_user)
         if teacher_update.is_valid():
             teacher_update.save()
             messages.success(request,'Teacher updated successfully!')
@@ -244,7 +244,7 @@ def update_student(request):
     if request.method == 'POST':
         student_id = request.POST.get("edit_id")
         student_user = models.CustomUser.objects.get(id=student_id)
-        student_update =forms.add_student(request.POST, instance=student_user)
+        student_update =forms.edit_student(request.POST, instance=student_user)
         if student_update.is_valid():
             student_update.save()
             messages.success(request,"Student edited successfully!")
@@ -337,7 +337,7 @@ def change_password_user(request):
                 case 'REGISTRAR':
                     messages.warning(request, form.errors)
                     return redirect('home:edit-registrar-password')
-            messages.error(request, form.errors)
+            
 
 #USER PASSWORD EDIT=============================================
 
