@@ -298,15 +298,18 @@ def change_password_user(request):
                     return redirect('admin:dashboard')
                 case 'STUDENT':
                     messages.success(request, "Password has successfully been updated!")
-                    return redirect('home:student-home')
+                    return redirect('home:student-password')
 
+                case 'TEACHER':
+                    messages.success(request, "Password succesfully been updated!")
+                    return redirect('home:teacher-edit-password')
                 case 'CASHIER':
                     messages.success(request, "Password has successfully been updated!")
-                    return redirect('home:cashier-home')
+                    return redirect('home:edit-cashier-password')
 
                 case 'REGISTRAR':
                     messages.success(request, "Password has successfully been updated!")
-                    return redirect('home:registrar-dashboard')
+                    return redirect('home:edit-registrar-password')
                 
                     
                     
@@ -321,15 +324,19 @@ def change_password_user(request):
                     return redirect('admin:dashboard')
                 case 'STUDENT':
                     messages.warning(request, form.errors)
-                    return redirect('home:student-home')
+                    return redirect('home:student-password')
+                
+                case 'TEACHER':
+                    messages.warning(request, form.errors)
+                    return redirect(request,'home:teacher-edit-password')
 
                 case 'CASHIER':
                     messages.warning(request, form.errors)
-                    return redirect('home:cashier-home')
+                    return redirect('home:edit-cashier-password')
 
                 case 'REGISTRAR':
                     messages.warning(request, form.errors)
-                    return redirect('home:registrar-home')
+                    return redirect('home:edit-registrar-password')
             messages.error(request, form.errors)
 
 #USER PASSWORD EDIT=============================================
