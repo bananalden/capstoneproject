@@ -80,8 +80,9 @@ def admin_dashboard_action(request):
         elif request.POST.get("user_type") == 'TEACHER':
             form = forms.add_teacher(request.POST)
             if form.is_valid():
-                form.save()
-                messages.success(request,"Teacher successfully created!")
+                random_password = get_random_string(length=8)
+                form.save(password=random_password)
+                messages.success(request,f"Teacher successfully created! Password: {random_password}")
                 return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
@@ -102,8 +103,9 @@ def admin_dashboard_action(request):
         elif request.POST.get("user_type") == 'CASHIER':
             form = forms.add_cashier(request.POST)
             if form.is_valid():
-                form.save()
-                messages.success(request,'Cashier successfully created!')
+                random_password = get_random_string(length=8)
+                form.save(password=random_password)
+                messages.success(request,f'Cashier successfully created! Password: {random_password}')
                 return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)

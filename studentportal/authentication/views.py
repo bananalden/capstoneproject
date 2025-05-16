@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from users.forms import FirstLoginPassword
 
 # Create your views here.
 
@@ -16,6 +17,9 @@ def home(request):
                 return redirect("home:cashier-home")
             case "REGISTRAR":
                 return redirect("home:registrar-dashboard")
+            case "TEACHER":
+                    return redirect('home:teacher-home')
+
     else:
         return render(request, 'authlogin/login.html')
 
@@ -34,6 +38,9 @@ def login_regular_user(request):
             login(request,user)
 
             match user.role:
+                case "TEACHER":
+                    return redirect('home:teacher-home')
+
                 case "STUDENT":
                     return redirect("home:student-home")
                 case "CASHIER":
@@ -70,6 +77,12 @@ def logout_user(request):
 def unauthorized_view(request):
     return render(request,'deniedaccess/401.html')
 
+def first_log_password(request):
+    form = FirstLoginPassword()
+    return render(request, 'registration/first-log-pass.html',{'form':form})
+
+#SECTION FOR FORGOTTEN PASSWORD DONT MESS WITH THIS
+
 # EMAIL SENT
 def email_sent(request):
     return render(request,'email-sent.html')
@@ -82,3 +95,5 @@ def set_new_pass(request):
 def pass_success(request):
     return render(request,'pass-success.html')
 
+
+#SECTION FOR FORGOTTEN PASSWORD DONT MESS WITH THIS

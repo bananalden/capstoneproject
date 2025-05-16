@@ -1,7 +1,7 @@
 from django import forms
 from users import models
 from django.utils.html import strip_tags
-from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm
+from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm,SetPasswordForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
@@ -53,6 +53,7 @@ class change_password(PasswordChangeForm):
         model = models.CustomUser
         fields = ['old_password','new_password1','new_password2']
 
+#DASHBOARD FORMS START
 
 class add_cashier(forms.ModelForm):
     class Meta:
@@ -145,9 +146,6 @@ class add_registrar(forms.ModelForm):
             registrar.save()
         return registrar
 
-
-
-
 class add_student(forms.ModelForm):
 
     class Meta:
@@ -178,6 +176,14 @@ class add_student(forms.ModelForm):
         if commit:
             student.save()
         return student
+    
+#DASHBOARD FORMS END
+
+
+class FirstLoginPassword(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(self, *args, **kwargs)
+        
 
 class StudentUserUpdate(forms.ModelForm):
     class Meta:

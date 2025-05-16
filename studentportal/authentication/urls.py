@@ -18,6 +18,11 @@ urlpatterns = [
     path('reset_success/', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
     #PASSWORD RESET LINKS
     
+    #MIDDLEWARE BS START
+    path('first-login-password/', views.first_log_password  , name='first-login-password'),
+    #MIDDLEWARE BS END
+
+
     # EMAIL SENT
      path('email-sent/', views.email_sent, name='email-sent'),
 

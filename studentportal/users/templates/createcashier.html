@@ -6,19 +6,29 @@ Cashier List
 {% block content %}
     <div class="crud-dashboard">
   
-    {%for msg in messages%}
-          {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  {{msg}}
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-          {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-              <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              {{msg}}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            {%endif%}
-      {%endfor%}
+{%for msg in messages%}
+  {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+       <div class="alert alert-warnings alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {%endif%}
+{%endfor%}
 
         <h1 class="list-title">Cashier List</h1>
         
