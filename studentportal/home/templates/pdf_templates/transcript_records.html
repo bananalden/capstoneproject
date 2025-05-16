@@ -1,108 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate of Grades</title>
-    <style>
-         @page{
-            size: 8.5in 13in;
-            margin: 0.5in;
-          
-        }
-        @media print{
-            html, body{
-                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            }
-        }
-        h1{
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <title>Transcript of Records</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 2cm;
+    }
 
-        .header{
-            padding-top: 15%;
-        }
-        .signature{
-            float: right;
-            margin-top: 30%;
-            padding-right:5%;
-            margin-right:5%;
-          
-        }
+    body {
+      font-family: "Times New Roman", serif;
+      background-color: #fff;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
 
-        .signature input{
-            border: none;
-            border-bottom: 1px solid black;
-        }
+    .tor-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2cm;
+      box-sizing: border-box;
+    }
 
-        .body p{
-            padding: 1%;
-        }
+    .tor-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        .sign-line p{
-            margin:0;
-            padding:0;
-        }
-        table,th,td{
-            border: 1px solid black;
-            border-collapse:collapse;
+    .school-logo {
+      position: relative;
+      top: 50px;
+      left: 30px;
+      width: 100px;
+      height: auto;
+      display: block;
+    }
 
-        }
-        th,td{
-            padding:5px;
-            margin: 5px;
-        }
-     
+    .school-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+    }
 
-    </style>
+    .school-address {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .tor-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      text-decoration: underline;
+    }
+
+    table.tor-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table.tor-table th,
+    table.tor-table td {
+      border: 1px solid #000;
+      padding: 8px;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    table.tor-table th {
+      background-color: #f0f0f0;
+    }
+
+    /* Signature section styles */
+    .certificate-signature {
+      margin-top: 50px;
+      text-align: right;
+    }
+
+    .signature-line {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .signature-underline {
+      width: 200px;
+      border-bottom: 1px solid #000;
+      margin-bottom: 5px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .signature-title,
+    .signature-name {
+      margin: 0;
+      font-size: 14px;
+      font-weight: normal;
+    }
+
+    /* Print optimization */
+    @media print {
+      body, .tor-container {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .tor-container {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-       <h1>Transcript of Records</h1>
-    </div>
-    <div class="body">
-        <p><strong>Student USN:</strong> 21001396500</p>
-        <p><strong>Student Name:</strong> Alden Justine Flores</p>
-        <table>
-            <thead>
-            <tr>
-            <th>Subject Code</th>
-            <th>Subject Title</th>
-            <th>Year</th>
-            <th>Semester</th>
-            <th>Grade</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                  FSDF-1023<br>
-                  FSDF-1023
-                </td>
-                <td>Farting Class 1<br>
-                  Farting Class 2
-                </td>
-                <td>2024-2025<br>
-                    2024-2025
-                </td>   
-                <td>1st Semester<br>
-                1st Semester
-                </td>   
-                <td>98.77<br>
-                99.9
-                </td>   
-            </tr>
-        </tbody>
-        </table>
 
-        <div class="signature">
-        <input type="text" name="signature" id="">
-        <div class="sign-line">
-            <p>Registrar</p>
-        <p><strong>Joseph T. Calara</strong></p>
-        
+  <div class="tor-container">
+    <div class="tor-header">
+      <img src="img/LOGO-VA.png" alt="School Logo" class="school-logo" />
+      <h2 class="school-name">Vision Academy of Apalit</h2>
+      <p class="school-address">MacArthur Highway, Apalit, Pampanga</p>
     </div>
+
+    <div class="tor-title">Transcript of Records</div>
+
+    <table class="tor-table">
+      <thead>
+        <tr>
+          <th>Subject Code</th>
+          <th>Subject Title</th>
+          <th>Semester Taken</th>
+          <th>Year Taken</th>
+          <th>Grade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ENG101</td>
+          <td>English Communication Skills I</td>
+          <td>1st Semester</td>
+          <td>2022</td>
+          <td>1.75</td>
+        </tr>
+        <tr>
+          <td>MATH102</td>
+          <td>College Algebra</td>
+          <td>1st Semester</td>
+          <td>2022</td>
+          <td>2.00</td>
+        </tr>
+        <tr>
+          <td>IT103</td>
+          <td>Introduction to Computing</td>
+          <td>2nd Semester</td>
+          <td>2022</td>
+          <td>1.50</td>
+        </tr>
+        <tr>
+          <td>PE104</td>
+          <td>Physical Education I</td>
+          <td>2nd Semester</td>
+          <td>2022</td>
+          <td>1.25</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Signature section -->
+    <div class="certificate-signature">
+      <div class="signature-line">
+        <div class="signature-underline"></div>
+        <p class="signature-title">Registrar</p>
+        <p class="signature-name">Joseph T. Calara</p>
+      </div>
     </div>
-    </div>
+  </div>
+
 </body>
 </html>
