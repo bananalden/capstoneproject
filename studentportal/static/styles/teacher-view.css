@@ -1,0 +1,76 @@
+.teacher-dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: start; /* Changed from center to start */
+  min-height: 100vh;
+  padding-top: 60px; /* Added space from top */
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+
+.second-quick-links {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 30px 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
+
+.second-quick-links h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #F07A0F;
+  font-weight: bold;
+}
+
+.teacher-upload-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.custom-upload-btn {
+  background-color: #2b6cb0;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+}
+
+.custom-upload-btn:hover {
+  background-color: #2c5282;
+}
+
+#file-name {
+  font-size: 14px;
+  color: #333;
+  font-style: italic;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.teacher-upload-grades {
+  background-color: #2b6cb0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.teacher-upload-grades:hover {
+  background-color: #2c5282;
+}

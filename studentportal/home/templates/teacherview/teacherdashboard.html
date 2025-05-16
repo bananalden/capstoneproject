@@ -30,10 +30,10 @@ Teacher Upload Grade
 {%endfor%}
 
 
-<div class="second-dashboard">
+<div class="teacher-dashboard">
   <div class="second-quick-links">
     <h2>Upload Grades</h2>
-    <div class="upload-container">
+    <div class="teacher-upload-container">
       <form action="{%url 'home:grades:grade-upload' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="file-upload" class="custom-upload-btn">Upload File</label>
@@ -44,7 +44,7 @@ Teacher Upload Grade
         <!-- This span will show the file name once a file is selected -->
         <span id="file-name">No file chosen</span>
       </div>
-      <button type="submit" class="upload-grades">Upload Grades</button>
+      <button type="submit" class="teacher-upload-grades">Upload Grades</button>
     </form>
   </div>
 <script src="{% static 'js/teacher.js'%}"></script>
