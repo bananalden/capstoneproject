@@ -1,4 +1,194 @@
+{%load static%}
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Transcript of Records</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 2cm;
+    }
+
+    body {
+      font-family: "Times New Roman", serif;
+      background-color: #fff;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tor-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2cm;
+      box-sizing: border-box;
+    }
+
+    .tor-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .school-logo {
+      position: relative;
+      top: 50px;
+      left: 30px;
+      width: 100px;
+      height: auto;
+      display: block;
+    }
+
+    .school-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .school-address {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .tor-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      text-decoration: underline;
+    }
+
+    table.tor-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table.tor-table th,
+    table.tor-table td {
+      border: 1px solid #000;
+      padding: 8px;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    table.tor-table th {
+      background-color: #f0f0f0;
+    }
+
+    /* Signature section styles */
+    .certificate-signature {
+      margin-top: 50px;
+      text-align: right;
+    }
+
+    .signature-line {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .signature-underline {
+      width: 200px;
+      border-bottom: 1px solid #000;
+      margin-bottom: 5px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .signature-title,
+    .signature-name {
+      margin: 0;
+      font-size: 14px;
+      font-weight: normal;
+    }
+
+    /* Print optimization */
+    @media print {
+      body, .tor-container {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .tor-container {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tor-container">
+    <div class="tor-header">
+      <img src="{%static 'images/LOGO-VA.png'%}" alt="Vision Academy Logo" class="school-logo" />
+      <h2 class="school-name">Vision Academy of Apalit</h2>
+      <p class="school-address">MacArthur Highway, Apalit, Pampanga</p>
+
+      <p>This is to certify that the student, {{student.first_name}} {{student.last_name}} is enrolled in ACLC College of Apalit in the {{semester}} Semester of the school year, {{year}}.</p>
+        <p>The following are the grades the aforemnetioned student had in the previous year.</p>
+    </div>
+
+    <div class="tor-title">Transcript of Records</div>
+
+    <table class="tor-table">
+      <thead>
+        <tr>
+          <th>Subject Code</th>
+          <th>Subject Title</th>
+          <th>Semester Taken</th>
+          <th>Year Taken</th>
+          <th>Grade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ENG101</td>
+          <td>English Communication Skills I</td>
+          <td>1st Semester</td>
+          <td>2022</td>
+          <td>1.75</td>
+        </tr>
+        <tr>
+          <td>MATH102</td>
+          <td>College Algebra</td>
+          <td>1st Semester</td>
+          <td>2022</td>
+          <td>2.00</td>
+        </tr>
+        <tr>
+          <td>IT103</td>
+          <td>Introduction to Computing</td>
+          <td>2nd Semester</td>
+          <td>2022</td>
+          <td>1.50</td>
+        </tr>
+        <tr>
+          <td>PE104</td>
+          <td>Physical Education I</td>
+          <td>2nd Semester</td>
+          <td>2022</td>
+          <td>1.25</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Signature section -->
+    <div class="certificate-signature">
+      <div class="signature-line">
+        <div class="signature-underline"></div>
+        <p class="signature-title">Registrar</p>
+        <p class="signature-name">Joseph T. Calara</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -93,4 +283,4 @@
     </div>
     </div>
 </body>
-</html>
+</html> {% endcomment %}
