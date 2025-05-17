@@ -61,39 +61,36 @@ def admin_dashboard_action(request):
       if request.method == 'POST':
 ##################LOGIC FOR STUDENT########################################################
         if request.POST.get("user_type") == 'STUDENT':
-            form = forms.add_student(request.POST)
+            form = forms.edit_student(request.POST)
             if form.is_valid():
-                random_password = get_random_string(length=8)
-                student = form.save(password=random_password)
+                student = form.save()
 
                 course = request.POST.get("course")
                 models.StudentProfile.objects.update_or_create(
                     student=student,defaults={"course":course}
                 ) 
 
-                messages.success(request,f"Student successfully created! Password:{random_password}")
+                messages.success(request,"Student successfully created!")
                 return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
                 return redirect('admin:dashboard')
   #####################LOGIC FOR TEACHER##################################################          
         elif request.POST.get("user_type") == 'TEACHER':
-            form = forms.add_teacher(request.POST)
+            form = forms.edit_teacher(request.POST)
             if form.is_valid():
-                random_password = get_random_string(length=8)
-                form.save(password=random_password)
-                messages.success(request,f"Teacher successfully created! Password: {random_password}")
+                form.save()
+                messages.success(request,"Teacher successfully created!")
                 return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
                 return redirect('admin:dashboard')
 ###########################LOGIC FOR REGISTRAR#########################################
         elif request.POST.get("user_type") == 'REGISTRAR':
-            form = forms.add_registrar(request.POST)
+            form = forms.edit_registrar(request.POST)
             if form.is_valid():
-               random_password = get_random_string(length=8)
-               form.save(password=random_password)
-               messages.success(request,f'Registrar successfully created! Password: {random_password}')
+               form.save()
+               messages.success(request,'Registrar successfully created!')
                return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
@@ -101,11 +98,10 @@ def admin_dashboard_action(request):
 
  ###########################LOGIC FOR CASHIER#########################################           
         elif request.POST.get("user_type") == 'CASHIER':
-            form = forms.add_cashier(request.POST)
+            form = forms.edit_cashier(request.POST)
             if form.is_valid():
-                random_password = get_random_string(length=8)
-                form.save(password=random_password)
-                messages.success(request,f'Cashier successfully created! Password: {random_password}')
+                form.save()
+                messages.success(request,'Cashier successfully created!')
                 return redirect('admin:dashboard')
             else:
                 messages.warning(request,form.errors)
@@ -132,7 +128,7 @@ def update_cashier(request):
             print("Coudn't find this admin")
             return redirect('admin:users:admin-list')
         cashier_user = models.CustomUser.objects.get(id=cashier_id)
-        form = forms.add_cashier(request.POST, instance=cashier_user)
+        form = forms.edit_cashier(request.POST, instance=cashier_user)
         if form.is_valid():
             form.save()
             messages.success(request,"Cashier successfully edited!")
@@ -169,7 +165,7 @@ def update_registrar(request):
     if request.method == 'POST':
         registrar_id = request.POST.get("id", None)
         registrar_user = models.CustomUser.objects.get(id=registrar_id)
-        form = forms.add_registrar(request.POST, instance=registrar_user)
+        form = forms.edit_registrar(request.POST, instance=registrar_user)
         
         if form.is_valid():
             form.save()
@@ -206,7 +202,7 @@ def update_teacher(request):
     if request.method == 'POST':
         teacher_id = request.POST.get("edit_id")
         teacher_user = models.CustomUser.objects.get(id=teacher_id)
-        teacher_update =forms.add_teacher(request.POST, instance=teacher_user)
+        teacher_update =forms.edit_teacher(request.POST, instance=teacher_user)
         if teacher_update.is_valid():
             teacher_update.save()
             messages.success(request,'Teacher updated successfully!')
@@ -244,7 +240,7 @@ def update_student(request):
     if request.method == 'POST':
         student_id = request.POST.get("edit_id")
         student_user = models.CustomUser.objects.get(id=student_id)
-        student_update =forms.add_student(request.POST, instance=student_user)
+        student_update =forms.edit_student(request.POST, instance=student_user)
         if student_update.is_valid():
             student_update.save()
             messages.success(request,"Student edited successfully!")
@@ -337,7 +333,7 @@ def change_password_user(request):
                 case 'REGISTRAR':
                     messages.warning(request, form.errors)
                     return redirect('home:edit-registrar-password')
-            messages.error(request, form.errors)
+            
 
 #USER PASSWORD EDIT=============================================
 

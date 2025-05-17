@@ -30,6 +30,13 @@ $(document).ready(function (){
                 $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
                 $("#payment_other").hide()
                 $("#payment_purpose_other").removeAttr("required")   
+                break;
+                
+                case "TRANSCRIPT OF RECORDS":
+                    $("#amount_paid").prop("disabled", false).prop("readonly",true).val(90)
+                    $("#payment_other").hide()
+                    $("#payment_purpose_other").removeAttr("required")   
+            
             break;
                         
             case "OTHER": 
