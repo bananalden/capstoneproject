@@ -11,8 +11,8 @@
     <div class="password-container">
         <h2 class="password-title">Create New Password</h2>
         <form class="password-form">
-            <input type="password" class="input-new-password" id="new-password" placeholder="New password" required>
-            <input type="password" class="input-confirm-password" id="confirm-password" placeholder="Confirm password" required>
+            {{form.new_password1}}
+            {{form.new_password2}}
             <button type="submit" class="create-submit-button">Submit</button>
             <div class="password-requirements">
             • At least 8 characters<br>

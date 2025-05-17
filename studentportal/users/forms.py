@@ -183,6 +183,16 @@ class add_student(forms.ModelForm):
 class FirstLoginPassword(SetPasswordForm):
     def __init__(self, *args, **kwargs):
         super().__init__(self, *args, **kwargs)
+        self.fields["new_password1"].widget.attrs.update({
+         "class":"input-new-password",
+         "id":"new-password",
+         "placeholder":"New Password"
+        })
+        self.fields["new_password2"].widget.attrs.update({
+         "class":"input-confirm-password",
+         "id":"confirm-password",
+         "placeholder":"Confirm Password"
+        })
         
 
 class StudentUserUpdate(forms.ModelForm):
