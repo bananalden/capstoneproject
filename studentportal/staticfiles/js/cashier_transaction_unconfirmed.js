@@ -114,7 +114,7 @@ $(document).ready(function (){
 //TABLE DATA END
 
 
-//REVIEW PAYMENT BUTTON START
+//REVIEW PAYMENT BUTTON START / PAYMENT INFORMATION
 $(document).on("click",".btn-review", function(){
     var itemID = $(this).data('id');
     console.log(itemID)

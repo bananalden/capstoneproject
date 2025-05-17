@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import datetime
 from weasyprint import HTML
@@ -318,6 +319,12 @@ def generate_cert(request):
         transaction_id = request.POST.get('transID')
         pickup_date = request.POST.get('pickup-date')
         remarks = request.POST.get('remarks')
+        if settings.DEBUG:
+            logo_path = os.path.join(settings.BASE_DIR, 'static', 'images', 'LOGO_VA.png')
+        else:
+            logo_path = os.path.join(settings.STATIC_ROOT,'images', 'LOGO_VA.png')
+
+        
 
       
 
@@ -370,7 +377,8 @@ def generate_cert(request):
                     'student':student,
                     'year':year,
                     'semester':semester,
-                    'remarks': remarks
+                    'remarks': remarks,
+                    'logo_path': logo_path
                 }
 
             else:
@@ -379,10 +387,11 @@ def generate_cert(request):
                     'year':year,
                     'semester':semester
                 }
-        
+
+           
 
             html_content = render_to_string(template_name,context)
-            pdf_file = HTML(string=html_content).write_pdf()
+            pdf_file = HTML(string=html_content, base_url=request.build_absolute_uri()).write_pdf()
 
            
             response = HttpResponse(pdf_file, content_type='application/pdf')

@@ -125,7 +125,7 @@
 <body>
   <div class="certificate-container" id="certificate">
     <div class="certificate-header">
-      <img src="{% static 'images/LOGO-VA.png'%}" alt=" Academy Logo" class="school-logo" />
+      <img src="{{ logo_path }}" alt=" Academy Logo" class="school-logo" />
       <h2 class="school-name">Vision Academy of Apalit</h2>
       <h3 class="school-address">MacArthur Highway, Apalit, Pampanga</h3>
     </div>
@@ -137,8 +137,7 @@
       <strong>Vision Academy of Apalit</strong>, currently enrolled in the {{semester}} of the Academic Year 
       <strong>{{year}}</strong>.</p>
 
-      <p>Based on the records of this institution, the aforementioned student has not committed any form of misbehavior 
-      nor violated any of the school’s rules and regulations during his/her stay in the college.</p>
+      <p>{{remarks}}</p>
 
       <p>This certification is issued upon the request of the above-named student for whatever legal purpose it may serve.</p>
 

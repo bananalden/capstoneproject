@@ -5,6 +5,14 @@ body, html {
     background-color: #f0f0f0;
 }
 
+.login-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1B48A0;
+    margin: 0 0 20px;
+    text-align: center;
+}
+
 .login-container {
     display: flex;
     height: 100vh;
@@ -13,9 +21,10 @@ body, html {
 /* Left Section */
 .left-section {
     flex: 1;
-    background-image: url('/static/images/ama.jpg'); /* Replace with your image path */
-    background-size: cover;
+    background-image: url('/static/images/VA-BG.jpeg');
+    background-size: 100% 100%; /* width 120%, height auto */
     background-position: center;
+    background-repeat: no-repeat;
     position: relative;
 }
 
@@ -39,7 +48,7 @@ body, html {
 }
 
 .login-frame img {
-    width: 120px;
+    width: 150px;
     display: block;
     margin: 0 auto 20px;
 }
@@ -56,10 +65,14 @@ body, html {
     margin-bottom: 20px;
 }
 
+#loginForm input {
+    box-shadow: none;
+}
+
 /* Updated Button Styling */
 .btn-login {
     display: block;
-    background-color: #ef233c;
+    background-color: #1B48A0;
     width: 70%;
     color: #fff;
     border: none;
@@ -75,7 +88,7 @@ body, html {
 }
   
 .btn-login:hover {
-    background-color: #c1121f;
+    background-color: #016a9e;
     transform: translateY(-2px);
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
     color: #fff;
@@ -92,13 +105,14 @@ body, html {
 }
 
 .forgot-password {
-    color: #dc3545;
+    color: #F07A0F;
     text-decoration: none;
     font-size: 14px;
 }
 
 .forgot-password:hover {
     text-decoration: underline;
+    color: #F07A0F;
 }
 
 /* INVALID INPUT PASSWORD */

@@ -46,6 +46,11 @@
 
 
 /* Table Styles */
+.list-title {
+  color: #1B48A0;
+  font-weight: bold;
+}
+
 table {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 100%; /* Keeps the table at full width but within constraints */
@@ -85,14 +90,14 @@ table tr:hover {
 #pagination button {
   padding: 8px 16px;
   margin: 0 5px;
-  background-color: #023047;
+  background-color: #1B48A0;
   color: white;
   border-radius: 5px;
   border: none;
 }
 
 #pagination button:hover {
-  background-color: #044768;
+  background-color: #016a9e;
   cursor: pointer;
 }
 
@@ -381,7 +386,7 @@ h1 {
 
 /* BUTTON SEARCH  */
 .button-search-admin {
-  background-color: #4A90E2;
+  background-color: #1B48A0;
   color: #fff;
   border: none;
   height: 100%;
@@ -399,7 +404,7 @@ h1 {
 }
 
 .button-search-admin:hover {
-  background-color: #357ABD;
+  background-color: #016a9e;
   transform: translateY(-3px);
 }
 

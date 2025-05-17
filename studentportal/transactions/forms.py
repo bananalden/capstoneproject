@@ -142,6 +142,18 @@ class GoodMoraleForm(forms.Form):
         "class":"generate-document-select"
     }))
 
+    remarks = forms.CharField(widget=forms.Textarea(attrs={
+    "placeholder": "Enter remarks here...",
+    "class": "generate-document-textarea"
+}))
+
+    def clean_remarks(self):
+        remarks = self.cleaned_data.get("remarks")
+
+        if not remarks:
+            raise ValidationError("Please enter remarks!")
+        
+        return remarks
 
     def clean_student(self):
         student_usn = self.cleaned_data.get("student")
@@ -200,6 +212,8 @@ class EnrollmentForm(forms.Form):
             return student
         except User.DoesNotExist:  
             raise ValidationError("User does not exist. Please enter a valid Student username.")
+        
+
         
     def clean_year(self):
         year = self.cleaned_data.get('year')

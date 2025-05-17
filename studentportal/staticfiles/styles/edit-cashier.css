@@ -65,7 +65,7 @@
 /* Updated Button Styling */
 .edit-cashier-save-btn {
   display: block;
-  background-color: #ef233c;
+  background-color: #1B48A0;
   width: 100%;  /* Full width */
   color: #fff;
   border: none;
@@ -81,7 +81,7 @@
 }
 
 .edit-cashier-save-btn:hover {
-  background-color: #c1121f;
+  background-color: #016a9e;
   transform: translateY(-2px);
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
 }
