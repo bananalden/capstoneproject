@@ -90,14 +90,14 @@ table tr:hover {
 #pagination button {
   padding: 8px 16px;
   margin: 0 5px;
-  background-color: #023047;
+  background-color: #1B48A0;
   color: white;
   border-radius: 5px;
   border: none;
 }
 
 #pagination button:hover {
-  background-color: #044768;
+  background-color: #016a9e;
   cursor: pointer;
 }
 
