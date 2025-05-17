@@ -317,6 +317,7 @@ def generate_cert(request):
         document_type = request.POST.get('document_type')
         transaction_id = request.POST.get('transID')
         pickup_date = request.POST.get('pickup-date')
+        remarks = request.POST.get('remarks')
 
       
 
@@ -363,6 +364,14 @@ def generate_cert(request):
                 student_usn = str(student.username)
                 grades_unfiltered = Grades.objects.filter(student_usn=student_usn)
                 grades = grades_unfiltered.sort(key=lambda g: (g.sort_year, g.sort_semester))
+
+            elif document_type == "CERTIFICATE OF GOOD MORALE":
+                context={
+                    'student':student,
+                    'year':year,
+                    'semester':semester,
+                    'remarks': remarks
+                }
 
             else:
                 context={
