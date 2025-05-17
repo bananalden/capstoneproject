@@ -93,8 +93,7 @@ def registrar_dashboard(request):
         payment_purpose__in=[
             models.Transaction.PaymentPurposeChoice.CERT_GRADES,
             models.Transaction.PaymentPurposeChoice.CERT_MORALE,
-            models.Transaction.PaymentPurposeChoice.CERT_ENROL,
-            models.Transaction.PaymentPurposeChoice.TRANS_RECORD
+            models.Transaction.PaymentPurposeChoice.CERT_ENROL
         ], is_confirmed=True
     ).count()
     ready_transactions = models.Transaction.objects.filter(
@@ -102,8 +101,7 @@ def registrar_dashboard(request):
         payment_purpose__in=[
             models.Transaction.PaymentPurposeChoice.CERT_GRADES,
             models.Transaction.PaymentPurposeChoice.CERT_MORALE,
-            models.Transaction.PaymentPurposeChoice.CERT_ENROL,
-            models.Transaction.PaymentPurposeChoice.TRANS_RECORD
+            models.Transaction.PaymentPurposeChoice.CERT_ENROL
         ], is_confirmed=True
     ).count()
 
@@ -115,8 +113,7 @@ def registrar_dashboard(request):
         payment_purpose__in=[
             models.Transaction.PaymentPurposeChoice.CERT_GRADES,
             models.Transaction.PaymentPurposeChoice.CERT_MORALE,
-            models.Transaction.PaymentPurposeChoice.CERT_ENROL,
-            models.Transaction.PaymentPurposeChoice.TRANS_RECORD
+            models.Transaction.PaymentPurposeChoice.CERT_ENROL
         ], is_confirmed=True
     ).order_by('-date_time')[:5]
 
