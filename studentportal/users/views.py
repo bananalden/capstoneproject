@@ -397,7 +397,8 @@ def bulk_register_student(request):
                     last_name=last_name,
                     email=email,
                     password=make_password(password),
-                    role= models.Student.Role.STUDENT
+                    role= models.Student.Role.STUDENT,
+                    is_active=False
                 )
                 new_students.append(new_student)
                 student_course_mapping[username] = course  # Save course separately
