@@ -5,8 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First Time Log-in Password Change</title>
+    <link rel="stylesheet" href="{% static 'styles/first-log-pass.css'%}" />
 </head>
 <body>
-{{form.as_p}}
+    <div class="password-container">
+        <h2 class="password-title">Create New Password</h2>
+        <form class="password-form">
+            <input type="password" class="input-new-password" id="new-password" placeholder="New password" required>
+            <input type="password" class="input-confirm-password" id="confirm-password" placeholder="Confirm password" required>
+            <button type="submit" class="create-submit-button">Submit</button>
+            <div class="password-requirements">
+            • At least 8 characters<br>
+            • Not similar to personal info<br>
+            • Not a common password<br>
+            • Not entirely numeric
+            </div>
+        </form>
+    </div>
+
 </body>
 </html>
