@@ -64,7 +64,7 @@
 
 .submit-btn {
   display: block; /* Ensures the button behaves like a block element */
-  background-color: #ef233c;
+  background-color: #1B48A0;
   width: 70%; /* Adjusts the width */
   color: #fff;
   border: none;
@@ -80,7 +80,7 @@
 }
 
 .submit-btn:hover {
-  background-color: #c1121f;
+  background-color: #016a9e;
   transform: translateY(-2px);
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
 }
