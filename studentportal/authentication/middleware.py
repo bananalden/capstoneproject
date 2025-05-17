@@ -1,23 +1,25 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 
-class ForcePasswordResetMiddleware:
+class ForcePasswordChangeMiddleware:
+    """
+    Middleware to force users who are inactive (is_active=False)
+    to change their password on first login.
+    """
+
     def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
-        if not request.user.is_authenticated:
-            return self.get_resonse(request)
-        
-        if request.user.is_active:
-            return self.get_response(request)
-        
-        allowed_paths = {
-            reverse('authentication:set-new-pass'),
-            reverse('authentication:logout_user')
-        }
+        user = request.user
 
-        if request.path not in allowed_paths:
-            return redirect('authentication:set-new-pass')
-        
+        # Exclude unauthenticated users, admin, and already active users
+        if user.is_authenticated and not user.is_active:
+            allowed_paths = [
+                reverse('authentication:first-login-password'),
+                reverse('authentication:logout'),
+            ]
+            if request.path not in allowed_paths:
+                return redirect('authentication:first-login-password')
+
         return self.get_response(request)

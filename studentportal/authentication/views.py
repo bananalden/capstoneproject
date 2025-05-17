@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
 from django.contrib import messages
 from users.forms import FirstLoginPassword
 
@@ -78,7 +78,32 @@ def unauthorized_view(request):
     return render(request,'deniedaccess/401.html')
 
 def first_log_password(request):
-    form = FirstLoginPassword()
+    if not request.user.is_authenticated or request.user.is_active:
+        return redirect('authentication:login')
+
+    form = FirstLoginPassword(user=request.user, data=request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            user = form.save()
+            user.is_active = True
+            user.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, "You have now been succesfully verified!")
+
+            match user.role:
+                    case "TEACHER":
+                        return redirect('home:teacher-home')
+                    case "STUDENT":
+                        return redirect("home:student-home")
+                    case "CASHIER":
+                        return redirect("home:cashier-home")
+                    case "REGISTRAR":
+                        return redirect("home:registrar-dashboard")
+        else:
+            messages.warning(request,form.errors)
+            print(form.errors)
+
     return render(request, 'registration/first-log-pass.html',{'form':form})
 
 #SECTION FOR FORGOTTEN PASSWORD DONT MESS WITH THIS

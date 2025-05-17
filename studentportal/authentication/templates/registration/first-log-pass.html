@@ -6,13 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First Time Log-in Password Change</title>
     <link rel="stylesheet" href="{% static 'styles/first-log-pass.css'%}" />
+    <link rel="stylesheet" href="{% static 'styles/alert-styles.css'%}" />
+    <link rel="icon" href="{% static 'favicon/favicon.ico' %}" />
 </head>
 <body>
+
     <div class="password-container">
         <h2 class="password-title">Create New Password</h2>
-        <form class="password-form">
+        <form class="password-form" method="post">
+            {% csrf_token %}
             {{form.new_password1}}
+            {{ form.new_password1.errors }}
             {{form.new_password2}}
+            {{ form.new_password2.errors }}
             <button type="submit" class="create-submit-button">Submit</button>
             <div class="password-requirements">
             • At least 8 characters<br>
