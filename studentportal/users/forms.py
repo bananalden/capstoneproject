@@ -224,6 +224,10 @@ class edit_cashier(forms.ModelForm):
     def save(self, commit=True):
         cashier = super().save(commit=False)
         cashier.set_password(self.cleaned_data['password'])
+
+        if self.instance.pk is None:
+            cashier.is_active = False
+
         if commit:
             cashier.save()
 
@@ -251,6 +255,9 @@ class edit_teacher(forms.ModelForm):
     def save(self, commit=True):
         teacher = super().save(commit=False)
         teacher.set_password(self.cleaned_data['password'])
+
+        if self.instance.pk is None:
+            teacher.is_active = False
         if commit:
             teacher.save()
 
@@ -278,6 +285,10 @@ class edit_registrar(forms.ModelForm):
     def save(self, commit=True):
         registrar = super().save(commit=False)
         registrar.set_password(self.cleaned_data['password'])
+
+        if self.instance.pk is None:
+            registrar.is_active = False
+
         if commit:
             registrar.save()
 
@@ -309,6 +320,9 @@ class edit_student(forms.ModelForm):
         student = super().save(commit=False)
         student.set_password(self.cleaned_data['password'])
         
+        if self.instance.pk is None:
+            student.is_active = False
+
         if commit:
             student.save()
 

@@ -432,11 +432,12 @@ def registrar_doc_list(request):
         payment_purpose__in=[
             transactions_data.Transaction.PaymentPurposeChoice.CERT_GRADES,
             transactions_data.Transaction.PaymentPurposeChoice.CERT_MORALE,
-            transactions_data.Transaction.PaymentPurposeChoice.CERT_ENROL
+            transactions_data.Transaction.PaymentPurposeChoice.CERT_ENROL,
+            transactions_data.Transaction.PaymentPurposeChoice.TRANS_RECORD
         ], is_confirmed=True
     ).order_by('-date_time')
    
-   if filter_purpose in ["CERTIFICATE OF GRADES","CERTIFICATE OF GOOD MORALE","CERTIFICATE OF ENROLLMENT"]:
+   if filter_purpose in ["CERTIFICATE OF GRADES","CERTIFICATE OF GOOD MORALE","CERTIFICATE OF ENROLLMENT", "TRANSCRIPT OF RECORDS"]:
        pending_transactions = pending_transactions.filter(payment_purpose=filter_purpose)
 
    if search_query:
@@ -482,11 +483,12 @@ def registrar_complete_list(request):
         payment_purpose__in=[
             transactions_data.Transaction.PaymentPurposeChoice.CERT_GRADES,
             transactions_data.Transaction.PaymentPurposeChoice.CERT_MORALE,
-            transactions_data.Transaction.PaymentPurposeChoice.CERT_ENROL
+            transactions_data.Transaction.PaymentPurposeChoice.CERT_ENROL,
+            transactions_data.Transaction.PaymentPurposeChoice.TRANS_RECORD
         ], is_confirmed=True
     ).order_by('-date_time')
    
-   if filter_purpose in ["CERTIFICATE OF GRADES","CERTIFICATE OF GOOD MORALE","CERTIFICATE OF ENROLLMENT"]:
+   if filter_purpose in ["CERTIFICATE OF GRADES","CERTIFICATE OF GOOD MORALE","CERTIFICATE OF ENROLLMENT", "TRANSCRIPT OF RECORDS"]:
        pending_transactions = pending_transactions.filter(payment_purpose=filter_purpose)
 
 
