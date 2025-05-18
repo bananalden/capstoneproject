@@ -125,7 +125,7 @@
       <h2 class="school-name">Vision Academy of Apalit</h2>
       <p class="school-address">MacArthur Highway, Apalit, Pampanga</p>
 
-      <p>This is to certify that the student, {{student.first_name}} {{student.last_name}} is enrolled in ACLC College of Apalit in the {{semester}} Semester of the school year, {{year}}.</p>
+      <p>This is to certify that the student, {{student.first_name}} {{student.last_name}} is enrolled in Vision Academy in the {{semester}} Semester of the school year, {{year}}.</p>
         <p>The following are the grades the aforemnetioned student had in the previous year.</p>
     </div>
 
@@ -142,34 +142,15 @@
         </tr>
       </thead>
       <tbody>
+      {%for grade in grades%}
         <tr>
-          <td>ENG101</td>
-          <td>English Communication Skills I</td>
-          <td>1st Semester</td>
-          <td>2022</td>
-          <td>1.75</td>
+          <td>{{grade.subject_code}}</td>
+          <td>{{grade.subject_name}}</td>
+          <td>{{grade.semester}}</td>
+          <td>{{grade.year}}</td>
+          <td>{{grade.grade_value}}</td>
         </tr>
-        <tr>
-          <td>MATH102</td>
-          <td>College Algebra</td>
-          <td>1st Semester</td>
-          <td>2022</td>
-          <td>2.00</td>
-        </tr>
-        <tr>
-          <td>IT103</td>
-          <td>Introduction to Computing</td>
-          <td>2nd Semester</td>
-          <td>2022</td>
-          <td>1.50</td>
-        </tr>
-        <tr>
-          <td>PE104</td>
-          <td>Physical Education I</td>
-          <td>2nd Semester</td>
-          <td>2022</td>
-          <td>1.25</td>
-        </tr>
+    {%endfor%}
       </tbody>
     </table>
 
