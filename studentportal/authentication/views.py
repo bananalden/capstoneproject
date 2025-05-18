@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
 from django.contrib import messages
 from users.forms import FirstLoginPassword
-
+from axes.handlers.proxy import AxesProxyHandler
 # Create your views here.
 
 def home(request):
@@ -29,12 +29,16 @@ def login_regular_user(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
 
+        if AxesProxyHandler.is_locked(request, credentials={'username': username}):
+            messages.warning(request, 'Your account has been locked due to too many failed login attempts. Please try again later or contact support.')
+            return redirect(request, 'authlogin/login.html')
     
         if user is not None:
             
             if user.role == 'ADMIN':
                 messages.warning(request,'Invalid USN or Password, please try again!')
-                return redirect('authentication:login')
+                return redirect(request.META.get('HTTP_REFERER','authentication:login'))
+            
             login(request,user)
 
             match user.role:

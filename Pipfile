@@ -19,6 +19,7 @@ gunicorn = "*"
 imagekitio = "*"
 boto3 = "*"
 django-storages = "*"
+django-axes = "*"
 
 [dev-packages]
 
