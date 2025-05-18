@@ -17,7 +17,8 @@
 
 .registrar-welcome-title {
   font-size: 28px;
-  color: #2c3e50;
+  color: #1B48A0;
+  font-weight: bold;
 }
 
 .registrar-stats {
@@ -28,7 +29,7 @@
 }
 
 .registrar-stat-card {
-  background: #3498db;
+  background: #1B48A0;
   color: #ffffff;
   padding: 20px;
   border-radius: 12px;
@@ -39,7 +40,7 @@
 }
 
 .registrar-stat-card:nth-child(2) {
-  background: #f39c12;
+  background: #F07A0F;
 }
 
 .registrar-stat-card:nth-child(3) {
@@ -58,7 +59,7 @@
 
 .registrar-requests-title {
   font-size: 22px;
-  color: #2c3e50;
+  color: #1B48A0;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -70,7 +71,8 @@
 }
 
 .registrar-table-head {
-  background: #ecf0f1;
+  background: #1B48A0;
+  color: #fff;
 }
 
 .registrar-table-header {
@@ -88,17 +90,20 @@
 }
 
 .registrar-view-button {
-  background: #3498db;
+  background: #1B48A0;
   color: #ffffff;
   border: none;
   padding: 6px 10px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .registrar-view-button:hover {
-  background: #2980b9;
+  background: #016a9e;
+  transform: translateY(-2px);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Updated Modal Styles */
