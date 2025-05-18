@@ -370,7 +370,17 @@ def generate_cert(request):
             elif document_type =="TRANSCRIPT OF RECORDS":
                 student_usn = str(student.username)
                 grades_unfiltered = Grades.objects.filter(student_usn=student_usn)
-                grades = grades_unfiltered.sort(key=lambda g: (g.sort_year, g.sort_semester))
+                grades = sorted(grades_unfiltered, key=lambda g: (g.sort_year, g.sort_semester))
+                status = request.POST.get("status")
+                print(grades)
+
+                
+
+                context = {
+                    'student': student,
+                    'grades':grades,
+                    'status':status
+                }
 
             elif document_type == "CERTIFICATE OF GOOD MORALE":
                 context={

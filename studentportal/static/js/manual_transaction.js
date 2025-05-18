@@ -35,8 +35,16 @@ $(document).ready(function(){
                 $("#payment_purpose").hide()
                 $("#amount_paid").prop("disabled",false).prop("readonly",true).val(90)
                 $("#payment_purpose_other").attr("required", false)
-       
+                
                 break;
+                
+                case "TRANSCRIPT OF RECORDS":
+                    $("#payment_purpose").hide()
+                    $("#amount_paid").prop("disabled",false).prop("readonly",true).val(90)
+                    $("#payment_purpose_other").attr("required", false)
+                    
+                break;
+
             case "OTHER":        
                 $("#payment_purpose").show()
                 $("#amount_paid").prop("disabled",false).prop("readonly",false).val("")

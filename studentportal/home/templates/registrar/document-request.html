@@ -111,7 +111,7 @@ Document Request
 
                               <div class="form-half">
                                <h6 id="instruction"></h6>
-                                <div class="m-2">
+                                <div class="m-2" id="semester">
                                   <label for="semester">Semester:</label>
                                   <select name="semester" id="semester"><br>
                                     <option value="1st">1st</option>
@@ -119,7 +119,15 @@ Document Request
                                   </select><br>
                                   </div>
 
-                                  <div class="m-2">
+                                  <div class="m-2" id="status">
+                                  <label for="semester">Set Student Status:</label>
+                                  <select name="status" id="semester"><br>
+                                    <option value="COMPLETE">Complete</option>
+                                    <option value="IN PROGRESS">In Progress</option>
+                                  </select><br>
+                                  </div>
+
+                                  <div class="m-2" id="year">
                                     <label for="year">School Year:</label>
                                     <input type="text" name="year" id="school-year" placeholder="Enter School Year (example: 2024-2025)">
                                   </div>

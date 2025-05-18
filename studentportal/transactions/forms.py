@@ -286,6 +286,12 @@ class TranscriptRecords(forms.Form):
         "class":"generate-document-input",
         "id":"student-name"
     }))
+
+    status = forms.CharField(max_length=150,widget=forms.TextInput(attrs={
+        "placeholder":"Input student's USN",
+        "class":"generate-document-input",
+        "id":"student-name"
+    }))
     
     def clean_student(self):
         student_usn = self.cleaned_data.get("student")

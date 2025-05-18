@@ -236,19 +236,32 @@ $(document).on("click", ".process-document",function(){
             if(document_type == "CERTIFICATE OF ENROLLMENT" ){
                 $("#instruction").html("Enter current year and semester")
                 $("#remarks-for-morale").hide()
+                $("#semester").show()
+                $("#year").show()
             }
             else if (document_type == "CERTIFICATE OF GRADES"){
                 $("#instruction").html("Enter previous year and semester")
                 $("#remarks-for-morale").hide()
+                $("#semester").show()
+                $("#year").show()
                 
             }
             
             else if(document_type=="CERTIFICATE OF GOOD MORALE"){
                 $("#instruction").html("Enter current year and semester")
                 $("#remarks-for-morale").show()
+                $("#semester").show()
+                $("#year").show()
                 
             }
-              
+            
+            else if(document_type=="TRANSCRIPT OF RECORDS"){
+                $("#instruction").html("Set Status for TOR")
+                $("#remarks-for-morale").hide()
+                $("#semester").hide()
+                $("#year").hide()
+                
+            }
 
                         
           

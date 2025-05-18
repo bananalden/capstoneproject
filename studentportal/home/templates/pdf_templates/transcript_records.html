@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,7 +126,8 @@
     </div>
 
     <div class="tor-title">Transcript of Records</div>
-
+      <p><strong>NAME:</strong>{{student.last_name}}, {{student.first_name}}</p>
+      <p><strong>STATUS:</strong>{{status}}</p>
     <table class="tor-table">
       <thead>
         <tr>
@@ -137,34 +139,15 @@
         </tr>
       </thead>
       <tbody>
+      {%for grade in grades%}
         <tr>
-          <td>ENG101</td>
-          <td>English Communication Skills I</td>
-          <td>1st Semester</td>
-          <td>2022</td>
-          <td>1.75</td>
+          <td>{{grade.subject_code}}</td>
+          <td>{{grade.subject_name}}</td>
+          <td>{{grade.semester}}</td>
+          <td>{{grade.year}}</td>
+          <td>{{grade.grade_value}}</td>
         </tr>
-        <tr>
-          <td>MATH102</td>
-          <td>College Algebra</td>
-          <td>1st Semester</td>
-          <td>2022</td>
-          <td>2.00</td>
-        </tr>
-        <tr>
-          <td>IT103</td>
-          <td>Introduction to Computing</td>
-          <td>2nd Semester</td>
-          <td>2022</td>
-          <td>1.50</td>
-        </tr>
-        <tr>
-          <td>PE104</td>
-          <td>Physical Education I</td>
-          <td>2nd Semester</td>
-          <td>2022</td>
-          <td>1.25</td>
-        </tr>
+        {%endfor%}
       </tbody>
     </table>
 
