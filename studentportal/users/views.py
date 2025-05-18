@@ -113,7 +113,7 @@ def admin_dashboard_action(request):
 def create_cashier(request):
     if request.user.role != "ADMIN":
         return redirect('authentication:unauthorized-view')
-    form = forms.add_cashier()
+    form = forms.edit_cashier()
     cashiers = models.CustomUser.objects.filter(role="CASHIER")
 
     context = {'form':form,
