@@ -37,7 +37,7 @@ ALLOWED_HOSTS = [
 AXES_FAILURE_LIMIT = 3  # Lock out after 5 failed attempts
 AXES_COOLOFF_TIME = 1  # 1 hour cooldown (can also be timedelta)
 AXES_LOCKOUT_CALLABLE = None  # Custom function for lockout logic
-AXES_ONLY_USER_FAILURES = True  # Track failures per username
+
 
 # Application definition
 

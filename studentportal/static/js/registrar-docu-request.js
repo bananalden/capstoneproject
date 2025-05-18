@@ -238,12 +238,14 @@ $(document).on("click", ".process-document",function(){
                 $("#remarks-for-morale").hide()
                 $("#semester").show()
                 $("#year").show()
+                $("#status").hide()
             }
             else if (document_type == "CERTIFICATE OF GRADES"){
                 $("#instruction").html("Enter previous year and semester")
                 $("#remarks-for-morale").hide()
                 $("#semester").show()
                 $("#year").show()
+                $("#status").hide()
                 
             }
             
@@ -252,6 +254,7 @@ $(document).on("click", ".process-document",function(){
                 $("#remarks-for-morale").show()
                 $("#semester").show()
                 $("#year").show()
+                $("#status").hide()
                 
             }
             
@@ -260,6 +263,7 @@ $(document).on("click", ".process-document",function(){
                 $("#remarks-for-morale").hide()
                 $("#semester").hide()
                 $("#year").hide()
+                $("#status").show()
                 
             }
 
