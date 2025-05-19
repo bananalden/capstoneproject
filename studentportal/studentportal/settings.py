@@ -34,6 +34,10 @@ DEBUG = os.getenv('DEBUG','False') == 'True'
 ALLOWED_HOSTS = [
     '*']
 
+AXES_FAILURE_LIMIT = 3  # Lock out after 5 failed attempts
+AXES_COOLOFF_TIME = 1  # 1 hour cooldown (can also be timedelta)
+AXES_LOCKOUT_CALLABLE = None  # Custom function for lockout logic
+
 
 # Application definition
 
@@ -51,7 +55,8 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'transactions.apps.TransactionsConfig',
     'api.apps.ApiConfig',
-    'notifications.apps.NotificationsConfig'
+    'notifications.apps.NotificationsConfig',
+    'axes'
 ]
 
 
@@ -65,7 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'authentication.middleware.ForcePasswordChangeMiddleware'
+    'authentication.middleware.ForcePasswordChangeMiddleware',
+    'axes.middleware.AxesMiddleware'
 ]
 
 ROOT_URLCONF = 'studentportal.urls'
@@ -133,7 +139,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesStandaloneBackend',
     'authentication.backends.AllowInactiveUserBackend',
+   
 ]
 
 # Internationalization

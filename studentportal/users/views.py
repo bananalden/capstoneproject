@@ -113,7 +113,7 @@ def admin_dashboard_action(request):
 def create_cashier(request):
     if request.user.role != "ADMIN":
         return redirect('authentication:unauthorized-view')
-    form = forms.add_cashier()
+    form = forms.edit_cashier()
     cashiers = models.CustomUser.objects.filter(role="CASHIER")
 
     context = {'form':form,
@@ -151,7 +151,7 @@ def delete_cashier(request):
 def create_registrar(request):
     if request.user.role != "ADMIN":
         return redirect('authentication:unauthorized-view')
-    form = forms.add_registrar()
+    form = forms.edit_registrar()
     registrars = models.CustomUser.objects.filter(role="REGISTRAR")
    
     context = {
@@ -190,7 +190,7 @@ def delete_registrar(request):
 def create_teacher(request):
     if request.user.role != "ADMIN":
         return redirect('authentication:unauthorized-view')
-    user_form = forms.add_teacher()
+    user_form = forms.edit_teacher()
     teacher = get_user_model()
     teachers = teacher.objects.filter(role='TEACHER')
     context = {'user_form':user_form,
@@ -227,7 +227,7 @@ def delete_teacher(request):
 def create_student(request):
     if request.user.role != "ADMIN":
         return redirect('authentication:unauthorized-view')
-    user_form = forms.add_student()
+    user_form = forms.edit_student()
     student = get_user_model()
     students = student.objects.filter(role='STUDENT').select_related("student_id")
  
