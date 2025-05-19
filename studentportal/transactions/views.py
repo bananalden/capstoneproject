@@ -49,6 +49,7 @@ def manual_request(request):
             return redirect('home:cashier-home')
         else:
             print(form.errors)
+            messages.warning(request, form.errors)
             return redirect('home:cashier-home')
         
 def complete_docu_request(request):

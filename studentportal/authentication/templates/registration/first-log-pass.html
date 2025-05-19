@@ -10,15 +10,37 @@
     <link rel="icon" href="{% static 'favicon/favicon.ico' %}" />
 </head>
 <body>
+{%for msg in messages%}
+  {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {%elif msg.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+       <div class="alert alert-warnings alert-dismissible fade show" role="alert">
+      <span>{{msg}}</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {%endif%}
+{%endfor%}
+
 
     <div class="password-container">
         <h2 class="password-title">Create New Password</h2>
         <form class="password-form" method="post">
             {% csrf_token %}
             {{form.new_password1}}
-            {{ form.new_password1.errors }}
             {{form.new_password2}}
-            {{ form.new_password2.errors }}
             <button type="submit" class="create-submit-button">Submit</button>
             <div class="password-requirements">
             • At least 8 characters<br>
